@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?rfc toc="yes"?>
+<?rfc tocompact="yes"?>
+<?rfc tocdepth="1"?>
+<?rfc tocindent="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc comments="yes"?>
+<?rfc inline="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<rfc category="std" docName="draft-tgraf-opsawg-ipfix-inband-telemetry-00"
+     ipr="trust200902">
+  <front>
+    <title abbrev="Export of Forwarding Path Delay in IPFIX">Export of
+    Forwarding Path Delay in IPFIX</title>
+
+    <author fullname="Thomas Graf" initials="T" surname="Graf">
+      <organization>Swisscom</organization>
+
+      <address>
+        <postal>
+          <street>Binzring 17</street>
+
+          <city>Zurich</city>
+
+          <code>8045</code>
+
+          <country>Switzerland</country>
+        </postal>
+
+        <email>thomas.graf@swisscom.com</email>
+      </address>
+    </author>
+
+    <author fullname="Benoit Claise" initials="B" surname="Claise">
+      <organization>Huawei</organization>
+
+      <address>
+        <email>benoit.claise@huawei.com</email>
+      </address>
+    </author>
+
+    <author fullname="Alex Huang Feng" initials="A." surname="Huang Feng">
+      <organization>INSA-Lyon</organization>
+
+      <address>
+        <postal>
+          <street/>
+
+          <city>Lyon</city>
+
+          <region/>
+
+          <code/>
+
+          <country>France</country>
+        </postal>
+
+        <phone/>
+
+        <facsimile/>
+
+        <email>alex.huang-feng@insa-lyon.fr</email>
+
+        <uri/>
+      </address>
+    </author>
+
+    <date day="23" month="June" year="2022"/>
+
+    <abstract>
+      <t>This document introduces new IP Flow Information Export (IPFIX)
+      information elements to expose the forwarding path delay measured with
+      Inband Telemtry.</t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section anchor="Introduction" title="Introduction">
+      <t>With Inband Telemetry, defined in <xref
+      target="I-D.ietf-ippm-ioam-deployment">In-situ OAM</xref>, <xref
+      target="I-D.filsfils-spring-path-tracing">Path Tracing</xref> and <xref
+      target="I-D.song-opsawg-ifit-framework">In-situ Flow Information
+      Telemetry</xref>, the path delay between two endpoints is measured by
+      inserting a timestamp in the packet.</t>
+
+      <t>Inband Telemetry can be distinguished between two modes. Passport
+      mode where only the last hop in the forwarding path of the Inband
+      Telemetry domain exposed metrics, where in postcard mode also the ransit
+      nodes eposes metrics.</t>
+
+      <t>This document defines six new IPFIX Information Elements (IEs) with
+      their coresponding entries in the performance metrics registry to expose
+      the delay of the forwarding path.</t>
+
+      <t>The delay is measured by calculating the difference between the
+      timestamp imposed with Inband Telemetry in the packet at the first hop
+      and the flow record timestamp when being export on the receiving node.
+      Depending on the IE, the lowest, highest or the sum of measured delay is
+      being exported.</t>
+    </section>
+
+    <section anchor="IE" title="IPFIX Information Elements">
+      <t>This section defines and describes the new IPFIX IEs.<list
+          style="hanging">
+          <t hangText="PathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
+          16-bit unsigned integer that identifies the lowest path delay.</t>
+
+          <t hangText="PathDelayMinDeltaNanoseconds"><vspace blankLines="0"/>
+          32-bit unsigned integer that identifies the lowest path delay.</t>
+
+          <t hangText="PathDelayMaxDeltaMicroseconds"><vspace blankLines="0"/>
+          16-bit unsigned integer that identifies the highest path delay.</t>
+
+          <t hangText="PathDelayMaxDeltaNanoseconds"><vspace blankLines="0"/>
+          32-bit unsigned integer that identifies the highest path delay.</t>
+
+          <t hangText="PathDelaySumDeltaMicroseconds"><vspace blankLines="0"/>
+          32-bit unsigned integer that identifies the sum of the path
+          delay.</t>
+
+          <t hangText="PathDelaySumDeltaNanoseconds"><vspace blankLines="0"/>
+          64-bit unsigned integer that identifies the sum of the path
+          delay.</t>
+        </list></t>
+    </section>
+
+    <section anchor="Use-Cases" title="Use Cases">
+      <t>By using srhSegmentIPv6BasicList(TBD5) or the
+      srhSegmentIPv6ListSection (TBD6), srhActiveSegmentIPv6 (TBD4),
+      srhSegmentIPv6sLeft (TBD7), srhActiveSegmentIPv6Type(TBD9), the
+      forwardingStatus(89), and some counters information, it is possible to
+      answer the following questions (amongst others):</t>
+
+      <t><list style="symbols">
+          <t>how many packets are forwarded or dropped</t>
+
+          <t>if dropped, for which reasons,</t>
+
+          <t>identify the active segment and its control plane protocol,</t>
+
+          <t>the SRv6 segment list,</t>
+
+          <t>the next SRv6 node and its type,</t>
+
+          <t>and how many SRv6 segments are left.</t>
+        </list></t>
+    </section>
+
+    <section anchor="IANA" title="IANA Considerations">
+      <t>This document requests IANA to create new IEs (see table 1) and
+      assign the following initial code points.</t>
+
+      <t><figure>
+          <artwork><![CDATA[
+
+     +-------+-------------------------------+
+     |Element|             Name              |
+     |   ID  |                               |
+     +-------+-------------------------------+
+     | TBD1  | PathDelayMinDeltaMicroseconds |
+     |       |                               |
+     +-------+-------------------------------+
+     | TBD2  | PathDelayMinDeltaNanoseconds  |
+     |       |                               |
+     +-------+-------------------------------+
+     | TBD3  | PathDelayMaxDeltaMicroseconds |
+     |       |                               |
+     +-------+-------------------------------+
+     | TBD4  | PathDelayMaxDeltaNanoseconds  |
+     |       |                               |
+     +-------+-------------------------------+
+     | TBD5  | PathDelaySumDeltaMicroseconds |
+     |       |                               |
+     +-------+-------------------------------+
+     | TBD6  | PathDelaySumDeltaNanoseconds  |
+     |       |                               |
+     +-------+-------------------------------+
+
+  Table 1: Creates IEs in the "IPFIX Information Elements" registry
+       ]]></artwork>
+        </figure></t>
+
+      <t>Note to the RFC-Editor:</t>
+
+      <t><list style="symbols">
+          <t>Please replace TBD1 - TBD16 with the values allocated by IANA</t>
+
+          <t>Please replace the [RFC-to-be] with the RFC number assigned to
+          this document</t>
+        </list></t>
+
+      <section anchor="IANAPathDelayMinDeltaMicroseconds"
+               title="PathDelayMinDeltaMicroseconds">
+        <t>Name: PathDelayMinDeltaMicroseconds <vspace blankLines="0"/>
+        ElementID: TBD1 <vspace blankLines="0"/> Description: This Information
+        Element identifies the lowest path delay in microseconds. <vspace
+        blankLines="0"/> Abstract Data Type: unsigned16 <vspace
+        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+      </section>
+
+      <section anchor="IANAPathDelayMinDeltaNanoseconds"
+               title="PathDelayMinDeltaNanoseconds">
+        <t>Name: PathDelayMinDeltaNanoseconds <vspace blankLines="0"/>
+        ElementID: TBD2 <vspace blankLines="0"/> Description: This Information
+        Element identifies the lowest path delay in nanoseconds. <vspace
+        blankLines="0"/> Abstract Data Type: unsigned32 <vspace
+        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+      </section>
+
+      <section anchor="IANAPathDelayMaxDeltaMicroseconds"
+               title="PathDelayMaxDeltaMicroseconds">
+        <t>Name: PathDelayMaxDeltaMicroseconds <vspace blankLines="0"/>
+        ElementID: TBD3 <vspace blankLines="0"/> Description: This Information
+        Element identifies the highest path delay in microseconds. <vspace
+        blankLines="0"/> Abstract Data Type: unsigned16 <vspace
+        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+      </section>
+
+      <section anchor="IANAPathDelayMaxDeltaNanoseconds"
+               title="PathDelayMaxDeltaNanoseconds">
+        <t>Name: PathDelayMaxDeltaNanoseconds <vspace blankLines="0"/>
+        ElementID: TBD4 <vspace blankLines="0"/> Description: This Information
+        Element identifies the highest path delay in nanoseconds. <vspace
+        blankLines="0"/> Abstract Data Type: unsigned32 <vspace
+        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+      </section>
+
+      <section anchor="IANAPathDelaySumDeltaMicroseconds"
+               title="PathDelaySumDeltaMicroseconds">
+        <t>Name: PathDelaySumDeltaMicroseconds <vspace blankLines="0"/>
+        ElementID: TBD3 <vspace blankLines="0"/> Description: This Information
+        Element identifies the sum of the path delay in microseconds. <vspace
+        blankLines="0"/> Abstract Data Type: unsigned32 <vspace
+        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+      </section>
+
+      <section anchor="IANAPathDelaySumDeltaNanoseconds"
+               title="PathDelaySumDeltaNanoseconds">
+        <t>Name: PathDelaySumDeltaNanoseconds <vspace blankLines="0"/>
+        ElementID: TBD4 <vspace blankLines="0"/> Description: This Information
+        Element identifies the sum of the path delay in nanoseconds. <vspace
+        blankLines="0"/> Abstract Data Type: unsigned64 <vspace
+        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+      </section>
+    </section>
+
+    <section anchor="Operational" title="Operational Considerations">
+      <section anchor="OpsTimeAccuracy" title="Time Accuracy">
+        <t>The same recommondation as defined in section 4.5 of <xref
+        target="RFC5153"/> apply in terms of clock precision.</t>
+      </section>
+
+      <section anchor="OpsAverageDelay" title="Average Delay">
+        <t>The average path delay can be caluclated by deviding the
+        PathDelaySumDeltaMicroseconds(TBD5) or
+        PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
+        IPFIX data collection.</t>
+      </section>
+    </section>
+
+    <section anchor="Security" title="Security Considerations">
+      <t>There exists no significant extra security considerations regarding
+      the allocation of these new IPFIX IEs compared to <xref
+      target="RFC7012"/>.</t>
+    </section>
+
+    <section anchor="Acknowledgements" title="Acknowledgements">
+      <t>The authors would like to thank xxx for their review and valuable
+      comments.</t>
+    </section>
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      <?rfc include='reference.RFC.7012'?>
+    </references>
+
+    <references title="Informative References">
+      <?rfc include='reference.I-D.ietf-ippm-ioam-deployment'?>
+
+      <?rfc include='reference.I-D.filsfils-spring-path-tracing'?>
+
+      <?rfc include='reference.I-D.song-opsawg-ifit-framework'?>
+
+      <?rfc include='reference.RFC.5153'?>
+
+      <reference anchor="IANA-IPFIX"
+                 target="https://www.iana.org/assignments/ipfix/ipfix.xhtml">
+        <front>
+          <title>IANA, "IP Flow Information Export (IPFIX) Entities"</title>
+
+          <author/>
+
+          <date/>
+        </front>
+      </reference>
+    </references>
+
+    <section anchor="Encoding-Example" title="IPFIX Encoding Examples">
+      <section anchor="Template-Record-and-Data-Set-with-Basic-List"
+               title="Template Record and Data Set with Basic List">
+        <t>This appendix represents three different encodings for the newly
+        introduced IEs, for the example values in the table 5. The three
+        different encodings uses the following IEs, respectively:
+        srhSegmentIPv6BasicList, srhSegmentIPv6ListSection, and
+        srhSectionIPv6.</t>
+
+        <t><figure>
+            <artwork><![CDATA[
+
+   +-----+------+-----+------------------+--------------------------|
+   | SRH | SRH  | SRH | Active Segment   |       Segment List       |
+   | Nr  | Flags| Tag | Type             |                          |
+   +-----+------+-----+------------------+--------------------------+
+   | 1   | 0    | 123 |   IS-IS [TBD15]  | 2001:db8::1, 2001:db8::2,|
+   |     |      |     |                  | 2001:db8::3              |
+   +-----+------+-----+------------------+--------------------------+
+   | 2   | 0    | 456 |   IS-IS [TBD15]  | 2001:db8::4, 2001:db8::5 |
+   +-----+------+-----+------------------+--------------------------+
+   | 3   | 0    | 789 |   IS-IS [TBD15]  | 2001:db8::6              |
+   +-----+------+-----+------------------+--------------------------+
+
+     Table 5: three observed SRH headers and their routing protocol
+       ]]></artwork>
+          </figure></t>
+
+        <section anchor="Template-Record-and-Data-Set-with-BasicList"
+                 title="Template Record and Data Set with Segment BasicList">
+          <t><figure>
+              <artwork><![CDATA[
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |          SET ID = 2           |       Length = 24             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |      Template ID = 256        |      Field Count = 4          |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0|     srhFlagsIPv6 = TBD1     |      Field Length = 1         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0|      srhTagIPv6 = TBD2      |      Field Length = 2         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0|srhActiveSegmentIPv... = TBD9|      Field Length = 1         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0|srhSegmentIPv6BasicList= TBD5|      Field Length = 0xFFFF    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+        Table 6: Template Record with Basic List Encoding Format
+
+            ]]></artwork>
+            </figure></t>
+
+          <t>In this example, the Template ID is 256, which will be used in
+          the Data Record. The field length for srhSegmentIPv6BasicList is
+          0xFFFF, which means the length of this IE is variable, and the
+          actual length of this IE is indicated by the List Length field in
+          the basicList format as per.</t>
+
+          <t>The data set is represented as follows:</t>
+
+          <figure>
+            <artwork><![CDATA[
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |         SET ID = 256          |           Length = 136        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | srhFlagsIPv6  |        srhTagIPv6 = 123       | srhActiveSegme|
+   | = 0           |                               | ntIPv...=TBD15|
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |      255      |        List Length = 53       |semantic=      |
+   |               |                               |ordered        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     srhSegmentIPv6 = TBD3     |        Field Length = 16      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |             Segment List[0] = 2001:db8::1                     |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |             Segment List[1] = 2001:db8::2                     |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |             Segment List[2] = 2001:db8::3                     |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | srhFlagsIPv6  |        srhTagIPv6 = 456       | srhActiveSegme|
+   | = 0           |                               | ntIPv...=TBD15|
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |      255      |        List Length = 37       |semantic=      |
+   |               |                               |ordered        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     srhSegmentIPv6 = TBD3     |        Field Length = 16      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |             Segment List[0] = 2001:db8::4                     |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |             Segment List[1] = 2001:db8::5  (16 bytes)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | srhFlagsIPv6  |        srhTagIPv6 = 789       | srhActiveSegme|
+   | = 0           |                               | ntIPv...=TBD15|
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |      255      |        List Length = 21       |semantic=      |
+   |               |                               |ordered        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     srhSegmentIPv6 = TBD3     |        Field Length = 16      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |             Segment List[0] = 2001:db8::6  ...                |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                              ...                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+           Table 7: Data Set Encoding Format for Basic List
+
+            ]]></artwork>
+          </figure>
+        </section>
+      </section>
+    </section>
+  </back>
+</rfc>
