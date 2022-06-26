@@ -1,0 +1,448 @@
+
+
+
+
+Network Working Group                                            T. Graf
+Internet-Draft                                                  Swisscom
+Intended status: Standards Track                               B. Claise
+Expires: December 25, 2022                                        Huawei
+                                                           A. Huang Feng
+                                                               INSA-Lyon
+                                                           June 23, 2022
+
+
+                Export of Forwarding Path Delay in IPFIX
+              draft-tgraf-opsawg-ipfix-inband-telemetry-00
+
+Abstract
+
+   This document introduces new IP Flow Information Export (IPFIX)
+   information elements to expose the Inband Telemtry measured
+   forwarding path delay.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on December 25, 2022.
+
+Copyright Notice
+
+   Copyright (c) 2022 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (https://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+
+
+
+
+Graf, et al.            Expires December 25, 2022               [Page 1]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
+
+
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  IPFIX Information Elements  . . . . . . . . . . . . . . . . .   2
+   3.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
+   5.  Operational Considerations  . . . . . . . . . . . . . . . . .   6
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   6
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
+
+1.  Introduction
+
+   With Inband Telemetry, defined in In-situ OAM
+   [I-D.ietf-ippm-ioam-deployment], Path Tracing
+   [I-D.filsfils-spring-path-tracing] and In-situ Flow Information
+   Telemetry [I-D.song-opsawg-ifit-framework], the path delay between
+   two endpoints is measured by inserting a timestamp in the packet.
+
+   Inband Telemetry can be distinguished between two modes.  Passport
+   mode where only the last hop in the forwarding path of the Inband
+   Telemetry domain, where in postcard mode also the transit nodes
+   eposes metrics.  In both mode the forwarding path is exposed.  Thus
+   allowing to determine where how much delay has been accumulated.
+
+   This document defines six new IPFIX Information Elements (IEs) with
+   their coresponding entries in the performance metrics registry to
+   expose the forwarding path delay.
+
+   The delay is measured by calculating the difference between the
+   timestamp imposed with Inband Telemetry in the packet at the first
+   hop and the timestamp being used for the IPFIX flow record when being
+   export on the receiving transit and decapsulation nodes.  Depending
+   on the IE, the lowest, highest or the sum of measured delay is being
+   exported.
+
+2.  IPFIX Information Elements
+
+   This section defines and describes the new IPFIX IEs.
+
+   PathDelayMinDeltaMicroseconds
+      16-bit unsigned integer that identifies the lowest path delay.
+
+   PathDelayMinDeltaNanoseconds
+
+
+
+Graf, et al.            Expires December 25, 2022               [Page 2]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
+
+
+      32-bit unsigned integer that identifies the lowest path delay.
+
+   PathDelayMaxDeltaMicroseconds
+      16-bit unsigned integer that identifies the highest path delay.
+
+   PathDelayMaxDeltaNanoseconds
+      32-bit unsigned integer that identifies the highest path delay.
+
+   PathDelaySumDeltaMicroseconds
+      32-bit unsigned integer that identifies the sum of the path delay.
+
+   PathDelaySumDeltaNanoseconds
+      64-bit unsigned integer that identifies the sum of the path delay.
+
+3.  Use Cases
+
+   The measured forewarding path delay can be aggregatd with Flow
+   Aggregation as defined in [RFC7015] to the following device and
+   control-plane dimensions to determine:
+
+   o  With egressInterface(IE14), which logical egress interfaces have
+      been contributing to how much delay.
+
+   o  With egressPhysicalInterface(253), which phyical egress interfaces
+      have been contributing to how much delay.
+
+   o  With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62), the
+      forwarding path to which IP next-hop contributed to how much
+      delay.
+
+   o  With mplsTopLabelIPv4Address(IE47) or srhActiveSegmentIPv6 from
+      [I-D.tgraf-opsawg-ipfix-srv6-srh], the forwarding path to which
+      MPLS top label IPv4 address or SRv6 active segment contributed to
+      how much delay.
+
+   o  BGP communities are often used for setting a path priority or
+      service selection.  With bgpDestinationExtendedCommunityList(488)
+      or bgpDestinationCommunityList(485) or
+      bgpDestinationLargeCommunityList(491) which group of prefixes
+      accumulated at which node how much delay.
+
+   o  With destinationIPv4Address(13), destinationTransportPort(11),
+      protocolIdentifier (4) and sourceIPv4Address(IE8), the forwarding
+      path delay on each node from each IPv4 source address to a
+      specific application in the network.
+
+
+
+
+
+
+Graf, et al.            Expires December 25, 2022               [Page 3]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
+
+
+4.  IANA Considerations
+
+   This document requests IANA to create new IEs (see table 1) and
+   assign the following initial code points.
+
+
+        +-------+-------------------------------+
+        |Element|             Name              |
+        |   ID  |                               |
+        +-------+-------------------------------+
+        | TBD1  | PathDelayMinDeltaMicroseconds |
+        |       |                               |
+        +-------+-------------------------------+
+        | TBD2  | PathDelayMinDeltaNanoseconds  |
+        |       |                               |
+        +-------+-------------------------------+
+        | TBD3  | PathDelayMaxDeltaMicroseconds |
+        |       |                               |
+        +-------+-------------------------------+
+        | TBD4  | PathDelayMaxDeltaNanoseconds  |
+        |       |                               |
+        +-------+-------------------------------+
+        | TBD5  | PathDelaySumDeltaMicroseconds |
+        |       |                               |
+        +-------+-------------------------------+
+        | TBD6  | PathDelaySumDeltaNanoseconds  |
+        |       |                               |
+        +-------+-------------------------------+
+
+     Table 1: Creates IEs in the "IPFIX Information Elements" registry
+
+   Note to the RFC-Editor:
+
+   o  Please replace TBD1 - TBD6 with the values allocated by IANA
+
+   o  Please replace the [RFC-to-be] with the RFC number assigned to
+      this document
+
+4.1.  PathDelayMinDeltaMicroseconds
+
+   Name: PathDelayMinDeltaMicroseconds
+   ElementID: TBD1
+   Description: This Information Element identifies the lowest path
+   delay in microseconds.
+   Abstract Data Type: unsigned16
+   Data Type Semantics: OctedDelta
+   Reference: [RFC-to-be], xxx
+
+
+
+
+Graf, et al.            Expires December 25, 2022               [Page 4]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
+
+
+4.2.  PathDelayMinDeltaNanoseconds
+
+   Name: PathDelayMinDeltaNanoseconds
+   ElementID: TBD2
+   Description: This Information Element identifies the lowest path
+   delay in nanoseconds.
+   Abstract Data Type: unsigned32
+   Data Type Semantics: OctedDelta
+   Reference: [RFC-to-be], xxx
+
+4.3.  PathDelayMaxDeltaMicroseconds
+
+   Name: PathDelayMaxDeltaMicroseconds
+   ElementID: TBD3
+   Description: This Information Element identifies the highest path
+   delay in microseconds.
+   Abstract Data Type: unsigned16
+   Data Type Semantics: OctedDelta
+   Reference: [RFC-to-be], xxx
+
+4.4.  PathDelayMaxDeltaNanoseconds
+
+   Name: PathDelayMaxDeltaNanoseconds
+   ElementID: TBD4
+   Description: This Information Element identifies the highest path
+   delay in nanoseconds.
+   Abstract Data Type: unsigned32
+   Data Type Semantics: OctedDelta
+   Reference: [RFC-to-be], xxx
+
+4.5.  PathDelaySumDeltaMicroseconds
+
+   Name: PathDelaySumDeltaMicroseconds
+   ElementID: TBD5
+   Description: This Information Element identifies the sum of the path
+   delay in microseconds.
+   Abstract Data Type: unsigned32
+   Data Type Semantics: OctedDelta
+   Reference: [RFC-to-be], xxx
+
+4.6.  PathDelaySumDeltaNanoseconds
+
+   Name: PathDelaySumDeltaNanoseconds
+   ElementID: TBD6
+   Description: This Information Element identifies the sum of the path
+   delay in nanoseconds.
+   Abstract Data Type: unsigned64
+   Data Type Semantics: OctedDelta
+
+
+
+Graf, et al.            Expires December 25, 2022               [Page 5]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
+
+
+   Reference: [RFC-to-be], xxx
+
+5.  Operational Considerations
+
+5.1.  Time Accuracy
+
+   The same recommondation as defined in section 4.5 of [RFC5153] for
+   IPFIX apply in terms of clock precision to this document as well.
+
+5.2.  Average Delay
+
+   The average path delay can be caluclated by deviding the
+   PathDelaySumDeltaMicroseconds(TBD5) or
+   PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
+   IPFIX data collection.
+
+5.3.  IOAM Packet Time Stamps
+
+   For IOAM, Section 4.4.1 of [RFC9197]describes what kind of timestamps
+   are support.  Section 4.4.2.3 and 4.4.2.4 describe where the
+   timestamp is being inserted.
+
+   For Path Tracing, Section 4.1 of [I-D.filsfils-spring-path-tracing]
+   describes what kind of timestamps are supported.  Section 9.2
+   describe the SRH path tracing TLV where the timestamp is being
+   inserted.
+
+6.  Security Considerations
+
+   There exists no significant extra security considerations regarding
+   the allocation of these new IPFIX IEs compared to [RFC7012].
+
+7.  Acknowledgements
+
+   The authors would like to thank xxx for their review and valuable
+   comments.
+
+8.  References
+
+8.1.  Normative References
+
+   [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
+              for IP Flow Information Export (IPFIX)", RFC 7012,
+              DOI 10.17487/RFC7012, September 2013,
+              <https://www.rfc-editor.org/info/rfc7012>.
+
+
+
+
+
+
+Graf, et al.            Expires December 25, 2022               [Page 6]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
+
+
+8.2.  Informative References
+
+   [I-D.filsfils-spring-path-tracing]
+              Filsfils, C., Abdelsalam, A., Garvia, P. C., Yufit, M.,
+              Graf, T., Su, Y., Matsushima, S., and M. Valentine, "Path
+              Tracing in SRv6 networks", draft-filsfils-spring-path-
+              tracing-01 (work in progress), May 2022.
+
+   [I-D.ietf-ippm-ioam-deployment]
+              Brockners, F., Bhandari, S., Bernier, D., and T. Mizrahi,
+              "In-situ OAM Deployment", draft-ietf-ippm-ioam-
+              deployment-01 (work in progress), April 2022.
+
+   [I-D.song-opsawg-ifit-framework]
+              Song, H., Qin, F., Chen, H., Jin, J., and J. Shin, "A
+              Framework for In-situ Flow Information Telemetry", draft-
+              song-opsawg-ifit-framework-17 (work in progress), February
+              2022.
+
+   [I-D.tgraf-opsawg-ipfix-srv6-srh]
+              Graf, T. and B. Claise, "Export of Segment Routing IPv6
+              Information in IP Flow Information Export (IPFIX)", draft-
+              tgraf-opsawg-ipfix-srv6-srh-03 (work in progress), March
+              2022.
+
+   [RFC5153]  Boschi, E., Mark, L., Quittek, J., Stiemerling, M., and P.
+              Aitken, "IP Flow Information Export (IPFIX) Implementation
+              Guidelines", RFC 5153, DOI 10.17487/RFC5153, April 2008,
+              <https://www.rfc-editor.org/info/rfc5153>.
+
+   [RFC7015]  Trammell, B., Wagner, A., and B. Claise, "Flow Aggregation
+              for the IP Flow Information Export (IPFIX) Protocol",
+              RFC 7015, DOI 10.17487/RFC7015, September 2013,
+              <https://www.rfc-editor.org/info/rfc7015>.
+
+   [RFC9197]  Brockners, F., Ed., Bhandari, S., Ed., and T. Mizrahi,
+              Ed., "Data Fields for In Situ Operations, Administration,
+              and Maintenance (IOAM)", RFC 9197, DOI 10.17487/RFC9197,
+              May 2022, <https://www.rfc-editor.org/info/rfc9197>.
+
+Authors' Addresses
+
+
+
+
+
+
+
+
+
+
+Graf, et al.            Expires December 25, 2022               [Page 7]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
+
+
+   Thomas Graf
+   Swisscom
+   Binzring 17
+   Zurich  8045
+   Switzerland
+
+   Email: thomas.graf@swisscom.com
+
+
+   Benoit Claise
+   Huawei
+
+   Email: benoit.claise@huawei.com
+
+
+   Alex Huang Feng
+   INSA-Lyon
+   Lyon
+   France
+
+   Email: alex.huang-feng@insa-lyon.fr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.            Expires December 25, 2022               [Page 8]
