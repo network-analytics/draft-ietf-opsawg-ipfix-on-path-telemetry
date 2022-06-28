@@ -83,9 +83,10 @@ Table of Contents
 
    Inband Telemetry can be distinguished between two modes.  Passport
    mode where only the last hop in the forwarding path of the Inband
-   Telemetry domain, where in postcard mode also the transit nodes
-   eposes metrics.  In both mode the forwarding path is exposed.  Thus
-   allowing to determine where how much delay has been accumulated.
+   Telemetry domain exposes all the metrics and postcard mode where the
+   transit nodes also expose metrics.  In both modes the forwarding path
+   is exposed.  Thus allowing to determine how much delay has been
+   accumulated hop by hop.
 
    This document defines six new IPFIX Information Elements (IEs) with
    their coresponding entries in the performance metrics registry to
@@ -105,7 +106,6 @@ Table of Contents
    PathDelayMinDeltaMicroseconds
       16-bit unsigned integer that identifies the lowest path delay.
 
-   PathDelayMinDeltaNanoseconds
 
 
 
@@ -114,6 +114,7 @@ Graf, et al.            Expires December 25, 2022               [Page 2]
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
 
 
+   PathDelayMinDeltaNanoseconds
       32-bit unsigned integer that identifies the lowest path delay.
 
    PathDelayMaxDeltaMicroseconds
@@ -130,18 +131,18 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
 
 3.  Use Cases
 
-   The measured forewarding path delay can be aggregatd with Flow
+   The measured forwarding path delay can be aggregated with Flow
    Aggregation as defined in [RFC7015] to the following device and
    control-plane dimensions to determine:
 
    o  With egressInterface(IE14), which logical egress interfaces have
       been contributing to how much delay.
 
-   o  With egressPhysicalInterface(253), which phyical egress interfaces
-      have been contributing to how much delay.
+   o  With egressPhysicalInterface(253), which physical egress
+      interfaces have been contributing to how much delay.
 
    o  With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62), the
-      forwarding path to which IP next-hop contributed to how much
+      forwarding path to which next-hop IP contributed to how much
       delay.
 
    o  With mplsTopLabelIPv4Address(IE47) or srhActiveSegmentIPv6 from
@@ -159,7 +160,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
       protocolIdentifier (4) and sourceIPv4Address(IE8), the forwarding
       path delay on each node from each IPv4 source address to a
       specific application in the network.
-
 
 
 
@@ -293,7 +293,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
 
 5.2.  Average Delay
 
-   The average path delay can be caluclated by deviding the
+   The average path delay can be calculated by dividing the
    PathDelaySumDeltaMicroseconds(TBD5) or
    PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
    IPFIX data collection.
@@ -301,7 +301,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
 5.3.  IOAM Packet Time Stamps
 
    For IOAM, Section 4.4.1 of [RFC9197]describes what kind of timestamps
-   are support.  Section 4.4.2.3 and 4.4.2.4 describe where the
+   are supported.  Section 4.4.2.3 and 4.4.2.4 describe where the
    timestamp is being inserted.
 
    For Path Tracing, Section 4.1 of [I-D.filsfils-spring-path-tracing]
@@ -311,8 +311,8 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       June 2022
 
 6.  Security Considerations
 
-   There exists no significant extra security considerations regarding
-   the allocation of these new IPFIX IEs compared to [RFC7012].
+   There are no significant extra security considerations regarding the
+   allocation of these new IPFIX IEs compared to [RFC7012].
 
 7.  Acknowledgements
 
