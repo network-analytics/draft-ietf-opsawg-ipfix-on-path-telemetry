@@ -88,9 +88,9 @@
 
       <t>Inband Telemetry can be distinguished between two modes. Passport
       mode where only the last hop in the forwarding path of the Inband
-      Telemetry domain, where in postcard mode also the transit nodes eposes
-      metrics. In both mode the forwarding path is exposed. Thus allowing to
-      determine where how much delay has been accumulated.</t>
+      Telemetry domain exposes all the metrics and postcard mode where the transit
+      nodes also expose metrics. In both modes the forwarding path is exposed.
+      Thus allowing to determine how much delay has been accumulated hop by hop.</t>
 
       <t>This document defines six new IPFIX Information Elements (IEs) with
       their coresponding entries in the performance metrics registry to expose
@@ -129,7 +129,7 @@
     </section>
 
     <section anchor="Use-Cases" title="Use Cases">
-      <t>The measured forewarding path delay can be aggregatd with Flow
+      <t>The measured forwarding path delay can be aggregated with Flow
       Aggregation as defined in <xref target="RFC7015"/> to the following
       device and control-plane dimensions to determine:</t>
 
@@ -137,11 +137,11 @@
           <t>With egressInterface(IE14), which logical egress interfaces have
           been contributing to how much delay.</t>
 
-          <t>With egressPhysicalInterface(253), which phyical egress
+          <t>With egressPhysicalInterface(253), which physical egress
           interfaces have been contributing to how much delay.</t>
 
           <t>With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62),
-          the forwarding path to which IP next-hop contributed to how much
+          the forwarding path to which next-hop IP contributed to how much
           delay.</t>
 
           <t>With mplsTopLabelIPv4Address(IE47) or srhActiveSegmentIPv6 from
@@ -274,7 +274,7 @@
       </section>
 
       <section anchor="OpsAverageDelay" title="Average Delay">
-        <t>The average path delay can be caluclated by deviding the
+        <t>The average path delay can be calculated by dividing the
         PathDelaySumDeltaMicroseconds(TBD5) or
         PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
         IPFIX data collection.</t>
@@ -282,7 +282,7 @@
 
       <section anchor="OpsIoamPackTimestamps" title="IOAM Packet Time Stamps">
         <t>For IOAM, Section 4.4.1 of <xref target="RFC9197"/>describes what
-        kind of timestamps are support. Section 4.4.2.3 and 4.4.2.4 describe
+        kind of timestamps are supported. Section 4.4.2.3 and 4.4.2.4 describe
         where the timestamp is being inserted.</t>
 
         <t>For Path Tracing, Section 4.1 of <xref
@@ -293,7 +293,7 @@
     </section>
 
     <section anchor="Security" title="Security Considerations">
-      <t>There exists no significant extra security considerations regarding
+      <t>There are no significant extra security considerations regarding
       the allocation of these new IPFIX IEs compared to <xref
       target="RFC7012"/>.</t>
     </section>
