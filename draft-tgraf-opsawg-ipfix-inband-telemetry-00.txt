@@ -143,7 +143,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    is exposed thus allowing to determine how much delay has been
    accumulated hop by hop.
 
-   This document defines eigzht new IPFIX Information Elements (IEs)
+   This document defines eight new IPFIX Information Elements (IEs)
    with their four coresponding entries in the performance metrics
    registry to expose the forwarding path delay on the transit and
    decapsulation nodes.

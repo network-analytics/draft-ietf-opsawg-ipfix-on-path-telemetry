@@ -94,9 +94,9 @@
       exposed thus allowing to determine how much delay has been accumulated
       hop by hop.</t>
 
-      <t>This document defines eigzht new IPFIX Information Elements (IEs)
-      with their four coresponding entries in the performance metrics registry
-      to expose the forwarding path delay on the transit and decapsulation
+      <t>This document defines eight new IPFIX Information Elements (IEs) with
+      their four coresponding entries in the performance metrics registry to
+      expose the forwarding path delay on the transit and decapsulation
       nodes.</t>
 
       <t>The delay is measured by calculating the difference between the
