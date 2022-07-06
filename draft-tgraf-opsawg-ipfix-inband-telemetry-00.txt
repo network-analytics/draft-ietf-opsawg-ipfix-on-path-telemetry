@@ -17,7 +17,7 @@ Expires: January 5, 2023                                          Huawei
 Abstract
 
    This document introduces new IP Flow Information Export (IPFIX)
-   information elements to expose the Inband Telemtry measured
+   information elements to expose the Inband Telemetry measured
    forwarding path delay in passport and postcard mode on the transit
    and decapsulation nodes.
 
@@ -143,17 +143,17 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    is exposed thus allowing to determine how much delay has been
    accumulated hop by hop.
 
-   This document defines eight new IPFIX Information Elements (IEs)
-   with their four coresponding entries in the performance metrics
-   registry to expose the forwarding path delay on the transit and
-   decapsulation nodes.
+   This document defines eight new IPFIX Information Elements (IEs) with
+   their four corresponding entries in the performance metrics registry
+   to expose the forwarding path delay on the transit and decapsulation
+   nodes.
 
    The delay is measured by calculating the difference between the
    timestamp imposed with Inband Telemetry in the packet at the
-   encapsulation node and the timestamp being used for the IPFIX flow
-   record when being exported on the receiving transit and decapsulation
-   nodes.  Depending on the IE, the lowest, highest or the sum of
-   measured delay is being exported.
+   encapsulation node and the timestamp exported in the IPFIX flow
+   record from the transit and decapsulation nodes.  Depending on the
+   IE, the lowest, highest or the sum of measured delay is being
+   exported.
 
 2.  IP One-Way Delay Hybrid Type I Passive Registry Entries
 
@@ -353,7 +353,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    IPv6 Flow Label:  Set at desired value.
 
    Timestamp:  The timestamp when the packet is being received at IOAM
-      encpauslation node.  Format depends on Inband Telemetry
+      encapsulation node.  Format depends on Inband Telemetry
       implementation.  For IOAM, Section 4.4.1 of [RFC9197] describes
       what kind of timestamps are supported.  Section 4.4.2.3 and
       4.4.2.4 describe where the timestamp is being inserted.  For Path
@@ -485,9 +485,9 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 5.2.4.  Sum
 
-   The minimum SHALL be calculated using the conditional distribution of
-   all packets with a finite value of one-way delay (undefined delays
-   are excluded) -- a single value, as follows:
+   The sum SHALL be calculated using the conditional distribution of all
+   packets with a finite value of one-way delay (undefined delays are
+   excluded) -- a single value, as follows:
 
    See section 4.1 of [RFC3393] for details on the conditional
    distribution to exclude undefined values of delay, and see section 5
@@ -573,7 +573,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    PathDelayMeanDeltaMicroseconds
       16-bit unsigned integer that identifies the mean path delay.
 
-   PathDelayMeanxDeltaNanoseconds
+   PathDelayMeanDeltaNanoseconds
       32-bit unsigned integer that identifies the mean path delay.
 
    PathDelayMinDeltaMicroseconds
@@ -812,7 +812,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 9.1.  Time Accuracy
 
-   The same recommondation as defined in section 4.5 of [RFC5153] for
+   The same recommendation as defined in section 4.5 of [RFC5153] for
    IPFIX applies in terms of clock precision to this document as well.
 
 9.2.  Mean Delay

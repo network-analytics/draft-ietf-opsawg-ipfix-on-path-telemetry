@@ -72,7 +72,7 @@
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
-      information elements to expose the Inband Telemtry measured forwarding
+      information elements to expose the Inband Telemetry measured forwarding
       path delay in passport and postcard mode on the transit and
       decapsulation nodes.</t>
     </abstract>
@@ -95,16 +95,16 @@
       hop by hop.</t>
 
       <t>This document defines eight new IPFIX Information Elements (IEs) with
-      their four coresponding entries in the performance metrics registry to
+      their four corresponding entries in the performance metrics registry to
       expose the forwarding path delay on the transit and decapsulation
       nodes.</t>
 
       <t>The delay is measured by calculating the difference between the
       timestamp imposed with Inband Telemetry in the packet at the
-      encapsulation node and the timestamp being used for the IPFIX flow
-      record when being exported on the receiving transit and decapsulation
-      nodes. Depending on the IE, the lowest, highest or the sum of measured
-      delay is being exported.</t>
+      encapsulation node and the timestamp exported in the IPFIX flow
+      record from the transit and decapsulation nodes. Depending on the
+      IE, the lowest, highest or the sum of measured delay is being exported.
+      </t>
     </section>
 
     <section anchor="ip-ow-delay-hybridtype1-passive-reg-entries"
@@ -286,7 +286,7 @@
             <t hangText="IPv6 Flow Label:">Set at desired value.</t>
 
             <t hangText="Timestamp:">The timestamp when the packet is being
-            received at IOAM encpauslation node. Format depends on Inband
+            received at IOAM encapsulation node. Format depends on Inband
             Telemetry implementation. For IOAM, Section 4.4.1 of <xref
             target="RFC9197"/> describes what kind of timestamps are
             supported. Section 4.4.2.3 and 4.4.2.4 describe where the
@@ -427,7 +427,7 @@
         </section>
 
         <section title="Sum">
-          <t>The minimum SHALL be calculated using the conditional
+          <t>The sum SHALL be calculated using the conditional
           distribution of all packets with a finite value of one-way delay
           (undefined delays are excluded) -- a single value, as follows:</t>
 
@@ -506,7 +506,7 @@
           blankLines="0"/> 16-bit unsigned integer that identifies the mean
           path delay.</t>
 
-          <t hangText="PathDelayMeanxDeltaNanoseconds"><vspace
+          <t hangText="PathDelayMeanDeltaNanoseconds"><vspace
           blankLines="0"/> 32-bit unsigned integer that identifies the mean
           path delay.</t>
 
@@ -696,7 +696,7 @@
 
     <section anchor="Operational" title="Operational Considerations">
       <section anchor="OpsTimeAccuracy" title="Time Accuracy">
-        <t>The same recommondation as defined in section 4.5 of <xref
+        <t>The same recommendation as defined in section 4.5 of <xref
         target="RFC5153"/> for IPFIX applies in terms of clock precision to
         this document as well.</t>
       </section>
