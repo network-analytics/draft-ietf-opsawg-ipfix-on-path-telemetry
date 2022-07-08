@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="4" month="July" year="2022"/>
+    <date day="8" month="July" year="2022"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -101,10 +101,9 @@
 
       <t>The delay is measured by calculating the difference between the
       timestamp imposed with Inband Telemetry in the packet at the
-      encapsulation node and the timestamp exported in the IPFIX flow
-      record from the transit and decapsulation nodes. Depending on the
-      IE, the lowest, highest or the sum of measured delay is being exported.
-      </t>
+      encapsulation node and the timestamp exported in the IPFIX flow record
+      from the transit and decapsulation nodes. Depending on the IE, the
+      lowest, highest or the sum of measured delay is being exported.</t>
     </section>
 
     <section anchor="ip-ow-delay-hybridtype1-passive-reg-entries"
@@ -427,9 +426,9 @@
         </section>
 
         <section title="Sum">
-          <t>The sum SHALL be calculated using the conditional
-          distribution of all packets with a finite value of one-way delay
-          (undefined delays are excluded) -- a single value, as follows:</t>
+          <t>The sum SHALL be calculated using the conditional distribution of
+          all packets with a finite value of one-way delay (undefined delays
+          are excluded) -- a single value, as follows:</t>
 
           <t>See section 4.1 of <xref target="RFC3393"/> for details on the
           conditional distribution to exclude undefined values of delay, and
@@ -437,8 +436,8 @@
           analysis choice.</t>
 
           <t>See section 4.3.5 of <xref target="RFC6049"/> for details on
-          calculating this statistic. However in this case MaxDelay is also
-          considered.</t>
+          calculating this statistic. However in this case FiniteDelay or
+          MaxDelay MAY be used.</t>
 
           <t><list style="hanging">
               <t hangText="Sum:">The time value of the result is expressed in
@@ -506,9 +505,8 @@
           blankLines="0"/> 16-bit unsigned integer that identifies the mean
           path delay.</t>
 
-          <t hangText="PathDelayMeanDeltaNanoseconds"><vspace
-          blankLines="0"/> 32-bit unsigned integer that identifies the mean
-          path delay.</t>
+          <t hangText="PathDelayMeanDeltaNanoseconds"><vspace blankLines="0"/>
+          32-bit unsigned integer that identifies the mean path delay.</t>
 
           <t hangText="PathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
           16-bit unsigned integer that identifies the lowest path delay.</t>
@@ -538,11 +536,13 @@
       device and control-plane dimensions to determine:</t>
 
       <t><list style="symbols">
-          <t>With egressInterface(IE14), which logical egress interfaces have
-          been contributing to how much delay.</t>
+          <t>With node id and egressInterface(IE14), on which node which
+          logical egress interfaces have been contributing to how much
+          delay.</t>
 
-          <t>With egressPhysicalInterface(253), which physical egress
-          interfaces have been contributing to how much delay.</t>
+          <t>With node id and egressPhysicalInterface(253), on which node
+          which physical egress interfaces have been contributing to how much
+          delay.</t>
 
           <t>With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62),
           the forwarding path to which next-hop IP contributed to how much

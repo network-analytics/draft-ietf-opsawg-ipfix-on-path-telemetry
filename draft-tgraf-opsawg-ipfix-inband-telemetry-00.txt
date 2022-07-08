@@ -5,10 +5,10 @@
 Network Working Group                                            T. Graf
 Internet-Draft                                                  Swisscom
 Intended status: Standards Track                               B. Claise
-Expires: January 5, 2023                                          Huawei
+Expires: January 9, 2023                                          Huawei
                                                            A. Huang Feng
                                                                INSA-Lyon
-                                                            July 4, 2022
+                                                            July 8, 2022
 
 
                 Export of Forwarding Path Delay in IPFIX
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 5, 2023.
+   This Internet-Draft will expire on January 9, 2023.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 1]
+Graf, et al.             Expires January 9, 2023                [Page 1]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 2]
+Graf, et al.             Expires January 9, 2023                [Page 2]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -165,7 +165,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 3]
+Graf, et al.             Expires January 9, 2023                [Page 3]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -221,7 +221,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 4]
+Graf, et al.             Expires January 9, 2023                [Page 4]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -277,7 +277,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 5]
+Graf, et al.             Expires January 9, 2023                [Page 5]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -333,7 +333,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 6]
+Graf, et al.             Expires January 9, 2023                [Page 6]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -389,7 +389,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 7]
+Graf, et al.             Expires January 9, 2023                [Page 7]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -445,7 +445,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 8]
+Graf, et al.             Expires January 9, 2023                [Page 8]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -494,14 +494,14 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    of [RFC6703] for background on this analysis choice.
 
    See section 4.3.5 of [RFC6049] for details on calculating this
-   statistic.  However in this case MaxDelay is also considered.
+   statistic.  However in this case FiniteDelay or MaxDelay MAY be used.
 
    Sum:  The time value of the result is expressed in units of seconds,
       as a positive value of type decimal64 with fraction digits = 9
 
 
 
-Graf, et al.             Expires January 5, 2023                [Page 9]
+Graf, et al.             Expires January 9, 2023                [Page 9]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -557,7 +557,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023               [Page 10]
+Graf, et al.             Expires January 9, 2023               [Page 10]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -600,23 +600,27 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    Aggregation as defined in [RFC7015] to the following device and
    control-plane dimensions to determine:
 
-   o  With egressInterface(IE14), which logical egress interfaces have
-      been contributing to how much delay.
+   o  With node id and egressInterface(IE14), on which node which
+      logical egress interfaces have been contributing to how much
+      delay.
 
-   o  With egressPhysicalInterface(253), which physical egress
-      interfaces have been contributing to how much delay.
-
-   o  With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62), the
-      forwarding path to which next-hop IP contributed to how much
+   o  With node id and egressPhysicalInterface(253), on which node which
+      physical egress interfaces have been contributing to how much
       delay.
 
 
 
 
-Graf, et al.             Expires January 5, 2023               [Page 11]
+
+
+Graf, et al.             Expires January 9, 2023               [Page 11]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
+
+   o  With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62), the
+      forwarding path to which next-hop IP contributed to how much
+      delay.
 
    o  With mplsTopLabelIPv4Address(IE47) or srhActiveSegmentIPv6 from
       [I-D.tgraf-opsawg-ipfix-srv6-srh], the forwarding path to which
@@ -665,11 +669,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-
-
-
-
-Graf, et al.             Expires January 5, 2023               [Page 12]
+Graf, et al.             Expires January 9, 2023               [Page 12]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -725,7 +725,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023               [Page 13]
+Graf, et al.             Expires January 9, 2023               [Page 13]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -781,7 +781,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023               [Page 14]
+Graf, et al.             Expires January 9, 2023               [Page 14]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -837,7 +837,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023               [Page 15]
+Graf, et al.             Expires January 9, 2023               [Page 15]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -893,7 +893,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023               [Page 16]
+Graf, et al.             Expires January 9, 2023               [Page 16]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -949,7 +949,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.             Expires January 5, 2023               [Page 17]
+Graf, et al.             Expires January 9, 2023               [Page 17]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -1005,4 +1005,4 @@ Authors' Addresses
 
 
 
-Graf, et al.             Expires January 5, 2023               [Page 18]
+Graf, et al.             Expires January 9, 2023               [Page 18]
