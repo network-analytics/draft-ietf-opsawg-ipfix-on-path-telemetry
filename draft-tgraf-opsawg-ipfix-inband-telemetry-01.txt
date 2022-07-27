@@ -67,45 +67,45 @@ Table of Contents
    2.  IP One-Way Delay Hybrid Type I Passive Registry Entries . . .   4
      2.1.  Summary . . . . . . . . . . . . . . . . . . . . . . . . .   4
        2.1.1.  ID (Identifier) . . . . . . . . . . . . . . . . . . .   4
-       2.1.2.  Name  . . . . . . . . . . . . . . . . . . . . . . . .   4
-       2.1.3.  Name  . . . . . . . . . . . . . . . . . . . . . . . .   4
-       2.1.4.  URI . . . . . . . . . . . . . . . . . . . . . . . . .   4
+       2.1.2.  Name  . . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.1.3.  Name  . . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.1.4.  URI . . . . . . . . . . . . . . . . . . . . . . . . .   5
      2.2.  Description . . . . . . . . . . . . . . . . . . . . . . .   5
-     2.3.  Change Controller . . . . . . . . . . . . . . . . . . . .   5
-     2.4.  Version of Registry Format  . . . . . . . . . . . . . . .   5
-   3.  Metric Definition . . . . . . . . . . . . . . . . . . . . . .   5
-     3.1.  Reference Definition  . . . . . . . . . . . . . . . . . .   5
+     2.3.  Change Controller . . . . . . . . . . . . . . . . . . . .   6
+     2.4.  Version of Registry Format  . . . . . . . . . . . . . . .   6
+   3.  Metric Definition . . . . . . . . . . . . . . . . . . . . . .   6
+     3.1.  Reference Definition  . . . . . . . . . . . . . . . . . .   6
      3.2.  Fixed Parameters  . . . . . . . . . . . . . . . . . . . .   6
-   4.  Method of Measurement . . . . . . . . . . . . . . . . . . . .   6
-     4.1.  Reference Methods . . . . . . . . . . . . . . . . . . . .   6
-     4.2.  Packet Stream Generation  . . . . . . . . . . . . . . . .   6
+   4.  Method of Measurement . . . . . . . . . . . . . . . . . . . .   7
+     4.1.  Reference Methods . . . . . . . . . . . . . . . . . . . .   7
+     4.2.  Packet Stream Generation  . . . . . . . . . . . . . . . .   7
      4.3.  Traffic Filtering (Observation) Details . . . . . . . . .   7
      4.4.  Sampling Distribution . . . . . . . . . . . . . . . . . .   7
      4.5.  Runtime Parameters and Data Format  . . . . . . . . . . .   7
-     4.6.  Roles . . . . . . . . . . . . . . . . . . . . . . . . . .   7
-   5.  Output  . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     5.1.  Type  . . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     5.2.  Reference Definition  . . . . . . . . . . . . . . . . . .   8
-       5.2.1.  Mean  . . . . . . . . . . . . . . . . . . . . . . . .   8
+     4.6.  Roles . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+   5.  Output  . . . . . . . . . . . . . . . . . . . . . . . . . . .   9
+     5.1.  Type  . . . . . . . . . . . . . . . . . . . . . . . . . .   9
+     5.2.  Reference Definition  . . . . . . . . . . . . . . . . . .   9
+       5.2.1.  Mean  . . . . . . . . . . . . . . . . . . . . . . . .   9
        5.2.2.  Min . . . . . . . . . . . . . . . . . . . . . . . . .   9
-       5.2.3.  Max . . . . . . . . . . . . . . . . . . . . . . . . .   9
+       5.2.3.  Max . . . . . . . . . . . . . . . . . . . . . . . . .  10
        5.2.4.  Sum . . . . . . . . . . . . . . . . . . . . . . . . .  10
-       5.2.5.  Metric Units  . . . . . . . . . . . . . . . . . . . .  10
-       5.2.6.  Calibration . . . . . . . . . . . . . . . . . . . . .  10
-     5.3.  Administrative Items  . . . . . . . . . . . . . . . . . .  10
-       5.3.1.  Status  . . . . . . . . . . . . . . . . . . . . . . .  10
+       5.2.5.  Metric Units  . . . . . . . . . . . . . . . . . . . .  11
+       5.2.6.  Calibration . . . . . . . . . . . . . . . . . . . . .  11
+     5.3.  Administrative Items  . . . . . . . . . . . . . . . . . .  11
+       5.3.1.  Status  . . . . . . . . . . . . . . . . . . . . . . .  11
        5.3.2.  Requester . . . . . . . . . . . . . . . . . . . . . .  11
        5.3.3.  Revision  . . . . . . . . . . . . . . . . . . . . . .  11
        5.3.4.  Revision Date . . . . . . . . . . . . . . . . . . . .  11
-     5.4.  Comments and Remarks  . . . . . . . . . . . . . . . . . .  11
-   6.  IPFIX Information Elements  . . . . . . . . . . . . . . . . .  11
-   7.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .  12
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
-     8.1.  PathDelayMeanDeltaMicroseconds  . . . . . . . . . . . . .  13
-     8.2.  PathDelayMeanDeltaNanoseconds . . . . . . . . . . . . . .  14
-     8.3.  PathDelayMinDeltaMicroseconds . . . . . . . . . . . . . .  14
-     8.4.  PathDelayMinDeltaNanoseconds  . . . . . . . . . . . . . .  14
-     8.5.  PathDelayMaxDeltaMicroseconds . . . . . . . . . . . . . .  14
+     5.4.  Comments and Remarks  . . . . . . . . . . . . . . . . . .  12
+   6.  IPFIX Information Elements  . . . . . . . . . . . . . . . . .  12
+   7.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .  13
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  13
+     8.1.  PathDelayMeanDeltaMicroseconds  . . . . . . . . . . . . .  14
+     8.2.  PathDelayMeanDeltaNanoseconds . . . . . . . . . . . . . .  15
+     8.3.  PathDelayMinDeltaMicroseconds . . . . . . . . . . . . . .  15
+     8.4.  PathDelayMinDeltaNanoseconds  . . . . . . . . . . . . . .  15
+     8.5.  PathDelayMaxDeltaMicroseconds . . . . . . . . . . . . . .  15
 
 
 
@@ -114,30 +114,30 @@ Graf, et al.            Expires January 27, 2023                [Page 2]
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
-     8.6.  PathDelayMaxDeltaNanoseconds  . . . . . . . . . . . . . .  15
-     8.7.  PathDelaySumDeltaMicroseconds . . . . . . . . . . . . . .  15
-     8.8.  PathDelaySumDeltaNanoseconds  . . . . . . . . . . . . . .  15
-   9.  Operational Considerations  . . . . . . . . . . . . . . . . .  15
-     9.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  15
-     9.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  15
-     9.3.  IOAM Packet Time Stamps . . . . . . . . . . . . . . . . .  16
-   10. Security Considerations . . . . . . . . . . . . . . . . . . .  16
-   11. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  16
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
-     12.1.  Normative References . . . . . . . . . . . . . . . . . .  16
-     12.2.  Informative References . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
+     8.6.  PathDelayMaxDeltaNanoseconds  . . . . . . . . . . . . . .  16
+     8.7.  PathDelaySumDeltaMicroseconds . . . . . . . . . . . . . .  16
+     8.8.  PathDelaySumDeltaNanoseconds  . . . . . . . . . . . . . .  16
+   9.  Operational Considerations  . . . . . . . . . . . . . . . . .  16
+     9.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  16
+     9.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  16
+     9.3.  IOAM Packet Time Stamps . . . . . . . . . . . . . . . . .  17
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .  17
+   11. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  17
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  17
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  17
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  19
 
 1.  Introduction
 
    Network operators want a statistical delay view of their networks.
    They want to understand where in the network, for which customer
    traffic, how much and why delay is being accummlated.  In order to
-   answer why and where, delay needs to be set into device and control-
-   plane context.  In order to understand which customer traffic is
-   affected, delay needs to be set into customer data-plane context.
-   That enables network operators quickly to identify when the control-
-   plane updates the current path with a different next-hop and
+   answer why and where, delay needs to be reported into device and
+   control-plane context.  In order to understand which customer traffic
+   is affected, delay needs to be reported into customer data-plane
+   context.  That enables network operators quickly to identify when the
+   control-plane updates the current path with a different next-hop and
    therefore the forwarding path changes to different nodes and
    interfaces, how the path delay changes for which customer traffic.
 
@@ -155,13 +155,13 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    performance metrics allowing to determine how much delay has been
    accumulated on which hop.
 
-   This document defines eight new IPFIX Information Elements (IEs) with
-   their four corresponding entries in the performance metrics registry
-   to expose the forwarding path delay on the IOAM transit and
-   decapsulation nodes.
+   This document defines eight new IPFIX Information Elements (IEs),
+   exposing the forwarding path delay on IOAM transit and decapsulation
+   nodes.  Since these IPFIX IEs are performance metrics [RFC8911], they
+   must be registered as registered performance metrics [RFC8911] in the
+   "IANA Performance Metric Registry [IANA-PERF-METRIC].
 
-   The delay is measured by calculating the difference between the
-   timestamp imposed with Inband Telemetry in the packet at the IOAM
+
 
 
 
@@ -170,6 +170,26 @@ Graf, et al.            Expires January 27, 2023                [Page 3]
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
+   +-----------------------------+-------------------------------------+
+   |      Performance Metric     |             IPFIX Entity            |
+   +-----------------------------+-------------------------------------+
+   |OWDelay_HybridType1_Passive_I|PathDelayMeanDeltaMicroseconds (TBD5)|
+   |P_RFCTBD_Seconds_Mean (TBD1) |PathDelayMeanDeltaNanoseconds (TBD6) |
+   +-----------------------------+-------------------------------------+
+   |OWDelay_HybridType1_Passive_I|PathDelayMinDeltaMicroseconds (TBD7) |
+   |P_RFCTBD_Seconds_Min (TBD2)  |PathDelayMinDeltaNanoseconds (TBD8)  |
+   +-----------------------------+-------------------------------------+
+   |OWDelay_HybridType1_Passive_I|PathDelayMaxDeltaMicroseconds (TBD9) |
+   |P_RFCTBD_Seconds_Max (TBD3)  |PathDelayMaxDeltaNanoseconds (TBD10) |
+   +-----------------------------+-------------------------------------+
+   |OWDelay_HybridType1_Passive_I|PathDelaySumDeltaMicroseconds (TBD11)|
+   |P_RFCTBD_Seconds_Sum (TBD4)  |PathDelaySumDeltaNanoseconds (TBD12) |
+   +-----------------------------+-------------------------------------+
+
+   Table 1: Correspondance between IE and performance metric registry
+
+   The delay is measured by calculating the difference between the
+   timestamp imposed with Inband Telemetry in the packet at the IOAM
    encapsulation node and the timestamp exported in the IPFIX flow
    record from the IOAM transit and decapsulation nodes.  Depending on
    the IE, the lowest, highest or the sum of measured path delay is
@@ -194,6 +214,18 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
    <insert a numeric Identifier, an integer, TBD>
 
+
+
+
+
+
+
+
+Graf, et al.            Expires January 27, 2023                [Page 4]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
+
 2.1.2.  Name
 
    IANA has allocated the numeric Identifiers TBD1-4 for the four Named
@@ -217,15 +249,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    URL: <https://www.iana.org/assignments/performance-metrics/
    OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Min>
 
-
-
-
-
-Graf, et al.            Expires January 27, 2023                [Page 4]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
-
    URL: <https://www.iana.org/assignments/performance-metrics/
    OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Max>
 
@@ -248,6 +271,16 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    o  Max
 
    o  Sum
+
+
+
+
+
+
+Graf, et al.            Expires January 27, 2023                [Page 5]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
 
 2.3.  Change Controller
 
@@ -275,13 +308,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    6049, DOI 10.17487/RFC6049, January 2011, <https://www.rfc-
    editor.org/info/rfc6049>.  [RFC6049]
 
-
-
-Graf, et al.            Expires January 27, 2023                [Page 5]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
-
    Section 3.4 of [RFC7679] provides the reference definition of the
    singleton (single value) one-way delay metric.  Section 4.4 of
    [RFC7679] provides the reference definition expanded to cover a
@@ -295,6 +321,22 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    one-way delay singleton.
 
 3.2.  Fixed Parameters
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.            Expires January 27, 2023                [Page 6]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
 
    Traffic Filters:
 
@@ -326,18 +368,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
    N/A
 
-
-
-
-
-
-
-
-Graf, et al.            Expires January 27, 2023                [Page 6]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
-
 4.3.  Traffic Filtering (Observation) Details
 
    The Fixed Parameters above give a portion of the Traffic Filter.
@@ -353,6 +383,16 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    Runtime Parameters are input factors that must be determined,
    configured into the measurement system, and reported with the results
    for the context to be complete.
+
+
+
+
+
+
+Graf, et al.            Expires January 27, 2023                [Page 7]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
 
    Src:  The IP address of the host in the host A Role (format
       ipv4-address-no-zone value for IPv4 or ipv6-address-no-zone value
@@ -386,14 +426,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    host B:  Receives the IP packet to open the connection.  The Role of
       "host B" is synonymous with the IP address used at host B.
 
-
-
-
-Graf, et al.            Expires January 27, 2023                [Page 7]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
-
    Encapsulation Node:  Receives the IP packet to open the connection
       and encapsulates the timestamp into the packet.  The Role of
       "Encapsulation Node" is synonymous with the timestamp inserted in
@@ -407,6 +439,16 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
       and measures the delay between the timestamp in the packet and the
       timestamp when the packet was received and removes the IOAM header
       from the packet.
+
+
+
+
+
+
+Graf, et al.            Expires January 27, 2023                [Page 8]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
 
 5.  Output
 
@@ -442,14 +484,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
    Mean:  The time value of the result is expressed in units of seconds,
       as a positive value of type decimal64 with fraction digits = 9
-
-
-
-Graf, et al.            Expires January 27, 2023                [Page 8]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
-
       (see section 9.3 of [RFC6020]) with a resolution of
       0.000000001 seconds (1.0 ns), and with lossless conversion to/from
       the 64-bit NTP timestamp as per section 6 of [RFC5905].
@@ -463,6 +497,14 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    See section 4.1 of [RFC3393] for details on the conditional
    distribution to exclude undefined values of delay, and see section 5
    of [RFC6703] for background on this analysis choice.
+
+
+
+
+Graf, et al.            Expires January 27, 2023                [Page 9]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
 
    See section 4.3.2 of [RFC6049] for details on calculating this
    statistic; see also section 4.3.3 of [RFC6049].
@@ -497,15 +539,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
       0.000000001 seconds (1.0 ns), and with lossless conversion to/from
       the 64-bit NTP timestamp as per section 6 of [RFC5905].
 
-
-
-
-
-Graf, et al.            Expires January 27, 2023                [Page 9]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
-
 5.2.4.  Sum
 
    The sum SHALL be calculated using the conditional distribution of all
@@ -521,6 +554,14 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
    Sum:  The time value of the result is expressed in units of seconds,
       as a positive value of type decimal64 with fraction digits = 9
+
+
+
+Graf, et al.            Expires January 27, 2023               [Page 10]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
+
       (see section 9.3 of [RFC6020]) with a resolution of
       0.000000001 seconds (1.0 ns), and with lossless conversion to/from
       the 64-bit NTP timestamp as per section 6 of [RFC5905].
@@ -553,15 +594,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
    Current
 
-
-
-
-
-Graf, et al.            Expires January 27, 2023               [Page 10]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
-
 5.3.2.  Requester
 
    This RFC
@@ -574,6 +606,18 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
    RFC Date
 
+
+
+
+
+
+
+
+Graf, et al.            Expires January 27, 2023               [Page 11]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
+
 5.4.  Comments and Remarks
 
    None
@@ -583,37 +627,49 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    This section defines and describes the new IPFIX IEs.
 
    PathDelayMeanDeltaMicroseconds
-      16-bit unsigned integer that identifies the mean path delay.
+      16-bit unsigned integer that identifies the mean path delay in
+      microseconds, between IOAM encapsulation and the local device
+      (either the IOAM transit node or the decapsulation node).
 
    PathDelayMeanDeltaNanoseconds
-      32-bit unsigned integer that identifies the mean path delay.
+      32-bit unsigned integer that identifies the mean path delay in
+      nanoseconds, between IOAM encapsulation and the local device
+      (either the IOAM transit node or the decapsulation node).
 
    PathDelayMinDeltaMicroseconds
-      16-bit unsigned integer that identifies the lowest path delay.
+      16-bit unsigned integer that identifies the lowest path delay in
+      microseconds, between IOAM encapsulation and the local device
+      (either the IOAM transit node or the decapsulation node).
 
    PathDelayMinDeltaNanoseconds
-      32-bit unsigned integer that identifies the lowest path delay.
+      32-bit unsigned integer that identifies the lowest path delay in
+      nanoseconds, between IOAM encapsulation and the local device
+      (either the IOAM transit node or the decapsulation node).
 
    PathDelayMaxDeltaMicroseconds
-      16-bit unsigned integer that identifies the highest path delay.
+      16-bit unsigned integer that identifies the highest path delay in
+      microseconds, between IOAM encapsulation and the local device
+      (either the IOAM transit node or the decapsulation node).
 
    PathDelayMaxDeltaNanoseconds
-      32-bit unsigned integer that identifies the highest path delay.
+      32-bit unsigned integer that identifies the highest path delay in
+      nanoseconds, between IOAM encapsulation and the local device
+      (either the IOAM transit node or the decapsulation node).
 
    PathDelaySumDeltaMicroseconds
-      32-bit unsigned integer that identifies the sum of the path delay.
+      32-bit unsigned integer that identifies the sum of the path delay
+      in microseconds, between IOAM encapsulation and the local device
+      (either the IOAM transit node or the decapsulation node).
 
    PathDelaySumDeltaNanoseconds
-      64-bit unsigned integer that identifies the sum of the path delay.
+      64-bit unsigned integer that identifies the sum of the path delay
+      in nanoseconds, between IOAM encapsulation and the local device
+      (either the IOAM transit node or the decapsulation node).
 
 
 
 
-
-
-
-
-Graf, et al.            Expires January 27, 2023               [Page 11]
+Graf, et al.            Expires January 27, 2023               [Page 12]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -654,8 +710,10 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 8.  IANA Considerations
 
-   This document requests IANA to create new IEs (see table 1) and
-   assign the following initial code points.
+   This document requests IANA to create new IEs (see table 2) under the
+   "IPFIX Information Elements" registry [RFC7012] available at "IANA
+   Performance Metric Registry [IANA-PERF-METRIC] and assign the
+   following initial code points.
 
 
 
@@ -667,9 +725,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-
-
-Graf, et al.            Expires January 27, 2023               [Page 12]
+Graf, et al.            Expires January 27, 2023               [Page 13]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -702,7 +758,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
         | TBD12 | PathDelaySumDeltaNanoseconds   |
         |       |                                |
         +-------+--------------------------------+
-     Table 1: Creates IEs in the "IPFIX Information Elements" registry
+     Table 2: Creates IEs in the "IPFIX Information Elements" registry
 
    Note to the RFC-Editor:
 
@@ -725,7 +781,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.            Expires January 27, 2023               [Page 13]
+Graf, et al.            Expires January 27, 2023               [Page 14]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -781,7 +837,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.            Expires January 27, 2023               [Page 14]
+Graf, et al.            Expires January 27, 2023               [Page 15]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -837,7 +893,7 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-Graf, et al.            Expires January 27, 2023               [Page 15]
+Graf, et al.            Expires January 27, 2023               [Page 16]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
@@ -867,10 +923,20 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 12.1.  Normative References
 
+   [IANA-PERF-METRIC]
+              "IANA Performance Metric Registry",
+              <https://www.iana.org/assignments/performance-metrics/
+              performance-metrics.xhtml>.
+
    [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
               for IP Flow Information Export (IPFIX)", RFC 7012,
               DOI 10.17487/RFC7012, September 2013,
               <https://www.rfc-editor.org/info/rfc7012>.
+
+   [RFC8911]  Bagnulo, M., Claise, B., Eardley, P., Morton, A., and A.
+              Akhter, "Registry for Performance Metrics", RFC 8911,
+              DOI 10.17487/RFC8911, November 2021,
+              <https://www.rfc-editor.org/info/rfc8911>.
 
 12.2.  Informative References
 
@@ -879,6 +945,14 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               Graf, T., Su, Y., Matsushima, S., and M. Valentine, "Path
               Tracing in SRv6 networks", draft-filsfils-spring-path-
               tracing-01 (work in progress), May 2022.
+
+
+
+
+Graf, et al.            Expires January 27, 2023               [Page 17]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
 
    [I-D.ietf-ippm-ioam-deployment]
               Brockners, F., Bhandari, S., Bernier, D., and T. Mizrahi,
@@ -890,13 +964,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               T., Li, Z., Mishra, G., Shin, J., and K. Lee, "In-Situ OAM
               Marking-based Direct Export", draft-song-ippm-postcard-
               based-telemetry-12 (work in progress), May 2022.
-
-
-
-Graf, et al.            Expires January 27, 2023               [Page 16]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
 
    [I-D.song-opsawg-ifit-framework]
               Song, H., Qin, F., Chen, H., Jin, J., and J. Shin, "A
@@ -935,6 +1002,14 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
 
+
+
+
+Graf, et al.            Expires January 27, 2023               [Page 18]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
+
    [RFC6049]  Morton, A. and E. Stephan, "Spatial Composition of
               Metrics", RFC 6049, DOI 10.17487/RFC6049, January 2011,
               <https://www.rfc-editor.org/info/rfc6049>.
@@ -943,16 +1018,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               IP Network Performance Metrics: Different Points of View",
               RFC 6703, DOI 10.17487/RFC6703, August 2012,
               <https://www.rfc-editor.org/info/rfc6703>.
-
-
-
-
-
-
-Graf, et al.            Expires January 27, 2023               [Page 17]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
 
    [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
@@ -995,19 +1060,16 @@ Authors' Addresses
    Email: thomas.graf@swisscom.com
 
 
+
+Graf, et al.            Expires January 27, 2023               [Page 19]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
+
    Benoit Claise
    Huawei
 
    Email: benoit.claise@huawei.com
-
-
-
-
-
-
-Graf, et al.            Expires January 27, 2023               [Page 18]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
    Alex Huang Feng
@@ -1055,10 +1117,4 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
 
-
-
-
-
-
-
-Graf, et al.            Expires January 27, 2023               [Page 19]
+Graf, et al.            Expires January 27, 2023               [Page 20]

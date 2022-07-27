@@ -82,13 +82,13 @@
       <t>Network operators want a statistical delay view of their networks.
       They want to understand where in the network, for which customer
       traffic, how much and why delay is being accummlated. In order to answer
-      why and where, delay needs to be set into device and control-plane
+      why and where, delay needs to be reported into device and control-plane
       context. In order to understand which customer traffic is affected,
-      delay needs to be set into customer data-plane context. That enables
-      network operators quickly to identify when the control-plane updates the
-      current path with a different next-hop and therefore the forwarding path
-      changes to different nodes and interfaces, how the path delay changes
-      for which customer traffic.</t>
+      delay needs to be reported into customer data-plane context. That
+      enables network operators quickly to identify when the control-plane
+      updates the current path with a different next-hop and therefore the
+      forwarding path changes to different nodes and interfaces, how the path
+      delay changes for which customer traffic.</t>
 
       <t>With Inband Telemetry, defined in <xref
       target="I-D.ietf-ippm-ioam-deployment">In-situ OAM</xref>, <xref
@@ -106,10 +106,34 @@
       performance metrics allowing to determine how much delay has been
       accumulated on which hop.</t>
 
-      <t>This document defines eight new IPFIX Information Elements (IEs) with
-      their four corresponding entries in the performance metrics registry to
-      expose the forwarding path delay on the IOAM transit and decapsulation
-      nodes.</t>
+      <t>This document defines eight new IPFIX Information Elements (IEs),
+      exposing the forwarding path delay on IOAM transit and decapsulation
+      nodes. Since these IPFIX IEs are performance metrics <xref
+      target="RFC8911"/>, they must be registered as registered performance
+      metrics <xref target="RFC8911"/> in the <xref
+      target="IANA-PERF-METRIC">"IANA Performance Metric Registry</xref>.</t>
+
+      <t><figure>
+          <artwork><![CDATA[
++-----------------------------+-------------------------------------+
+|      Performance Metric     |             IPFIX Entity            |
++-----------------------------+-------------------------------------+
+|OWDelay_HybridType1_Passive_I|PathDelayMeanDeltaMicroseconds (TBD5)|
+|P_RFCTBD_Seconds_Mean (TBD1) |PathDelayMeanDeltaNanoseconds (TBD6) |
++-----------------------------+-------------------------------------+
+|OWDelay_HybridType1_Passive_I|PathDelayMinDeltaMicroseconds (TBD7) |
+|P_RFCTBD_Seconds_Min (TBD2)  |PathDelayMinDeltaNanoseconds (TBD8)  |
++-----------------------------+-------------------------------------+
+|OWDelay_HybridType1_Passive_I|PathDelayMaxDeltaMicroseconds (TBD9) |
+|P_RFCTBD_Seconds_Max (TBD3)  |PathDelayMaxDeltaNanoseconds (TBD10) |
++-----------------------------+-------------------------------------+
+|OWDelay_HybridType1_Passive_I|PathDelaySumDeltaMicroseconds (TBD11)|
+|P_RFCTBD_Seconds_Sum (TBD4)  |PathDelaySumDeltaNanoseconds (TBD12) |
++-----------------------------+-------------------------------------+
+          
+Table 1: Correspondance between IE and performance metric registry
+       ]]></artwork>
+        </figure></t>
 
       <t>The delay is measured by calculating the difference between the
       timestamp imposed with Inband Telemetry in the packet at the IOAM
@@ -515,30 +539,43 @@
           style="hanging">
           <t hangText="PathDelayMeanDeltaMicroseconds"><vspace
           blankLines="0"/> 16-bit unsigned integer that identifies the mean
-          path delay.</t>
+          path delay in microseconds, between IOAM encapsulation and the local
+          device (either the IOAM transit node or the decapsulation node).</t>
 
           <t hangText="PathDelayMeanDeltaNanoseconds"><vspace blankLines="0"/>
-          32-bit unsigned integer that identifies the mean path delay.</t>
+          32-bit unsigned integer that identifies the mean path delay in
+          nanoseconds, between IOAM encapsulation and the local device (either
+          the IOAM transit node or the decapsulation node).</t>
 
           <t hangText="PathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
-          16-bit unsigned integer that identifies the lowest path delay.</t>
+          16-bit unsigned integer that identifies the lowest path delay in
+          microseconds, between IOAM encapsulation and the local device
+          (either the IOAM transit node or the decapsulation node).</t>
 
           <t hangText="PathDelayMinDeltaNanoseconds"><vspace blankLines="0"/>
-          32-bit unsigned integer that identifies the lowest path delay.</t>
+          32-bit unsigned integer that identifies the lowest path delay in
+          nanoseconds, between IOAM encapsulation and the local device (either
+          the IOAM transit node or the decapsulation node).</t>
 
           <t hangText="PathDelayMaxDeltaMicroseconds"><vspace blankLines="0"/>
-          16-bit unsigned integer that identifies the highest path delay.</t>
+          16-bit unsigned integer that identifies the highest path delay in
+          microseconds, between IOAM encapsulation and the local device
+          (either the IOAM transit node or the decapsulation node).</t>
 
           <t hangText="PathDelayMaxDeltaNanoseconds"><vspace blankLines="0"/>
-          32-bit unsigned integer that identifies the highest path delay.</t>
+          32-bit unsigned integer that identifies the highest path delay in
+          nanoseconds, between IOAM encapsulation and the local device (either
+          the IOAM transit node or the decapsulation node).</t>
 
           <t hangText="PathDelaySumDeltaMicroseconds"><vspace blankLines="0"/>
-          32-bit unsigned integer that identifies the sum of the path
-          delay.</t>
+          32-bit unsigned integer that identifies the sum of the path delay in
+          microseconds, between IOAM encapsulation and the local device
+          (either the IOAM transit node or the decapsulation node).</t>
 
           <t hangText="PathDelaySumDeltaNanoseconds"><vspace blankLines="0"/>
-          64-bit unsigned integer that identifies the sum of the path
-          delay.</t>
+          64-bit unsigned integer that identifies the sum of the path delay in
+          nanoseconds, between IOAM encapsulation and the local device (either
+          the IOAM transit node or the decapsulation node).</t>
         </list></t>
     </section>
 
@@ -579,8 +616,10 @@
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
-      <t>This document requests IANA to create new IEs (see table 1) and
-      assign the following initial code points.</t>
+      <t>This document requests IANA to create new IEs (see table 2) under the
+      "IPFIX Information Elements" registry <xref target="RFC7012"/> available
+      at <xref target="IANA-PERF-METRIC">"IANA Performance Metric
+      Registry</xref> and assign the following initial code points.</t>
 
       <t><figure>
           <artwork><![CDATA[
@@ -592,7 +631,7 @@
      |       |                                |
      +-------+--------------------------------+
      | TBD6  | PathDelayMeanDeltaNanoseconds  |
-     |       |                                |     
+     |       |                                |
      +-------+--------------------------------+
      | TBD7  | PathDelayMinDeltaMicroseconds  |
      |       |                                |
@@ -612,7 +651,7 @@
      | TBD12 | PathDelaySumDeltaNanoseconds   |
      |       |                                |
      +-------+--------------------------------+
-  Table 1: Creates IEs in the "IPFIX Information Elements" registry
+  Table 2: Creates IEs in the "IPFIX Information Elements" registry
        ]]></artwork>
         </figure></t>
 
@@ -755,6 +794,19 @@
   <back>
     <references title="Normative References">
       <?rfc include='reference.RFC.7012'?>
+
+      <?rfc include='reference.RFC.8911'?>
+
+      <reference anchor="IANA-PERF-METRIC"
+                 target="https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml">
+        <front>
+          <title>IANA Performance Metric Registry</title>
+
+          <author/>
+
+          <date/>
+        </front>
+      </reference>
     </references>
 
     <references title="Informative References">
