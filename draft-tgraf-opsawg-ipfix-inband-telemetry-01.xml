@@ -135,33 +135,40 @@ Table 1: Correspondance between IE and performance metric registry
        ]]></artwork>
         </figure></t>
 
-      <t>This exported delay is measured by calculating the difference
-      between the timestamp imposed at the entry node of the Inband 
-      Telemetry domain and the local node.</t>
+      <t>The delay is measured by calculating the difference between the
+      timestamp imposed with Inband Telemetry in the packet at the IOAM
+      encapsulation node and the timestamp exported in the IPFIX flow record
+      from the IOAM transit and decapsulation nodes. Depending on the IE, the
+      lowest, highest or the sum of measured path delay is being exported.</t>
 
-      <t>Using <xref target="I-D.song-ippm-postcard-based-telemetry"/>, 
-      the timestamp is inserted at the encapsulation node of the IOAM domain
-      and the delay is computed in every node (either the transit node or the
-      decapsulation node). The delay exported in the IPFIX flow record from the 
-      transit and decapsulation node is the difference between the encapsulation node
-      and the local node. Depending on the IE, the lowest, highest or the
-      sum of measured path delay is being exported</t>
-
-      <figure anchor="ioam-topology"
+      <figure anchor="ioam_topology"
               title="IOAM Delay use case">
         <artwork align="center"><![CDATA[
                                 IOAM-Domain
                 ............................................
                 .                                          .
+                .     D1                                   .
+                . <-------->                               .
                 .                                          .
-(H1) -------- (R1) -------- (R2) -------- (R3) -------- (R4) -------- (H2)
-Host 1    Encapsulation     Transit       Transit    Decapsulation    Host 2
-              Node          Node 1        Node 2        Node
+                .             D2                           .
+                . <----------------------->                .
+                .                                          .
+                .                    D3                    .
+                . <--------------------------------------> .
+                .                                          .
+(H1) -------- (R1) -------- (R2) -------- (R3) --------- (R4) -------- (H2)
+Host 1    Encapsulation    Transit       Transit    Decapsulation    Host 2
+              Node          Node 1        Node 2         Node
                 .                                          .
                 .                                          .
                 ............................................         
 ]]></artwork>
       </figure>
+
+      <t>On the usecase showed in <xref target="ioam_topology"/> using IOAM to export
+      the delay metrics, the node R2 exports the delay D1, the node R3 exports
+      the delay D2 and the decapsulation node R4 exports the total delay D3 using
+      IPFIX.</t>
 
     </section>
 
@@ -838,8 +845,6 @@ Host 1    Encapsulation     Transit       Transit    Decapsulation    Host 2
       <?rfc include='reference.I-D.filsfils-spring-path-tracing'?>
 
       <?rfc include='reference.I-D.song-opsawg-ifit-framework'?>
-
-      <?rfc include='reference.I-D.ietf-ippm-ioam-direct-export'?>
 
       <?rfc include='reference.RFC.7011'?>
 
