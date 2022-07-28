@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="26" month="July" year="2022"/>
+    <date day="28" month="July" year="2022"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -102,9 +102,9 @@
       forwarding path of the Inband Telemetry domain exposes all the metrics,
       and postcard mode, <xref
       target="I-D.song-ippm-postcard-based-telemetry"/>, where the metrics are
-      also exposed in the transit nodes. In both modes the forwarding path exposes
-      performance metrics allowing to determine how much delay has been
-      accumulated on which hop.</t>
+      also exposed in the transit nodes. In both modes the forwarding path
+      exposes performance metrics allowing to determine how much delay has
+      been accumulated on which hop.</t>
 
       <t>This document defines eight new IPFIX Information Elements (IEs),
       exposing the forwarding path delay on IOAM transit and decapsulation
@@ -142,383 +142,95 @@ Table 1: Correspondance between IE and performance metric registry
       lowest, highest or the sum of measured path delay is being exported.</t>
 
       <figure anchor="ioam_topology"
-              title="IOAM Delay use case">
+              title="IOAM Delay use case. Packets flow from host 1 to host 2.">
         <artwork align="center"><![CDATA[
                                 IOAM-Domain
-                ............................................
-                .                                          .
-                .     D1                                   .
-                . <-------->                               .
-                .                                          .
-                .             D2                           .
-                . <----------------------->                .
-                .                                          .
-                .                    D3                    .
-                . <--------------------------------------> .
-                .                                          .
-(H1) -------- (R1) -------- (R2) -------- (R3) --------- (R4) -------- (H2)
-Host 1    Encapsulation    Transit       Transit    Decapsulation    Host 2
-              Node          Node 1        Node 2         Node
-                .                                          .
-                .                                          .
-                ............................................         
+              .........................................
+              .                                       .
+              .    D1                                 .
+              . <------>                              .
+              .                                       .
+              .          D2                           .
+              . <-------------------->                .
+              .                                       .
+              .                  D3                   .
+              . <-----------------------------------> .
+              .                                       .
+(H1) ------ (R1) ------- (R2) ------- (R3) -------- (R4) ------ (H2)
+Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
+            Node         Node 1       Node 2        Node
+              .                                       .
+              .                                       .
+              .........................................         
+
 ]]></artwork>
       </figure>
 
-      <t>On the usecase showed in <xref target="ioam_topology"/> using IOAM to export
-      the delay metrics, the node R2 exports the delay D1, the node R3 exports
-      the delay D2 and the decapsulation node R4 exports the total delay D3 using
-      IPFIX.</t>
-
+      <t>On the usecase showed in <xref target="ioam_topology"/> using IOAM to
+      export the delay metrics, the node R2 exports the delay D1, the node R3
+      exports the delay D2 and the decapsulation node R4 exports the total
+      delay D3 using IPFIX.</t>
     </section>
 
-    <section anchor="ip-ow-delay-hybridtype1-passive-reg-entries"
-             title="IP One-Way Delay Hybrid Type I Passive Registry Entries">
-      <t>This section specifies four Registry Entries for the Hybrid Type I
-      Passive assessment of IP One-Way Delay.</t>
+    <section anchor="PM" title="Performance Metrics">
+      <t>This section defines and describes the new performance metrics</t>
 
-      <t>All column entries besides the ID, Name, Description, and Output
-      Reference Method categories are the same; thus, this section defines
-      four closely related Registry Entries. As a result, IANA has assigned
-      corresponding URLs to each of the four Named Metrics.</t>
+      <section anchor="ip-ow-delay-hybridtype1-passive-reg-entries"
+               title="IP One-Way Delay Hybrid Type I Passive Registry Entries">
+        <t>This section specifies four Registry Entries for the Hybrid Type I
+        Passive assessment of IP One-Way Delay.</t>
 
-      <section numbered="true" title="Summary">
-        <t>This category includes multiple indexes to the Registry Entry: the
-        element ID and Metric Name.</t>
+        <t>All column entries besides the ID, Name, Description, and Output
+        Reference Method categories are the same; thus, this section defines
+        four closely related Registry Entries. As a result, IANA has assigned
+        corresponding URLs to each of the four Named Metrics.</t>
 
-        <section title="ID (Identifier)">
-          <t>&lt;insert a numeric Identifier, an integer, TBD&gt;</t>
+        <section numbered="true" title="Summary">
+          <t>This category includes multiple indexes to the Registry Entry:
+          the element ID and Metric Name.</t>
+
+          <section title="ID (Identifier)">
+            <t>&lt;insert a numeric Identifier, an integer, TBD&gt;</t>
+          </section>
+
+          <section title="Name">
+            <t>IANA has allocated the numeric Identifiers TBD1-4 for the four
+            Named Metric Entries in this section</t>
+          </section>
+
+          <section title="Name">
+            <t>TBD1: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Mean</t>
+
+            <t>TBD2: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Min</t>
+
+            <t>TBD3: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Max</t>
+
+            <t>TBD4: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Sum</t>
+          </section>
+
+          <section title="URI">
+            <t>URL: <eref
+            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Mean"/></t>
+
+            <t>URL: <eref
+            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Min"/></t>
+
+            <t>URL: <eref
+            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Max"/></t>
+
+            <t>URL: <eref
+            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Sum"/></t>
+          </section>
         </section>
 
-        <section title="Name">
-          <t>IANA has allocated the numeric Identifiers TBD1-4 for the four
-          Named Metric Entries in this section</t>
-        </section>
-
-        <section title="Name">
-          <t>TBD1: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Mean</t>
-
-          <t>TBD2: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Min</t>
-
-          <t>TBD3: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Max</t>
-
-          <t>TBD4: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Sum</t>
-        </section>
-
-        <section title="URI">
-          <t>URL: <eref
-          target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Mean"/></t>
-
-          <t>URL: <eref
-          target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Min"/></t>
-
-          <t>URL: <eref
-          target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Max"/></t>
-
-          <t>URL: <eref
-          target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Sum"/></t>
-        </section>
-      </section>
-
-      <section title="Description">
-        <t>This metric assesses the one-way delay of IP packets constituting a
-        single connection between two hosts. We consider the measurement of
-        one-way delay based on a single Observation Point (OP) <xref
-        target="RFC7011"/> somewhere in the network. The output is the one-way
-        delay for all successfully forwarded packets expressed as the
-        &lt;statistic&gt; of their conditional delay distribution, where
-        &lt;statistic&gt; is one of:</t>
-
-        <t><list style="symbols">
-            <t>Mean</t>
-
-            <t>Min</t>
-
-            <t>Max</t>
-
-            <t>Sum</t>
-          </list></t>
-      </section>
-
-      <section title="Change Controller">
-        <t>IETF</t>
-      </section>
-
-      <section title="Version of Registry Format">
-        <t>1.0</t>
-      </section>
-    </section>
-
-    <section title="Metric Definition">
-      <t>This category includes columns to prompt the entry of all necessary
-      details related to the metric definition, including the immutable
-      document reference and values of input factors, called "Fixed
-      Parameters".</t>
-
-      <section title="Reference Definition">
-        <t>Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton, Ed., "A
-        One-Way Delay Metric for IP Performance Metrics (IPPM)", STD 81, RFC
-        7679, DOI 10.17487/RFC7679, January 2016,
-        &lt;https://www.rfc-editor.org/info/rfc7679&gt;. <xref
-        target="RFC7679"/></t>
-
-        <t>Morton, A. and E. Stephan, "Spatial Composition of Metrics", RFC
-        6049, DOI 10.17487/RFC6049, January 2011,
-        &lt;https://www.rfc-editor.org/info/rfc6049&gt;. <xref
-        target="RFC6049"/></t>
-
-        <t>Section 3.4 of <xref target="RFC7679"/> provides the reference
-        definition of the singleton (single value) one-way delay metric.
-        Section 4.4 of <xref target="RFC7679"/> provides the reference
-        definition expanded to cover a multi-value sample. Note that terms
-        such as "singleton" and "sample" are defined in section 2 of <xref
-        target="RFC2330"/>.</t>
-
-        <t>With the OP <xref target="RFC7011"/> typically located between the
-        hosts participating in the IP connection, the one-way delay metric
-        requires one individual measurement between the OP and sourcing host,
-        such that the Spatial Composition <xref target="RFC6049"/> of the
-        measurements yields a one-way delay singleton.</t>
-      </section>
-
-      <section title="Fixed Parameters">
-        <t><figure>
-            <preamble>Traffic Filters:</preamble>
-
-            <artwork><![CDATA[
- IPv4 header values:
-   DSCP: Set to 0
-
- IPv6 header values:
-   DSCP: Set to 0
-   Hop Count: Set to 255
-   Flow Label: Set to 0
-   Extension Headers: None
-          ]]></artwork>
-          </figure></t>
-      </section>
-    </section>
-
-    <section title="Method of Measurement">
-      <t>This category includes columns for references to relevant sections of
-      the RFC(s) and any supplemental information needed to ensure an
-      unambiguous method for implementations.</t>
-
-      <section title="Reference Methods">
-        <t>The foundational methodology for this metric is defined in section
-        4 of <xref target="RFC7323"/> using the Timestamps option with
-        modifications that allow application at a mid-path OP <xref
-        target="RFC7011"/>.</t>
-
-        <t>The Traffic Filter at the OP is configured to observe a single IP
-        connection.</t>
-      </section>
-
-      <section title="Packet Stream Generation">
-        <t>N/A</t>
-      </section>
-
-      <section title="Traffic Filtering (Observation) Details">
-        <t>The Fixed Parameters above give a portion of the Traffic Filter.
-        Other aspects will be supplied as Runtime Parameters (below).</t>
-      </section>
-
-      <section title="Sampling Distribution">
-        <t>This metric requires a partial sample of all packets that qualify
-        according to the Traffic Filter criteria.</t>
-      </section>
-
-      <section title="Runtime Parameters and Data Format">
-        <t>Runtime Parameters are input factors that must be determined,
-        configured into the measurement system, and reported with the results
-        for the context to be complete.</t>
-
-        <t><list style="hanging">
-            <t hangText="Src:">The IP address of the host in the host A Role
-            (format ipv4&nbhy;address-no-zone value for IPv4 or
-            ipv6-address-no-zone value for IPv6; see section 4 of <xref
-            target="RFC6991"/>.</t>
-
-            <t hangText="Dst:">The IP address of the host in the host B Role
-            (format ipv4&nbhy;address-no-zone value for IPv4 or
-            ipv6-address-no-zone value for IPv6; see section 4 of <xref
-            target="RFC6991"/>.</t>
-
-            <t hangText="TTL or Hop Limit:">Set at desired value.</t>
-
-            <t hangText="DSCP:">Set at desired value.</t>
-
-            <t hangText="IPv6 Flow Label:">Set at desired value.</t>
-
-            <t hangText="Timestamp:">The timestamp when the packet is being
-            received at IOAM encapsulation node. Format depends on Inband
-            Telemetry implementation. For IOAM, Section 4.4.1 of <xref
-            target="RFC9197"/> describes what kind of timestamps are
-            supported. Section 4.4.2.3 and 4.4.2.4 describe where the
-            timestamp is being inserted. For Path Tracing, Section 4.1 of
-            <xref target="I-D.filsfils-spring-path-tracing"/> describes what
-            kind of timestamps are supported. Section 9.2 describe the SRH
-            path tracing TLV where the timestamp is being inserted.</t>
-          </list></t>
-      </section>
-
-      <section title="Roles">
-        <t><list style="hanging">
-            <t hangText="host A:">Launches the IP packet to open the
-            connection. The Role of "host A" is synonymous with the IP address
-            used at host A.</t>
-
-            <t hangText="host B:">Receives the IP packet to open the
-            connection. The Role of "host B" is synonymous with the IP address
-            used at host B.</t>
-
-            <t hangText="Encapsulation Node:">Receives the IP packet to open
-            the connection and encapsulates the timestamp into the packet. The
-            Role of "Encapsulation Node" is synonymous with the timestamp
-            inserted in the packet.</t>
-
-            <t hangText="Transit Node:">Receives the IP packet to open the
-            connection and measures the delay between the timestamp in the
-            packet and the timestamp when the packet was received.</t>
-
-            <t hangText="Decapsulation Node:">Receives the IP packet to open
-            the connection and measures the delay between the timestamp in the
-            packet and the timestamp when the packet was received and removes
-            the IOAM header from the packet.</t>
-          </list></t>
-      </section>
-    </section>
-
-    <section title="Output">
-      <t>This category specifies all details of the output of measurements
-      using the metric.</t>
-
-      <section title="Type">
-        <t>OWDelay Types are discussed in the subsections below.</t>
-      </section>
-
-      <section title="Reference Definition">
-        <t>For all output types:</t>
-
-        <t><list style="hanging">
-            <t hangText="OWDelay_HybridType1_Passive_IP:">The one-trip delay
-            of one IP packet is a Singleton</t>
-          </list></t>
-
-        <t>For each &lt;statistic&gt;, Singleton one of the following
-        subsections applies.</t>
-
-        <section title="Mean">
-          <t>The mean SHALL be calculated using the conditional distribution
-          of all packets with a finite value of one-way delay (undefined
-          delays are excluded) -- a single value, as follows:</t>
-
-          <t>See section 4.1 of <xref target="RFC3393"/> for details on the
-          conditional distribution to exclude undefined values of delay, and
-          see section 5 of <xref target="RFC6703"/> for background on this
-          analysis choice.</t>
-
-          <t>See section 4.2.2 of <xref target="RFC6049"/> for details on
-          calculating this statistic; see also section 4.2.3 of <xref
-          target="RFC6049"/>.</t>
-
-          <t><list style="hanging">
-              <t hangText="Mean:">The time value of the result is expressed in
-              units of seconds, as a positive value of type decimal64 with
-              fraction digits = 9 (see section 9.3 of <xref
-              target="RFC6020"/>) with a resolution of
-              0.000000001&nbsp;seconds (1.0 ns), and with lossless conversion
-              to/from the 64-bit NTP timestamp as per section 6 of <xref
-              target="RFC5905"/>.</t>
-            </list></t>
-        </section>
-
-        <section title="Min">
-          <t>The minimum SHALL be calculated using the conditional
-          distribution of all packets with a finite value of one-way delay
-          (undefined delays are excluded) -- a single value, as follows:</t>
-
-          <t>See section 4.1 of <xref target="RFC3393"/> for details on the
-          conditional distribution to exclude undefined values of delay, and
-          see section 5 of <xref target="RFC6703"/> for background on this
-          analysis choice.</t>
-
-          <t>See section 4.3.2 of <xref target="RFC6049"/> for details on
-          calculating this statistic; see also section 4.3.3 of <xref
-          target="RFC6049"/>.</t>
-
-          <t><list style="hanging">
-              <t hangText="Min:">The time value of the result is expressed in
-              units of seconds, as a positive value of type decimal64 with
-              fraction digits = 9 (see section 9.3 of <xref
-              target="RFC6020"/>) with a resolution of
-              0.000000001&nbsp;seconds (1.0 ns), and with lossless conversion
-              to/from the 64-bit NTP timestamp as per section 6 of <xref
-              target="RFC5905"/>.</t>
-            </list></t>
-        </section>
-
-        <section title="Max">
-          <t>The maximum SHALL be calculated using the conditional
-          distribution of all packets with a finite value of one-way delay
-          (undefined delays are excluded) -- a single value, as follows:</t>
-
-          <t>See section 4.1 of <xref target="RFC3393"/> for details on the
-          conditional distribution to exclude undefined values of delay, and
-          see section 5 of <xref target="RFC6703"/> for background on this
-          analysis choice.</t>
-
-          <t>See section 4.3.2 of <xref target="RFC6049"/> for a closely
-          related method for calculating this statistic; see also section
-          4.3.3 of <xref target="RFC6049"/>. The formula is as follows:</t>
-
-          <t><figure>
-              <artwork><![CDATA[ 
- Max = (FiniteDelay[j])
- such that for some index, j, where 1 <= j <= N
- FiniteDelay[j] >= FiniteDelay[n] for all n
-         ]]></artwork>
-            </figure></t>
-
-          <t><list style="hanging">
-              <t hangText="Max:">The time value of the result is expressed in
-              units of seconds, as a positive value of type decimal64 with
-              fraction digits = 9 (see section 9.3 of <xref
-              target="RFC6020"/>) with a resolution of
-              0.000000001&nbsp;seconds (1.0 ns), and with lossless conversion
-              to/from the 64-bit NTP timestamp as per section 6 of <xref
-              target="RFC5905"/>.</t>
-            </list></t>
-        </section>
-
-        <section title="Sum">
-          <t>The sum SHALL be calculated using the conditional distribution of
-          all packets with a finite value of one-way delay (undefined delays
-          are excluded) -- a single value, as follows:</t>
-
-          <t>See section 4.1 of <xref target="RFC3393"/> for details on the
-          conditional distribution to exclude undefined values of delay, and
-          see section 5 of <xref target="RFC6703"/> for background on this
-          analysis choice.</t>
-
-          <t>See section 4.3.5 of <xref target="RFC6049"/> for details on
-          calculating this statistic. However in this case FiniteDelay or
-          MaxDelay MAY be used.</t>
-
-          <t><list style="hanging">
-              <t hangText="Sum:">The time value of the result is expressed in
-              units of seconds, as a positive value of type decimal64 with
-              fraction digits = 9 (see section 9.3 of <xref
-              target="RFC6020"/>) with a resolution of
-              0.000000001&nbsp;seconds (1.0 ns), and with lossless conversion
-              to/from the 64-bit NTP timestamp as per section 6 of <xref
-              target="RFC5905"/>.</t>
-            </list></t>
-        </section>
-
-        <section title="Metric Units">
-          <t>The &lt;statistic&gt; of one-way delay is expressed in seconds,
-          where &lt;statistic&gt; is one of:</t>
+        <section title="Description">
+          <t>This metric assesses the one-way delay of IP packets constituting
+          a single connection between two hosts. We consider the measurement
+          of one-way delay based on a single Observation Point (OP) <xref
+          target="RFC7011"/> somewhere in the network. The output is the
+          one-way delay for all successfully forwarded packets expressed as
+          the &lt;statistic&gt; of their conditional delay distribution, where
+          &lt;statistic&gt; is one of:</t>
 
           <t><list style="symbols">
               <t>Mean</t>
@@ -529,38 +241,331 @@ Host 1    Encapsulation    Transit       Transit    Decapsulation    Host 2
 
               <t>Sum</t>
             </list></t>
-
-          <t>The one-way delay of the IP connection singleton is expressed in
-          seconds.</t>
         </section>
 
-        <section title="Calibration">
-          <t>Passive Measurements at an OP could be calibrated against an
-          Active Measurement at host A where the Active Measurement represents
-          the ground truth.</t>
-        </section>
-      </section>
-
-      <section title="Administrative Items">
-        <section title="Status">
-          <t>Current</t>
+        <section title="Change Controller">
+          <t>IETF</t>
         </section>
 
-        <section title="Requester">
-          <t>This RFC</t>
-        </section>
-
-        <section title="Revision">
+        <section title="Version of Registry Format">
           <t>1.0</t>
         </section>
+      </section>
 
-        <section title="Revision Date">
-          <t>RFC Date</t>
+      <section title="Metric Definition">
+        <t>This category includes columns to prompt the entry of all necessary
+        details related to the metric definition, including the immutable
+        document reference and values of input factors, called "Fixed
+        Parameters".</t>
+
+        <section title="Reference Definition">
+          <t>Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton, Ed., "A
+          One-Way Delay Metric for IP Performance Metrics (IPPM)", STD 81, RFC
+          7679, DOI 10.17487/RFC7679, January 2016,
+          &lt;https://www.rfc-editor.org/info/rfc7679&gt;. <xref
+          target="RFC7679"/></t>
+
+          <t>Morton, A. and E. Stephan, "Spatial Composition of Metrics", RFC
+          6049, DOI 10.17487/RFC6049, January 2011,
+          &lt;https://www.rfc-editor.org/info/rfc6049&gt;. <xref
+          target="RFC6049"/></t>
+
+          <t>Section 3.4 of <xref target="RFC7679"/> provides the reference
+          definition of the singleton (single value) one-way delay metric.
+          Section 4.4 of <xref target="RFC7679"/> provides the reference
+          definition expanded to cover a multi-value sample. Note that terms
+          such as "singleton" and "sample" are defined in section 2 of <xref
+          target="RFC2330"/>.</t>
+
+          <t>With the OP <xref target="RFC7011"/> typically located between
+          the hosts participating in the IP connection, the one-way delay
+          metric requires one individual measurement between the OP and
+          sourcing host, such that the Spatial Composition <xref
+          target="RFC6049"/> of the measurements yields a one-way delay
+          singleton.</t>
+        </section>
+
+        <section title="Fixed Parameters">
+          <t><figure>
+              <preamble>Traffic Filters:</preamble>
+
+              <artwork><![CDATA[
+ IPv4 header values:
+   DSCP: Set to 0
+
+ IPv6 header values:
+   DSCP: Set to 0
+   Hop Count: Set to 255
+   Flow Label: Set to 0
+   Extension Headers: None
+          ]]></artwork>
+            </figure></t>
         </section>
       </section>
 
-      <section title="Comments and Remarks">
-        <t>None</t>
+      <section title="Method of Measurement">
+        <t>This category includes columns for references to relevant sections
+        of the RFC(s) and any supplemental information needed to ensure an
+        unambiguous method for implementations.</t>
+
+        <section title="Reference Methods">
+          <t>The foundational methodology for this metric is defined in
+          section 4 of <xref target="RFC7323"/> using the Timestamps option
+          with modifications that allow application at a mid-path OP <xref
+          target="RFC7011"/>.</t>
+
+          <t>The Traffic Filter at the OP is configured to observe a single IP
+          connection.</t>
+        </section>
+
+        <section title="Packet Stream Generation">
+          <t>N/A</t>
+        </section>
+
+        <section title="Traffic Filtering (Observation) Details">
+          <t>The Fixed Parameters above give a portion of the Traffic Filter.
+          Other aspects will be supplied as Runtime Parameters (below).</t>
+        </section>
+
+        <section title="Sampling Distribution">
+          <t>This metric requires a partial sample of all packets that qualify
+          according to the Traffic Filter criteria.</t>
+        </section>
+
+        <section title="Runtime Parameters and Data Format">
+          <t>Runtime Parameters are input factors that must be determined,
+          configured into the measurement system, and reported with the
+          results for the context to be complete.</t>
+
+          <t><list style="hanging">
+              <t hangText="Src:">The IP address of the host in the host A Role
+              (format ipv4&nbhy;address-no-zone value for IPv4 or
+              ipv6-address-no-zone value for IPv6; see section 4 of <xref
+              target="RFC6991"/>.</t>
+
+              <t hangText="Dst:">The IP address of the host in the host B Role
+              (format ipv4&nbhy;address-no-zone value for IPv4 or
+              ipv6-address-no-zone value for IPv6; see section 4 of <xref
+              target="RFC6991"/>.</t>
+
+              <t hangText="TTL or Hop Limit:">Set at desired value.</t>
+
+              <t hangText="DSCP:">Set at desired value.</t>
+
+              <t hangText="IPv6 Flow Label:">Set at desired value.</t>
+
+              <t hangText="Timestamp:">The timestamp when the packet is being
+              received at IOAM encapsulation node. Format depends on Inband
+              Telemetry implementation. For IOAM, Section 4.4.1 of <xref
+              target="RFC9197"/> describes what kind of timestamps are
+              supported. Section 4.4.2.3 and 4.4.2.4 describe where the
+              timestamp is being inserted. For Path Tracing, Section 4.1 of
+              <xref target="I-D.filsfils-spring-path-tracing"/> describes what
+              kind of timestamps are supported. Section 9.2 describe the SRH
+              path tracing TLV where the timestamp is being inserted.</t>
+            </list></t>
+        </section>
+
+        <section title="Roles">
+          <t><list style="hanging">
+              <t hangText="host A:">Launches the IP packet to open the
+              connection. The Role of "host A" is synonymous with the IP
+              address used at host A.</t>
+
+              <t hangText="host B:">Receives the IP packet to open the
+              connection. The Role of "host B" is synonymous with the IP
+              address used at host B.</t>
+
+              <t hangText="Encapsulation Node:">Receives the IP packet to open
+              the connection and encapsulates the timestamp into the packet.
+              The Role of "Encapsulation Node" is synonymous with the
+              timestamp inserted in the packet.</t>
+
+              <t hangText="Transit Node:">Receives the IP packet to open the
+              connection and measures the delay between the timestamp in the
+              packet and the timestamp when the packet was received.</t>
+
+              <t hangText="Decapsulation Node:">Receives the IP packet to open
+              the connection and measures the delay between the timestamp in
+              the packet and the timestamp when the packet was received and
+              removes the IOAM header from the packet.</t>
+            </list></t>
+        </section>
+      </section>
+
+      <section title="Output">
+        <t>This category specifies all details of the output of measurements
+        using the metric.</t>
+
+        <section title="Type">
+          <t>OWDelay Types are discussed in the subsections below.</t>
+        </section>
+
+        <section title="Reference Definition">
+          <t>For all output types:</t>
+
+          <t><list style="hanging">
+              <t hangText="OWDelay_HybridType1_Passive_IP:">The one-trip delay
+              of one IP packet is a Singleton</t>
+            </list></t>
+
+          <t>For each &lt;statistic&gt;, Singleton one of the following
+          subsections applies.</t>
+
+          <section title="Mean">
+            <t>The mean SHALL be calculated using the conditional distribution
+            of all packets with a finite value of one-way delay (undefined
+            delays are excluded) -- a single value, as follows:</t>
+
+            <t>See section 4.1 of <xref target="RFC3393"/> for details on the
+            conditional distribution to exclude undefined values of delay, and
+            see section 5 of <xref target="RFC6703"/> for background on this
+            analysis choice.</t>
+
+            <t>See section 4.2.2 of <xref target="RFC6049"/> for details on
+            calculating this statistic; see also section 4.2.3 of <xref
+            target="RFC6049"/>.</t>
+
+            <t><list style="hanging">
+                <t hangText="Mean:">The time value of the result is expressed
+                in units of seconds, as a positive value of type decimal64
+                with fraction digits = 9 (see section 9.3 of <xref
+                target="RFC6020"/>) with a resolution of
+                0.000000001&nbsp;seconds (1.0 ns), and with lossless
+                conversion to/from the 64-bit NTP timestamp as per section 6
+                of <xref target="RFC5905"/>.</t>
+              </list></t>
+          </section>
+
+          <section title="Min">
+            <t>The minimum SHALL be calculated using the conditional
+            distribution of all packets with a finite value of one-way delay
+            (undefined delays are excluded) -- a single value, as follows:</t>
+
+            <t>See section 4.1 of <xref target="RFC3393"/> for details on the
+            conditional distribution to exclude undefined values of delay, and
+            see section 5 of <xref target="RFC6703"/> for background on this
+            analysis choice.</t>
+
+            <t>See section 4.3.2 of <xref target="RFC6049"/> for details on
+            calculating this statistic; see also section 4.3.3 of <xref
+            target="RFC6049"/>.</t>
+
+            <t><list style="hanging">
+                <t hangText="Min:">The time value of the result is expressed
+                in units of seconds, as a positive value of type decimal64
+                with fraction digits = 9 (see section 9.3 of <xref
+                target="RFC6020"/>) with a resolution of
+                0.000000001&nbsp;seconds (1.0 ns), and with lossless
+                conversion to/from the 64-bit NTP timestamp as per section 6
+                of <xref target="RFC5905"/>.</t>
+              </list></t>
+          </section>
+
+          <section title="Max">
+            <t>The maximum SHALL be calculated using the conditional
+            distribution of all packets with a finite value of one-way delay
+            (undefined delays are excluded) -- a single value, as follows:</t>
+
+            <t>See section 4.1 of <xref target="RFC3393"/> for details on the
+            conditional distribution to exclude undefined values of delay, and
+            see section 5 of <xref target="RFC6703"/> for background on this
+            analysis choice.</t>
+
+            <t>See section 4.3.2 of <xref target="RFC6049"/> for a closely
+            related method for calculating this statistic; see also section
+            4.3.3 of <xref target="RFC6049"/>. The formula is as follows:</t>
+
+            <t><figure>
+                <artwork><![CDATA[ 
+ Max = (FiniteDelay[j])
+ such that for some index, j, where 1 <= j <= N
+ FiniteDelay[j] >= FiniteDelay[n] for all n
+         ]]></artwork>
+              </figure></t>
+
+            <t><list style="hanging">
+                <t hangText="Max:">The time value of the result is expressed
+                in units of seconds, as a positive value of type decimal64
+                with fraction digits = 9 (see section 9.3 of <xref
+                target="RFC6020"/>) with a resolution of
+                0.000000001&nbsp;seconds (1.0 ns), and with lossless
+                conversion to/from the 64-bit NTP timestamp as per section 6
+                of <xref target="RFC5905"/>.</t>
+              </list></t>
+          </section>
+
+          <section title="Sum">
+            <t>The sum SHALL be calculated using the conditional distribution
+            of all packets with a finite value of one-way delay (undefined
+            delays are excluded) -- a single value, as follows:</t>
+
+            <t>See section 4.1 of <xref target="RFC3393"/> for details on the
+            conditional distribution to exclude undefined values of delay, and
+            see section 5 of <xref target="RFC6703"/> for background on this
+            analysis choice.</t>
+
+            <t>See section 4.3.5 of <xref target="RFC6049"/> for details on
+            calculating this statistic. However in this case FiniteDelay or
+            MaxDelay MAY be used.</t>
+
+            <t><list style="hanging">
+                <t hangText="Sum:">The time value of the result is expressed
+                in units of seconds, as a positive value of type decimal64
+                with fraction digits = 9 (see section 9.3 of <xref
+                target="RFC6020"/>) with a resolution of
+                0.000000001&nbsp;seconds (1.0 ns), and with lossless
+                conversion to/from the 64-bit NTP timestamp as per section 6
+                of <xref target="RFC5905"/>.</t>
+              </list></t>
+          </section>
+
+          <section title="Metric Units">
+            <t>The &lt;statistic&gt; of one-way delay is expressed in seconds,
+            where &lt;statistic&gt; is one of:</t>
+
+            <t><list style="symbols">
+                <t>Mean</t>
+
+                <t>Min</t>
+
+                <t>Max</t>
+
+                <t>Sum</t>
+              </list></t>
+
+            <t>The one-way delay of the IP connection singleton is expressed
+            in seconds.</t>
+          </section>
+
+          <section title="Calibration">
+            <t>Passive Measurements at an OP could be calibrated against an
+            Active Measurement at host A where the Active Measurement
+            represents the ground truth.</t>
+          </section>
+        </section>
+
+        <section title="Administrative Items">
+          <section title="Status">
+            <t>Current</t>
+          </section>
+
+          <section title="Requester">
+            <t>This RFC</t>
+          </section>
+
+          <section title="Revision">
+            <t>1.0</t>
+          </section>
+
+          <section title="Revision Date">
+            <t>RFC Date</t>
+          </section>
+        </section>
+
+        <section title="Comments and Remarks">
+          <t>None</t>
+        </section>
       </section>
     </section>
 
@@ -643,16 +648,45 @@ Host 1    Encapsulation    Transit       Transit    Decapsulation    Host 2
           path delay on each node from each IPv4 source address to a specific
           application in the network.</t>
         </list></t>
-    </section>
 
-    <section anchor="IANA" title="IANA Considerations">
-      <t>This document requests IANA to create new IEs (see table 2) under the
-      "IPFIX Information Elements" registry <xref target="RFC7012"/> available
-      at <xref target="IANA-PERF-METRIC">"IANA Performance Metric
-      Registry</xref> and assign the following initial code points.</t>
+      <t>Taking figure 1 from section 1 as topology example. Below example
+      table shows the aggregated delay per each node, egressInterface and
+      srhActiveSegmentIPv6.</t>
 
       <t><figure>
           <artwork><![CDATA[
+     +------------+------+-----------------+----------------------+
+     | Path Delay | Node | egressInterface | srhActiveSegmentIPv6 |
+     +------------+------+-----------------+----------------------+
+     |     0 ns   |  R1  |      276        |      2001:db8::4     |
+     +------------+------+-----------------+----------------------+
+     |  3122 ns   |  R2  |      312        |      2001:db8::4     |
+     +------------+------+-----------------+----------------------+
+     |  4432 ns   |  R3  |       27        |      2001:db8::4     |
+     +------------+------+-----------------+----------------------+
+     |  7237 ns   |  R4  |      854        |      2001:db8::4     |
+     +------------+------+-----------------+----------------------+
+
+  Table 2: Example table of measured delay. Ascending by delay.
+       ]]></artwork>
+        </figure></t>
+    </section>
+
+    <section anchor="IANA" title="IANA Considerations">
+      <section anchor="PM-IANA" title="Performance Metrics">
+        <t>This document requests IANA to create new performance metrics under
+        the "Performance Metrics" registry <xref target="RFC8911"/> with the
+        values defined in section 2.</t>
+      </section>
+
+      <section anchor="IE-IANA" title="IPFIX Entities">
+        <t>This document requests IANA to create new IEs (see table 3) under
+        the "IPFIX Information Elements" registry <xref target="RFC7012"/>
+        available at <xref target="IANA-PERF-METRIC">"IANA Performance Metric
+        Registry</xref> and assign the following initial code points.</t>
+
+        <t><figure>
+            <artwork><![CDATA[
      +-------+--------------------------------+
      |Element|              Name              |
      |   ID  |                                |
@@ -681,105 +715,107 @@ Host 1    Encapsulation    Transit       Transit    Decapsulation    Host 2
      | TBD12 | PathDelaySumDeltaNanoseconds   |
      |       |                                |
      +-------+--------------------------------+
-  Table 2: Creates IEs in the "IPFIX Information Elements" registry
+  Table 3: Creates IEs in the "IPFIX Information Elements" registry
        ]]></artwork>
-        </figure></t>
+          </figure></t>
 
-      <t>Note to the RFC-Editor:</t>
+        <t>Note to the RFC-Editor:</t>
 
-      <t><list style="symbols">
-          <t>Please replace TBD5 - TBD12 with the values allocated by IANA</t>
+        <t><list style="symbols">
+            <t>Please replace TBD5 - TBD12 with the values allocated by
+            IANA</t>
 
-          <t>Please replace the [RFC-to-be] with the RFC number assigned to
-          this document</t>
-        </list></t>
+            <t>Please replace the [RFC-to-be] with the RFC number assigned to
+            this document</t>
+          </list></t>
 
-      <section anchor="IANAPathDelayMeanDeltaMicroseconds"
-               title="PathDelayMeanDeltaMicroseconds">
-        <t>Name: PathDelayMeanDeltaMicroseconds <vspace blankLines="0"/>
-        ElementID: TBD5 <vspace blankLines="0"/> Description: This Information
-        Element identifies the mean path delay between IOAM encapsulation and
-        IOAM transit or decapsulation node in microseconds. <vspace
-        blankLines="0"/> Abstract Data Type: unsigned16 <vspace
-        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
-        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
-      </section>
+        <section anchor="IANAPathDelayMeanDeltaMicroseconds"
+                 title="PathDelayMeanDeltaMicroseconds">
+          <t>Name: PathDelayMeanDeltaMicroseconds <vspace blankLines="0"/>
+          ElementID: TBD5 <vspace blankLines="0"/> Description: This
+          Information Element identifies the mean path delay between IOAM
+          encapsulation and IOAM transit or decapsulation node in
+          microseconds. <vspace blankLines="0"/> Abstract Data Type:
+          unsigned16 <vspace blankLines="0"/> Data Type Semantics: OctedDelta
+          <vspace blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        </section>
 
-      <section anchor="IANAPathDelayMeanDeltaNanoseconds"
-               title="PathDelayMeanDeltaNanoseconds">
-        <t>Name: PathDelayMeanDeltaNanoseconds <vspace blankLines="0"/>
-        ElementID: TBD6 <vspace blankLines="0"/> Description: This Information
-        Element identifies the mean path delay between IOAM encapsulation and
-        IOAM transit or decapsulation node in nanoseconds. <vspace
-        blankLines="0"/> Abstract Data Type: unsigned32 <vspace
-        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
-        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
-      </section>
+        <section anchor="IANAPathDelayMeanDeltaNanoseconds"
+                 title="PathDelayMeanDeltaNanoseconds">
+          <t>Name: PathDelayMeanDeltaNanoseconds <vspace blankLines="0"/>
+          ElementID: TBD6 <vspace blankLines="0"/> Description: This
+          Information Element identifies the mean path delay between IOAM
+          encapsulation and IOAM transit or decapsulation node in nanoseconds.
+          <vspace blankLines="0"/> Abstract Data Type: unsigned32 <vspace
+          blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+          blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        </section>
 
-      <section anchor="IANAPathDelayMinDeltaMicroseconds"
-               title="PathDelayMinDeltaMicroseconds">
-        <t>Name: PathDelayMinDeltaMicroseconds <vspace blankLines="0"/>
-        ElementID: TBD7 <vspace blankLines="0"/> Description: This Information
-        Element identifies the lowest path delay between IOAM encapsulation
-        and IOAM transit or decapsulation node in microseconds. <vspace
-        blankLines="0"/> Abstract Data Type: unsigned16 <vspace
-        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
-        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
-      </section>
+        <section anchor="IANAPathDelayMinDeltaMicroseconds"
+                 title="PathDelayMinDeltaMicroseconds">
+          <t>Name: PathDelayMinDeltaMicroseconds <vspace blankLines="0"/>
+          ElementID: TBD7 <vspace blankLines="0"/> Description: This
+          Information Element identifies the lowest path delay between IOAM
+          encapsulation and IOAM transit or decapsulation node in
+          microseconds. <vspace blankLines="0"/> Abstract Data Type:
+          unsigned16 <vspace blankLines="0"/> Data Type Semantics: OctedDelta
+          <vspace blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        </section>
 
-      <section anchor="IANAPathDelayMinDeltaNanoseconds"
-               title="PathDelayMinDeltaNanoseconds">
-        <t>Name: PathDelayMinDeltaNanoseconds <vspace blankLines="0"/>
-        ElementID: TBD8 <vspace blankLines="0"/> Description: This Information
-        Element identifies the lowest path delay between IOAM encapsulation
-        and IOAM transit or decapsulation node in nanoseconds. <vspace
-        blankLines="0"/> Abstract Data Type: unsigned32 <vspace
-        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
-        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
-      </section>
+        <section anchor="IANAPathDelayMinDeltaNanoseconds"
+                 title="PathDelayMinDeltaNanoseconds">
+          <t>Name: PathDelayMinDeltaNanoseconds <vspace blankLines="0"/>
+          ElementID: TBD8 <vspace blankLines="0"/> Description: This
+          Information Element identifies the lowest path delay between IOAM
+          encapsulation and IOAM transit or decapsulation node in nanoseconds.
+          <vspace blankLines="0"/> Abstract Data Type: unsigned32 <vspace
+          blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+          blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        </section>
 
-      <section anchor="IANAPathDelayMaxDeltaMicroseconds"
-               title="PathDelayMaxDeltaMicroseconds">
-        <t>Name: PathDelayMaxDeltaMicroseconds <vspace blankLines="0"/>
-        ElementID: TBD9 <vspace blankLines="0"/> Description: This Information
-        Element identifies the highest path delay between IOAM encapsulation
-        and IOAM transit or decapsulation node in microseconds. <vspace
-        blankLines="0"/> Abstract Data Type: unsigned16 <vspace
-        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
-        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
-      </section>
+        <section anchor="IANAPathDelayMaxDeltaMicroseconds"
+                 title="PathDelayMaxDeltaMicroseconds">
+          <t>Name: PathDelayMaxDeltaMicroseconds <vspace blankLines="0"/>
+          ElementID: TBD9 <vspace blankLines="0"/> Description: This
+          Information Element identifies the highest path delay between IOAM
+          encapsulation and IOAM transit or decapsulation node in
+          microseconds. <vspace blankLines="0"/> Abstract Data Type:
+          unsigned16 <vspace blankLines="0"/> Data Type Semantics: OctedDelta
+          <vspace blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        </section>
 
-      <section anchor="IANAPathDelayMaxDeltaNanoseconds"
-               title="PathDelayMaxDeltaNanoseconds">
-        <t>Name: PathDelayMaxDeltaNanoseconds <vspace blankLines="0"/>
-        ElementID: TBD10 <vspace blankLines="0"/> Description: This
-        Information Element identifies the highest path delay between IOAM
-        encapsulation and IOAM transit or decapsulation node in nanoseconds.
-        <vspace blankLines="0"/> Abstract Data Type: unsigned32 <vspace
-        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
-        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
-      </section>
+        <section anchor="IANAPathDelayMaxDeltaNanoseconds"
+                 title="PathDelayMaxDeltaNanoseconds">
+          <t>Name: PathDelayMaxDeltaNanoseconds <vspace blankLines="0"/>
+          ElementID: TBD10 <vspace blankLines="0"/> Description: This
+          Information Element identifies the highest path delay between IOAM
+          encapsulation and IOAM transit or decapsulation node in nanoseconds.
+          <vspace blankLines="0"/> Abstract Data Type: unsigned32 <vspace
+          blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+          blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        </section>
 
-      <section anchor="IANAPathDelaySumDeltaMicroseconds"
-               title="PathDelaySumDeltaMicroseconds">
-        <t>Name: PathDelaySumDeltaMicroseconds <vspace blankLines="0"/>
-        ElementID: TBD11 <vspace blankLines="0"/> Description: This
-        Information Element identifies the sum of the path delay between IOAM
-        encapsulation and IOAM transit or decapsulation nodein microseconds.
-        <vspace blankLines="0"/> Abstract Data Type: unsigned32 <vspace
-        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
-        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
-      </section>
+        <section anchor="IANAPathDelaySumDeltaMicroseconds"
+                 title="PathDelaySumDeltaMicroseconds">
+          <t>Name: PathDelaySumDeltaMicroseconds <vspace blankLines="0"/>
+          ElementID: TBD11 <vspace blankLines="0"/> Description: This
+          Information Element identifies the sum of the path delay between
+          IOAM encapsulation and IOAM transit or decapsulation nodein
+          microseconds. <vspace blankLines="0"/> Abstract Data Type:
+          unsigned32 <vspace blankLines="0"/> Data Type Semantics: OctedDelta
+          <vspace blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        </section>
 
-      <section anchor="IANAPathDelaySumDeltaNanoseconds"
-               title="PathDelaySumDeltaNanoseconds">
-        <t>Name: PathDelaySumDeltaNanoseconds <vspace blankLines="0"/>
-        ElementID: TBD12 <vspace blankLines="0"/> Description: This
-        Information Element identifies the sum of the path delay between IOAM
-        encapsulation and IOAM transit or decapsulation nodein nanoseconds.
-        <vspace blankLines="0"/> Abstract Data Type: unsigned64 <vspace
-        blankLines="0"/> Data Type Semantics: OctedDelta <vspace
-        blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        <section anchor="IANAPathDelaySumDeltaNanoseconds"
+                 title="PathDelaySumDeltaNanoseconds">
+          <t>Name: PathDelaySumDeltaNanoseconds <vspace blankLines="0"/>
+          ElementID: TBD12 <vspace blankLines="0"/> Description: This
+          Information Element identifies the sum of the path delay between
+          IOAM encapsulation and IOAM transit or decapsulation nodein
+          nanoseconds. <vspace blankLines="0"/> Abstract Data Type: unsigned64
+          <vspace blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+          blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+        </section>
       </section>
     </section>
 
