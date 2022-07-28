@@ -85,7 +85,7 @@
       why and where, delay needs to be reported into device and control-plane
       context. In order to understand which customer traffic is affected,
       delay needs to be reported into customer data-plane context. That
-      enables network operators quickly to identify when the control-plane
+      enables network operators to quickly identify when the control-plane
       updates the current path with a different next-hop and therefore the
       forwarding path changes to different nodes and interfaces, how the path
       delay changes for which customer traffic.</t>
@@ -99,10 +99,10 @@
 
       <t>Inband Telemetry can be distinguished between two modes. Passport
       mode, <xref target="RFC9197"/>, where only the last hop in the
-      forwarding path of the Inband Telemetry domain exposes all the metrics
+      forwarding path of the Inband Telemetry domain exposes all the metrics,
       and postcard mode, <xref
-      target="I-D.song-ippm-postcard-based-telemetry"/>, where the transit
-      nodes also expose metrics. In both modes the forwarding path exposes
+      target="I-D.song-ippm-postcard-based-telemetry"/>, where the metrics are
+      also exposed in the transit nodes. In both modes the forwarding path exposes
       performance metrics allowing to determine how much delay has been
       accumulated on which hop.</t>
 
@@ -140,6 +140,36 @@ Table 1: Correspondance between IE and performance metric registry
       encapsulation node and the timestamp exported in the IPFIX flow record
       from the IOAM transit and decapsulation nodes. Depending on the IE, the
       lowest, highest or the sum of measured path delay is being exported.</t>
+
+      <figure anchor="ioam_topology"
+              title="IOAM Delay use case">
+        <artwork align="center"><![CDATA[
+                                IOAM-Domain
+                ............................................
+                .                                          .
+                .     D1                                   .
+                . <-------->                               .
+                .                                          .
+                .             D2                           .
+                . <----------------------->                .
+                .                                          .
+                .                    D3                    .
+                . <--------------------------------------> .
+                .                                          .
+(H1) -------- (R1) -------- (R2) -------- (R3) --------- (R4) -------- (H2)
+Host 1    Encapsulation    Transit       Transit    Decapsulation    Host 2
+              Node          Node 1        Node 2         Node
+                .                                          .
+                .                                          .
+                ............................................         
+]]></artwork>
+      </figure>
+
+      <t>On the usecase showed in <xref target="ioam_topology"/> using IOAM to export
+      the delay metrics, the node R2 exports the delay D1, the node R3 exports
+      the delay D2 and the decapsulation node R4 exports the total delay D3 using
+      IPFIX.</t>
+
     </section>
 
     <section anchor="ip-ow-delay-hybridtype1-passive-reg-entries"
