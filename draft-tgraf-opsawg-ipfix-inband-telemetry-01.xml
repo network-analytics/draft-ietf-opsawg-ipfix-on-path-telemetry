@@ -574,43 +574,51 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           style="hanging">
           <t hangText="PathDelayMeanDeltaMicroseconds"><vspace
           blankLines="0"/> 16-bit unsigned integer that identifies the mean
-          path delay in microseconds, between IOAM encapsulation and the local
-          device (either the IOAM transit node or the decapsulation node).</t>
+          path delay in microseconds, between the IOAM encapsulation node and
+          the local node with the IOAM domain (either an IOAM transit node or
+          an IOAM decapsulation node).</t>
 
           <t hangText="PathDelayMeanDeltaNanoseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the mean path delay in
-          nanoseconds, between IOAM encapsulation and the local device (either
-          the IOAM transit node or the decapsulation node).</t>
+          nanoseconds, between the IOAM encapsulation node and the local node
+          with the IOAM domain (either an IOAM transit node or an IOAM
+          decapsulation node).</t>
 
           <t hangText="PathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
           16-bit unsigned integer that identifies the lowest path delay in
-          microseconds, between IOAM encapsulation and the local device
-          (either the IOAM transit node or the decapsulation node).</t>
+          microseconds, between the IOAM encapsulation node and the local node
+          with the IOAM domain (either an IOAM transit node or an IOAM
+          decapsulation node).</t>
 
           <t hangText="PathDelayMinDeltaNanoseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the lowest path delay in
-          nanoseconds, between IOAM encapsulation and the local device (either
-          the IOAM transit node or the decapsulation node).</t>
+          nanoseconds, between the IOAM encapsulation node and the local node
+          with the IOAM domain (either an IOAM transit node or an IOAM
+          decapsulation node).</t>
 
           <t hangText="PathDelayMaxDeltaMicroseconds"><vspace blankLines="0"/>
           16-bit unsigned integer that identifies the highest path delay in
-          microseconds, between IOAM encapsulation and the local device
-          (either the IOAM transit node or the decapsulation node).</t>
+          microseconds, between the IOAM encapsulation node and the local node
+          with the IOAM domain (either an IOAM transit node or an IOAM
+          decapsulation node).</t>
 
           <t hangText="PathDelayMaxDeltaNanoseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the highest path delay in
-          nanoseconds, between IOAM encapsulation and the local device (either
-          the IOAM transit node or the decapsulation node).</t>
+          nanoseconds, between the IOAM encapsulation node and the local node
+          with the IOAM domain (either an IOAM transit node or an IOAM
+          decapsulation node).</t>
 
           <t hangText="PathDelaySumDeltaMicroseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the sum of the path delay in
-          microseconds, between IOAM encapsulation and the local device
-          (either the IOAM transit node or the decapsulation node).</t>
+          microseconds, between the IOAM encapsulation node and the local node
+          with the IOAM domain (either an IOAM transit node or an IOAM
+          decapsulation node).</t>
 
           <t hangText="PathDelaySumDeltaNanoseconds"><vspace blankLines="0"/>
           64-bit unsigned integer that identifies the sum of the path delay in
-          nanoseconds, between IOAM encapsulation and the local device (either
-          the IOAM transit node or the decapsulation node).</t>
+          nanoseconds, between the IOAM encapsulation node and the local node
+          with the IOAM domain (either an IOAM transit node or an IOAM
+          decapsulation node).</t>
         </list></t>
     </section>
 
@@ -733,19 +741,21 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                  title="PathDelayMeanDeltaMicroseconds">
           <t>Name: PathDelayMeanDeltaMicroseconds <vspace blankLines="0"/>
           ElementID: TBD5 <vspace blankLines="0"/> Description: This
-          Information Element identifies the mean path delay between IOAM
-          encapsulation and IOAM transit or decapsulation node in
-          microseconds. <vspace blankLines="0"/> Abstract Data Type:
-          unsigned16 <vspace blankLines="0"/> Data Type Semantics: OctedDelta
-          <vspace blankLines="0"/> Reference: [RFC-to-be], xxx</t>
+          Information Element identifies the mean path delay between the IOAM
+          encapsulation node and the local node with the IOAM domain (either
+          an IOAM transit node or an IOAM decapsulation node) in microseconds.
+          <vspace blankLines="0"/> Abstract Data Type: unsigned16 <vspace
+          blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+          blankLines="0"/> Reference: [RFC-to-be], xxx</t>
         </section>
 
         <section anchor="IANAPathDelayMeanDeltaNanoseconds"
                  title="PathDelayMeanDeltaNanoseconds">
           <t>Name: PathDelayMeanDeltaNanoseconds <vspace blankLines="0"/>
           ElementID: TBD6 <vspace blankLines="0"/> Description: This
-          Information Element identifies the mean path delay between IOAM
-          encapsulation and IOAM transit or decapsulation node in nanoseconds.
+          Information Element identifies the mean path delaybetween the IOAM
+          encapsulation node and the local node with the IOAM domain (either
+          an IOAM transit node or an IOAM decapsulation node) in nanoseconds.
           <vspace blankLines="0"/> Abstract Data Type: unsigned32 <vspace
           blankLines="0"/> Data Type Semantics: OctedDelta <vspace
           blankLines="0"/> Reference: [RFC-to-be], xxx</t>
@@ -755,8 +765,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                  title="PathDelayMinDeltaMicroseconds">
           <t>Name: PathDelayMinDeltaMicroseconds <vspace blankLines="0"/>
           ElementID: TBD7 <vspace blankLines="0"/> Description: This
-          Information Element identifies the lowest path delay between IOAM
-          encapsulation and IOAM transit or decapsulation node in
+          Information Element identifies the lowest path delay between the
+          IOAM encapsulation node and the local node with the IOAM domain
+          (either an IOAM transit node or an IOAM decapsulation node) in
           microseconds. <vspace blankLines="0"/> Abstract Data Type:
           unsigned16 <vspace blankLines="0"/> Data Type Semantics: OctedDelta
           <vspace blankLines="0"/> Reference: [RFC-to-be], xxx</t>
@@ -766,10 +777,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                  title="PathDelayMinDeltaNanoseconds">
           <t>Name: PathDelayMinDeltaNanoseconds <vspace blankLines="0"/>
           ElementID: TBD8 <vspace blankLines="0"/> Description: This
-          Information Element identifies the lowest path delay between IOAM
-          encapsulation and IOAM transit or decapsulation node in nanoseconds.
-          <vspace blankLines="0"/> Abstract Data Type: unsigned32 <vspace
-          blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+          Information Element identifies the lowest path delay between the
+          IOAM encapsulation node and the local node with the IOAM domain
+          (either an IOAM transit node or an IOAM decapsulation node) in
+          nanoseconds. <vspace blankLines="0"/> Abstract Data Type: unsigned32
+          <vspace blankLines="0"/> Data Type Semantics: OctedDelta <vspace
           blankLines="0"/> Reference: [RFC-to-be], xxx</t>
         </section>
 
@@ -777,8 +789,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                  title="PathDelayMaxDeltaMicroseconds">
           <t>Name: PathDelayMaxDeltaMicroseconds <vspace blankLines="0"/>
           ElementID: TBD9 <vspace blankLines="0"/> Description: This
-          Information Element identifies the highest path delay between IOAM
-          encapsulation and IOAM transit or decapsulation node in
+          Information Element identifies the highest path delay between the
+          IOAM encapsulation node and the local node with the IOAM domain
+          (either an IOAM transit node or an IOAM decapsulation node) in
           microseconds. <vspace blankLines="0"/> Abstract Data Type:
           unsigned16 <vspace blankLines="0"/> Data Type Semantics: OctedDelta
           <vspace blankLines="0"/> Reference: [RFC-to-be], xxx</t>
@@ -788,10 +801,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                  title="PathDelayMaxDeltaNanoseconds">
           <t>Name: PathDelayMaxDeltaNanoseconds <vspace blankLines="0"/>
           ElementID: TBD10 <vspace blankLines="0"/> Description: This
-          Information Element identifies the highest path delay between IOAM
-          encapsulation and IOAM transit or decapsulation node in nanoseconds.
-          <vspace blankLines="0"/> Abstract Data Type: unsigned32 <vspace
-          blankLines="0"/> Data Type Semantics: OctedDelta <vspace
+          Information Element identifies the highest path delay between the
+          IOAM encapsulation node and the local node with the IOAM domain
+          (either an IOAM transit node or an IOAM decapsulation node) in
+          nanoseconds. <vspace blankLines="0"/> Abstract Data Type: unsigned32
+          <vspace blankLines="0"/> Data Type Semantics: OctedDelta <vspace
           blankLines="0"/> Reference: [RFC-to-be], xxx</t>
         </section>
 
@@ -799,8 +813,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                  title="PathDelaySumDeltaMicroseconds">
           <t>Name: PathDelaySumDeltaMicroseconds <vspace blankLines="0"/>
           ElementID: TBD11 <vspace blankLines="0"/> Description: This
-          Information Element identifies the sum of the path delay between
-          IOAM encapsulation and IOAM transit or decapsulation nodein
+          Information Element identifies the sum of the path delay between the
+          IOAM encapsulation node and the local node with the IOAM domain
+          (either an IOAM transit node or an IOAM decapsulation node) in
           microseconds. <vspace blankLines="0"/> Abstract Data Type:
           unsigned32 <vspace blankLines="0"/> Data Type Semantics: OctedDelta
           <vspace blankLines="0"/> Reference: [RFC-to-be], xxx</t>
@@ -810,8 +825,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                  title="PathDelaySumDeltaNanoseconds">
           <t>Name: PathDelaySumDeltaNanoseconds <vspace blankLines="0"/>
           ElementID: TBD12 <vspace blankLines="0"/> Description: This
-          Information Element identifies the sum of the path delay between
-          IOAM encapsulation and IOAM transit or decapsulation nodein
+          Information Element identifies the sum of the path delay between the
+          IOAM encapsulation node and the local node with the IOAM domain
+          (either an IOAM transit node or an IOAM decapsulation node) in
           nanoseconds. <vspace blankLines="0"/> Abstract Data Type: unsigned64
           <vspace blankLines="0"/> Data Type Semantics: OctedDelta <vspace
           blankLines="0"/> Reference: [RFC-to-be], xxx</t>

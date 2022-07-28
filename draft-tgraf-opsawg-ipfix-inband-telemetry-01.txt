@@ -89,18 +89,18 @@ Table of Contents
    4.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .  13
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
      5.1.  Performance Metrics . . . . . . . . . . . . . . . . . . .  14
-     5.2.  IPFIX Entities  . . . . . . . . . . . . . . . . . . . . .  14
-       5.2.1.  PathDelayMeanDeltaMicroseconds  . . . . . . . . . . .  15
+     5.2.  IPFIX Entities  . . . . . . . . . . . . . . . . . . . . .  15
+       5.2.1.  PathDelayMeanDeltaMicroseconds  . . . . . . . . . . .  16
        5.2.2.  PathDelayMeanDeltaNanoseconds . . . . . . . . . . . .  16
        5.2.3.  PathDelayMinDeltaMicroseconds . . . . . . . . . . . .  16
        5.2.4.  PathDelayMinDeltaNanoseconds  . . . . . . . . . . . .  16
-       5.2.5.  PathDelayMaxDeltaMicroseconds . . . . . . . . . . . .  16
+       5.2.5.  PathDelayMaxDeltaMicroseconds . . . . . . . . . . . .  17
        5.2.6.  PathDelayMaxDeltaNanoseconds  . . . . . . . . . . . .  17
        5.2.7.  PathDelaySumDeltaMicroseconds . . . . . . . . . . . .  17
        5.2.8.  PathDelaySumDeltaNanoseconds  . . . . . . . . . . . .  17
-   6.  Operational Considerations  . . . . . . . . . . . . . . . . .  17
-     6.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  17
-     6.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  17
+   6.  Operational Considerations  . . . . . . . . . . . . . . . . .  18
+     6.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  18
+     6.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  18
      6.3.  IOAM Packet Time Stamps . . . . . . . . . . . . . . . . .  18
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  18
    8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  18
@@ -114,8 +114,8 @@ Graf, et al.            Expires January 29, 2023                [Page 2]
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  18
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  19
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  21
 
 1.  Introduction
 
@@ -652,20 +652,20 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
    PathDelayMeanDeltaMicroseconds
       16-bit unsigned integer that identifies the mean path delay in
-      microseconds, between IOAM encapsulation and the local device
-      (either the IOAM transit node or the decapsulation node).
+      microseconds, between the IOAM encapsulation node and the local
+      node with the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node).
 
    PathDelayMeanDeltaNanoseconds
       32-bit unsigned integer that identifies the mean path delay in
-      nanoseconds, between IOAM encapsulation and the local device
-      (either the IOAM transit node or the decapsulation node).
+      nanoseconds, between the IOAM encapsulation node and the local
+      node with the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node).
 
    PathDelayMinDeltaMicroseconds
       16-bit unsigned integer that identifies the lowest path delay in
-      microseconds, between IOAM encapsulation and the local device
-      (either the IOAM transit node or the decapsulation node).
+      microseconds, between the IOAM encapsulation node and the local
 
-   PathDelayMinDeltaNanoseconds
 
 
 
@@ -674,29 +674,38 @@ Graf, et al.            Expires January 29, 2023               [Page 12]
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
+      node with the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node).
+
+   PathDelayMinDeltaNanoseconds
       32-bit unsigned integer that identifies the lowest path delay in
-      nanoseconds, between IOAM encapsulation and the local device
-      (either the IOAM transit node or the decapsulation node).
+      nanoseconds, between the IOAM encapsulation node and the local
+      node with the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node).
 
    PathDelayMaxDeltaMicroseconds
       16-bit unsigned integer that identifies the highest path delay in
-      microseconds, between IOAM encapsulation and the local device
-      (either the IOAM transit node or the decapsulation node).
+      microseconds, between the IOAM encapsulation node and the local
+      node with the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node).
 
    PathDelayMaxDeltaNanoseconds
       32-bit unsigned integer that identifies the highest path delay in
-      nanoseconds, between IOAM encapsulation and the local device
-      (either the IOAM transit node or the decapsulation node).
+      nanoseconds, between the IOAM encapsulation node and the local
+      node with the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node).
 
    PathDelaySumDeltaMicroseconds
       32-bit unsigned integer that identifies the sum of the path delay
-      in microseconds, between IOAM encapsulation and the local device
-      (either the IOAM transit node or the decapsulation node).
+      in microseconds, between the IOAM encapsulation node and the local
+      node with the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node).
 
    PathDelaySumDeltaNanoseconds
       64-bit unsigned integer that identifies the sum of the path delay
-      in nanoseconds, between IOAM encapsulation and the local device
-      (either the IOAM transit node or the decapsulation node).
+      in nanoseconds, between the IOAM encapsulation node and the local
+      node with the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node).
 
 4.  Use Cases
 
@@ -712,15 +721,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
       physical egress interfaces have been contributing to how much
       delay.
 
-   o  With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62), the
-      forwarding path to which next-hop IP contributed to how much
-      delay.
-
-   o  With mplsTopLabelIPv4Address(IE47) or srhActiveSegmentIPv6 from
-      [I-D.tgraf-opsawg-ipfix-srv6-srh], the forwarding path to which
-      MPLS top label IPv4 address or SRv6 active segment contributed to
-      how much delay.
-
 
 
 
@@ -729,6 +729,15 @@ Graf, et al.            Expires January 29, 2023               [Page 13]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
+
+   o  With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62), the
+      forwarding path to which next-hop IP contributed to how much
+      delay.
+
+   o  With mplsTopLabelIPv4Address(IE47) or srhActiveSegmentIPv6 from
+      [I-D.tgraf-opsawg-ipfix-srv6-srh], the forwarding path to which
+      MPLS top label IPv4 address or SRv6 active segment contributed to
+      how much delay.
 
    o  BGP communities are often used for setting a path priority or
       service selection.  With bgpDestinationExtendedCommunityList(488)
@@ -767,15 +776,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    the "Performance Metrics" registry [RFC8911] with the values defined
    in section 2.
 
-5.2.  IPFIX Entities
-
-   This document requests IANA to create new IEs (see table 3) under the
-   "IPFIX Information Elements" registry [RFC7012] available at "IANA
-   Performance Metric Registry [IANA-PERF-METRIC] and assign the
-   following initial code points.
-
-
-
 
 
 
@@ -785,6 +785,13 @@ Graf, et al.            Expires January 29, 2023               [Page 14]
 
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
+
+5.2.  IPFIX Entities
+
+   This document requests IANA to create new IEs (see table 3) under the
+   "IPFIX Information Elements" registry [RFC7012] available at "IANA
+   Performance Metric Registry [IANA-PERF-METRIC] and assign the
+   following initial code points.
 
         +-------+--------------------------------+
         |Element|              Name              |
@@ -823,16 +830,9 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    o  Please replace the [RFC-to-be] with the RFC number assigned to
       this document
 
-5.2.1.  PathDelayMeanDeltaMicroseconds
 
-   Name: PathDelayMeanDeltaMicroseconds
-   ElementID: TBD5
-   Description: This Information Element identifies the mean path delay
-   between IOAM encapsulation and IOAM transit or decapsulation node in
-   microseconds.
-   Abstract Data Type: unsigned16
-   Data Type Semantics: OctedDelta
-   Reference: [RFC-to-be], xxx
+
+
 
 
 
@@ -842,13 +842,26 @@ Graf, et al.            Expires January 29, 2023               [Page 15]
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
+5.2.1.  PathDelayMeanDeltaMicroseconds
+
+   Name: PathDelayMeanDeltaMicroseconds
+   ElementID: TBD5
+   Description: This Information Element identifies the mean path delay
+   between the IOAM encapsulation node and the local node with the IOAM
+   domain (either an IOAM transit node or an IOAM decapsulation node) in
+   microseconds.
+   Abstract Data Type: unsigned16
+   Data Type Semantics: OctedDelta
+   Reference: [RFC-to-be], xxx
+
 5.2.2.  PathDelayMeanDeltaNanoseconds
 
    Name: PathDelayMeanDeltaNanoseconds
    ElementID: TBD6
-   Description: This Information Element identifies the mean path delay
-   between IOAM encapsulation and IOAM transit or decapsulation node in
-   nanoseconds.
+   Description: This Information Element identifies the mean path
+   delaybetween the IOAM encapsulation node and the local node with the
+   IOAM domain (either an IOAM transit node or an IOAM decapsulation
+   node) in nanoseconds.
    Abstract Data Type: unsigned32
    Data Type Semantics: OctedDelta
    Reference: [RFC-to-be], xxx
@@ -858,8 +871,9 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    Name: PathDelayMinDeltaMicroseconds
    ElementID: TBD7
    Description: This Information Element identifies the lowest path
-   delay between IOAM encapsulation and IOAM transit or decapsulation
-   node in microseconds.
+   delay between the IOAM encapsulation node and the local node with the
+   IOAM domain (either an IOAM transit node or an IOAM decapsulation
+   node) in microseconds.
    Abstract Data Type: unsigned16
    Data Type Semantics: OctedDelta
    Reference: [RFC-to-be], xxx
@@ -869,26 +883,12 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    Name: PathDelayMinDeltaNanoseconds
    ElementID: TBD8
    Description: This Information Element identifies the lowest path
-   delay between IOAM encapsulation and IOAM transit or decapsulation
-   node in nanoseconds.
+   delay between the IOAM encapsulation node and the local node with the
+   IOAM domain (either an IOAM transit node or an IOAM decapsulation
+   node) in nanoseconds.
    Abstract Data Type: unsigned32
    Data Type Semantics: OctedDelta
    Reference: [RFC-to-be], xxx
-
-5.2.5.  PathDelayMaxDeltaMicroseconds
-
-   Name: PathDelayMaxDeltaMicroseconds
-   ElementID: TBD9
-   Description: This Information Element identifies the highest path
-   delay between IOAM encapsulation and IOAM transit or decapsulation
-   node in microseconds.
-   Abstract Data Type: unsigned16
-   Data Type Semantics: OctedDelta
-   Reference: [RFC-to-be], xxx
-
-
-
-
 
 
 
@@ -898,13 +898,26 @@ Graf, et al.            Expires January 29, 2023               [Page 16]
 Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
 
 
+5.2.5.  PathDelayMaxDeltaMicroseconds
+
+   Name: PathDelayMaxDeltaMicroseconds
+   ElementID: TBD9
+   Description: This Information Element identifies the highest path
+   delay between the IOAM encapsulation node and the local node with the
+   IOAM domain (either an IOAM transit node or an IOAM decapsulation
+   node) in microseconds.
+   Abstract Data Type: unsigned16
+   Data Type Semantics: OctedDelta
+   Reference: [RFC-to-be], xxx
+
 5.2.6.  PathDelayMaxDeltaNanoseconds
 
    Name: PathDelayMaxDeltaNanoseconds
    ElementID: TBD10
    Description: This Information Element identifies the highest path
-   delay between IOAM encapsulation and IOAM transit or decapsulation
-   node in nanoseconds.
+   delay between the IOAM encapsulation node and the local node with the
+   IOAM domain (either an IOAM transit node or an IOAM decapsulation
+   node) in nanoseconds.
    Abstract Data Type: unsigned32
    Data Type Semantics: OctedDelta
    Reference: [RFC-to-be], xxx
@@ -914,8 +927,9 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    Name: PathDelaySumDeltaMicroseconds
    ElementID: TBD11
    Description: This Information Element identifies the sum of the path
-   delay between IOAM encapsulation and IOAM transit or decapsulation
-   nodein microseconds.
+   delay between the IOAM encapsulation node and the local node with the
+   IOAM domain (either an IOAM transit node or an IOAM decapsulation
+   node) in microseconds.
    Abstract Data Type: unsigned32
    Data Type Semantics: OctedDelta
    Reference: [RFC-to-be], xxx
@@ -925,11 +939,20 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    Name: PathDelaySumDeltaNanoseconds
    ElementID: TBD12
    Description: This Information Element identifies the sum of the path
-   delay between IOAM encapsulation and IOAM transit or decapsulation
-   nodein nanoseconds.
+   delay between the IOAM encapsulation node and the local node with the
+   IOAM domain (either an IOAM transit node or an IOAM decapsulation
+   node) in nanoseconds.
    Abstract Data Type: unsigned64
    Data Type Semantics: OctedDelta
    Reference: [RFC-to-be], xxx
+
+
+
+
+Graf, et al.            Expires January 29, 2023               [Page 17]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
 
 6.  Operational Considerations
 
@@ -944,15 +967,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    PathDelaySumDeltaMicroseconds(TBD5) or
    PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
    IPFIX data collection.
-
-
-
-
-
-Graf, et al.            Expires January 29, 2023               [Page 17]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
 
 6.3.  IOAM Packet Time Stamps
 
@@ -989,6 +1003,13 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               DOI 10.17487/RFC7012, September 2013,
               <https://www.rfc-editor.org/info/rfc7012>.
 
+
+
+Graf, et al.            Expires January 29, 2023               [Page 18]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
+
    [RFC8911]  Bagnulo, M., Claise, B., Eardley, P., Morton, A., and A.
               Akhter, "Registry for Performance Metrics", RFC 8911,
               DOI 10.17487/RFC8911, November 2021,
@@ -1001,14 +1022,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               Graf, T., Su, Y., Matsushima, S., and M. Valentine, "Path
               Tracing in SRv6 networks", draft-filsfils-spring-path-
               tracing-01 (work in progress), May 2022.
-
-
-
-
-Graf, et al.            Expires January 29, 2023               [Page 18]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
 
    [I-D.ietf-ippm-ioam-deployment]
               Brockners, F., Bhandari, S., Bernier, D., and T. Mizrahi,
@@ -1043,6 +1056,16 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               DOI 10.17487/RFC3393, November 2002,
               <https://www.rfc-editor.org/info/rfc3393>.
 
+
+
+
+
+
+Graf, et al.            Expires January 29, 2023               [Page 19]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
+
    [RFC5153]  Boschi, E., Mark, L., Quittek, J., Stiemerling, M., and P.
               Aitken, "IP Flow Information Export (IPFIX) Implementation
               Guidelines", RFC 5153, DOI 10.17487/RFC5153, April 2008,
@@ -1057,14 +1080,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
-
-
-
-
-Graf, et al.            Expires January 29, 2023               [Page 19]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
 
    [RFC6049]  Morton, A. and E. Stephan, "Spatial Composition of
               Metrics", RFC 6049, DOI 10.17487/RFC6049, January 2011,
@@ -1100,6 +1115,13 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
               (IPPM)", STD 81, RFC 7679, DOI 10.17487/RFC7679, January
               2016, <https://www.rfc-editor.org/info/rfc7679>.
 
+
+
+Graf, et al.            Expires January 29, 2023               [Page 20]
+
+Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
+
+
    [RFC9197]  Brockners, F., Ed., Bhandari, S., Ed., and T. Mizrahi,
               Ed., "Data Fields for In Situ Operations, Administration,
               and Maintenance (IOAM)", RFC 9197, DOI 10.17487/RFC9197,
@@ -1116,12 +1138,6 @@ Authors' Addresses
    Email: thomas.graf@swisscom.com
 
 
-
-Graf, et al.            Expires January 29, 2023               [Page 20]
-
-Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
-
-
    Benoit Claise
    Huawei
 
@@ -1134,22 +1150,6 @@ Internet-Draft  Export of Forwarding Path Delay in IPFIX       July 2022
    France
 
    Email: alex.huang-feng@insa-lyon.fr
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
