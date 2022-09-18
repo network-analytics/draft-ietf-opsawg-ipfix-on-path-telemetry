@@ -92,20 +92,20 @@ Table of Contents
        5.2.2.  PathDelayMeanDeltaNanoseconds . . . . . . . . . . . .  16
        5.2.3.  PathDelayMinDeltaMicroseconds . . . . . . . . . . . .  16
        5.2.4.  PathDelayMinDeltaNanoseconds  . . . . . . . . . . . .  16
-       5.2.5.  PathDelayMaxDeltaMicroseconds . . . . . . . . . . . .  16
-       5.2.6.  PathDelayMaxDeltaNanoseconds  . . . . . . . . . . . .  16
+       5.2.5.  PathDelayMaxDeltaMicroseconds . . . . . . . . . . . .  17
+       5.2.6.  PathDelayMaxDeltaNanoseconds  . . . . . . . . . . . .  17
        5.2.7.  PathDelaySumDeltaMicroseconds . . . . . . . . . . . .  17
-       5.2.8.  PathDelaySumDeltaNanoseconds  . . . . . . . . . . . .  17
-   6.  Operational Considerations  . . . . . . . . . . . . . . . . .  17
-     6.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  17
-     6.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  17
-     6.3.  IOAM Packet Time Stamps . . . . . . . . . . . . . . . . .  17
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  17
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  18
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  18
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  18
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
+       5.2.8.  PathDelaySumDeltaNanoseconds  . . . . . . . . . . . .  18
+   6.  Operational Considerations  . . . . . . . . . . . . . . . . .  18
+     6.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  18
+     6.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  18
+     6.3.  IOAM Packet Time Stamps . . . . . . . . . . . . . . . . .  19
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  19
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  19
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  19
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  19
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  19
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  22
 
 
 
@@ -825,14 +825,14 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
 
 5.2.1.  PathDelayMeanDeltaMicroseconds
 
-   Name: PathDelayMeanDeltaMicroseconds ElementID: TBD5 Description:
-   This Information Element identifies the mean path delay between the
-   IOAM encapsulation node and the local node with the IOAM domain
-   (either an IOAM transit node or an IOAM decapsulation node) in
-   microseconds.  Abstract Data Type: unsigned16 Data Type Semantics:
-   OctedDelta Reference: [RFC-to-be], xxx
+   Name:  PathDelayMeanDeltaMicroseconds
 
+   ElementID:  TBD5
 
+   Description:  This Information Element identifies the mean path delay
+      between the IOAM encapsulation node and the local node with the
+      IOAM domain (either an IOAM transit node or an IOAM decapsulation
+      node) in microseconds.
 
 
 
@@ -842,53 +842,53 @@ Graf, et al.              Expires 22 March 2023                [Page 15]
 Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
 
 
+   Abstract Data Type:  unsigned16
+
+   Data Type Semantics:  OctedDelta
+
+   Reference:  [RFC-to-be], xxx
+
 5.2.2.  PathDelayMeanDeltaNanoseconds
 
-   Name: PathDelayMeanDeltaNanoseconds ElementID: TBD6 Description: This
-   Information Element identifies the mean path delaybetween the IOAM
-   encapsulation node and the local node with the IOAM domain (either an
-   IOAM transit node or an IOAM decapsulation node) in nanoseconds.
-   Abstract Data Type: unsigned32 Data Type Semantics: OctedDelta
-   Reference: [RFC-to-be], xxx
+   Name:  PathDelayMeanDeltaNanoseconds
+
+   ElementID:  TBD6
+
+   Description:  This Information Element identifies the mean path
+      delaybetween the IOAM encapsulation node and the local node with
+      the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node) in nanoseconds.
+
+   Abstract Data Type:  unsigned32
+
+   Data Type Semantics:  OctedDelta
+
+   Reference:  [RFC-to-be], xxx
 
 5.2.3.  PathDelayMinDeltaMicroseconds
 
-   Name: PathDelayMinDeltaMicroseconds ElementID: TBD7 Description: This
-   Information Element identifies the lowest path delay between the IOAM
-   encapsulation node and the local node with the IOAM domain (either an
-   IOAM transit node or an IOAM decapsulation node) in microseconds.
-   Abstract Data Type: unsigned16 Data Type Semantics: OctedDelta
-   Reference: [RFC-to-be], xxx
+   Name:  PathDelayMinDeltaMicroseconds
+
+   ElementID:  TBD7
+
+   Description:  This Information Element identifies the lowest path
+      delay between the IOAM encapsulation node and the local node with
+      the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node) in microseconds.
+
+   Abstract Data Type:  unsigned16
+
+   Data Type Semantics:  OctedDelta
+
+   Reference:  [RFC-to-be], xxx
 
 5.2.4.  PathDelayMinDeltaNanoseconds
 
-   Name: PathDelayMinDeltaNanoseconds ElementID: TBD8 Description: This
-   Information Element identifies the lowest path delay between the IOAM
-   encapsulation node and the local node with the IOAM domain (either an
-   IOAM transit node or an IOAM decapsulation node) in nanoseconds.
-   Abstract Data Type: unsigned32 Data Type Semantics: OctedDelta
-   Reference: [RFC-to-be], xxx
+   Name:  PathDelayMinDeltaNanoseconds
 
-5.2.5.  PathDelayMaxDeltaMicroseconds
+   ElementID:  TBD8
 
-   Name: PathDelayMaxDeltaMicroseconds ElementID: TBD9 Description: This
-   Information Element identifies the highest path delay between the
-   IOAM encapsulation node and the local node with the IOAM domain
-   (either an IOAM transit node or an IOAM decapsulation node) in
-   microseconds.  Abstract Data Type: unsigned16 Data Type Semantics:
-   OctedDelta Reference: [RFC-to-be], xxx
-
-5.2.6.  PathDelayMaxDeltaNanoseconds
-
-   Name: PathDelayMaxDeltaNanoseconds ElementID: TBD10 Description: This
-   Information Element identifies the highest path delay between the
-   IOAM encapsulation node and the local node with the IOAM domain
-   (either an IOAM transit node or an IOAM decapsulation node) in
-   nanoseconds.  Abstract Data Type: unsigned32 Data Type Semantics:
-   OctedDelta Reference: [RFC-to-be], xxx
-
-
-
+   Description:  This Information Element identifies the lowest path
 
 
 
@@ -898,23 +898,91 @@ Graf, et al.              Expires 22 March 2023                [Page 16]
 Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
 
 
+      delay between the IOAM encapsulation node and the local node with
+      the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node) in nanoseconds.
+
+   Abstract Data Type:  unsigned32
+
+   Data Type Semantics:  OctedDelta
+
+   Reference:  [RFC-to-be], xxx
+
+5.2.5.  PathDelayMaxDeltaMicroseconds
+
+   Name:  PathDelayMaxDeltaMicroseconds
+
+   ElementID:  TBD9
+
+   Description:  This Information Element identifies the highest path
+      delay between the IOAM encapsulation node and the local node with
+      the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node) in microseconds.
+
+   Abstract Data Type:  unsigned16
+
+   Data Type Semantics:  OctedDelta
+
+   Reference:  [RFC-to-be], xxx
+
+5.2.6.  PathDelayMaxDeltaNanoseconds
+
+   Name:  PathDelayMaxDeltaNanoseconds
+
+   ElementID:  TBD10
+
+   Description:  This Information Element identifies the highest path
+      delay between the IOAM encapsulation node and the local node with
+      the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node) in nanoseconds.
+
+   Abstract Data Type:  unsigned32
+
+   Data Type Semantics:  OctedDelta
+
+   Reference:  [RFC-to-be], xxx
+
 5.2.7.  PathDelaySumDeltaMicroseconds
 
-   Name: PathDelaySumDeltaMicroseconds ElementID: TBD11 Description:
-   This Information Element identifies the sum of the path delay between
-   the IOAM encapsulation node and the local node with the IOAM domain
-   (either an IOAM transit node or an IOAM decapsulation node) in
-   microseconds.  Abstract Data Type: unsigned32 Data Type Semantics:
-   OctedDelta Reference: [RFC-to-be], xxx
+   Name:  PathDelaySumDeltaMicroseconds
+
+
+
+
+Graf, et al.              Expires 22 March 2023                [Page 17]
+
+Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
+
+
+   ElementID:  TBD11
+
+   Description:  This Information Element identifies the sum of the path
+      delay between the IOAM encapsulation node and the local node with
+      the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node) in microseconds.
+
+   Abstract Data Type:  unsigned32
+
+   Data Type Semantics:  OctedDelta
+
+   Reference:  [RFC-to-be], xxx
 
 5.2.8.  PathDelaySumDeltaNanoseconds
 
-   Name: PathDelaySumDeltaNanoseconds ElementID: TBD12 Description: This
-   Information Element identifies the sum of the path delay between the
-   IOAM encapsulation node and the local node with the IOAM domain
-   (either an IOAM transit node or an IOAM decapsulation node) in
-   nanoseconds.  Abstract Data Type: unsigned64 Data Type Semantics:
-   OctedDelta Reference: [RFC-to-be], xxx
+   Name:  PathDelaySumDeltaNanoseconds
+
+   ElementID:  TBD12
+
+   Description:  This Information Element identifies the sum of the path
+      delay between the IOAM encapsulation node and the local node with
+      the IOAM domain (either an IOAM transit node or an IOAM
+      decapsulation node) in nanoseconds.
+
+   Abstract Data Type:  unsigned64
+
+   Data Type Semantics:  OctedDelta
+
+   Reference:  [RFC-to-be], xxx
 
 6.  Operational Considerations
 
@@ -929,6 +997,18 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
    PathDelaySumDeltaMicroseconds(TBD5) or
    PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
    IPFIX data collection.
+
+
+
+
+
+
+
+
+Graf, et al.              Expires 22 March 2023                [Page 18]
+
+Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
+
 
 6.3.  IOAM Packet Time Stamps
 
@@ -945,14 +1025,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
 
    There are no significant extra security considerations regarding the
    allocation of these new IPFIX IEs compared to [RFC7012].
-
-
-
-
-Graf, et al.              Expires 22 March 2023                [Page 17]
-
-Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
-
 
 8.  Acknowledgements
 
@@ -980,6 +1052,20 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
 
 9.2.  Informative References
 
+
+
+
+
+
+
+
+
+
+Graf, et al.              Expires 22 March 2023                [Page 19]
+
+Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
+
+
    [I-D.filsfils-spring-path-tracing]
               Filsfils, C., Abdelsalam, A., Garvia, P. C., Yufit, M.,
               Graf, T., Su, Y., Matsushima, S., Valentine, M., and A.
@@ -995,20 +1081,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
               Draft, draft-ietf-ippm-ioam-deployment-01, 11 April 2022,
               <https://www.ietf.org/archive/id/draft-ietf-ippm-ioam-
               deployment-01.txt>.
-
-
-
-
-
-
-
-
-
-
-Graf, et al.              Expires 22 March 2023                [Page 18]
-
-Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
-
 
    [I-D.song-ippm-postcard-based-telemetry]
               Song, H., Mirsky, G., Filsfils, C., Abdelsalam, A., Zhou,
@@ -1040,6 +1112,16 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
               DOI 10.17487/RFC2330, May 1998,
               <https://www.rfc-editor.org/info/rfc2330>.
 
+
+
+
+
+
+Graf, et al.              Expires 22 March 2023                [Page 20]
+
+Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
+
+
    [RFC3393]  Demichelis, C. and P. Chimento, "IP Packet Delay Variation
               Metric for IP Performance Metrics (IPPM)", RFC 3393,
               DOI 10.17487/RFC3393, November 2002,
@@ -1054,17 +1136,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
               "Network Time Protocol Version 4: Protocol and Algorithms
               Specification", RFC 5905, DOI 10.17487/RFC5905, June 2010,
               <https://www.rfc-editor.org/info/rfc5905>.
-
-
-
-
-
-
-
-Graf, et al.              Expires 22 March 2023                [Page 19]
-
-Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
-
 
    [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
               the Network Configuration Protocol (NETCONF)", RFC 6020,
@@ -1100,6 +1171,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
               RFC 7323, DOI 10.17487/RFC7323, September 2014,
               <https://www.rfc-editor.org/info/rfc7323>.
 
+
+
+Graf, et al.              Expires 22 March 2023                [Page 21]
+
+Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
+
+
    [RFC7679]  Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton,
               Ed., "A One-Way Delay Metric for IP Performance Metrics
               (IPPM)", STD 81, RFC 7679, DOI 10.17487/RFC7679, January
@@ -1111,16 +1189,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
               May 2022, <https://www.rfc-editor.org/info/rfc9197>.
 
 Authors' Addresses
-
-
-
-
-
-
-Graf, et al.              Expires 22 March 2023                [Page 20]
-
-Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
-
 
    Thomas Graf
    Swisscom
@@ -1161,16 +1229,4 @@ Internet-Draft      Export of On-Path Delay in IPFIX      September 2022
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Graf, et al.              Expires 22 March 2023                [Page 21]
+Graf, et al.              Expires 22 March 2023                [Page 22]
