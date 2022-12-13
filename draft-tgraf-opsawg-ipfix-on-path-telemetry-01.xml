@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="30" month="October" year="2022"/>
+    <date day="13" month="December" year="2022"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -90,7 +90,8 @@
       forwarding path changes to different nodes and interfaces, how the path
       delay changes for which customer traffic.</t>
 
-      <t>With On-Path Telemetry, defined in <xref
+      <t>With On-Path Telemetry, described in the <xref
+      target="RFC9232">Network Telemetry Framework</xref> and applied in <xref
       target="I-D.ietf-ippm-ioam-deployment">In-situ OAM</xref>, <xref
       target="I-D.filsfils-spring-path-tracing">Path Tracing</xref> and <xref
       target="I-D.song-opsawg-ifit-framework">In-situ Flow Information
@@ -170,6 +171,50 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       export the delay metrics, the node R2 exports the delay D1, the node R3
       exports the delay D2 and the decapsulation node R4 exports the total
       delay D3 using IPFIX.</t>
+    </section>
+
+    <section anchor="notation" title="Terminology">
+      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+      "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+      "OPTIONAL" in this document are to be interpreted as described in BCP 14
+      <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when,
+      they appear in all capitals, as shown here.</t>
+
+      <t>This document makes use of the terms defined in <xref
+      target="RFC7011"/> and <xref
+      target="I-D.ietf-ippm-ioam-deployment"/>.</t>
+
+      <t>The following terms are used as defined in <xref
+      target="RFC7011"/>.</t>
+
+      <t><list style="symbols">
+          <t>IPFIX</t>
+
+          <t>IPFIX Information Elements</t>
+
+          <t>Template</t>
+
+          <t>Template Record</t>
+
+          <t>Options Template</t>
+
+          <t>Options Template Record</t>
+
+          <t>Data Record</t>
+
+          <t>Data Set</t>
+        </list></t>
+
+      <t>The following terms are used as defined in <xref
+      target="I-D.ietf-ippm-ioam-deployment"/>.</t>
+
+      <t><list style="symbols">
+          <t>IOAM encapsulation node</t>
+
+          <t>IOAM transit node</t>
+
+          <t>IOAM deacsulation node</t>
+        </list></t>
     </section>
 
     <section anchor="PM" title="Performance Metrics">
@@ -1130,6 +1175,12 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </references>
 
     <references title="Informative References">
+      <?rfc include='reference.RFC.2119'?>
+
+      <?rfc include='reference.RFC.8174'?>
+
+      <?rfc include='reference.RFC.9232'?>
+
       <?rfc include='reference.I-D.ietf-ippm-ioam-deployment'?>
 
       <?rfc include='reference.I-D.filsfils-spring-path-tracing'?>
