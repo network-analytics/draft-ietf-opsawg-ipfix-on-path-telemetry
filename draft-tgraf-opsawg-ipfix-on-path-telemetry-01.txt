@@ -900,7 +900,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    Abstract Data Type:  unsigned16
 
-   Data Type Semantics:  quantity
+   Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], xxx
 
@@ -917,7 +917,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    Abstract Data Type:  unsigned32
 
-   Data Type Semantics:  quantity
+   Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], xxx
 
@@ -934,7 +934,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    Abstract Data Type:  unsigned16
 
-   Data Type Semantics:  quantity
+   Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], xxx
 
@@ -960,7 +960,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    Abstract Data Type:  unsigned32
 
-   Data Type Semantics:  quantity
+   Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], xxx
 
@@ -977,7 +977,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    Abstract Data Type:  unsigned16
 
-   Data Type Semantics:  quantity
+   Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], xxx
 
@@ -994,7 +994,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    Abstract Data Type:  unsigned32
 
-   Data Type Semantics:  quantity
+   Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], xxx
 
@@ -1019,7 +1019,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    Abstract Data Type:  unsigned32
 
-   Data Type Semantics:  OctedDelta
+   Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], xxx
 
@@ -1036,7 +1036,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    Abstract Data Type:  unsigned64
 
-   Data Type Semantics:  OctedDelta
+   Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], xxx
 
