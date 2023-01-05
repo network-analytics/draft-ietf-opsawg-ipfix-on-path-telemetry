@@ -814,7 +814,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>quantity</dd>
+            <dd>deltaCounter</dd>
           </dl>
 
           <dl>
@@ -856,7 +856,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>quantity</dd>
+            <dd>deltaCounter</dd>
           </dl>
 
           <dl>
@@ -898,7 +898,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>quantity</dd>
+            <dd>deltaCounter</dd>
           </dl>
 
           <dl>
@@ -940,7 +940,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>quantity</dd>
+            <dd>deltaCounter</dd>
           </dl>
 
           <dl>
@@ -982,7 +982,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>quantity</dd>
+            <dd>deltaCounter</dd>
           </dl>
 
           <dl>
@@ -1024,7 +1024,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>quantity</dd>
+            <dd>deltaCounter</dd>
           </dl>
 
           <dl>
@@ -1066,7 +1066,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>OctedDelta</dd>
+            <dd>deltaCounter</dd>
           </dl>
 
           <dl>
@@ -1108,7 +1108,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>OctedDelta</dd>
+            <dd>deltaCounter</dd>
           </dl>
 
           <dl>
