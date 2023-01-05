@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="20" month="December" year="2022"/>
+    <date day="5" month="January" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -110,8 +110,7 @@
       <t>This document defines eight new IPFIX Information Elements (IEs),
       exposing the On-Path delay on IOAM transit and decapsulation nodes.
       Since these IPFIX IEs are performance metrics <xref target="RFC8911"/>,
-      they must be registered as registered performance metrics <xref
-      target="RFC8911"/> in the <xref target="IANA-PERF-METRIC">"IANA
+      they must be registered in the <xref target="IANA-PERF-METRIC">"IANA
       Performance Metric Registry</xref>.</t>
 
       <t><figure>
@@ -452,7 +451,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               of one IP packet is a Singleton</t>
             </list></t>
 
-          <t>For each &lt;statistic&gt;, Singleton one of the following
+          <t>For each &lt;statistic&gt; Singleton one of the following
           subsections applies.</t>
 
           <section title="Mean">
@@ -526,6 +525,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
  FiniteDelay[j] >= FiniteDelay[n] for all n
          ]]></artwork>
               </figure></t>
+
+            <t>where all packets n = 1 through N have finite singleton
+            delays.</t>
 
             <t><list style="hanging">
                 <t hangText="Max:">The time value of the result is expressed
@@ -812,7 +814,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>OctedDelta</dd>
+            <dd>quantity</dd>
           </dl>
 
           <dl>
@@ -854,7 +856,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>OctedDelta</dd>
+            <dd>quantity</dd>
           </dl>
 
           <dl>
@@ -896,7 +898,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>OctedDelta</dd>
+            <dd>quantity</dd>
           </dl>
 
           <dl>
@@ -938,7 +940,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>OctedDelta</dd>
+            <dd>quantity</dd>
           </dl>
 
           <dl>
@@ -980,7 +982,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>OctedDelta</dd>
+            <dd>quantity</dd>
           </dl>
 
           <dl>
@@ -1022,7 +1024,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Data Type Semantics:</dt>
 
-            <dd>OctedDelta</dd>
+            <dd>quantity</dd>
           </dl>
 
           <dl>
@@ -1129,7 +1131,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         <t>The mean (average) path delay can be calculated by dividing the
         PathDelaySumDeltaMicroseconds(TBD5) or
         PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
-        IPFIX data collection.</t>
+        IPFIX data collection in order to offload the IPFIX Exporter from
+        calculating the mean for every Flow at export time.</t>
       </section>
 
       <section anchor="OpsIoamPackTimestamps" title="IOAM Packet Time Stamps">
