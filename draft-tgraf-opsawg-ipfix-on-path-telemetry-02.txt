@@ -265,7 +265,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    *  IOAM transit node
 
-   *  IOAM deacsulation node
+   *  IOAM decapsulation node
 
 3.  Performance Metrics
 

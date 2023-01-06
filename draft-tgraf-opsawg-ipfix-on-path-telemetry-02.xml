@@ -227,7 +227,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
           <t>IOAM transit node</t>
 
-          <t>IOAM deacsulation node</t>
+          <t>IOAM decapsulation node</t>
         </list></t>
     </section>
 
