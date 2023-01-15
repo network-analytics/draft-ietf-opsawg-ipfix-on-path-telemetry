@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="6" month="January" year="2023"/>
+    <date day="15" month="January" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -828,7 +828,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Abstract Data Type:</dt>
 
-            <dd>unsigned16</dd>
+            <dd>unsigned32</dd>
           </dl>
 
           <dl>
@@ -912,7 +912,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Abstract Data Type:</dt>
 
-            <dd>unsigned16</dd>
+            <dd>unsigned32</dd>
           </dl>
 
           <dl>
@@ -996,7 +996,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Abstract Data Type:</dt>
 
-            <dd>unsigned16</dd>
+            <dd>unsigned32</dd>
           </dl>
 
           <dl>

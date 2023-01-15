@@ -5,10 +5,10 @@
 Network Working Group                                            T. Graf
 Internet-Draft                                                  Swisscom
 Intended status: Standards Track                               B. Claise
-Expires: 10 July 2023                                             Huawei
+Expires: 19 July 2023                                             Huawei
                                                            A. Huang Feng
                                                                INSA-Lyon
-                                                          6 January 2023
+                                                         15 January 2023
 
 
                     Export of On-Path Delay in IPFIX
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 July 2023.
+   This Internet-Draft will expire on 19 July 2023.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 1]
+Graf, et al.              Expires 19 July 2023                  [Page 1]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 2]
+Graf, et al.              Expires 19 July 2023                  [Page 2]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -165,7 +165,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 3]
+Graf, et al.              Expires 19 July 2023                  [Page 3]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -221,7 +221,7 @@ Table 1: Correspondance between IPFIX IE and performance metric registry
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 4]
+Graf, et al.              Expires 19 July 2023                  [Page 4]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -277,7 +277,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 5]
+Graf, et al.              Expires 19 July 2023                  [Page 5]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -333,7 +333,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 6]
+Graf, et al.              Expires 19 July 2023                  [Page 6]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -389,7 +389,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 7]
+Graf, et al.              Expires 19 July 2023                  [Page 7]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -445,7 +445,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 8]
+Graf, et al.              Expires 19 July 2023                  [Page 8]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -501,7 +501,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                  [Page 9]
+Graf, et al.              Expires 19 July 2023                  [Page 9]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -557,7 +557,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 10]
+Graf, et al.              Expires 19 July 2023                 [Page 10]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -613,7 +613,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 11]
+Graf, et al.              Expires 19 July 2023                 [Page 11]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -669,7 +669,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 12]
+Graf, et al.              Expires 19 July 2023                 [Page 12]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -725,7 +725,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 13]
+Graf, et al.              Expires 19 July 2023                 [Page 13]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -781,7 +781,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 14]
+Graf, et al.              Expires 19 July 2023                 [Page 14]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -837,7 +837,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 15]
+Graf, et al.              Expires 19 July 2023                 [Page 15]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -893,12 +893,12 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 16]
+Graf, et al.              Expires 19 July 2023                 [Page 16]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
-   Abstract Data Type:  unsigned16
+   Abstract Data Type:  unsigned32
 
    Data Type Semantics:  deltaCounter
 
@@ -932,7 +932,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
       the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node) in microseconds.
 
-   Abstract Data Type:  unsigned16
+   Abstract Data Type:  unsigned32
 
    Data Type Semantics:  deltaCounter
 
@@ -949,7 +949,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 17]
+Graf, et al.              Expires 19 July 2023                 [Page 17]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -975,7 +975,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
       the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node) in microseconds.
 
-   Abstract Data Type:  unsigned16
+   Abstract Data Type:  unsigned32
 
    Data Type Semantics:  deltaCounter
 
@@ -1005,7 +1005,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 18]
+Graf, et al.              Expires 19 July 2023                 [Page 18]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1061,7 +1061,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 19]
+Graf, et al.              Expires 19 July 2023                 [Page 19]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1096,14 +1096,14 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
               <https://www.iana.org/assignments/performance-metrics/
               performance-metrics.xhtml>.
 
-   [RFC7012]  Claise, B., Ed., Trammell, B., Ed., and RFC Publisher,
-              "Information Model for IP Flow Information Export
-              (IPFIX)", RFC 7012, DOI 10.17487/RFC7012, September 2013,
+   [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
+              for IP Flow Information Export (IPFIX)", RFC 7012,
+              DOI 10.17487/RFC7012, September 2013,
               <https://www.rfc-editor.org/info/rfc7012>.
 
-   [RFC8911]  Bagnulo, M., Claise, B., Eardley, P., Morton, A., Akhter,
-              A., and RFC Publisher, "Registry for Performance Metrics",
-              RFC 8911, DOI 10.17487/RFC8911, November 2021,
+   [RFC8911]  Bagnulo, M., Claise, B., Eardley, P., Morton, A., and A.
+              Akhter, "Registry for Performance Metrics", RFC 8911,
+              DOI 10.17487/RFC8911, November 2021,
               <https://www.rfc-editor.org/info/rfc8911>.
 
 10.2.  Informative References
@@ -1117,7 +1117,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 20]
+Graf, et al.              Expires 19 July 2023                 [Page 20]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1173,14 +1173,14 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 10 July 2023                 [Page 21]
+Graf, et al.              Expires 19 July 2023                 [Page 21]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
-   [RFC2330]  Paxson, V., Almes, G., Mahdavi, J., Mathis, M., and RFC
-              Publisher, "Framework for IP Performance Metrics",
-              RFC 2330, DOI 10.17487/RFC2330, May 1998,
+   [RFC2330]  Paxson, V., Almes, G., Mahdavi, J., and M. Mathis,
+              "Framework for IP Performance Metrics", RFC 2330,
+              DOI 10.17487/RFC2330, May 1998,
               <https://www.rfc-editor.org/info/rfc2330>.
 
    [RFC3393]  Demichelis, C., Chimento, P., and RFC Publisher, "IP
@@ -1188,16 +1188,14 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
               (IPPM)", RFC 3393, DOI 10.17487/RFC3393, November 2002,
               <https://www.rfc-editor.org/info/rfc3393>.
 
-   [RFC5153]  Boschi, E., Mark, L., Quittek, J., Stiemerling, M.,
-              Aitken, P., and RFC Publisher, "IP Flow Information Export
-              (IPFIX) Implementation Guidelines", RFC 5153,
-              DOI 10.17487/RFC5153, April 2008,
+   [RFC5153]  Boschi, E., Mark, L., Quittek, J., Stiemerling, M., and P.
+              Aitken, "IP Flow Information Export (IPFIX) Implementation
+              Guidelines", RFC 5153, DOI 10.17487/RFC5153, April 2008,
               <https://www.rfc-editor.org/info/rfc5153>.
 
-   [RFC5905]  Mills, D., Martin, J., Ed., Burbank, J., Kasch, W., and
-              RFC Publisher, "Network Time Protocol Version 4: Protocol
-              and Algorithms Specification", RFC 5905,
-              DOI 10.17487/RFC5905, June 2010,
+   [RFC5905]  Mills, D., Martin, J., Ed., Burbank, J., and W. Kasch,
+              "Network Time Protocol Version 4: Protocol and Algorithms
+              Specification", RFC 5905, DOI 10.17487/RFC5905, June 2010,
               <https://www.rfc-editor.org/info/rfc5905>.
 
    [RFC6020]  Bjorklund, M., Ed. and RFC Publisher, "YANG - A Data
@@ -1205,44 +1203,41 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
               (NETCONF)", RFC 6020, DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
 
-   [RFC6049]  Morton, A., Stephan, E., and RFC Publisher, "Spatial
-              Composition of Metrics", RFC 6049, DOI 10.17487/RFC6049,
-              January 2011, <https://www.rfc-editor.org/info/rfc6049>.
+   [RFC6049]  Morton, A. and E. Stephan, "Spatial Composition of
+              Metrics", RFC 6049, DOI 10.17487/RFC6049, January 2011,
+              <https://www.rfc-editor.org/info/rfc6049>.
 
-   [RFC6703]  Morton, A., Ramachandran, G., Maguluri, G., and RFC
-              Publisher, "Reporting IP Network Performance Metrics:
-              Different Points of View", RFC 6703, DOI 10.17487/RFC6703,
-              August 2012, <https://www.rfc-editor.org/info/rfc6703>.
+   [RFC6703]  Morton, A., Ramachandran, G., and G. Maguluri, "Reporting
+              IP Network Performance Metrics: Different Points of View",
+              RFC 6703, DOI 10.17487/RFC6703, August 2012,
+              <https://www.rfc-editor.org/info/rfc6703>.
 
    [RFC6991]  Schoenwaelder, J., Ed. and RFC Publisher, "Common YANG
               Data Types", RFC 6991, DOI 10.17487/RFC6991, July 2013,
               <https://www.rfc-editor.org/info/rfc6991>.
 
-   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., Aitken, P., and RFC
-              Publisher, "Specification of the IP Flow Information
-              Export (IPFIX) Protocol for the Exchange of Flow
-              Information", STD 77, RFC 7011, DOI 10.17487/RFC7011,
-              September 2013, <https://www.rfc-editor.org/info/rfc7011>.
+   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
+              "Specification of the IP Flow Information Export (IPFIX)
+              Protocol for the Exchange of Flow Information", STD 77,
+              RFC 7011, DOI 10.17487/RFC7011, September 2013,
+              <https://www.rfc-editor.org/info/rfc7011>.
+
+   [RFC7015]  Trammell, B., Wagner, A., and B. Claise, "Flow Aggregation
+              for the IP Flow Information Export (IPFIX) Protocol",
+              RFC 7015, DOI 10.17487/RFC7015, September 2013,
+              <https://www.rfc-editor.org/info/rfc7015>.
 
 
 
-
-
-
-Graf, et al.              Expires 10 July 2023                 [Page 22]
+Graf, et al.              Expires 19 July 2023                 [Page 22]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
-   [RFC7015]  Trammell, B., Wagner, A., Claise, B., and RFC Publisher,
-              "Flow Aggregation for the IP Flow Information Export
-              (IPFIX) Protocol", RFC 7015, DOI 10.17487/RFC7015,
-              September 2013, <https://www.rfc-editor.org/info/rfc7015>.
-
-   [RFC7323]  Borman, D., Braden, B., Jacobson, V., Scheffenegger, R.,
-              Ed., and RFC Publisher, "TCP Extensions for High
-              Performance", RFC 7323, DOI 10.17487/RFC7323, September
-              2014, <https://www.rfc-editor.org/info/rfc7323>.
+   [RFC7323]  Borman, D., Braden, B., Jacobson, V., and R.
+              Scheffenegger, Ed., "TCP Extensions for High Performance",
+              RFC 7323, DOI 10.17487/RFC7323, September 2014,
+              <https://www.rfc-editor.org/info/rfc7323>.
 
    [RFC7679]  Almes, G., Kalidindi, S., Zekauskas, M., Morton, A., Ed.,
               and RFC Publisher, "A One-Way Delay Metric for IP
@@ -1255,15 +1250,14 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
               DOI 10.17487/RFC8174, May 2017,
               <https://www.rfc-editor.org/info/rfc8174>.
 
-   [RFC9197]  Brockners, F., Ed., Bhandari, S., Ed., Mizrahi, T., Ed.,
-              and RFC Publisher, "Data Fields for In Situ Operations,
-              Administration, and Maintenance (IOAM)", RFC 9197,
-              DOI 10.17487/RFC9197, May 2022,
-              <https://www.rfc-editor.org/info/rfc9197>.
+   [RFC9197]  Brockners, F., Ed., Bhandari, S., Ed., and T. Mizrahi,
+              Ed., "Data Fields for In Situ Operations, Administration,
+              and Maintenance (IOAM)", RFC 9197, DOI 10.17487/RFC9197,
+              May 2022, <https://www.rfc-editor.org/info/rfc9197>.
 
-   [RFC9232]  Song, H., Qin, F., Martinez-Julia, P., Ciavaglia, L.,
-              Wang, A., and RFC Publisher, "Network Telemetry
-              Framework", RFC 9232, DOI 10.17487/RFC9232, May 2022,
+   [RFC9232]  Song, H., Qin, F., Martinez-Julia, P., Ciavaglia, L., and
+              A. Wang, "Network Telemetry Framework", RFC 9232,
+              DOI 10.17487/RFC9232, May 2022,
               <https://www.rfc-editor.org/info/rfc9232>.
 
 Authors' Addresses
@@ -1281,15 +1275,6 @@ Authors' Addresses
    Email: benoit.claise@huawei.com
 
 
-
-
-
-
-Graf, et al.              Expires 10 July 2023                 [Page 23]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
-
-
    Alex Huang Feng
    INSA-Lyon
    Lyon
@@ -1300,45 +1285,4 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Graf, et al.              Expires 10 July 2023                 [Page 24]
+Graf, et al.              Expires 19 July 2023                 [Page 23]
