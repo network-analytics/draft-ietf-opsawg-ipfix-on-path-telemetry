@@ -1080,7 +1080,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Abstract Data Type:</dt>
 
-            <dd>unsigned32</dd>
+            <dd>unsigned64</dd>
           </dl>
 
           <dl>

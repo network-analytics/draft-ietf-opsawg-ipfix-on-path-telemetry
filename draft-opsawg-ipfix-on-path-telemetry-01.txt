@@ -1017,7 +1017,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
       the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node) in microseconds.
 
-   Abstract Data Type:  unsigned32
+   Abstract Data Type:  unsigned64
 
    Data Type Semantics:  deltaCounter
 
