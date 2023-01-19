@@ -10,7 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-opsawg-ipfix-on-path-telemetry-00"
+<rfc category="std" docName="draft-ietf-opsawg-ipfix-on-path-telemetry-00"
      ipr="trust200902">
   <front>
     <title abbrev="Export of On-Path Delay in IPFIX">Export of On-Path Delay
@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="18" month="January" year="2023"/>
+    <date day="19" month="January" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
