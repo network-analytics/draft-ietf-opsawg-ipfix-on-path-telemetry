@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="19" month="January" year="2023"/>
+    <date day="20" month="January" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -1153,6 +1153,17 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
         IPFIX data collection in order to offload the IPFIX Exporter from
         calculating the mean for every Flow at export time.</t>
+      </section>
+
+      <section anchor="ReducedSizeEncoding" title="Reduced-size encoding">
+        <t>To support cases with large delay numbers, 100 microseconds as
+        example, and where many packets are being accounted, more than 42949
+        as example, for a given flow id during an accounting period,
+        unsigned64 has been chosen as type for PathDelaySumDeltaMicroseconds.
+        If unsigned32 would be large enough without wrapping around, the
+        procedure describe in Section 6.2 of <xref target="RFC7011"/> could be
+        applied to reduce network bandwidth between the IPFIX Exporter and
+        Collector.</t>
       </section>
 
       <section anchor="OpsIoamPackTimestamps" title="IOAM Packet Time Stamps">
