@@ -101,7 +101,7 @@ Table of Contents
      7.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  19
      7.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  19
      7.3.  Reduced-size encoding . . . . . . . . . . . . . . . . . .  20
-     7.4.  IOAM Packet Time Stamps . . . . . . . . . . . . . . . . .  20
+     7.4.  IOAM Application  . . . . . . . . . . . . . . . . . . . .  20
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  20
    9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  20
    10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  20
@@ -1077,11 +1077,19 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
    bandwidth between the IPFIX Exporter and Collector if unsigned32
    would be large enough without wrapping around.
 
-7.4.  IOAM Packet Time Stamps
+7.4.  IOAM Application
 
-   For IOAM, Section 4.4.1 of [RFC9197] describes what kind of
-   timestamps are supported.  Section 4.4.2.3 and 4.4.2.4 describe where
-   the timestamp is being inserted.
+   This document is applicable in IOAM to the Edge-to-Edge and Direct
+   Exporting Option-Type.
+
+   In case of Edge-to-Edge Option-Type, as described in Section 4.6 of
+   [RFC9197], by setting bits 2 and 3, timestamps can be encoded as
+   defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].
+
+   In case of Direct Exporting Option-Type, as described in Section 2 of
+   <xref target="I-D.ahuang-ippm-dex-timestamp-ext"/>, by setting
+   Extension-Flags 2 and 3, timestamps can be encoded as defined in
+   Section 4.4.2.3 and 4.4.2.4 of [RFC9197].
 
    For Path Tracing, Section 4.1 of [I-D.filsfils-spring-path-tracing]
    describes what kind of timestamps are supported.  Section 9.2
@@ -1107,20 +1115,17 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
               <https://www.iana.org/assignments/performance-metrics/
               performance-metrics.xhtml>.
 
-   [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
-              for IP Flow Information Export (IPFIX)", RFC 7012,
-              DOI 10.17487/RFC7012, September 2013,
-              <https://www.rfc-editor.org/info/rfc7012>.
-
-
-
-
 
 
 Graf, et al.              Expires 25 July 2023                 [Page 20]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
+
+   [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
+              for IP Flow Information Export (IPFIX)", RFC 7012,
+              DOI 10.17487/RFC7012, September 2013,
+              <https://www.rfc-editor.org/info/rfc7012>.
 
    [RFC8911]  Bagnulo, M., Claise, B., Eardley, P., Morton, A., and A.
               Akhter, "Registry for Performance Metrics", RFC 8911,
@@ -1165,11 +1170,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
    [I-D.tgraf-opsawg-ipfix-srv6-srh]
               Graf, T., Claise, B., and P. Francois, "Export of Segment
               Routing IPv6 Information in IP Flow Information Export
-              (IPFIX)", Work in Progress, Internet-Draft, draft-tgraf-
-              opsawg-ipfix-srv6-srh-05, 24 July 2022,
-              <https://www.ietf.org/archive/id/draft-tgraf-opsawg-ipfix-
-              srv6-srh-05.txt>.
-
 
 
 
@@ -1177,6 +1177,11 @@ Graf, et al.              Expires 25 July 2023                 [Page 21]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
+
+              (IPFIX)", Work in Progress, Internet-Draft, draft-tgraf-
+              opsawg-ipfix-srv6-srh-05, 24 July 2022,
+              <https://www.ietf.org/archive/id/draft-tgraf-opsawg-ipfix-
+              srv6-srh-05.txt>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1221,11 +1226,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
               <https://www.rfc-editor.org/info/rfc6991>.
 
-   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
-              "Specification of the IP Flow Information Export (IPFIX)
-              Protocol for the Exchange of Flow Information", STD 77,
-              RFC 7011, DOI 10.17487/RFC7011, September 2013,
-              <https://www.rfc-editor.org/info/rfc7011>.
 
 
 
@@ -1233,6 +1233,12 @@ Graf, et al.              Expires 25 July 2023                 [Page 22]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
+
+   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
+              "Specification of the IP Flow Information Export (IPFIX)
+              Protocol for the Exchange of Flow Information", STD 77,
+              RFC 7011, DOI 10.17487/RFC7011, September 2013,
+              <https://www.rfc-editor.org/info/rfc7011>.
 
    [RFC7015]  Trammell, B., Wagner, A., and B. Claise, "Flow Aggregation
               for the IP Flow Information Export (IPFIX) Protocol",
@@ -1278,23 +1284,17 @@ Authors' Addresses
    Email: benoit.claise@huawei.com
 
 
-   Alex Huang Feng
-   INSA-Lyon
-   Lyon
-   France
-
-
 
 Graf, et al.              Expires 25 July 2023                 [Page 23]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
+   Alex Huang Feng
+   INSA-Lyon
+   Lyon
+   France
    Email: alex.huang-feng@insa-lyon.fr
-
-
-
-
 
 
 

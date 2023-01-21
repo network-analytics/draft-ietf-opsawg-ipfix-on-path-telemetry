@@ -1155,7 +1155,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         calculating the mean for every Flow at export time.</t>
       </section>
 
-      <section anchor="ReducedSizeEncoding" title="Reduced-size encoding">
+      <section anchor="OpsReducedSizeEncoding" title="Reduced-size encoding">
         <t>Unsigned64 has been chosen as type for
         PathDelaySumDeltaMicroseconds to support cases with large delay
         numbers and where many packets are being accounted. As an example, a
@@ -1167,10 +1167,19 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         enough without wrapping around.</t>
       </section>
 
-      <section anchor="OpsIoamPackTimestamps" title="IOAM Packet Time Stamps">
-        <t>For IOAM, Section 4.4.1 of <xref target="RFC9197"/> describes what
-        kind of timestamps are supported. Section 4.4.2.3 and 4.4.2.4 describe
-        where the timestamp is being inserted.</t>
+      <section anchor="OpsIoamApplication" title="IOAM Application">
+        <t>This document is applicable in IOAM to the Edge-to-Edge and Direct
+        Exporting Option-Type.</t>
+
+        <t>In case of Edge-to-Edge Option-Type, as described in Section 4.6 of
+        <xref target="RFC9197"/>, by setting bits 2 and 3, timestamps can be
+        encoded as defined in Section 4.4.2.3 and 4.4.2.4 of <xref
+        target="RFC9197"/>.</t>
+
+        <t>In case of Direct Exporting Option-Type, as described in Section 2
+        of &lt;xref target="I-D.ahuang-ippm-dex-timestamp-ext"/&gt;, by
+        setting Extension-Flags 2 and 3, timestamps can be encoded as defined
+        in Section 4.4.2.3 and 4.4.2.4 of <xref target="RFC9197"/>.</t>
 
         <t>For Path Tracing, Section 4.1 of <xref
         target="I-D.filsfils-spring-path-tracing"/> describes what kind of
@@ -1210,47 +1219,91 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </references>
 
     <references title="Informative References">
+       
+
       <?rfc include='reference.RFC.2119'?>
+
+       
 
       <?rfc include='reference.RFC.8174'?>
 
+       
+
       <?rfc include='reference.RFC.9232'?>
+
+       
 
       <?rfc include='reference.I-D.ietf-ippm-ioam-deployment'?>
 
+       
+
       <?rfc include='reference.I-D.filsfils-spring-path-tracing'?>
+
+       
 
       <?rfc include='reference.I-D.song-opsawg-ifit-framework'?>
 
+       
+
       <?rfc include='reference.RFC.7011'?>
+
+       
 
       <?rfc include='reference.RFC.9197'?>
 
+       
+
       <?rfc include='reference.I-D.song-ippm-postcard-based-telemetry'?>
+
+       
 
       <?rfc include='reference.RFC.7679'?>
 
+       
+
       <?rfc include='reference.RFC.6049'?>
+
+       
 
       <?rfc include='reference.RFC.2330'?>
 
+       
+
       <?rfc include='reference.RFC.7323'?>
+
+       
 
       <?rfc include='reference.RFC.6991'?>
 
+       
+
       <?rfc include='reference.RFC.3393'?>
+
+       
 
       <?rfc include='reference.RFC.6703'?>
 
+       
+
       <?rfc include='reference.RFC.6020'?>
+
+       
 
       <?rfc include='reference.RFC.5905'?>
 
+       
+
       <?rfc include='reference.I-D.tgraf-opsawg-ipfix-srv6-srh'?>
+
+       
 
       <?rfc include='reference.RFC.5153'?>
 
+       
+
       <?rfc include='reference.RFC.7015'?>
+
+       &lt;?rfc include='reference.I-D.ahuang-ippm-dex-timestamp-ext'?&gt; 
     </references>
   </back>
 </rfc>
