@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="20" month="January" year="2023"/>
+    <date day="21" month="January" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -1158,9 +1158,10 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       <section anchor="ReducedSizeEncoding" title="Reduced-size encoding">
         <t>Unsigned64 has been chosen as type for
         PathDelaySumDeltaMicroseconds to support cases with large delay
-        numbers, 100 microseconds as example, and where many packets are being
-        accounted, more than 42949 as example, for a given flow id during an
-        accounting period. The procedure described in Section 6.2 of <xref
+        numbers and where many packets are being accounted. As an example, a
+        specific flow record with path delay of 100 microseconds can not
+        observe more than 42949 packets without overflowing the unsigned32
+        counter. The procedure described in Section 6.2 of <xref
         target="RFC7011"/> could be applied to reduce network bandwidth
         between the IPFIX Exporter and Collector if unsigned32 would be large
         enough without wrapping around.</t>
