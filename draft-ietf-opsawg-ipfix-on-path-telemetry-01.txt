@@ -5,10 +5,10 @@
 Network Working Group                                            T. Graf
 Internet-Draft                                                  Swisscom
 Intended status: Standards Track                               B. Claise
-Expires: 25 July 2023                                             Huawei
+Expires: 1 August 2023                                            Huawei
                                                            A. Huang Feng
                                                                INSA-Lyon
-                                                         21 January 2023
+                                                         28 January 2023
 
 
                     Export of On-Path Delay in IPFIX
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 July 2023.
+   This Internet-Draft will expire on 1 August 2023.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Graf, et al.              Expires 25 July 2023                  [Page 1]
+Graf, et al.              Expires 1 August 2023                 [Page 1]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Graf, et al.              Expires 25 July 2023                  [Page 2]
+Graf, et al.              Expires 1 August 2023                 [Page 2]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -165,13 +165,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                  [Page 3]
+Graf, et al.              Expires 1 August 2023                 [Page 3]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 +-----------------------------+-------------------------------------+
-|      Performance Metric     |             IPFIX Entity            |
+|      Performance Metric     |        IPFIX Information Element    |
 +-----------------------------+-------------------------------------+
 |OWDelay_HybridType1_Passive_I|PathDelayMeanDeltaMicroseconds (TBD5)|
 |P_RFCTBD_Seconds_Mean (TBD1) |PathDelayMeanDeltaNanoseconds (TBD6) |
@@ -221,7 +221,7 @@ Table 1: Correspondance between IPFIX IE and performance metric registry
 
 
 
-Graf, et al.              Expires 25 July 2023                  [Page 4]
+Graf, et al.              Expires 1 August 2023                 [Page 4]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -250,6 +250,8 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
    *  Flow Record
 
+   *  Exporter
+
    The following terms are used as defined in [RFC8911].
 
    *  Performance Metric
@@ -275,9 +277,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-
-
-Graf, et al.              Expires 25 July 2023                  [Page 5]
+Graf, et al.              Expires 1 August 2023                 [Page 5]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -333,7 +333,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                  [Page 6]
+Graf, et al.              Expires 1 August 2023                 [Page 6]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -389,7 +389,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                  [Page 7]
+Graf, et al.              Expires 1 August 2023                 [Page 7]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -445,7 +445,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                  [Page 8]
+Graf, et al.              Expires 1 August 2023                 [Page 8]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -460,6 +460,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
    Runtime Parameters are input factors that must be determined,
    configured into the measurement system, and reported with the results
    for the context to be complete.
+
+   The hybrid type I metering parameters must must be reported to
+   provide the complete measurement context.  As an example, if the
+   IPFIX metering process is used, then the IPFIX metering process
+   parameters (IPFIX template record used, potential traffic filters,
+   and potential sampling method and parameters) that generates the flow
+   records must be reported to provide the complete measurement context.
 
    Src:  The IP address of the host in the host A Role (format
       ipv4-address-no-zone value for IPv4 or ipv6-address-no-zone value
@@ -491,20 +498,20 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
       "host A" is synonymous with the IP address used at host A.
 
    host B:  Receives the IP packet to open the connection.  The Role of
+
+
+
+Graf, et al.              Expires 1 August 2023                 [Page 9]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
+
+
       "host B" is synonymous with the IP address used at host B.
 
    Encapsulation Node:  Receives the IP packet to open the connection
       and encapsulates the timestamp into the packet.  The Role of
       "Encapsulation Node" is synonymous with the timestamp inserted in
       the packet.
-
-
-
-
-Graf, et al.              Expires 25 July 2023                  [Page 9]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
-
 
    Transit Node:  Receives the IP packet to open the connection and
       measures the delay between the timestamp in the packet and the
@@ -547,20 +554,19 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
    See section 4.2.2 of [RFC6049] for details on calculating this
    statistic; see also section 4.2.3 of [RFC6049].
 
+
+
+
+Graf, et al.              Expires 1 August 2023                [Page 10]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
+
+
    Mean:  The time value of the result is expressed in units of seconds,
       as a positive value of type decimal64 with fraction digits = 9
       (see section 9.3 of [RFC6020]) with a resolution of
       0.000000001 seconds (1.0 ns), and with lossless conversion to/from
       the 64-bit NTP timestamp as per section 6 of [RFC5905].
-
-
-
-
-
-Graf, et al.              Expires 25 July 2023                 [Page 10]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
-
 
 3.4.2.2.  Min
 
@@ -603,20 +609,19 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
    where all packets n = 1 through N have finite singleton delays.
 
    Max:  The time value of the result is expressed in units of seconds,
+
+
+
+
+Graf, et al.              Expires 1 August 2023                [Page 11]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
+
+
       as a positive value of type decimal64 with fraction digits = 9
       (see section 9.3 of [RFC6020]) with a resolution of
       0.000000001 seconds (1.0 ns), and with lossless conversion to/from
       the 64-bit NTP timestamp as per section 6 of [RFC5905].
-
-
-
-
-
-
-Graf, et al.              Expires 25 July 2023                 [Page 11]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
-
 
 3.4.2.4.  Sum
 
@@ -661,18 +666,17 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 3.4.3.  Administrative Items
 
-3.4.3.1.  Status
-
-   Current
 
 
 
-
-
-Graf, et al.              Expires 25 July 2023                 [Page 12]
+Graf, et al.              Expires 1 August 2023                [Page 12]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
+
+3.4.3.1.  Status
+
+   Current
 
 3.4.3.2.  Requester
 
@@ -688,7 +692,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 3.4.4.  Comments and Remarks
 
-   None
+   none
 
 4.  IPFIX Information Elements
 
@@ -721,11 +725,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-
-
-
-
-Graf, et al.              Expires 25 July 2023                 [Page 13]
+Graf, et al.              Expires 1 August 2023                [Page 13]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -781,7 +781,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 14]
+Graf, et al.              Expires 1 August 2023                [Page 14]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -837,7 +837,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 15]
+Graf, et al.              Expires 1 August 2023                [Page 15]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -893,7 +893,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 16]
+Graf, et al.              Expires 1 August 2023                [Page 16]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -949,7 +949,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 17]
+Graf, et al.              Expires 1 August 2023                [Page 17]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1005,7 +1005,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 18]
+Graf, et al.              Expires 1 August 2023                [Page 18]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1061,7 +1061,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 19]
+Graf, et al.              Expires 1 August 2023                [Page 19]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1117,7 +1117,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 20]
+Graf, et al.              Expires 1 August 2023                [Page 20]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1173,7 +1173,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 21]
+Graf, et al.              Expires 1 August 2023                [Page 21]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1229,7 +1229,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 22]
+Graf, et al.              Expires 1 August 2023                [Page 22]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1285,7 +1285,7 @@ Authors' Addresses
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 23]
+Graf, et al.              Expires 1 August 2023                [Page 23]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
@@ -1341,4 +1341,4 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2023
 
 
 
-Graf, et al.              Expires 25 July 2023                 [Page 24]
+Graf, et al.              Expires 1 August 2023                [Page 24]

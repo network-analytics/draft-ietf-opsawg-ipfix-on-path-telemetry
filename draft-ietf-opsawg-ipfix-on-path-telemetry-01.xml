@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="21" month="January" year="2023"/>
+    <date day="28" month="January" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -129,7 +129,7 @@
       <t><figure>
           <artwork><![CDATA[
 +-----------------------------+-------------------------------------+
-|      Performance Metric     |             IPFIX Entity            |
+|      Performance Metric     |        IPFIX Information Element    |
 +-----------------------------+-------------------------------------+
 |OWDelay_HybridType1_Passive_I|PathDelayMeanDeltaMicroseconds (TBD5)|
 |P_RFCTBD_Seconds_Mean (TBD1) |PathDelayMeanDeltaNanoseconds (TBD6) |
@@ -206,6 +206,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t>IPFIX Information Elements (IEs)</t>
 
           <t>Flow Record</t>
+
+          <t>Exporter</t>
         </list></t>
 
       <t>The following terms are used as defined in <xref
@@ -397,6 +399,14 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t>Runtime Parameters are input factors that must be determined,
           configured into the measurement system, and reported with the
           results for the context to be complete.</t>
+
+          <t>The hybrid type I metering parameters must must be reported to
+          provide the complete measurement context. As an example, if the
+          IPFIX metering process is used, then the IPFIX metering process
+          parameters (IPFIX template record used, potential traffic filters,
+          and potential sampling method and parameters) that generates the
+          flow records must be reported to provide the complete measurement
+          context.</t>
 
           <t><list style="hanging">
               <t hangText="Src:">The IP address of the host in the host A Role
@@ -628,7 +638,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         </section>
 
         <section title="Comments and Remarks">
-          <t>None</t>
+          <t>none</t>
         </section>
       </section>
     </section>
