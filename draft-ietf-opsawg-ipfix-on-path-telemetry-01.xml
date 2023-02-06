@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="28" month="January" year="2023"/>
+    <date day="6" month="February" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -107,7 +107,7 @@
       exposes performance metrics allowing to determine how much delay has
       been accumulated on which hop.</t>
 
-      <t>This document defines eight new IPFIX Information Elements (IEs),
+      <t>This document defines four new IPFIX Information Elements (IEs),
       exposing the On-Path delay on IOAM transit and decapsulation nodes,
       following the postcard mode principles. Since these IPFIX IEs are
       performance metrics <xref target="RFC8911"/>, they must be registered in
@@ -132,19 +132,19 @@
 |      Performance Metric     |        IPFIX Information Element    |
 +-----------------------------+-------------------------------------+
 |OWDelay_HybridType1_Passive_I|PathDelayMeanDeltaMicroseconds (TBD5)|
-|P_RFCTBD_Seconds_Mean (TBD1) |PathDelayMeanDeltaNanoseconds (TBD6) |
+|P_RFCTBD_Seconds_Mean (TBD1) |                                     |
 +-----------------------------+-------------------------------------+
-|OWDelay_HybridType1_Passive_I|PathDelayMinDeltaMicroseconds (TBD7) |
-|P_RFCTBD_Seconds_Min (TBD2)  |PathDelayMinDeltaNanoseconds (TBD8)  |
+|OWDelay_HybridType1_Passive_I|PathDelayMinDeltaMicroseconds (TBD6) |
+|P_RFCTBD_Seconds_Min (TBD2)  |                                     |
 +-----------------------------+-------------------------------------+
-|OWDelay_HybridType1_Passive_I|PathDelayMaxDeltaMicroseconds (TBD9) |
-|P_RFCTBD_Seconds_Max (TBD3)  |PathDelayMaxDeltaNanoseconds (TBD10) |
+|OWDelay_HybridType1_Passive_I|PathDelayMaxDeltaMicroseconds (TBD7) |
+|P_RFCTBD_Seconds_Max (TBD3)  |                                     |
 +-----------------------------+-------------------------------------+
-|OWDelay_HybridType1_Passive_I|PathDelaySumDeltaMicroseconds (TBD11)|
-|P_RFCTBD_Seconds_Sum (TBD4)  |PathDelaySumDeltaNanoseconds (TBD12) |
+|OWDelay_HybridType1_Passive_I|PathDelaySumDeltaMicroseconds (TBD8)|
+|P_RFCTBD_Seconds_Sum (TBD4)  |                                     |
 +-----------------------------+-------------------------------------+
           
-Table 1: Correspondance between IPFIX IE and performance metric registry
+Table 1: Correspondance between IPFIX IE and Performance Metric
        ]]></artwork>
         </figure></t>
 
@@ -652,21 +652,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           the local node with the IOAM domain (either an IOAM transit node or
           an IOAM decapsulation node).</t>
 
-          <t hangText="PathDelayMeanDeltaNanoseconds"><vspace blankLines="0"/>
-          32-bit unsigned integer that identifies the mean path delay in
-          nanoseconds, between the IOAM encapsulation node and the local node
-          with the IOAM domain (either an IOAM transit node or an IOAM
-          decapsulation node).</t>
-
           <t hangText="PathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
           16-bit unsigned integer that identifies the lowest path delay in
           microseconds, between the IOAM encapsulation node and the local node
-          with the IOAM domain (either an IOAM transit node or an IOAM
-          decapsulation node).</t>
-
-          <t hangText="PathDelayMinDeltaNanoseconds"><vspace blankLines="0"/>
-          32-bit unsigned integer that identifies the lowest path delay in
-          nanoseconds, between the IOAM encapsulation node and the local node
           with the IOAM domain (either an IOAM transit node or an IOAM
           decapsulation node).</t>
 
@@ -676,21 +664,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           with the IOAM domain (either an IOAM transit node or an IOAM
           decapsulation node).</t>
 
-          <t hangText="PathDelayMaxDeltaNanoseconds"><vspace blankLines="0"/>
-          32-bit unsigned integer that identifies the highest path delay in
-          nanoseconds, between the IOAM encapsulation node and the local node
-          with the IOAM domain (either an IOAM transit node or an IOAM
-          decapsulation node).</t>
-
           <t hangText="PathDelaySumDeltaMicroseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the sum of the path delay in
           microseconds, between the IOAM encapsulation node and the local node
-          with the IOAM domain (either an IOAM transit node or an IOAM
-          decapsulation node).</t>
-
-          <t hangText="PathDelaySumDeltaNanoseconds"><vspace blankLines="0"/>
-          64-bit unsigned integer that identifies the sum of the path delay in
-          nanoseconds, between the IOAM encapsulation node and the local node
           with the IOAM domain (either an IOAM transit node or an IOAM
           decapsulation node).</t>
         </list></t>
@@ -777,25 +753,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
      | TBD5  | PathDelayMeanDeltaMicroseconds |
      |       |                                |
      +-------+--------------------------------+
-     | TBD6  | PathDelayMeanDeltaNanoseconds  |
+     | TBD6  | PathDelayMinDeltaMicroseconds  |
      |       |                                |
      +-------+--------------------------------+
-     | TBD7  | PathDelayMinDeltaMicroseconds  |
+     | TBD7  | PathDelayMaxDeltaMicroseconds  |
      |       |                                |
      +-------+--------------------------------+
-     | TBD8  | PathDelayMinDeltaNanoseconds   |
-     |       |                                |
-     +-------+--------------------------------+
-     | TBD9  | PathDelayMaxDeltaMicroseconds  |
-     |       |                                |
-     +-------+--------------------------------+
-     | TBD10 | PathDelayMaxDeltaNanoseconds   |
-     |       |                                |
-     +-------+--------------------------------+
-     | TBD11 | PathDelaySumDeltaMicroseconds  |
-     |       |                                |
-     +-------+--------------------------------+
-     | TBD12 | PathDelaySumDeltaNanoseconds   |
+     | TBD8 | PathDelaySumDeltaMicroseconds  |
      |       |                                |
      +-------+--------------------------------+
   Table 3: Creates IPFIX IEs in the "IPFIX Information Elements" registry
@@ -854,48 +818,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </dl>
         </section>
 
-        <section anchor="IANAPathDelayMeanDeltaNanoseconds"
-                 title="PathDelayMeanDeltaNanoseconds">
-          <dl>
-            <dt>Name:</dt>
-
-            <dd>PathDelayMeanDeltaNanoseconds</dd>
-          </dl>
-
-          <dl>
-            <dt>ElementID:</dt>
-
-            <dd>TBD6</dd>
-          </dl>
-
-          <dl>
-            <dt>Description:</dt>
-
-            <dd>This Information Element identifies the mean path delaybetween
-            the IOAM encapsulation node and the local node with the IOAM
-            domain (either an IOAM transit node or an IOAM decapsulation node)
-            in nanoseconds.</dd>
-          </dl>
-
-          <dl>
-            <dt>Abstract Data Type:</dt>
-
-            <dd>unsigned32</dd>
-          </dl>
-
-          <dl>
-            <dt>Data Type Semantics:</dt>
-
-            <dd>deltaCounter</dd>
-          </dl>
-
-          <dl>
-            <dt>Reference:</dt>
-
-            <dd>[RFC-to-be], xxx</dd>
-          </dl>
-        </section>
-
         <section anchor="IANAPathDelayMinDeltaMicroseconds"
                  title="PathDelayMinDeltaMicroseconds">
           <dl>
@@ -907,7 +829,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>ElementID:</dt>
 
-            <dd>TBD7</dd>
+            <dd>TBD6</dd>
           </dl>
 
           <dl>
@@ -917,48 +839,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             between the IOAM encapsulation node and the local node with the
             IOAM domain (either an IOAM transit node or an IOAM decapsulation
             node) in microseconds.</dd>
-          </dl>
-
-          <dl>
-            <dt>Abstract Data Type:</dt>
-
-            <dd>unsigned32</dd>
-          </dl>
-
-          <dl>
-            <dt>Data Type Semantics:</dt>
-
-            <dd>deltaCounter</dd>
-          </dl>
-
-          <dl>
-            <dt>Reference:</dt>
-
-            <dd>[RFC-to-be], xxx</dd>
-          </dl>
-        </section>
-
-        <section anchor="IANAPathDelayMinDeltaNanoseconds"
-                 title="PathDelayMinDeltaNanoseconds">
-          <dl>
-            <dt>Name:</dt>
-
-            <dd>PathDelayMinDeltaNanoseconds</dd>
-          </dl>
-
-          <dl>
-            <dt>ElementID:</dt>
-
-            <dd>TBD8</dd>
-          </dl>
-
-          <dl>
-            <dt>Description:</dt>
-
-            <dd>This Information Element identifies the lowest path delay
-            between the IOAM encapsulation node and the local node with the
-            IOAM domain (either an IOAM transit node or an IOAM decapsulation
-            node) in nanoseconds.</dd>
           </dl>
 
           <dl>
@@ -991,7 +871,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>ElementID:</dt>
 
-            <dd>TBD9</dd>
+            <dd>TBD7</dd>
           </dl>
 
           <dl>
@@ -1001,48 +881,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             between the IOAM encapsulation node and the local node with the
             IOAM domain (either an IOAM transit node or an IOAM decapsulation
             node) in microseconds.</dd>
-          </dl>
-
-          <dl>
-            <dt>Abstract Data Type:</dt>
-
-            <dd>unsigned32</dd>
-          </dl>
-
-          <dl>
-            <dt>Data Type Semantics:</dt>
-
-            <dd>deltaCounter</dd>
-          </dl>
-
-          <dl>
-            <dt>Reference:</dt>
-
-            <dd>[RFC-to-be], xxx</dd>
-          </dl>
-        </section>
-
-        <section anchor="IANAPathDelayMaxDeltaNanoseconds"
-                 title="PathDelayMaxDeltaNanoseconds">
-          <dl>
-            <dt>Name:</dt>
-
-            <dd>PathDelayMaxDeltaNanoseconds</dd>
-          </dl>
-
-          <dl>
-            <dt>ElementID:</dt>
-
-            <dd>TBD10</dd>
-          </dl>
-
-          <dl>
-            <dt>Description:</dt>
-
-            <dd>This Information Element identifies the highest path delay
-            between the IOAM encapsulation node and the local node with the
-            IOAM domain (either an IOAM transit node or an IOAM decapsulation
-            node) in nanoseconds.</dd>
           </dl>
 
           <dl>
@@ -1075,7 +913,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>ElementID:</dt>
 
-            <dd>TBD11</dd>
+            <dd>TBD8</dd>
           </dl>
 
           <dl>
@@ -1106,47 +944,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </dl>
         </section>
 
-        <section anchor="IANAPathDelaySumDeltaNanoseconds"
-                 title="PathDelaySumDeltaNanoseconds">
-          <dl>
-            <dt>Name:</dt>
-
-            <dd>PathDelaySumDeltaNanoseconds</dd>
-          </dl>
-
-          <dl>
-            <dt>ElementID:</dt>
-
-            <dd>TBD12</dd>
-          </dl>
-
-          <dl>
-            <dt>Description:</dt>
-
-            <dd>This Information Element identifies the sum of the path delay
-            between the IOAM encapsulation node and the local node with the
-            IOAM domain (either an IOAM transit node or an IOAM decapsulation
-            node) in nanoseconds.</dd>
-          </dl>
-
-          <dl>
-            <dt>Abstract Data Type:</dt>
-
-            <dd>unsigned64</dd>
-          </dl>
-
-          <dl>
-            <dt>Data Type Semantics:</dt>
-
-            <dd>deltaCounter</dd>
-          </dl>
-
-          <dl>
-            <dt>Reference:</dt>
-
-            <dd>[RFC-to-be], xxx</dd>
-          </dl>
-        </section>
       </section>
     </section>
 
@@ -1159,8 +956,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
       <section anchor="OpsMeanDelay" title="Mean Delay">
         <t>The mean (average) path delay can be calculated by dividing the
-        PathDelaySumDeltaMicroseconds(TBD5) or
-        PathDelaySumDeltaNanoseconds(TBD6) by the packetDeltaCount(2) at the
+        PathDelaySumDeltaMicroseconds(TBD5) by the packetDeltaCount(2) at the
         IPFIX data collection in order to offload the IPFIX Exporter from
         calculating the mean for every Flow at export time.</t>
       </section>
@@ -1216,6 +1012,10 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
       <?rfc include='reference.RFC.8911'?>
 
+    </references>
+
+    <references title="Informative References">
+
       <reference anchor="IANA-PERF-METRIC"
                  target="https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml">
         <front>
@@ -1226,9 +1026,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <date/>
         </front>
       </reference>
-    </references>
-
-    <references title="Informative References">
        
 
       <?rfc include='reference.RFC.2119'?>
