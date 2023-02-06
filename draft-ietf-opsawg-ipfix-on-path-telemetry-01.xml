@@ -128,21 +128,21 @@
 
       <t><figure>
           <artwork><![CDATA[
-+-----------------------------+-------------------------------------+
-|      Performance Metric     |        IPFIX Information Element    |
-+-----------------------------+-------------------------------------+
-|OWDelay_HybridType1_Passive_I|PathDelayMeanDeltaMicroseconds (TBD5)|
-|P_RFCTBD_Seconds_Mean (TBD1) |                                     |
-+-----------------------------+-------------------------------------+
-|OWDelay_HybridType1_Passive_I|PathDelayMinDeltaMicroseconds (TBD6) |
-|P_RFCTBD_Seconds_Min (TBD2)  |                                     |
-+-----------------------------+-------------------------------------+
-|OWDelay_HybridType1_Passive_I|PathDelayMaxDeltaMicroseconds (TBD7) |
-|P_RFCTBD_Seconds_Max (TBD3)  |                                     |
-+-----------------------------+-------------------------------------+
-|OWDelay_HybridType1_Passive_I|PathDelaySumDeltaMicroseconds (TBD8)|
-|P_RFCTBD_Seconds_Sum (TBD4)  |                                     |
-+-----------------------------+-------------------------------------+
++------------------------------------+-------------------------------+
+|      Performance Metric            |  IPFIX Information Element    |
++------------------------------------+-------------------------------+
+|OWDelay_HybridType1_Passive_I       |PathDelayMeanDeltaMicroseconds |
+|P_RFC[RFC-to-be]_Seconds_Mean (TBD1)|(TBD5)                         |
++------------------------------------+-------------------------------+
+|OWDelay_HybridType1_Passive_I       |PathDelayMinDeltaMicroseconds  |
+|P_RFC[RFC-to-be]_Seconds_Min (TBD2) |(TBD6)                         |
++------------------------------------+-------------------------------+
+|OWDelay_HybridType1_Passive_I       |PathDelayMaxDeltaMicroseconds  |
+|P_RFC[RFC-to-be]_Seconds_Max (TBD3) |(TBD7)                         |
++------------------------------------+-------------------------------+
+|OWDelay_HybridType1_Passive_I       |PathDelaySumDeltaMicroseconds  |
+|P_RFC[RFC-to-be]_Seconds_Sum (TBD4) |(TBD8)                         |
++------------------------------------+-------------------------------+
           
 Table 1: Correspondance between IPFIX IE and Performance Metric
        ]]></artwork>
@@ -265,27 +265,27 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </section>
 
           <section title="Name">
-            <t>TBD1: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Mean</t>
+            <t>TBD1: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean</t>
 
-            <t>TBD2: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Min</t>
+            <t>TBD2: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min</t>
 
-            <t>TBD3: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Max</t>
+            <t>TBD3: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max</t>
 
-            <t>TBD4: OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Sum</t>
+            <t>TBD4: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum</t>
           </section>
 
           <section title="URI">
             <t>URL: <eref
-            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Mean"/></t>
+            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean"/></t>
 
             <t>URL: <eref
-            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Min"/></t>
+            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min"/></t>
 
             <t>URL: <eref
-            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Max"/></t>
+            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max"/></t>
 
             <t>URL: <eref
-            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFCTBD_Seconds_Sum"/></t>
+            target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum"/></t>
           </section>
         </section>
 
@@ -769,7 +769,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         <t>Note to the RFC-Editor:</t>
 
         <t><list style="symbols">
-            <t>Please replace TBD5 - TBD12 with the values allocated by
+            <t>Please replace TBD5 - TBD8 with the values allocated by
             IANA</t>
 
             <t>Please replace the [RFC-to-be] with the RFC number assigned to
@@ -796,7 +796,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <dd>This Information Element identifies the mean path delay
             between the IOAM encapsulation node and the local node with the
             IOAM domain (either an IOAM transit node or an IOAM decapsulation
-            node) in microseconds.</dd>
+            node) in microseconds, according to 
+            OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the 
+            IANA Performance Metric Registry</dd>
           </dl>
 
           <dl>
@@ -814,7 +816,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Reference:</dt>
 
-            <dd>[RFC-to-be], xxx</dd>
+            <dd>[RFC-to-be], OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the IANA Performance Metric Registry.</dd>
           </dl>
         </section>
 
@@ -838,7 +840,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <dd>This Information Element identifies the lowest path delay
             between the IOAM encapsulation node and the local node with the
             IOAM domain (either an IOAM transit node or an IOAM decapsulation
-            node) in microseconds.</dd>
+            node) in microseconds, according to the 
+            OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min 
+            in the IANA Performance Metric Registry.</dd>
           </dl>
 
           <dl>
@@ -856,7 +860,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Reference:</dt>
 
-            <dd>[RFC-to-be], xxx</dd>
+            <dd>[RFC-to-be], OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min in the IANA Performance Metric Registry.</dd>
           </dl>
         </section>
 
@@ -880,7 +884,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <dd>This Information Element identifies the highest path delay
             between the IOAM encapsulation node and the local node with the
             IOAM domain (either an IOAM transit node or an IOAM decapsulation
-            node) in microseconds.</dd>
+            node) in microseconds, according to 
+            OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the 
+            IANA Performance Metric Registry.</dd>
           </dl>
 
           <dl>
@@ -898,7 +904,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Reference:</dt>
 
-            <dd>[RFC-to-be], xxx</dd>
+            <dd>[RFC-to-be], OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the IANA Performance Metric Registry.</dd>
           </dl>
         </section>
 
@@ -922,7 +928,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <dd>This Information Element identifies the sum of the path delay
             between the IOAM encapsulation node and the local node with the
             IOAM domain (either an IOAM transit node or an IOAM decapsulation
-            node) in microseconds.</dd>
+            node) in microseconds, according to 
+            OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in the 
+            IANA Performance Metric Registry.</dd>
           </dl>
 
           <dl>
@@ -940,7 +948,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <dl>
             <dt>Reference:</dt>
 
-            <dd>[RFC-to-be], xxx</dd>
+            <dd>[RFC-to-be], OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in the IANA Performance Metric Registry.</dd>
           </dl>
         </section>
 
