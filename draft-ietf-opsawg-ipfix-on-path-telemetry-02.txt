@@ -102,10 +102,10 @@ Table of Contents
    9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  18
      9.1.  FD.io VPP . . . . . . . . . . . . . . . . . . . . . . . .  19
      9.2.  Huawei VRP  . . . . . . . . . . . . . . . . . . . . . . .  19
+     9.3.  Pmacct Data Collection  . . . . . . . . . . . . . . . . .  19
    10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  19
    11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  19
      11.1.  Normative References . . . . . . . . . . . . . . . . . .  19
-     11.2.  Informative References . . . . . . . . . . . . . . . . .  20
 
 
 
@@ -114,6 +114,7 @@ Graf, et al.             Expires 30 August 2023                 [Page 2]
 Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
 
 
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  20
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
 
 1.  Introduction
@@ -161,7 +162,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
    a meaningful name, following the "MetricType_Method_SubTypeMethod_...
    Spec_Units_Output" naming convention (See Section 7.1.2 of
    [RFC8911]).
-
 
 
 
@@ -1041,6 +1041,15 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
 
    The implementation was validated at the IETF 116 hackathon.
 
+9.3.  Pmacct Data Collection
+
+   Paolo Lucente implemented the IE PathDelayMeanDeltaMicroseconds by
+   dividing IE PathDelaySumDeltaMicroseconds by IE packetDeltaCount in
+   the open source Network Telemetry data collection project pmacct.
+
+   The source code can be obtained here: [Paolo-Lucente-Pmacct] and was
+   validated at the IETF 115 hackathon.
+
 10.  Acknowledgements
 
    The authors would like to thank Al Morton and Greg Mirsky for their
@@ -1050,21 +1059,17 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
 
 11.1.  Normative References
 
-   [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
-              for IP Flow Information Export (IPFIX)", RFC 7012,
-              DOI 10.17487/RFC7012, September 2013,
-              <https://www.rfc-editor.org/info/rfc7012>.
-
-
-
-
-
 
 
 Graf, et al.             Expires 30 August 2023                [Page 19]
 
 Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
 
+
+   [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
+              for IP Flow Information Export (IPFIX)", RFC 7012,
+              DOI 10.17487/RFC7012, September 2013,
+              <https://www.rfc-editor.org/info/rfc7012>.
 
    [RFC8911]  Bagnulo, M., Claise, B., Eardley, P., Morton, A., and A.
               Akhter, "Registry for Performance Metrics", RFC 8911,
@@ -1107,13 +1112,8 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
               <https://datatracker.ietf.org/doc/html/draft-song-ippm-
               postcard-based-telemetry-15>.
 
-   [I-D.song-opsawg-ifit-framework]
-              Song, H., Qin, F., Chen, H., Jin, J., and J. Shin, "A
-              Framework for In-situ Flow Information Telemetry", Work in
-              Progress, Internet-Draft, draft-song-opsawg-ifit-
-              framework-19, 24 October 2022,
-              <https://datatracker.ietf.org/doc/html/draft-song-opsawg-
-              ifit-framework-19>.
+
+
 
 
 
@@ -1121,6 +1121,14 @@ Graf, et al.             Expires 30 August 2023                [Page 20]
 
 Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
 
+
+   [I-D.song-opsawg-ifit-framework]
+              Song, H., Qin, F., Chen, H., Jin, J., and J. Shin, "A
+              Framework for In-situ Flow Information Telemetry", Work in
+              Progress, Internet-Draft, draft-song-opsawg-ifit-
+              framework-19, 24 October 2022,
+              <https://datatracker.ietf.org/doc/html/draft-song-opsawg-
+              ifit-framework-19>.
 
    [I-D.tgraf-opsawg-ipfix-srv6-srh]
               Graf, T., Claise, B., and P. Francois, "Export of Segment
@@ -1140,6 +1148,10 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
               <https://github.com/network-analytics/vpp-srh-onpath-
               telemetry>.
 
+   [Paolo-Lucente-Pmacct]
+              "Paolo Lucente, Pmacct open source Network Telemetry Data
+              Collection", <https://github.com/pmacct/pmacct>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -1155,6 +1167,17 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
               DOI 10.17487/RFC3393, November 2002,
               <https://www.rfc-editor.org/info/rfc3393>.
 
+
+
+
+
+
+
+Graf, et al.             Expires 30 August 2023                [Page 21]
+
+Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
+
+
    [RFC5153]  Boschi, E., Mark, L., Quittek, J., Stiemerling, M., and P.
               Aitken, "IP Flow Information Export (IPFIX) Implementation
               Guidelines", RFC 5153, DOI 10.17487/RFC5153, April 2008,
@@ -1169,14 +1192,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
-
-
-
-
-Graf, et al.             Expires 30 August 2023                [Page 21]
-
-Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
-
 
    [RFC6049]  Morton, A. and E. Stephan, "Spatial Composition of
               Metrics", RFC 6049, DOI 10.17487/RFC6049, January 2011,
@@ -1212,6 +1227,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
               (IPPM)", STD 81, RFC 7679, DOI 10.17487/RFC7679, January
               2016, <https://www.rfc-editor.org/info/rfc7679>.
 
+
+
+Graf, et al.             Expires 30 August 2023                [Page 22]
+
+Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
+
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
@@ -1225,14 +1247,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
               A. Wang, "Network Telemetry Framework", RFC 9232,
               DOI 10.17487/RFC9232, May 2022,
               <https://www.rfc-editor.org/info/rfc9232>.
-
-
-
-
-Graf, et al.             Expires 30 August 2023                [Page 22]
-
-Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
-
 
 Authors' Addresses
 
@@ -1254,20 +1268,6 @@ Authors' Addresses
    Lyon
    France
    Email: alex.huang-feng@insa-lyon.fr
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

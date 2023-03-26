@@ -1058,6 +1058,16 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
         <t>The implementation was validated at the IETF 116 hackathon.</t>
       </section>
+
+      <section anchor="pmacct" title="Pmacct Data Collection">
+        <t>Paolo Lucente implemented the IE PathDelayMeanDeltaMicroseconds by
+        dividing IE PathDelaySumDeltaMicroseconds by IE packetDeltaCount in
+        the open source Network Telemetry data collection project pmacct.</t>
+
+        <t>The source code can be obtained here: <xref
+        target="Paolo-Lucente-Pmacct"/> and was validated at the IETF 115
+        hackathon.</t>
+      </section>
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
@@ -1133,6 +1143,18 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                  target="https://github.com/network-analytics/vpp-srh-onpath-telemetry">
         <front>
           <title>INSA Lyon, FD.io VPP implementation</title>
+
+          <author/>
+
+          <date/>
+        </front>
+      </reference>
+
+      <reference anchor="Paolo-Lucente-Pmacct"
+                 target="https://github.com/pmacct/pmacct">
+        <front>
+          <title>Paolo Lucente, Pmacct open source Network Telemetry Data
+          Collection</title>
 
           <author/>
 
