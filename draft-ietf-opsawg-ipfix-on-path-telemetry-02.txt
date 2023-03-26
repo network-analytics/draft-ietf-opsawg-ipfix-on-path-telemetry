@@ -699,25 +699,25 @@ Internet-Draft      Export of On-Path Delay in IPFIX       February 2023
    This section defines and describes the new IPFIX IEs.
 
    PathDelayMeanDeltaMicroseconds
-      16-bit unsigned integer that identifies the mean path delay in
+      32-bit unsigned integer that identifies the mean path delay in
       microseconds, between the IOAM encapsulation node and the local
       node with the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node).
 
    PathDelayMinDeltaMicroseconds
-      16-bit unsigned integer that identifies the lowest path delay in
+      32-bit unsigned integer that identifies the lowest path delay in
       microseconds, between the IOAM encapsulation node and the local
       node with the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node).
 
    PathDelayMaxDeltaMicroseconds
-      16-bit unsigned integer that identifies the highest path delay in
+      32-bit unsigned integer that identifies the highest path delay in
       microseconds, between the IOAM encapsulation node and the local
       node with the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node).
 
    PathDelaySumDeltaMicroseconds
-      32-bit unsigned integer that identifies the sum of the path delay
+      64-bit unsigned integer that identifies the sum of the path delay
       in microseconds, between the IOAM encapsulation node and the local
       node with the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node).
