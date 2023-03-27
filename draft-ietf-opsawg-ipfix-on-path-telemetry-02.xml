@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="26" month="February" year="2023"/>
+    <date day="27" month="February" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -1065,7 +1065,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         the open source Network Telemetry data collection project pmacct.</t>
 
         <t>The source code can be obtained here: <xref
-        target="Paolo-Lucente-Pmacct"/> and was validated at the IETF 115
+        target="Paolo-Lucente-Pmacct"/> and was validated at the IETF 116
         hackathon.</t>
       </section>
     </section>
