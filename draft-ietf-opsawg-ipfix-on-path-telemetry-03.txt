@@ -789,13 +789,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX          April 2023
         +------------+------+-----------------+----------------------+
         | Path Delay | Node | egressInterface | srhActiveSegmentIPv6 |
         +------------+------+-----------------+----------------------+
-        |     0 ?s   |  R1  |      276        |      2001:db8::4     |
+        |     0 us   |  R1  |      276        |      2001:db8::4     |
         +------------+------+-----------------+----------------------+
-        |    22 ?s   |  R2  |      312        |      2001:db8::4     |
+        |    22 us   |  R2  |      312        |      2001:db8::4     |
         +------------+------+-----------------+----------------------+
-        |    42 ?s   |  R3  |       27        |      2001:db8::4     |
+        |    42 us   |  R3  |       27        |      2001:db8::4     |
         +------------+------+-----------------+----------------------+
-        |   122 ?s   |  R4  |      854        |      2001:db8::4     |
+        |   122 us   |  R4  |      854        |      2001:db8::4     |
         +------------+------+-----------------+----------------------+
 
      Table 2: Example table of measured delay. Ascending by delay.
@@ -1260,7 +1260,7 @@ Appendix A.  IPFIX Encoding Examples
  |MinDelta |MaxDelta |MeanDelta|SumDelta |Inter |SegmentIPv6|Delta |
  |Micro..  |Micro..  |Micro..  |Micro..  |face  |           |Count |
  +---------+---------+---------+---------+------+-----------+------+
- |  22 ?s  |  74 ?s  |  36 ?s  | 180 ?s  |  276 |2001:db8::4|  5   |
+ |  22 us  |  74 us  |  36 us  | 180 us  |  276 |2001:db8::4|  5   |
  +---------+---------+---------+---------+------+-----------+------+
 
   Table 4: Aggregated delay with egressInterface and srhActiveSegmentIPv6
