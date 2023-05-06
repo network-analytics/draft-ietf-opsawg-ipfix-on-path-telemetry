@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="23" month="April" year="2023"/>
+    <date day="6" month="May" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -1190,6 +1190,23 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t>With encoding in Figure 1, the mean (average) path delay is
           calculated on the exporting node.</t>
 
+          <t><list style="symbols">
+              <t>Minimum One-Way Delay =&gt; PathDelayMinDeltaMicroseconds
+              (TBD6)</t>
+
+              <t>Maximum One-Way Delay =&gt; PathDelayMaxDeltaMicroseconds
+              (TBD7)</t>
+
+              <t>Mean One-Way Delay =&gt; PathDelayMeanDeltaMicroseconds
+              (TBD5)</t>
+
+              <t>Egress interface =&gt; egressInterface</t>
+
+              <t>Active SRv6 Segment =&gt; srhIPv6ActiveSegment</t>
+
+              <t>Packet Delta Count =&gt; packetDeltaCount</t>
+            </list></t>
+
           <t><figure>
               <artwork><![CDATA[
 
@@ -1208,7 +1225,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |0|     egressInterface = 14    |      Scope Field Length = 4   |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|srhActiveSegmentIPv... = TBD |      Scope Field Length = 1   |
+   |0|srhActiveSe... = 2001:db8::4 |      Scope Field Length = 16  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |0| packetDeltaCount = 5        |      Field Length = 1         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1236,8 +1253,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           egressInterface =  276                              |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | srhActiveSegme|             Field Length = 1                  |
-   | ntIPv...=TBD  |                                               |
+   |           srhIPv6ActiveSegment = 2001:db8::4                  |
+   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           packetDeltaCount = 5                                |
    |                                                               |
@@ -1252,7 +1269,24 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         <section anchor="Template-Record-and-Data-Set-with-SumDelta"
                  title="Template Record and Data Set with Sum Delta">
           <t>With encoding in Figure 3, the mean (average) path delay is
-          calculated on the data collection.</t>
+          calculated on the IPFIX data collection.</t>
+
+          <t><list style="symbols">
+              <t>Minimum One-Way Delay =&gt; PathDelayMinDeltaMicroseconds
+              (TBD6)</t>
+
+              <t>Maximum One-Way Delay =&gt; PathDelayMaxDeltaMicroseconds
+              (TBD7)</t>
+
+              <t>Sum of One-Way Delay =&gt; PathDelaySumDeltaMicroseconds
+              (TBD8)</t>
+
+              <t>Egress interface =&gt; egressInterface</t>
+
+              <t>Active SRv6 Segment =&gt; srhIPv6ActiveSegment</t>
+
+              <t>Packet Delta Count =&gt; packetDeltaCount</t>
+            </list></t>
 
           <t><figure>
               <artwork><![CDATA[
@@ -1272,12 +1306,12 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |0|     egressInterface = 14    |      Scope Field Length = 4   |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|srhActiveSegmentIPv... = TBD |      Scope Field Length = 1   |
+   |0|srhActiveSe... = 2001:db8::4 |      Scope Field Length = 16  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |0| packetDeltaCount = 5        |      Field Length = 1         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-     Figure 3: Template Record for PathDelayMeanDeltaMicroseconds
+     Figure 3: Template Record for PathDelaySumDeltaMicroseconds
 
             ]]></artwork>
             </figure></t>
@@ -1300,14 +1334,14 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           egressInterface =  276                              |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | srhActiveSegme|             Field Length = 1                  |
-   | ntIPv...=TBD  |                                               |
+   |           srhIPv6ActiveSegment = 2001:db8::4                  |
+   |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           packetDeltaCount = 5                                |
    |                                                               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-    Figure 2: Data Set Encoding for PathDelayMeanDeltaMicroseconds
+    Figure 2: Data Set Encoding for PathDelaySumDeltaMicroseconds
 
             ]]></artwork>
           </figure>
