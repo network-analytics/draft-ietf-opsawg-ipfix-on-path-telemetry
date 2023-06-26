@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="18" month="June" year="2023"/>
+    <date day="26" month="June" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -694,10 +694,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           the forwarding path to which next-hop IP contributed to how much
           delay.</t>
 
-          <t>With mplsTopLabelIPv4Address(IE47) or srhActiveSegmentIPv6 from
-          <xref target="I-D.tgraf-opsawg-ipfix-srv6-srh"/>, the forwarding
-          path to which MPLS top label IPv4 address or SRv6 active segment
-          contributed to how much delay.</t>
+          <t>With mplsTopLabelIPv4Address(IE47) or destinationIPv6Address and
+          srhActiveSegmentIPv6 from <xref
+          target="I-D.tgraf-opsawg-ipfix-srv6-srh"/>, the forwarding path to
+          which MPLS top label IPv4 address or IPv6 destination address and
+          SRv6 active segment contributed to how much delay.</t>
 
           <t>BGP communities are often used for setting a path priority or
           service selection. With bgpDestinationExtendedCommunityList(488) or
@@ -712,24 +713,25 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         </list></t>
 
       <t>Taking figure 1 from section 1 as topology example. Below example
-      table shows the aggregated delay per each node, egressInterface and
-      srhActiveSegmentIPv6.</t>
+      table shows the aggregated delay per each node, ingressInterface,
+      egressInterface, destinationIPv6Address and srhActiveSegmentIPv6.</t>
 
       <t><figure>
           <artwork><![CDATA[
-     +------------+------+-----------------+----------------------+
-     | Path Delay | Node | egressInterface | srhActiveSegmentIPv6 |
-     +------------+------+-----------------+----------------------+
-     |     0 us   |  R1  |      276        |      2001:db8::4     |
-     +------------+------+-----------------+----------------------+
-     |    22 us   |  R2  |      312        |      2001:db8::4     |
-     +------------+------+-----------------+----------------------+
-     |    42 us   |  R3  |       27        |      2001:db8::4     |
-     +------------+------+-----------------+----------------------+
-     |   122 us   |  R4  |      854        |      2001:db8::4     |
-     +------------+------+-----------------+----------------------+
+     +-----------+-----------+------+-------------+-------------+------------+
+     | ingress   | egress    | Node | destination | srhActive   | Path Delay |
+     | Interface | Interface |      | IPv6Address | SegmentIPv6 |            |
+     +-----------+-----------+------+-------------+-------------+------------+
+     |    271    |    276    |  R1  | 2001:db8::2 | 2001:db8::4 |    0 us    |
+     +-----------+-----------+------+-------------+-------------+------------+
+     |    301    |    312    |  R2  | 2001:db8::3 | 2001:db8::4 |   22 us    |
+     +-----------+-----------+------+-------------+-------------+------------+
+     |    22     |     27    |  R3  | 2001:db8::4 | 2001:db8::4 |   42 us    |
+     +-----------+-----------+------+-------------+-------------+------------+
+     |    852    |    854    |  R4  | 2001:db8::4 | 2001:db8::4 |  122 us    |
+     +-----------+-----------+------+-------------+-------------+------------+
 
-  Table 2: Example table of measured delay. Ascending by delay.
+           Table 2: Example table of measured delay. Ascending by delay.
        ]]></artwork>
         </figure></t>
     </section>
@@ -1166,18 +1168,18 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     <section anchor="Encoding-Example" title="IPFIX Encoding Examples">
       <t>This appendix represents two different encodings for the newly
       introduced IEs. Taking figure 1 from section 1 as topology example.
-      Below example Table 4 shows the aggregated delay with egressInterface
-      and srhActiveSegmentIPv6.</t>
+      Below example Table 4 shows the aggregated delay with ingressInterface,
+      egressInterface, destinationIPv6Address and srhActiveSegmentIPv6.</t>
 
       <t><figure>
           <artwork><![CDATA[
- +------+-----------+------+---------+---------+---------+---------+
- |egress|srhActive  |packet|PathDelay|PathDelay|PathDelay|PathDelta|
- ||Inter |SegmentIPv6|Delta MinDelta |MaxDelta |MeanDelta|SumDelta |
- |face  |           |Count |Micro..  |Micro..  |Micro..  |Micro..  |
- +------+-----------+------+---------+---------+---------+---------+
- |  276 |2001:db8::4|  5   |  22 us  |  74 us  |  36 us  | 180 us  |
- +------+-----------+------+---------+---------+---------+---------+
+ +------ +------+-----------+-----------+------+---------+---------+---------+---------+
+ |ingress|egress|destination|srhActive  |packet|PathDelay|PathDelay|PathDelta|PathDelta|
+ |Inter  |Inter |IPv6Address|SegmentIPv6|Delta |MinDelta |MaxDelta |MeanDelta|MeanDelta|
+ |face   |face  |           |           |Count |Micro..  |Micro..  |Micro..  |Micro..  |
+ +-------+------+-----------+-----------+------+---------+---------+---------+---------+
+ |  271  |  276 |2001:db8::4|2001:db8::2|  5   |  22 us  |  74 us  |  36 us  | 180 us  |
+ +-------+------+-----------+-----------+------+---------+---------+---------+---------+
 
   Table 4: Aggregated delay with egressInterface and srhActiveSegmentIPv6
        ]]></artwork>
@@ -1191,7 +1193,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           calculated on the exporting node.</t>
 
           <t><list style="symbols">
+              <t>Ingress interface =&gt; ingressInterface</t>
+
               <t>Egress interface =&gt; egressInterface</t>
+
+              <t>IPv6 destination address =&gt; destinationIPv6Address</t>
 
               <t>Active SRv6 Segment =&gt; srhIPv6ActiveSegment</t>
 
@@ -1213,11 +1219,15 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |          SET ID = 2           |       Length = 28             |
+   |          SET ID = 2           |       Length = 54             |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |      Template ID = 256        |      Field Count = 6          |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|     egressInterface = 14    |      Field Length = 4         |
+   |0|     ingressInterface = 271  |      Field Length = 4         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0|     egressInterface = 276   |      Field Length = 4         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0|destination... = 2001:db8::2 |      Field Length = 16        |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |0|srhActiveSe... = 2001:db8::4 |      Field Length = 16        |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1243,9 +1253,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         SET ID = 256          |           Length = 40         |
+   |         SET ID = 256          |           Length = 66         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |           ingressInterface =  271                             |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           egressInterface =  276                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |           destinationIPv6Address =  2001:db8::2               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           srhIPv6ActiveSegment = ...                          |
    |                          ...                                  |
@@ -1273,7 +1287,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           calculated on the IPFIX data collection.</t>
 
           <t><list style="symbols">
+              <t>Ingress interface =&gt; ingressInterface</t>
+
               <t>Egress interface =&gt; egressInterface</t>
+
+              <t>IPv6 destination address =&gt; destinationIPv6Address</t>
 
               <t>Active SRv6 Segment =&gt; srhIPv6ActiveSegment</t>
 
@@ -1295,11 +1313,15 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |          SET ID = 2           |       Length = 32             |
+   |          SET ID = 2           |       Length = 60             |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |      Template ID = 256        |      Field Count = 6          |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|     egressInterface = 14    |      Field Length = 4         |
+   |0|     ingressInterface = 271  |      Field Length = 4         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0|     egressInterface = 276   |      Field Length = 4         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |0|destination... = 2001:db8::2 |      Field Length = 16        |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |0|srhActiveSe... = 2001:db8::4 |      Field Length = 16        |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1325,9 +1347,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         SET ID = 256          |           Length = 44         |
+   |         SET ID = 256          |           Length = 72         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |           ingressInterface =  271                             |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           egressInterface =  276                              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |           destinationIPv6Address =  2001:db8::2               |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           srhIPv6ActiveSegment = ...                          |
    |                          ...                                  |

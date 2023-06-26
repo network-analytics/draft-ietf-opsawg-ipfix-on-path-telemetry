@@ -5,10 +5,10 @@
 Network Working Group                                            T. Graf
 Internet-Draft                                                  Swisscom
 Intended status: Standards Track                               B. Claise
-Expires: 20 December 2023                                         Huawei
+Expires: 28 December 2023                                         Huawei
                                                            A. Huang Feng
                                                                INSA-Lyon
-                                                            18 June 2023
+                                                            26 June 2023
 
 
                     Export of On-Path Delay in IPFIX
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 December 2023.
+   This Internet-Draft will expire on 28 December 2023.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 1]
+Graf, et al.            Expires 28 December 2023                [Page 1]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 2]
+Graf, et al.            Expires 28 December 2023                [Page 2]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -165,7 +165,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 3]
+Graf, et al.            Expires 28 December 2023                [Page 3]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -221,7 +221,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 4]
+Graf, et al.            Expires 28 December 2023                [Page 4]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -277,7 +277,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 5]
+Graf, et al.            Expires 28 December 2023                [Page 5]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -333,7 +333,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 6]
+Graf, et al.            Expires 28 December 2023                [Page 6]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -389,7 +389,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 7]
+Graf, et al.            Expires 28 December 2023                [Page 7]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -445,7 +445,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 8]
+Graf, et al.            Expires 28 December 2023                [Page 8]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -501,7 +501,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023                [Page 9]
+Graf, et al.            Expires 28 December 2023                [Page 9]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -557,7 +557,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 10]
+Graf, et al.            Expires 28 December 2023               [Page 10]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -613,7 +613,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 11]
+Graf, et al.            Expires 28 December 2023               [Page 11]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -669,7 +669,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 12]
+Graf, et al.            Expires 28 December 2023               [Page 12]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -725,7 +725,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 13]
+Graf, et al.            Expires 28 December 2023               [Page 13]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -748,10 +748,11 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
       forwarding path to which next-hop IP contributed to how much
       delay.
 
-   *  With mplsTopLabelIPv4Address(IE47) or srhActiveSegmentIPv6 from
-      [I-D.tgraf-opsawg-ipfix-srv6-srh], the forwarding path to which
-      MPLS top label IPv4 address or SRv6 active segment contributed to
-      how much delay.
+   *  With mplsTopLabelIPv4Address(IE47) or destinationIPv6Address and
+      srhActiveSegmentIPv6 from [I-D.tgraf-opsawg-ipfix-srv6-srh], the
+      forwarding path to which MPLS top label IPv4 address or IPv6
+      destination address and SRv6 active segment contributed to how
+      much delay.
 
    *  BGP communities are often used for setting a path priority or
       service selection.  With bgpDestinationExtendedCommunityList(488)
@@ -765,8 +766,8 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
       specific application in the network.
 
    Taking figure 1 from section 1 as topology example.  Below example
-   table shows the aggregated delay per each node, egressInterface and
-   srhActiveSegmentIPv6.
+   table shows the aggregated delay per each node, ingressInterface,
+   egressInterface, destinationIPv6Address and srhActiveSegmentIPv6.
 
 
 
@@ -780,25 +781,25 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-
-Graf, et al.            Expires 20 December 2023               [Page 14]
+Graf, et al.            Expires 28 December 2023               [Page 14]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
-        +------------+------+-----------------+----------------------+
-        | Path Delay | Node | egressInterface | srhActiveSegmentIPv6 |
-        +------------+------+-----------------+----------------------+
-        |     0 us   |  R1  |      276        |      2001:db8::4     |
-        +------------+------+-----------------+----------------------+
-        |    22 us   |  R2  |      312        |      2001:db8::4     |
-        +------------+------+-----------------+----------------------+
-        |    42 us   |  R3  |       27        |      2001:db8::4     |
-        +------------+------+-----------------+----------------------+
-        |   122 us   |  R4  |      854        |      2001:db8::4     |
-        +------------+------+-----------------+----------------------+
+     +-----------+-----------+------+-------------+-------------+------------+
+     | ingress   | egress    | Node | destination | srhActive   | Path Delay |
+     | Interface | Interface |      | IPv6Address | SegmentIPv6 |            |
+     +-----------+-----------+------+-------------+-------------+------------+
+     |    271    |    276    |  R1  | 2001:db8::2 | 2001:db8::4 |    0 us    |
+     +-----------+-----------+------+-------------+-------------+------------+
+     |    301    |    312    |  R2  | 2001:db8::3 | 2001:db8::4 |   22 us    |
+     +-----------+-----------+------+-------------+-------------+------------+
+     |    22     |     27    |  R3  | 2001:db8::4 | 2001:db8::4 |   42 us    |
+     +-----------+-----------+------+-------------+-------------+------------+
+     |    852    |    854    |  R4  | 2001:db8::4 | 2001:db8::4 |  122 us    |
+     +-----------+-----------+------+-------------+-------------+------------+
 
-     Table 2: Example table of measured delay. Ascending by delay.
+           Table 2: Example table of measured delay. Ascending by delay.
 
 6.  IANA Considerations
 
@@ -833,14 +834,15 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
      +-------+--------------------------------+
   Table 3: Creates IPFIX IEs in the "IPFIX Information Elements" registry
 
-   Note to the RFC-Editor:
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 15]
+Graf, et al.            Expires 28 December 2023               [Page 15]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
+
+   Note to the RFC-Editor:
 
    *  Please replace TBD5 - TBD8 with the values allocated by IANA
 
@@ -891,9 +893,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-
-
-Graf, et al.            Expires 20 December 2023               [Page 16]
+Graf, et al.            Expires 28 December 2023               [Page 16]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -949,7 +949,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 17]
+Graf, et al.            Expires 28 December 2023               [Page 17]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -1005,7 +1005,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 18]
+Graf, et al.            Expires 28 December 2023               [Page 18]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -1061,7 +1061,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 19]
+Graf, et al.            Expires 28 December 2023               [Page 19]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -1117,7 +1117,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 20]
+Graf, et al.            Expires 28 December 2023               [Page 20]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -1173,7 +1173,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 21]
+Graf, et al.            Expires 28 December 2023               [Page 21]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -1229,7 +1229,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-Graf, et al.            Expires 20 December 2023               [Page 22]
+Graf, et al.            Expires 28 December 2023               [Page 22]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -1252,16 +1252,17 @@ Appendix A.  IPFIX Encoding Examples
 
    This appendix represents two different encodings for the newly
    introduced IEs.  Taking figure 1 from section 1 as topology example.
-   Below example Table 4 shows the aggregated delay with egressInterface
-   and srhActiveSegmentIPv6.
+   Below example Table 4 shows the aggregated delay with
+   ingressInterface, egressInterface, destinationIPv6Address and
+   srhActiveSegmentIPv6.
 
- +------+-----------+------+---------+---------+---------+---------+
- |egress|srhActive  |packet|PathDelay|PathDelay|PathDelay|PathDelta|
- ||Inter |SegmentIPv6|Delta MinDelta |MaxDelta |MeanDelta|SumDelta |
- |face  |           |Count |Micro..  |Micro..  |Micro..  |Micro..  |
- +------+-----------+------+---------+---------+---------+---------+
- |  276 |2001:db8::4|  5   |  22 us  |  74 us  |  36 us  | 180 us  |
- +------+-----------+------+---------+---------+---------+---------+
+ +------ +------+-----------+-----------+------+---------+---------+---------+---------+
+ |ingress|egress|destination|srhActive  |packet|PathDelay|PathDelay|PathDelta|PathDelta|
+ |Inter  |Inter |IPv6Address|SegmentIPv6|Delta |MinDelta |MaxDelta |MeanDelta|MeanDelta|
+ |face   |face  |           |           |Count |Micro..  |Micro..  |Micro..  |Micro..  |
+ +-------+------+-----------+-----------+------+---------+---------+---------+---------+
+ |  271  |  276 |2001:db8::4|2001:db8::2|  5   |  22 us  |  74 us  |  36 us  | 180 us  |
+ +-------+------+-----------+-----------+------+---------+---------+---------+---------+
 
   Table 4: Aggregated delay with egressInterface and srhActiveSegmentIPv6
 
@@ -1272,34 +1273,41 @@ A.1.1.  Template Record and Data Set with Mean Delta
    With encoding in Figure 1, the mean (average) path delay is
    calculated on the exporting node.
 
+   *  Ingress interface => ingressInterface
+
    *  Egress interface => egressInterface
+
+   *  IPv6 destination address => destinationIPv6Address
 
    *  Active SRv6 Segment => srhIPv6ActiveSegment
 
    *  Packet Delta Count => packetDeltaCount
 
-   *  Minimum One-Way Delay => PathDelayMinDeltaMicroseconds (TBD6)
-
-   *  Maximum One-Way Delay => PathDelayMaxDeltaMicroseconds (TBD7)
 
 
-
-
-Graf, et al.            Expires 20 December 2023               [Page 23]
+Graf, et al.            Expires 28 December 2023               [Page 23]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
+
+   *  Minimum One-Way Delay => PathDelayMinDeltaMicroseconds (TBD6)
+
+   *  Maximum One-Way Delay => PathDelayMaxDeltaMicroseconds (TBD7)
 
    *  Mean One-Way Delay => PathDelayMeanDeltaMicroseconds (TBD5)
 
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          SET ID = 2           |       Length = 28             |
+      |          SET ID = 2           |       Length = 54             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |      Template ID = 256        |      Field Count = 6          |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|     egressInterface = 14    |      Field Length = 4         |
+      |0|     ingressInterface = 271  |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0|     egressInterface = 276   |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0|destination... = 2001:db8::2 |      Field Length = 16        |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |0|srhActiveSe... = 2001:db8::4 |      Field Length = 16        |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1333,15 +1341,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-
-
-
-
-
-
-
-
-Graf, et al.            Expires 20 December 2023               [Page 24]
+Graf, et al.            Expires 28 December 2023               [Page 24]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -1349,9 +1349,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         SET ID = 256          |           Length = 40         |
+      |         SET ID = 256          |           Length = 66         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           ingressInterface =  271                             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           egressInterface =  276                              |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           destinationIPv6Address =  2001:db8::2               |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           srhIPv6ActiveSegment = ...                          |
       |                          ...                                  |
@@ -1375,7 +1379,11 @@ A.1.2.  Template Record and Data Set with Sum Delta
    With encoding in Figure 3, the mean (average) path delay is
    calculated on the IPFIX data collection.
 
+   *  Ingress interface => ingressInterface
+
    *  Egress interface => egressInterface
+
+   *  IPv6 destination address => destinationIPv6Address
 
    *  Active SRv6 Segment => srhIPv6ActiveSegment
 
@@ -1389,15 +1397,7 @@ A.1.2.  Template Record and Data Set with Sum Delta
 
 
 
-
-
-
-
-
-
-
-
-Graf, et al.            Expires 20 December 2023               [Page 25]
+Graf, et al.            Expires 28 December 2023               [Page 25]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
@@ -1405,11 +1405,15 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          SET ID = 2           |       Length = 32             |
+      |          SET ID = 2           |       Length = 60             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |      Template ID = 256        |      Field Count = 6          |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|     egressInterface = 14    |      Field Length = 4         |
+      |0|     ingressInterface = 271  |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0|     egressInterface = 276   |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0|destination... = 2001:db8::2 |      Field Length = 16        |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |0|srhActiveSe... = 2001:db8::4 |      Field Length = 16        |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1427,12 +1431,43 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
    The data set is represented as follows:
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.            Expires 28 December 2023               [Page 26]
+
+Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
+
+
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         SET ID = 256          |           Length = 44         |
+      |         SET ID = 256          |           Length = 72         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           ingressInterface =  271                             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           egressInterface =  276                              |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           destinationIPv6Address =  2001:db8::2               |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           srhIPv6ActiveSegment = ...                          |
       |                          ...                                  |
@@ -1449,13 +1484,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
        Figure 2: Data Set Encoding for PathDelaySumDeltaMicroseconds
-
-
-
-
-Graf, et al.            Expires 20 December 2023               [Page 26]
-
-Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 Authors' Addresses
@@ -1481,32 +1509,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Graf, et al.            Expires 20 December 2023               [Page 27]
+Graf, et al.            Expires 28 December 2023               [Page 27]
