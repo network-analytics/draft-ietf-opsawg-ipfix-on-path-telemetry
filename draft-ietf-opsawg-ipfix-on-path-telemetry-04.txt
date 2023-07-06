@@ -1299,17 +1299,17 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          SET ID = 2           |       Length = 54             |
+      |          SET ID = 2           |       Length = 40             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |      Template ID = 256        |      Field Count = 6          |
+      |      Template ID = 256        |      Field Count = 8          |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|     ingressInterface = 271  |      Field Length = 4         |
+      |0|     ingressInterface = 10   |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|     egressInterface = 276   |      Field Length = 4         |
+      |0|     egressInterface = 14    |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|destination... = 2001:db8::2 |      Field Length = 16        |
+      |0| destinationIPv6Address = 28 |      Field Length = 16        |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|srhActiveSe... = 2001:db8::4 |      Field Length = 16        |
+      |0| srhIPv6ActiveSegment = 495  |      Field Length = 16        |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |0| packetDeltaCount = 5        |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1349,13 +1349,16 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         SET ID = 256          |           Length = 66         |
+      |         SET ID = 256          |           Length = 60         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           ingressInterface =  271                             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           egressInterface =  276                              |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           destinationIPv6Address =  2001:db8::2               |
+      |           destinationIPv6Address =                            |
+      |                          ...                                  |
+      |                          ...                                  |
+      |                          2001:db8::2                          |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           srhIPv6ActiveSegment = ...                          |
       |                          ...                                  |
@@ -1391,9 +1394,6 @@ A.1.2.  Template Record and Data Set with Sum Delta
 
    *  Minimum One-Way Delay => PathDelayMinDeltaMicroseconds (TBD6)
 
-   *  Maximum One-Way Delay => PathDelayMaxDeltaMicroseconds (TBD7)
-
-   *  Sum of One-Way Delay => PathDelaySumDeltaMicroseconds (TBD8)
 
 
 
@@ -1402,20 +1402,24 @@ Graf, et al.            Expires 28 December 2023               [Page 25]
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
+   *  Maximum One-Way Delay => PathDelayMaxDeltaMicroseconds (TBD7)
+
+   *  Sum of One-Way Delay => PathDelaySumDeltaMicroseconds (TBD8)
+
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          SET ID = 2           |       Length = 60             |
+      |          SET ID = 2           |       Length = 40             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |      Template ID = 256        |      Field Count = 6          |
+      |      Template ID = 257        |      Field Count = 8          |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|     ingressInterface = 271  |      Field Length = 4         |
+      |0|     ingressInterface = 10   |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|     egressInterface = 276   |      Field Length = 4         |
+      |0|     egressInterface = 14    |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|destination... = 2001:db8::2 |      Field Length = 16        |
+      |0| destinationIPv6Address = 28 |      Field Length = 16        |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|srhActiveSe... = 2001:db8::4 |      Field Length = 16        |
+      |0| srhIPv6ActiveSegment = 495  |      Field Length = 16        |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |0| packetDeltaCount = 5        |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1449,10 +1453,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
 
 
 
-
-
-
-
 Graf, et al.            Expires 28 December 2023               [Page 26]
 
 Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
@@ -1461,13 +1461,16 @@ Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         SET ID = 256          |           Length = 72         |
+      |         SET ID = 257          |           Length = 60         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           ingressInterface =  271                             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           egressInterface =  276                              |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           destinationIPv6Address =  2001:db8::2               |
+      |           destinationIPv6Address =                            |
+      |                          ...                                  |
+      |                          ...                                  |
+      |                          2001:db8::2                          |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           srhIPv6ActiveSegment = ...                          |
       |                          ...                                  |
@@ -1501,6 +1504,16 @@ Authors' Addresses
    Email: benoit.claise@huawei.com
 
 
+
+
+
+
+
+Graf, et al.            Expires 28 December 2023               [Page 27]
+
+Internet-Draft      Export of On-Path Delay in IPFIX           June 2023
+
+
    Alex Huang Feng
    INSA-Lyon
    Lyon
@@ -1509,4 +1522,47 @@ Authors' Addresses
 
 
 
-Graf, et al.            Expires 28 December 2023               [Page 27]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.            Expires 28 December 2023               [Page 28]
