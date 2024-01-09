@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="07" month="January" year="2023"/>
+    <date day="09" month="January" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -433,7 +433,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               Telemetry implementation. For IOAM, Section 4.4.1 of <xref
               target="RFC9197"/> describes what kind of timestamps are
               supported. Section 4.4.2.3 and 4.4.2.4 describe where the
-              timestamp is being inserted. For the Enhanced Alternat Marking
+              timestamp is being inserted. For the Enhanced Alternate Marking
               Method, Section 2 of <xref
               target="I-D.zhou-ippm-enhanced-alternate-marking"/> describes
               timestamp encoding and granularity.</t>
@@ -1006,7 +1006,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         Extension-Flags 2 and 3, timestamps can be encoded as defined in
         Section 4.4.2.3 and 4.4.2.4 of <xref target="RFC9197"/>.</t>
 
-        <t>For the Enhanced Alternat Marking Method, Section 2 of <xref
+        <t>For the Enhanced Alternate Marking Method, Section 2 of <xref
         target="I-D.zhou-ippm-enhanced-alternate-marking"/> defines that
         within the metaInfo a nano second timestamp can be encoded in the
         encapsulation node and be read at the intermediate and decapsulation
