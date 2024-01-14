@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="09" month="January" year="2023"/>
+    <date day="14" month="January" year="2023"/>
 
     <abstract>
       <t>This document introduces new IP Flow Information Export (IPFIX)
@@ -1011,7 +1011,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         within the metaInfo a nano second timestamp can be encoded in the
         encapsulation node and be read at the intermediate and decapsulation
         node to calculate the on-path delay. <xref target="RFC9343"/> defines
-        how this can be appied to the IPv6 data-plane.</t>
+        how this can be appied to the IPv6 data-plane and <xref
+        target="I-D.fz-spring-srv6-alt-mark"/> defines how this can be appied
+        to the Segment Routing Header in SRv6.</t>
       </section>
     </section>
 
@@ -1090,8 +1092,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
-      <t>The authors would like to thank Al Morton and Greg Mirsky for their
-      review and valuable comments.</t>
+      <t>The authors would like to thank Al Morton, Greg Mirsky and Giuseppe
+      Fioccola for their review and valuable comments.</t>
     </section>
   </middle>
 
@@ -1159,6 +1161,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       <?rfc include='reference.I-D.zhou-ippm-enhanced-alternate-marking'?>
 
       <?rfc include='reference.I-D.ahuang-ippm-dex-timestamp-ext'?>
+
+      <?rfc include='reference.I-D.fz-spring-srv6-alt-mark'?>
 
       <reference anchor="INSA-Lyon-VPP"
                  target="https://github.com/network-analytics/vpp-srh-onpath-telemetry">
