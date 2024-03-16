@@ -354,7 +354,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           singleton.</t>
 
           <t><xref target="I-D.ietf-opsawg-ipfix-on-path-telemetry"/> specifies
-          how to export the performance metric with IPFIX.</t
+          how to export the performance metric with IPFIX.</t>
         </section>
 
         <section title="Fixed Parameters">
