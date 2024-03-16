@@ -358,17 +358,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t>None</t>
         </section>
 
-        <section title="Runtime Parameters">
-          <t>Runtime Parameters are input factors that must be determined, 
-          configured into the measurement system, and reported with the 
-          results for the context to be complete.</t>
-
-          <t>Therefore, the IPFIX Metering Process parameters (IPFIX Template Record 
-          used, potential traffic filters, and potential sampling method and parameters) 
-          that generates the flow records must be reported to provide the complete 
-          measurement context.</t>
-        </section>
-
       </section>
 
       <section title="Method of Measurement">
@@ -402,13 +391,12 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           configured into the measurement system, and reported with the
           results for the context to be complete.</t>
 
-          <t>The hybrid type I metering parameters must must be reported to
+          <t>The hybrid type I metering parameters must be reported to
           provide the complete measurement context. As an example, if the
-          IPFIX metering process is used, then the IPFIX metering process
-          parameters (IPFIX template record used, potential traffic filters,
-          and potential sampling method and parameters) that generates the
-          flow records must be reported to provide the complete measurement
-          context.</t>
+          IPFIX metering process is used, then the IPFIX Metering Process 
+          parameters (IPFIX Template Record, potential traffic filters, and 
+          potential sampling method and parameters) that generate the Flow Records 
+          must be reported to provide the complete measurement context.</t>
 
           <t><list style="hanging">
               <t hangText="Src:">The IP address of the host in the host A Role
