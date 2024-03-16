@@ -422,13 +422,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               target="RFC6991"/>.</t>
 
               <t hangText="T0:">T time, the start of a measurement interval 
-              (format "date‑time" as specified in Section 5.6 of <xref
-              target="RFC3339"/>; see also "date‑and‑time" in Section 3 of 
+              (format "date‑time" as specified in Section 5.6 of <xref target="RFC3339"/>;
+               see also "date‑and‑time" in Section 3 of 
               <xref target="RFC6991"/>). The UTC Time Zone is required by Section 6.1 
               of <xref target="RFC2330"/>. When T0 is "all-zeros", a start 
               time is unspecified and Tf is to be interpreted as the duration 
               of the measurement interval. The start time is controlled through 
-              other means</t>
+              other means.</t>
 
               <t hangText="Tf:">A time, the end of a measurement interval 
               (format "date‑time" as specified in Section 5.6 of <xref
