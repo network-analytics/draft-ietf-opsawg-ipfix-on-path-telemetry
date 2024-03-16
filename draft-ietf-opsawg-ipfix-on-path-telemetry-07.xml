@@ -352,6 +352,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           sourcing host, such that the Spatial Composition <xref
           target="RFC6049"/> of the measurements yields a one-way delay
           singleton.</t>
+
+          <t><xref target="I-D.ietf-opsawg-ipfix-on-path-telemetry"/> specifies
+          how to export the performance metric with IPFIX.</t
         </section>
 
         <section title="Fixed Parameters">
@@ -373,7 +376,15 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         </section>
 
         <section title="Packet Stream Generation">
-          <t>N/A</t>
+          <t>The timestamp when the packet is being
+          received at IOAM encapsulation node. Format depends on On-Path
+          Telemetry implementation. For IOAM, Section 4.4.1 of <xref
+          target="RFC9197"/> describes what kind of timestamps are
+          supported. Section 4.4.2.3 and 4.4.2.4 describe where the
+          timestamp is being inserted. For the Enhanced Alternate Marking
+          Method, Section 2 of <xref
+          target="I-D.zhou-ippm-enhanced-alternate-marking"/> describes
+          timestamp encoding and granularity.</t>
         </section>
 
         <section title="Traffic Filtering (Observation) Details">
@@ -393,10 +404,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
           <t>The hybrid type I metering parameters must be reported to
           provide the complete measurement context. As an example, if the
-          IPFIX metering process is used, then the IPFIX Metering Process 
+          IPFIX Metering Process is used, then the IPFIX Metering Process 
           parameters (IPFIX Template Record, potential traffic filters, and 
           potential sampling method and parameters) that generate the Flow Records 
-          must be reported to provide the complete measurement context.</t>
+          must be reported to provide the complete measurement context. At a 
+          minimum, the following fields are required:</t>
 
           <t><list style="hanging">
               <t hangText="Src:">The IP address of the host in the host A Role
@@ -409,21 +421,22 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               ipv6-address-no-zone value for IPv6; see section 4 of <xref
               target="RFC6991"/>.</t>
 
-              <t hangText="TTL or Hop Limit:">Set at desired value.</t>
+              <t hangText="T0:">T time, the start of a measurement interval 
+              (format "date‑time" as specified in Section 5.6 of <xref
+              target="RFC3339"/>; see also "date‑and‑time" in Section 3 of 
+              <xref target="RFC6991"/>). The UTC Time Zone is required by Section 6.1 
+              of <xref target="RFC2330"/>. When T0 is "all-zeros", a start 
+              time is unspecified and Tf is to be interpreted as the duration 
+              of the measurement interval. The start time is controlled through 
+              other means</t>
 
-              <t hangText="DSCP:">Set at desired value.</t>
-
-              <t hangText="IPv6 Flow Label:">Set at desired value.</t>
-
-              <t hangText="Timestamp:">The timestamp when the packet is being
-              received at IOAM encapsulation node. Format depends on On-Path
-              Telemetry implementation. For IOAM, Section 4.4.1 of <xref
-              target="RFC9197"/> describes what kind of timestamps are
-              supported. Section 4.4.2.3 and 4.4.2.4 describe where the
-              timestamp is being inserted. For the Enhanced Alternate Marking
-              Method, Section 2 of <xref
-              target="I-D.zhou-ippm-enhanced-alternate-marking"/> describes
-              timestamp encoding and granularity.</t>
+              <t hangText="Tf:">A time, the end of a measurement interval 
+              (format "date‑time" as specified in Section 5.6 of <xref
+              target="RFC3339"/>; see also "date‑and‑time" in 
+              Section 3 of <xref target="RFC6991"/>)). The UTC Time Zone is 
+              required by Section 6.1 of <xref target="RFC2330"/>. When T0 
+              is "all-zeros", an ending time and date is ignored and Tf is 
+              interpreted as the duration of the measurement interval.</t>
             </list></t>
         </section>
 
@@ -1105,7 +1118,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
       <?rfc include='reference.RFC.2119'?>
 
-      <?rfc include='reference.RFC.2330'?>
+      <?rfc include='reference.RFC.2330'?>F
 
       <?rfc include='reference.RFC.3393'?>
 
