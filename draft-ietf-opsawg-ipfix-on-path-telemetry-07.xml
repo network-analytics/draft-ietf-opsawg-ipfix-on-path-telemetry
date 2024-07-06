@@ -10,7 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-opsawg-ipfix-on-path-telemetry-06"
+<rfc category="std" docName="draft-ietf-opsawg-ipfix-on-path-telemetry-07"
      ipr="trust200902">
   <front>
     <title abbrev="Export of On-Path Delay in IPFIX">Export of On-Path Delay
@@ -237,6 +237,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       applying the template defined in Section 11 of <xref
       target="RFC8911"/>.</t>
 
+      <t>IANA Note (to be removed). RFC 8192 section 4 was taken a guiding example.</t>
+
       <section anchor="ip-ow-delay-hybridtype1-passive-reg-entries"
                title="IP One-Way Delay Hybrid Type I Passive Performance Metrics">
         <t>This section specifies four performance metrics for the Hybrid Type
@@ -250,17 +252,17 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         assigned corresponding URLs to each of the four registered performance
         metrics.</t>
 
+
         <section numbered="true" title="Summary">
           <t>This category includes multiple indexes of the registered
           performance metrics: the element ID and Metric Name.</t>
 
           <section title="ID (Identifier)">
-            <t>&lt;insert a numeric Identifier, an integer, TBD&gt;</t>
-          </section>
+            <t>IANA has allocated the numeric Identifiers TBD1, TBD2, TDB3, and TBD4
+              for the four Named Metric Entries in the following section.</t>
 
-          <section title="Name">
-            <t>IANA has allocated the numeric Identifiers TBD1-4 for the four
-            Named Metric Entries in this section</t>
+            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.</t>
+
           </section>
 
           <section title="Name">
@@ -275,6 +277,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
             <t>TBD4:
             OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum</t>
+
+            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.</t>
+
           </section>
 
           <section title="URI">
@@ -289,26 +294,36 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
             <t>URL: <eref
             target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum"/></t>
+
+            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.</t>
           </section>
         </section>
 
         <section title="Description">
-          <t>This metric assesses the one-way delay of IP packets constituting
-          a single connection between two hosts. We consider the measurement
-          of one-way delay based on a single Observation Point (OP) <xref
-          target="RFC7011"/> somewhere in the network. The output is the
-          one-way delay for all successfully forwarded packets expressed as
-          the &lt;statistic&gt; of their conditional delay distribution, where
-          &lt;statistic&gt; is one of:</t>
-
           <t><list style="symbols">
-              <t>Mean</t>
+              <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean: This 
+                metric assesses the mean of one-way delays of all successfully 
+                forwarded IP packets constituting a single connection between 
+                two hosts.  We consider the measurement of one-way delay based 
+                on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
 
-              <t>Min</t>
+              <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min: This 
+                metric assesses the minimum of one-way delays of all successfully 
+                forwarded IP packets constituting a single connection between 
+                two hosts.  We consider the measurement of one-way delay based 
+                on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
 
-              <t>Max</t>
+              <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max: This 
+                metric assesses the maximum of one-way delays of all successfully 
+                forwarded IP packets constituting a single connection between 
+                two hosts.  We consider the measurement of one-way delay based 
+                on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
 
-              <t>Sum</t>
+              <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum: This 
+                metric assesses the sum of one-way delays of all successfully 
+                forwarded IP packets constituting a single connection between 
+                two hosts.  We consider the measurement of one-way delay based 
+                on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
             </list></t>
         </section>
 
@@ -386,8 +401,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         </section>
 
         <section title="Traffic Filtering (Observation) Details">
-          <t>The Fixed Parameters above give a portion of the Traffic Filter.
-          Other aspects will be supplied as Runtime Parameters (below).</t>
+          <t>Runtime Parameters (below) may be used for Traffic Filtering.</t>
         </section>
 
         <section title="Sampling Distribution">
@@ -484,7 +498,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t>For each &lt;statistic&gt; Singleton one of the following
           subsections applies.</t>
 
-          <section title="Mean">
+          <section title="OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean">
             <t>The mean SHALL be calculated using the conditional distribution
             of all packets with a finite value of one-way delay (undefined
             delays are excluded) -- a single value, as follows:</t>
@@ -509,7 +523,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               </list></t>
           </section>
 
-          <section title="Min">
+          <section title="OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min">
             <t>The minimum SHALL be calculated using the conditional
             distribution of all packets with a finite value of one-way delay
             (undefined delays are excluded) -- a single value, as follows:</t>
@@ -534,7 +548,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               </list></t>
           </section>
 
-          <section title="Max">
+          <section title="OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max">
             <t>The maximum SHALL be calculated using the conditional
             distribution of all packets with a finite value of one-way delay
             (undefined delays are excluded) -- a single value, as follows:</t>
@@ -570,7 +584,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               </list></t>
           </section>
 
-          <section title="Sum">
+          <section title="OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum">
             <t>The sum SHALL be calculated using the conditional distribution
             of all packets with a finite value of one-way delay (undefined
             delays are excluded) -- a single value, as follows:</t>
@@ -627,6 +641,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
           <section title="Requester">
             <t>This RFC</t>
+            <t>RFC EDITOR NOTE: please replace This RFC text by the RFC 
+              issued from this document</t>
           </section>
 
           <section title="Revision">

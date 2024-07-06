@@ -12,7 +12,7 @@ Expires: 17 July 2024                                             Huawei
 
 
                     Export of On-Path Delay in IPFIX
-              draft-ietf-opsawg-ipfix-on-path-telemetry-06
+              draft-ietf-opsawg-ipfix-on-path-telemetry-07
 
 Abstract
 
@@ -69,20 +69,20 @@ Table of Contents
        3.1.2.  Description . . . . . . . . . . . . . . . . . . . . .   7
        3.1.3.  Change Controller . . . . . . . . . . . . . . . . . .   7
        3.1.4.  Version of Registry Format  . . . . . . . . . . . . .   7
-     3.2.  Metric Definition . . . . . . . . . . . . . . . . . . . .   7
-       3.2.1.  Reference Definition  . . . . . . . . . . . . . . . .   7
+     3.2.  Metric Definition . . . . . . . . . . . . . . . . . . . .   8
+       3.2.1.  Reference Definition  . . . . . . . . . . . . . . . .   8
        3.2.2.  Fixed Parameters  . . . . . . . . . . . . . . . . . .   8
      3.3.  Method of Measurement . . . . . . . . . . . . . . . . . .   8
        3.3.1.  Reference Methods . . . . . . . . . . . . . . . . . .   8
-       3.3.2.  Packet Stream Generation  . . . . . . . . . . . . . .   8
-       3.3.3.  Traffic Filtering (Observation) Details . . . . . . .   8
+       3.3.2.  Packet Stream Generation  . . . . . . . . . . . . . .   9
+       3.3.3.  Traffic Filtering (Observation) Details . . . . . . .   9
        3.3.4.  Sampling Distribution . . . . . . . . . . . . . . . .   9
        3.3.5.  Runtime Parameters and Data Format  . . . . . . . . .   9
-       3.3.6.  Roles . . . . . . . . . . . . . . . . . . . . . . . .   9
+       3.3.6.  Roles . . . . . . . . . . . . . . . . . . . . . . . .  10
      3.4.  Output  . . . . . . . . . . . . . . . . . . . . . . . . .  10
        3.4.1.  Type  . . . . . . . . . . . . . . . . . . . . . . . .  10
        3.4.2.  Reference Definition  . . . . . . . . . . . . . . . .  10
-       3.4.3.  Administrative Items  . . . . . . . . . . . . . . . .  12
+       3.4.3.  Administrative Items  . . . . . . . . . . . . . . . .  13
        3.4.4.  Comments and Remarks  . . . . . . . . . . . . . . . .  13
    4.  IPFIX Information Elements  . . . . . . . . . . . . . . . . .  13
    5.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .  14
@@ -90,19 +90,19 @@ Table of Contents
      6.1.  Performance Metrics . . . . . . . . . . . . . . . . . . .  15
      6.2.  IPFIX Entities  . . . . . . . . . . . . . . . . . . . . .  15
        6.2.1.  PathDelayMeanDeltaMicroseconds  . . . . . . . . . . .  16
-       6.2.2.  PathDelayMinDeltaMicroseconds . . . . . . . . . . . .  16
+       6.2.2.  PathDelayMinDeltaMicroseconds . . . . . . . . . . . .  17
        6.2.3.  PathDelayMaxDeltaMicroseconds . . . . . . . . . . . .  17
        6.2.4.  PathDelaySumDeltaMicroseconds . . . . . . . . . . . .  17
-   7.  Operational Considerations  . . . . . . . . . . . . . . . . .  17
-     7.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  17
+   7.  Operational Considerations  . . . . . . . . . . . . . . . . .  18
+     7.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  18
      7.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  18
      7.3.  Reduced-size encoding . . . . . . . . . . . . . . . . . .  18
      7.4.  IOAM Application  . . . . . . . . . . . . . . . . . . . .  18
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  18
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  19
    9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  19
      9.1.  FD.io VPP . . . . . . . . . . . . . . . . . . . . . . . .  19
      9.2.  Huawei VRP  . . . . . . . . . . . . . . . . . . . . . . .  19
-     9.3.  Fluvia  . . . . . . . . . . . . . . . . . . . . . . . . .  19
+     9.3.  Fluvia  . . . . . . . . . . . . . . . . . . . . . . . . .  20
      9.4.  Pmacct Data Collection  . . . . . . . . . . . . . . . . .  20
    10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  20
    11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  20
@@ -287,6 +287,9 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    This section defines and describes the new performance metrics by
    applying the template defined in Section 11 of [RFC8911].
 
+   IANA Note (to be removed).  RFC 8192 section 4 was taken a guiding
+   example.
+
 3.1.  IP One-Way Delay Hybrid Type I Passive Performance Metrics
 
    This section specifies four performance metrics for the Hybrid Type I
@@ -306,14 +309,12 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
 3.1.1.1.  ID (Identifier)
 
-   <insert a numeric Identifier, an integer, TBD>
+   IANA has allocated the numeric Identifiers TBD1, TBD2, TDB3, and TBD4
+   for the four Named Metric Entries in the following section.
+
+   RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.
 
 3.1.1.2.  Name
-
-   IANA has allocated the numeric Identifiers TBD1-4 for the four Named
-   Metric Entries in this section
-
-3.1.1.3.  Name
 
    TBD1: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean
 
@@ -323,13 +324,12 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
    TBD4: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum
 
-3.1.1.4.  URI
+   RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.
+
+3.1.1.3.  URI
 
    URL: https://www.iana.org/assignments/performance-metrics/
    OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean
-
-   URL: https://www.iana.org/assignments/performance-metrics/
-   OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min
 
 
 
@@ -339,27 +339,41 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
 
    URL: https://www.iana.org/assignments/performance-metrics/
+   OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min
+
+   URL: https://www.iana.org/assignments/performance-metrics/
    OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max
 
    URL: https://www.iana.org/assignments/performance-metrics/
    OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum
 
+   RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.
+
 3.1.2.  Description
 
-   This metric assesses the one-way delay of IP packets constituting a
-   single connection between two hosts.  We consider the measurement of
-   one-way delay based on a single Observation Point (OP) [RFC7011]
-   somewhere in the network.  The output is the one-way delay for all
-   successfully forwarded packets expressed as the <statistic> of their
-   conditional delay distribution, where <statistic> is one of:
+   *  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean: This
+      metric assesses the mean of one-way delays of all successfully
+      forwarded IP packets constituting a single connection between two
+      hosts.  We consider the measurement of one-way delay based on a
+      single Observation Point (OP) [RFC7011] somewhere in the network.
 
-   *  Mean
+   *  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min: This
+      metric assesses the minimum of one-way delays of all successfully
+      forwarded IP packets constituting a single connection between two
+      hosts.  We consider the measurement of one-way delay based on a
+      single Observation Point (OP) [RFC7011] somewhere in the network.
 
-   *  Min
+   *  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max: This
+      metric assesses the maximum of one-way delays of all successfully
+      forwarded IP packets constituting a single connection between two
+      hosts.  We consider the measurement of one-way delay based on a
+      single Observation Point (OP) [RFC7011] somewhere in the network.
 
-   *  Max
-
-   *  Sum
+   *  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum: This
+      metric assesses the sum of one-way delays of all successfully
+      forwarded IP packets constituting a single connection between two
+      hosts.  We consider the measurement of one-way delay based on a
+      single Observation Point (OP) [RFC7011] somewhere in the network.
 
 3.1.3.  Change Controller
 
@@ -368,6 +382,17 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 3.1.4.  Version of Registry Format
 
    1.0
+
+
+
+
+
+
+
+Graf, et al.              Expires 17 July 2024                  [Page 7]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
 
 3.2.  Metric Definition
 
@@ -386,13 +411,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    Morton, A. and E.  Stephan, "Spatial Composition of Metrics", RFC
    6049, DOI 10.17487/RFC6049, January 2011, <https://www.rfc-
    editor.org/info/rfc6049>.  [RFC6049]
-
-
-
-Graf, et al.              Expires 17 July 2024                  [Page 7]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
 
    Section 3.4 of [RFC7679] provides the reference definition of the
    singleton (single value) one-way delay metric.  Section 4.4 of
@@ -425,6 +443,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    of [RFC7323] using the Timestamps option with modifications that
    allow application at a mid-path OP [RFC7011].
 
+
+
+Graf, et al.              Expires 17 July 2024                  [Page 8]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
 3.3.2.  Packet Stream Generation
 
    The timestamp when the packet is being received at IOAM encapsulation
@@ -437,18 +462,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
 3.3.3.  Traffic Filtering (Observation) Details
 
-   The Fixed Parameters above give a portion of the Traffic Filter.
-   Other aspects will be supplied as Runtime Parameters (below).
-
-
-
-
-
-
-Graf, et al.              Expires 17 July 2024                  [Page 8]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
+   Runtime Parameters (below) may be used for Traffic Filtering.
 
 3.3.4.  Sampling Distribution
 
@@ -485,6 +499,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
       measurement interval.  The start time is controlled through other
       means.
 
+
+
+Graf, et al.              Expires 17 July 2024                  [Page 9]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
    Tf:  A time, the end of a measurement interval (format "date/time" as
       specified in Section 5.6 of [RFC3339]; see also "date-and-time" in
       Section 3 of [RFC6991])).  The UTC Time Zone is required by
@@ -498,14 +519,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
       "host A" is synonymous with the IP address used at host A.
 
    host B:  Receives the IP packet to open the connection.  The Role of
-
-
-
-Graf, et al.              Expires 17 July 2024                  [Page 9]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
-
       "host B" is synonymous with the IP address used at host B.
 
    Encapsulation Node:  Receives the IP packet to open the connection
@@ -541,7 +554,15 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    For each <statistic> Singleton one of the following subsections
    applies.
 
-3.4.2.1.  Mean
+
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 10]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
+3.4.2.1.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean
 
    The mean SHALL be calculated using the conditional distribution of
    all packets with a finite value of one-way delay (undefined delays
@@ -554,21 +575,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    See section 4.2.2 of [RFC6049] for details on calculating this
    statistic; see also section 4.2.3 of [RFC6049].
 
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 10]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
-
    Mean:  The time value of the result is expressed in units of seconds,
       as a positive value of type decimal64 with fraction digits = 9
       (see section 9.3 of [RFC6020]) with a resolution of
       0.000000001 seconds (1.0 ns), and with lossless conversion to/from
       the 64-bit NTP timestamp as per section 6 of [RFC5905].
 
-3.4.2.2.  Min
+3.4.2.2.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min
 
    The minimum SHALL be calculated using the conditional distribution of
    all packets with a finite value of one-way delay (undefined delays
@@ -587,7 +600,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
       0.000000001 seconds (1.0 ns), and with lossless conversion to/from
       the 64-bit NTP timestamp as per section 6 of [RFC5905].
 
-3.4.2.3.  Max
+3.4.2.3.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max
 
    The maximum SHALL be calculated using the conditional distribution of
    all packets with a finite value of one-way delay (undefined delays
@@ -596,6 +609,14 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    See section 4.1 of [RFC3393] for details on the conditional
    distribution to exclude undefined values of delay, and see section 5
    of [RFC6703] for background on this analysis choice.
+
+
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 11]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
 
    See section 4.3.2 of [RFC6049] for a closely related method for
    calculating this statistic; see also section 4.3.3 of [RFC6049].  The
@@ -609,21 +630,12 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    where all packets n = 1 through N have finite singleton delays.
 
    Max:  The time value of the result is expressed in units of seconds,
-
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 11]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
-
       as a positive value of type decimal64 with fraction digits = 9
       (see section 9.3 of [RFC6020]) with a resolution of
       0.000000001 seconds (1.0 ns), and with lossless conversion to/from
       the 64-bit NTP timestamp as per section 6 of [RFC5905].
 
-3.4.2.4.  Sum
+3.4.2.4.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum
 
    The sum SHALL be calculated using the conditional distribution of all
    packets with a finite value of one-way delay (undefined delays are
@@ -655,6 +667,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
    *  Sum
 
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 12]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
    The one-way delay of the IP connection singleton is expressed in
    seconds.
 
@@ -666,14 +685,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
 3.4.3.  Administrative Items
 
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 12]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
-
 3.4.3.1.  Status
 
    Current
@@ -681,6 +692,9 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 3.4.3.2.  Requester
 
    This RFC
+
+   RFC EDITOR NOTE: please replace This RFC text by the RFC issued from
+   this document
 
 3.4.3.3.  Revision
 
@@ -704,6 +718,18 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
       node with the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node).
 
+
+
+
+
+
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 13]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
    PathDelayMinDeltaMicroseconds
       32-bit unsigned integer that identifies the lowest path delay in
       microseconds, between the IOAM encapsulation node and the local
@@ -721,14 +747,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
       in microseconds, between the IOAM encapsulation node and the local
       node with the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node).
-
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 13]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
 
 5.  Use Cases
 
@@ -759,24 +777,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
       bgpDestinationLargeCommunityList(491) which group of prefixes
       accumulated at which node how much delay.
 
-   *  With destinationIPv4Address(13), destinationTransportPort(11),
-      protocolIdentifier (4) and sourceIPv4Address(IE8), the forwarding
-      path delay on each node from each IPv4 source address to a
-      specific application in the network.
-
-   Taking figure 1 from section 1 as topology example.  Below example
-   table shows the aggregated delay per each node, ingressInterface,
-   egressInterface, destinationIPv6Address and srhActiveSegmentIPv6.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -785,6 +785,15 @@ Graf, et al.              Expires 17 July 2024                 [Page 14]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
+
+   *  With destinationIPv4Address(13), destinationTransportPort(11),
+      protocolIdentifier (4) and sourceIPv4Address(IE8), the forwarding
+      path delay on each node from each IPv4 source address to a
+      specific application in the network.
+
+   Taking figure 1 from section 1 as topology example.  Below example
+   table shows the aggregated delay per each node, ingressInterface,
+   egressInterface, destinationIPv6Address and srhActiveSegmentIPv6.
 
      +-----------+-----------+------+-------------+-------------+------------+
      | ingress   | egress    | Node | destination | srhActive   | Path Delay |
@@ -816,6 +825,23 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    at "IANA Performance Metric Registry [IANA-PERF-METRIC] and assign
    the following initial code points.
 
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 15]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
      +-------+--------------------------------+
      |Element|              Name              |
      |   ID  |                                |
@@ -833,14 +859,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
      |       |                                |
      +-------+--------------------------------+
   Table 3: Creates IPFIX IEs in the "IPFIX Information Elements" registry
-
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 15]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
 
    Note to the RFC-Editor:
 
@@ -869,6 +887,17 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    Reference:  [RFC-to-be], OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
       be]_Seconds_Mean in the IANA Performance Metric Registry.
 
+
+
+
+
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 16]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
 6.2.2.  PathDelayMinDeltaMicroseconds
 
    Name:  PathDelayMinDeltaMicroseconds
@@ -888,15 +917,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
    Reference:  [RFC-to-be], OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
       be]_Seconds_Min in the IANA Performance Metric Registry.
-
-
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 16]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
 
 6.2.3.  PathDelayMaxDeltaMicroseconds
 
@@ -925,6 +945,15 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    ElementID:  TBD8
 
    Description:  This Information Element identifies the sum of the path
+
+
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 17]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
       delay between the IOAM encapsulation node and the local node with
       the IOAM domain (either an IOAM transit node or an IOAM
       decapsulation node) in microseconds, according to
@@ -944,15 +973,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
    The same recommendation as defined in section 4.5 of [RFC5153] for
    IPFIX applies in terms of clock precision to this document as well.
-
-
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 17]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
 
 7.2.  Mean Delay
 
@@ -981,6 +1001,15 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    [RFC9197], by setting bits 2 and 3, timestamps can be encoded as
    defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].
 
+
+
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 18]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
    In case of Direct Exporting Option-Type, as described in Section 2 of
    [I-D.ahuang-ippm-dex-timestamp-ext], by setting Extension-Flags 2 and
    3, timestamps can be encoded as defined in Section 4.4.2.3 and
@@ -998,17 +1027,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
    There are no significant extra security considerations regarding the
    allocation of these new IPFIX IEs compared to [RFC7012].
-
-
-
-
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 18]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
 
 9.  Implementation Status
 
@@ -1041,6 +1059,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
    *  PathDelayMinDeltaMicroseconds
 
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 19]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
    *  PathDelaySumDeltaMicroseconds
 
    The implementation was validated at the IETF 116 hackathon.
@@ -1056,15 +1081,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
    *  PathDelayMinDeltaMicroseconds
 
    *  PathDelaySumDeltaMicroseconds
-
-
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 19]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
 
    The open source code can be obtained here: [NTT-Fluvia] and was
    validated at the IETF 118 hackathon.
@@ -1099,6 +1115,13 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
 11.2.  Informative References
 
+
+
+Graf, et al.              Expires 17 July 2024                 [Page 20]
+
+Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
+
+
    [I-D.ahuang-ippm-dex-timestamp-ext]
               Feng, A. H., Francois, P., Claise, B., and T. Graf,
               "Timestamp extension for In Situ Operations,
@@ -1107,20 +1130,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
               timestamp-ext-00, 15 February 2023,
               <https://datatracker.ietf.org/doc/html/draft-ahuang-ippm-
               dex-timestamp-ext-00>.
-
-
-
-
-
-
-
-
-
-
-Graf, et al.              Expires 17 July 2024                 [Page 20]
-
-Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
-
 
    [I-D.fz-spring-srv6-alt-mark]
               Fioccola, G., Zhou, T., Cociglio, M., Mishra, G. S., wang,
@@ -1131,12 +1140,12 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
               draft-fz-spring-srv6-alt-mark-08>.
 
    [I-D.ietf-ippm-alt-mark-deployment]
-              Fioccola, G., Zhou, T., Graf, T., Nilo, M., and L. Zhang,
+              Fioccola, G., Keyi, Z., Graf, T., Nilo, M., and L. Zhang,
               "Alternate Marking Deployment Framework", Work in
               Progress, Internet-Draft, draft-ietf-ippm-alt-mark-
-              deployment-00, 3 January 2024,
+              deployment-01, 3 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
-              alt-mark-deployment-00>.
+              alt-mark-deployment-01>.
 
    [I-D.ietf-ippm-ioam-deployment]
               Brockners, F., Bhandari, S., Bernier, D., and T. Mizrahi,
@@ -1162,21 +1171,17 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
               <https://datatracker.ietf.org/doc/html/draft-zhou-ippm-
               enhanced-alternate-marking-15>.
 
-   [IANA-PERF-METRIC]
-              "IANA Performance Metric Registry",
-              <https://www.iana.org/assignments/performance-metrics/
-              performance-metrics.xhtml>.
-
-
-
-
-
 
 
 Graf, et al.              Expires 17 July 2024                 [Page 21]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
+
+   [IANA-PERF-METRIC]
+              "IANA Performance Metric Registry",
+              <https://www.iana.org/assignments/performance-metrics/
+              performance-metrics.xhtml>.
 
    [INSA-Lyon-VPP]
               "INSA Lyon, FD.io VPP implementation",
@@ -1220,11 +1225,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
               Specification", RFC 5905, DOI 10.17487/RFC5905, June 2010,
               <https://www.rfc-editor.org/info/rfc5905>.
 
-   [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
-              the Network Configuration Protocol (NETCONF)", RFC 6020,
-              DOI 10.17487/RFC6020, October 2010,
-              <https://www.rfc-editor.org/info/rfc6020>.
-
 
 
 
@@ -1233,6 +1233,11 @@ Graf, et al.              Expires 17 July 2024                 [Page 22]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
+
+   [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
+              the Network Configuration Protocol (NETCONF)", RFC 6020,
+              DOI 10.17487/RFC6020, October 2010,
+              <https://www.rfc-editor.org/info/rfc6020>.
 
    [RFC6049]  Morton, A. and E. Stephan, "Spatial Composition of
               Metrics", RFC 6049, DOI 10.17487/RFC6049, January 2011,
@@ -1277,11 +1282,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
               and Maintenance (IOAM)", RFC 9197, DOI 10.17487/RFC9197,
               May 2022, <https://www.rfc-editor.org/info/rfc9197>.
 
-   [RFC9232]  Song, H., Qin, F., Martinez-Julia, P., Ciavaglia, L., and
-              A. Wang, "Network Telemetry Framework", RFC 9232,
-              DOI 10.17487/RFC9232, May 2022,
-              <https://www.rfc-editor.org/info/rfc9232>.
-
 
 
 
@@ -1289,6 +1289,11 @@ Graf, et al.              Expires 17 July 2024                 [Page 23]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
+
+   [RFC9232]  Song, H., Qin, F., Martinez-Julia, P., Ciavaglia, L., and
+              A. Wang, "Network Telemetry Framework", RFC 9232,
+              DOI 10.17487/RFC9232, May 2022,
+              <https://www.rfc-editor.org/info/rfc9232>.
 
    [RFC9343]  Fioccola, G., Zhou, T., Cociglio, M., Qin, F., and R.
               Pang, "IPv6 Application of the Alternate-Marking Method",
@@ -1333,11 +1338,6 @@ A.1.1.  Template Record and Data Set with Mean Delta
 
    *  Active SRv6 Segment => srhIPv6ActiveSegment
 
-   *  Packet Delta Count => packetDeltaCount
-
-   *  Minimum One-Way Delay => PathDelayMinDeltaMicroseconds (TBD6)
-
-   *  Maximum One-Way Delay => PathDelayMaxDeltaMicroseconds (TBD7)
 
 
 
@@ -1345,6 +1345,12 @@ Graf, et al.              Expires 17 July 2024                 [Page 24]
 
 Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
+
+   *  Packet Delta Count => packetDeltaCount
+
+   *  Minimum One-Way Delay => PathDelayMinDeltaMicroseconds (TBD6)
+
+   *  Maximum One-Way Delay => PathDelayMaxDeltaMicroseconds (TBD7)
 
    *  Mean One-Way Delay => PathDelayMeanDeltaMicroseconds (TBD5)
 
@@ -1376,12 +1382,6 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
 
    The data set is represented as follows:
-
-
-
-
-
-
 
 
 
