@@ -752,7 +752,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       <section anchor="PM-IANA" title="Performance Metrics">
         <t>This document requests IANA to create new performance metrics under
         the "Performance Metrics" registry <xref target="RFC8911"/> with the
-        values defined in section 2.</t>
+        values defined in section 3.</t>
       </section>
 
       <section anchor="IE-IANA" title="IPFIX Entities">

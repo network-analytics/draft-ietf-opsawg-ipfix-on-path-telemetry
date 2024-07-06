@@ -816,7 +816,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX        January 2024
 
    This document requests IANA to create new performance metrics under
    the "Performance Metrics" registry [RFC8911] with the values defined
-   in section 2.
+   in section 3.
 
 6.2.  IPFIX Entities
 
