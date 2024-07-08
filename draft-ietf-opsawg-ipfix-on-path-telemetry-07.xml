@@ -204,6 +204,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
           <t>IPFIX Information Elements (IEs)</t>
 
+          <t>Flow</t>
+
           <t>Flow Record</t>
 
           <t>Exporter</t>
@@ -237,7 +239,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       applying the template defined in Section 11 of <xref
       target="RFC8911"/>.</t>
 
-      <t>IANA Note (to be removed). RFC 8192 section 4 was taken a guiding example.</t>
+      <t>IANA Note (to be removed): RFC 8192 section 4 was taken a guiding example.</t>
 
       <section anchor="ip-ow-delay-hybridtype1-passive-reg-entries"
                title="IP One-Way Delay Hybrid Type I Passive Performance Metrics">
@@ -303,25 +305,25 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t><list style="symbols">
               <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean: This 
                 metric assesses the mean of one-way delays of all successfully 
-                forwarded IP packets constituting a single connection between 
+                forwarded IP packets constituting a single Flow between 
                 two hosts.  We consider the measurement of one-way delay based 
                 on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
 
               <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min: This 
                 metric assesses the minimum of one-way delays of all successfully 
-                forwarded IP packets constituting a single connection between 
+                forwarded IP packets constituting a single Flow between 
                 two hosts.  We consider the measurement of one-way delay based 
                 on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
 
               <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max: This 
                 metric assesses the maximum of one-way delays of all successfully 
-                forwarded IP packets constituting a single connection between 
+                forwarded IP packets constituting a single Flow between 
                 two hosts.  We consider the measurement of one-way delay based 
                 on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
 
               <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum: This 
                 metric assesses the sum of one-way delays of all successfully 
-                forwarded IP packets constituting a single connection between 
+                forwarded IP packets constituting a single Flow between 
                 two hosts.  We consider the measurement of one-way delay based 
                 on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
             </list></t>
@@ -362,7 +364,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           target="RFC2330"/>.</t>
 
           <t>With the OP <xref target="RFC7011"/> typically located between
-          the hosts participating in the IP connection, the one-way delay
+          the hosts participating in the IP Flow, the one-way delay
           metric requires one individual measurement between the OP and
           sourcing host, such that the Spatial Composition <xref
           target="RFC6049"/> of the measurements yields a one-way delay
@@ -454,25 +456,25 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
         <section title="Roles">
           <t><list style="hanging">
-              <t hangText="host A:">Launches the IP packet to open the
-              connection. The Role of "host A" is synonymous with the IP
-              address used at host A.</t>
+              <t hangText="host A:">Launches the IP packet to start the Flow. 
+              The Role of "host A" is synonymous with the IP address used at 
+              host A.</t>
 
-              <t hangText="host B:">Receives the IP packet to open the
-              connection. The Role of "host B" is synonymous with the IP
-              address used at host B.</t>
+              <t hangText="host B:">Receives the IP packet to start the Flow.
+              The Role of "host B" is synonymous with the IP address used at 
+              host B.</t>
 
-              <t hangText="Encapsulation Node:">Receives the IP packet to open
-              the connection and encapsulates the timestamp into the packet.
+              <t hangText="Encapsulation Node:">Receives the IP Flow packets
+              and encapsulates the timestamp into the packet.
               The Role of "Encapsulation Node" is synonymous with the
               timestamp inserted in the packet.</t>
 
-              <t hangText="Transit Node:">Receives the IP packet to open the
-              connection and measures the delay between the timestamp in the
+              <t hangText="Transit Node:">Receives the IP Flow packets
+              and measures the delay between the timestamp in the
               packet and the timestamp when the packet was received.</t>
 
-              <t hangText="Decapsulation Node:">Receives the IP packet to open
-              the connection and measures the delay between the timestamp in
+              <t hangText="Decapsulation Node:">Receives the IP Flow packets
+              and measures the delay between the timestamp in
               the packet and the timestamp when the packet was received and
               removes the IOAM header from the packet.</t>
             </list></t>
@@ -610,8 +612,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </section>
 
           <section title="Metric Units">
-            <t>The &lt;statistic&gt; of one-way delay is expressed in seconds,
-            where &lt;statistic&gt; is one of:</t>
 
             <t><list style="symbols">
                 <t>Mean</t>
@@ -623,7 +623,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                 <t>Sum</t>
               </list></t>
 
-            <t>The one-way delay of the IP connection singleton is expressed
+            <t>The one-way delay of the IP Flow singleton is expressed
             in seconds.</t>
           </section>
 
