@@ -1031,7 +1031,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </section>
 
     <section anchor="Security" title="Security Considerations">
-      <t>There are no sextra security considerations regarding the new IPFIX 
+      <t>There are no extra security considerations regarding the new IPFIX 
         IEs compared to <xref
       target="RFC7012"/>.</t>
     </section>

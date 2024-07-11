@@ -1025,7 +1025,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
 
 8.  Security Considerations
 
-   There are no sextra security considerations regarding the new IPFIX
+   There are no extra security considerations regarding the new IPFIX
    IEs compared to [RFC7012].
 
 9.  Implementation Status
