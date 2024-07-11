@@ -309,10 +309,10 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
 
 3.1.1.1.  ID (Identifier)
 
-   IANA has allocated the numeric Identifiers TBD1, TBD2, TDB3, and TBD4
+   IANA has allocated the numeric Identifiers TBD1, TBD2, TBD3, and TBD4
    for the four Named Metric Entries in the following section.
 
-   RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.
+   RFC EDITOR NOTE: please replace TBD1, TBD2, TBD3, and TBD4.
 
 3.1.1.2.  Name
 
@@ -324,7 +324,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
 
    TBD4: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum
 
-   RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.
+   RFC EDITOR NOTE: please replace [RFC-to-be].
 
 3.1.1.3.  URI
 
@@ -347,7 +347,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
    URL: https://www.iana.org/assignments/performance-metrics/
    OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum
 
-   RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.
+   RFC EDITOR NOTE: please replace TBD1, TBD2, TBD3, and TBD4.
 
 3.1.2.  Description
 
@@ -712,8 +712,8 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
    PathDelayMeanDeltaMicroseconds
       32-bit unsigned integer that identifies the mean path delay of all
       packets in the Flow, in microseconds, between the IOAM
-      encapsulation n ode and the local node with the IOAM domain
-      (either an IOAM transit node or an IOAM decapsulation node).
+      encapsulation node and the local node with the IOAM domain (either
+      an IOAM transit node or an IOAM decapsulation node).
 
    PathDelayMinDeltaMicroseconds
       32-bit unsigned integer that identifies the lowest path delay of
@@ -977,7 +977,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
 7.2.  Mean Delay
 
    The mean (average) path delay can be calculated by dividing the
-   PathDelaySumDeltaMicroseconds(TBD5) by the packetDeltaCount(2) at the
+   PathDelaySumDeltaMicroseconds(TBD8) by the packetDeltaCount(2) at the
    IPFIX data collection in order to offload the IPFIX Exporter from
    calculating the mean for every Flow at export time.
 
@@ -986,7 +986,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
    Unsigned64 has been chosen as type for PathDelaySumDeltaMicroseconds
    to support cases with large delay numbers and where many packets are
    being accounted.  As an example, a specific flow record with path
-   delay of 100 microseconds can not observe more than 42949 packets
+   delay of 100 milliseconds can not observe more than 42949 packets
    without overflowing the unsigned32 counter.  The procedure described
    in Section 6.2 of [RFC7011] could be applied to reduce network
    bandwidth between the IPFIX Exporter and Collector if unsigned32
@@ -1017,7 +1017,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
 
    For the Enhanced Alternate Marking Method, Section 2 of
    [I-D.zhou-ippm-enhanced-alternate-marking] defines that within the
-   metaInfo a nano second timestamp can be encoded in the encapsulation
+   metaInfo a nanosecond timestamp can be encoded in the encapsulation
    node and be read at the intermediate and decapsulation node to
    calculate the on-path delay.  [RFC9343] defines how this can be
    appied to the IPv6 data-plane and [I-D.fz-spring-srv6-alt-mark]
@@ -1025,8 +1025,8 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
 
 8.  Security Considerations
 
-   There are no significant extra security considerations regarding the
-   allocation of these new IPFIX IEs compared to [RFC7012].
+   There are no sextra security considerations regarding the new IPFIX
+   IEs compared to [RFC7012].
 
 9.  Implementation Status
 
@@ -1327,7 +1327,7 @@ A.1.  Aggregated On-Path Dealay Examples
 
 A.1.1.  Template Record and Data Set with Mean Delta
 
-   With encoding in Figure 1, the mean (average) path delay is
+   With encoding in Figure 2, the mean (average) path delay is
    calculated on the exporting node.
 
    *  Ingress interface => ingressInterface
@@ -1354,31 +1354,31 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
 
    *  Mean One-Way Delay => PathDelayMeanDeltaMicroseconds (TBD5)
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |          SET ID = 2           |       Length = 40             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |      Template ID = 256        |      Field Count = 8          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|     ingressInterface = 10   |      Field Length = 4         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0|     egressInterface = 14    |      Field Length = 4         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| destinationIPv6Address = 28 |      Field Length = 16        |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| srhIPv6ActiveSegment = 495  |      Field Length = 16        |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| packetDeltaCount = 5        |      Field Length = 4         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| PathDelayMinDelta.. = TBD6  |      Field Length = 4         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| PathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| PathDelayMeanDelta.. = TBD5 |      Field Length = 4         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |          SET ID = 2           |       Length = 40             |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |      Template ID = 256        |      Field Count = 8          |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |0|     ingressInterface = 10   |      Field Length = 4         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |0|     egressInterface = 14    |      Field Length = 4         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |0| destinationIPv6Address = 28 |      Field Length = 16        |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |0| srhIPv6ActiveSegment = 495  |      Field Length = 16        |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |0| packetDeltaCount = 5        |      Field Length = 4         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |0| PathDelayMeanDelta.. = TBD5 |      Field Length = 4         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |0| PathDelayMinDelta.. = TBD6  |      Field Length = 4         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |0| PathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-        Figure 1: Template Record for PathDelayMeanDeltaMicroseconds
+      Figure 2: Template Record for PathDelayMeanDeltaMicroseconds
 
 
    The data set is represented as follows:
@@ -1402,40 +1402,40 @@ Graf, et al.             Expires 9 January 2025                [Page 25]
 Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
 
 
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         SET ID = 256          |           Length = 60         |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           ingressInterface =  271                             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           egressInterface =  276                              |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           destinationIPv6Address =                            |
-      |                          ...                                  |
-      |                          ...                                  |
-      |                          2001:db8::2                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           srhIPv6ActiveSegment = ...                          |
-      |                          ...                                  |
-      |                          ...                                  |
-      |                          2001:db8::4                          |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           packetDeltaCount = 5                                |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           PathDelayMinDeltaMicroseconds =  22                 |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           PathDelayMaxDeltaMicroseconds =  74                 |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           PathDelayMeanDeltaMicroseconds =  36                |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |         SET ID = 256          |           Length = 60         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           ingressInterface =  271                             |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           egressInterface =  276                              |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           destinationIPv6Address =                            |
+       |                          ...                                  |
+       |                          ...                                  |
+       |                          2001:db8::2                          |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           srhIPv6ActiveSegment = ...                          |
+       |                          ...                                  |
+       |                          ...                                  |
+       |                          2001:db8::4                          |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           packetDeltaCount = 5                                |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           PathDelayMeanDeltaMicroseconds =  36                |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           PathDelayMinDeltaMicroseconds =  22                 |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |           PathDelayMaxDeltaMicroseconds =  74                 |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-       Figure 2: Data Set Encoding for PathDelayMeanDeltaMicroseconds
+     Figure 3: Data Set Encoding for PathDelayMeanDeltaMicroseconds
 
 
 A.1.2.  Template Record and Data Set with Sum Delta
 
-   With encoding in Figure 3, the mean (average) path delay is
+   With encoding in Figure 4, the mean (average) path delay is
    calculated on the IPFIX data collection.
 
    *  Ingress interface => ingressInterface
@@ -1486,7 +1486,7 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
       |0| PathDelaySumDelta.. = TBD8  |      Field Length = 8         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-        Figure 3: Template Record for PathDelaySumDeltaMicroseconds
+        Figure 4: Template Record for PathDelaySumDeltaMicroseconds
 
 
    The data set is represented as follows:
@@ -1540,9 +1540,10 @@ Internet-Draft      Export of On-Path Delay in IPFIX           July 2024
       |           PathDelayMaxDeltaMicroseconds =  74                 |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           PathDelaySumDeltaMicroseconds =  180                |
+      |                          ...                                  |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-       Figure 2: Data Set Encoding for PathDelaySumDeltaMicroseconds
+       Figure 5: Data Set Encoding for PathDelaySumDeltaMicroseconds
 
 
 Authors' Addresses
@@ -1558,7 +1559,6 @@ Authors' Addresses
    Benoit Claise
    Huawei
    Email: benoit.claise@huawei.com
-
 
 
 

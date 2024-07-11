@@ -260,10 +260,10 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           performance metrics: the element ID and Metric Name.</t>
 
           <section title="ID (Identifier)">
-            <t>IANA has allocated the numeric Identifiers TBD1, TBD2, TDB3, and TBD4
+            <t>IANA has allocated the numeric Identifiers TBD1, TBD2, TBD3, and TBD4
               for the four Named Metric Entries in the following section.</t>
 
-            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.</t>
+            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TBD3, and TBD4.</t>
 
           </section>
 
@@ -280,7 +280,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <t>TBD4:
             OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum</t>
 
-            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.</t>
+            <t>RFC EDITOR NOTE: please replace [RFC-to-be].</t>
 
           </section>
 
@@ -297,7 +297,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <t>URL: <eref
             target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum"/></t>
 
-            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TDB3, and TBD4.</t>
+            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TBD3, and TBD4.</t>
           </section>
         </section>
 
@@ -665,8 +665,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           style="hanging">
           <t hangText="PathDelayMeanDeltaMicroseconds"><vspace blankLines="0"/> 
           32-bit unsigned integer that identifies the mean path delay of all
-          packets in the Flow, in microseconds, between the IOAM encapsulation n
-          ode and the local node with the IOAM domain (either an IOAM transit node 
+          packets in the Flow, in microseconds, between the IOAM encapsulation 
+          node and the local node with the IOAM domain (either an IOAM transit node 
           or an IOAM decapsulation node).</t>
 
           <t hangText="PathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
@@ -988,7 +988,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
       <section anchor="OpsMeanDelay" title="Mean Delay">
         <t>The mean (average) path delay can be calculated by dividing the
-        PathDelaySumDeltaMicroseconds(TBD5) by the packetDeltaCount(2) at the
+        PathDelaySumDeltaMicroseconds(TBD8) by the packetDeltaCount(2) at the
         IPFIX data collection in order to offload the IPFIX Exporter from
         calculating the mean for every Flow at export time.</t>
       </section>
@@ -997,7 +997,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         <t>Unsigned64 has been chosen as type for
         PathDelaySumDeltaMicroseconds to support cases with large delay
         numbers and where many packets are being accounted. As an example, a
-        specific flow record with path delay of 100 microseconds can not
+        specific flow record with path delay of 100 milliseconds can not
         observe more than 42949 packets without overflowing the unsigned32
         counter. The procedure described in Section 6.2 of <xref
         target="RFC7011"/> could be applied to reduce network bandwidth
@@ -1021,7 +1021,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
         <t>For the Enhanced Alternate Marking Method, Section 2 of <xref
         target="I-D.zhou-ippm-enhanced-alternate-marking"/> defines that
-        within the metaInfo a nano second timestamp can be encoded in the
+        within the metaInfo a nanosecond timestamp can be encoded in the
         encapsulation node and be read at the intermediate and decapsulation
         node to calculate the on-path delay. <xref target="RFC9343"/> defines
         how this can be appied to the IPv6 data-plane and <xref
@@ -1031,8 +1031,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </section>
 
     <section anchor="Security" title="Security Considerations">
-      <t>There are no significant extra security considerations regarding the
-      allocation of these new IPFIX IEs compared to <xref
+      <t>There are no sextra security considerations regarding the new IPFIX 
+        IEs compared to <xref
       target="RFC7012"/>.</t>
     </section>
 
@@ -1238,7 +1238,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
                title="Aggregated On-Path Dealay Examples">
         <section anchor="Template-Record-and-Data-Set-with-MeanDelta"
                  title="Template Record and Data Set with Mean Delta">
-          <t>With encoding in Figure 1, the mean (average) path delay is
+          <t>With encoding in Figure 2, the mean (average) path delay is
           calculated on the exporting node.</t>
 
           <t><list style="symbols">
@@ -1265,31 +1265,31 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t><figure>
               <artwork><![CDATA[
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |          SET ID = 2           |       Length = 40             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |      Template ID = 256        |      Field Count = 8          |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|     ingressInterface = 10   |      Field Length = 4         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0|     egressInterface = 14    |      Field Length = 4         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| destinationIPv6Address = 28 |      Field Length = 16        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| srhIPv6ActiveSegment = 495  |      Field Length = 16        |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| packetDeltaCount = 5        |      Field Length = 4         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| PathDelayMinDelta.. = TBD6  |      Field Length = 4         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| PathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| PathDelayMeanDelta.. = TBD5 |      Field Length = 4         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3
+       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |          SET ID = 2           |       Length = 40             |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |      Template ID = 256        |      Field Count = 8          |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0|     ingressInterface = 10   |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0|     egressInterface = 14    |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0| destinationIPv6Address = 28 |      Field Length = 16        |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0| srhIPv6ActiveSegment = 495  |      Field Length = 16        |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0| packetDeltaCount = 5        |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0| PathDelayMeanDelta.. = TBD5 |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0| PathDelayMinDelta.. = TBD6  |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |0| PathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-     Figure 1: Template Record for PathDelayMeanDeltaMicroseconds
+     Figure 2: Template Record for PathDelayMeanDeltaMicroseconds
 
             ]]></artwork>
             </figure></t>
@@ -1299,35 +1299,35 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <figure>
             <artwork><![CDATA[
 
-    0                   1                   2                   3
-    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         SET ID = 256          |           Length = 60         |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           ingressInterface =  271                             |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           egressInterface =  276                              |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           destinationIPv6Address =                            |
-   |                          ...                                  |
-   |                          ...                                  |
-   |                          2001:db8::2                          |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           srhIPv6ActiveSegment = ...                          |
-   |                          ...                                  |
-   |                          ...                                  |
-   |                          2001:db8::4                          |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           packetDeltaCount = 5                                |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           PathDelayMinDeltaMicroseconds =  22                 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           PathDelayMaxDeltaMicroseconds =  74                 |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           PathDelayMeanDeltaMicroseconds =  36                |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       0                   1                   2                   3
+       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |         SET ID = 256          |           Length = 60         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           ingressInterface =  271                             |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           egressInterface =  276                              |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           destinationIPv6Address =                            |
+      |                          ...                                  |
+      |                          ...                                  |
+      |                          2001:db8::2                          |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           srhIPv6ActiveSegment = ...                          |
+      |                          ...                                  |
+      |                          ...                                  |
+      |                          2001:db8::4                          |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           packetDeltaCount = 5                                |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           PathDelayMeanDeltaMicroseconds =  36                |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           PathDelayMinDeltaMicroseconds =  22                 |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |           PathDelayMaxDeltaMicroseconds =  74                 |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-    Figure 2: Data Set Encoding for PathDelayMeanDeltaMicroseconds
+    Figure 3: Data Set Encoding for PathDelayMeanDeltaMicroseconds
 
             ]]></artwork>
           </figure>
@@ -1335,7 +1335,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
         <section anchor="Template-Record-and-Data-Set-with-SumDelta"
                  title="Template Record and Data Set with Sum Delta">
-          <t>With encoding in Figure 3, the mean (average) path delay is
+          <t>With encoding in Figure 4, the mean (average) path delay is
           calculated on the IPFIX data collection.</t>
 
           <t><list style="symbols">
@@ -1386,7 +1386,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
    |0| PathDelaySumDelta.. = TBD8  |      Field Length = 8         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    
-     Figure 3: Template Record for PathDelaySumDeltaMicroseconds
+     Figure 4: Template Record for PathDelaySumDeltaMicroseconds
 
             ]]></artwork>
             </figure></t>
@@ -1422,9 +1422,10 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
    |           PathDelayMaxDeltaMicroseconds =  74                 |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           PathDelaySumDeltaMicroseconds =  180                |
+   |                          ...                                  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-    Figure 2: Data Set Encoding for PathDelaySumDeltaMicroseconds
+    Figure 5: Data Set Encoding for PathDelaySumDeltaMicroseconds
 
             ]]></artwork>
           </figure>
