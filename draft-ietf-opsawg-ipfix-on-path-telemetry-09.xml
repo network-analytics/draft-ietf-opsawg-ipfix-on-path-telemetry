@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="08" month="July" year="2024"/>
+    <date day="13" month="July" year="2024"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -105,12 +105,12 @@
       In both modes the forwarding path exposes performance metrics allowing to 
       determine how much delay has been accumulated on which hop.</t>
 
-      <t>In order to export the delay-related metrics via IPIFX <xref target="RFC7011">,
+      <t>In order to export the delay-related metrics via IPIFX <xref target="RFC7011"/>,
       this document defines four new IPFIX Information Elements (IEs),
       exposing the On-Path delay on IOAM transit and decapsulation nodes,
       following the postcard mode principles. Since these IPFIX IEs are
-      performance metrics <xref target="RFC8911">, they must be registered in
-      the <xref target="IANA-PERF-METRIC">IANA Performance Metric
+      performance metrics <xref target="RFC8911"/>, they must be registered in
+      the <xref target="IANA-PERF-METRIC">"IANA Performance Metric
       Registry</xref>.</t>
 
       <t>Following the guidelines for Registered Performance Metric Requesters
@@ -538,7 +538,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <t><list style="hanging">
                 <t hangText="Min:">The time value of the result is expressed
                 in units of seconds, as a positive value of type decimal64
-                with fraction digits = 9 (see Section 9.3 of <xref
+                with fraction digits = 9 (similar to the decimal64 in YANG, Section 9.3 of <xref
                 target="RFC6020"/>) with a resolution of
                 0.000000001&nbsp;seconds (1.0 ns), and with lossless
                 conversion to/from the 64-bit NTP timestamp as per Section 6
@@ -574,7 +574,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <t><list style="hanging">
                 <t hangText="Max:">The time value of the result is expressed
                 in units of seconds, as a positive value of type decimal64
-                with fraction digits = 9 (see Section 9.3 of <xref
+                with fraction digits = 9 (similar to the decimal64 in YANG, Section 9.3 of <xref
                 target="RFC6020"/>) with a resolution of
                 0.000000001&nbsp;seconds (1.0 ns), and with lossless
                 conversion to/from the 64-bit NTP timestamp as per Section 6
@@ -599,7 +599,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <t><list style="hanging">
                 <t hangText="Sum:">The time value of the result is expressed
                 in units of seconds, as a positive value of type decimal64
-                with fraction digits = 9 (see Section 9.3 of <xref
+                with fraction digits = 9 (similar to the decimal64 in YANG, Section 9.3 of <xref
                 target="RFC6020"/>) with a resolution of
                 0.000000001&nbsp;seconds (1.0 ns), and with lossless
                 conversion to/from the 64-bit NTP timestamp as per Section 6
@@ -1110,13 +1110,21 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     <references title="Normative References">
       <?rfc include='reference.RFC.2119'?>
 
+      <?rfc include='reference.RFC.3339'?>
+
+      <?rfc include='reference.RFC.5905'?>
+
       <?rfc include='reference.RFC.6049'?>
 
       <?rfc include='reference.RFC.7011'?>
 
       <?rfc include='reference.RFC.7012'?>
 
+      <?rfc include='reference.RFC.7323'?>
+
       <?rfc include='reference.RFC.7679'?>
+
+      <?rfc include='reference.RFC.8174'?>
 
       <?rfc include='reference.RFC.8911'?>
     </references>
@@ -1148,13 +1156,9 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
       <?rfc include='reference.RFC.2330'?>
 
-      <?rfc include='reference.RFC.3339'?>
-
       <?rfc include='reference.RFC.3393'?>
 
       <?rfc include='reference.RFC.5153'?>
-
-      <?rfc include='reference.RFC.5905'?>
 
       <?rfc include='reference.RFC.6020'?>
 
@@ -1164,10 +1168,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
       <?rfc include='reference.RFC.7015'?>
 
-      <?rfc include='reference.RFC.7323'?>
-
-      <?rfc include='reference.RFC.8174'?>
-
       <?rfc include='reference.RFC.9197'?>
 
       <?rfc include='reference.RFC.9232'?>
@@ -1175,8 +1175,6 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       <?rfc include='reference.RFC.9343'?>
 
       <?rfc include='reference.RFC.9378'?>
-
-      <?rfc include='reference.RFC.9487'?>
 
       <?rfc include='reference.I-D.ietf-ippm-alt-mark-deployment'?>
 
