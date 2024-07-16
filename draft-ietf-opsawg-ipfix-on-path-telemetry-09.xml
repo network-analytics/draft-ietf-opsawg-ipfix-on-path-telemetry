@@ -497,7 +497,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           subsections applies.</t>
 
           <section title="OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean">
-            <t>The mean SHALL be calculated using the conditional distribution
+            <t>Similar to Section 7.4.2.2 of <xref target="RFC8912"/>, the mean 
+            SHALL be calculated using the conditional distribution
             of all packets with a finite value of one-way delay (undefined
             delays are excluded) -- a single value, as follows:</t>
 
@@ -522,7 +523,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </section>
 
           <section title="OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min">
-            <t>The minimum SHALL be calculated using the conditional
+            <t>Similar to Section 7.4.2.3 of <xref target="RFC8912"/>, the 
+            minimum SHALL be calculated using the conditional
             distribution of all packets with a finite value of one-way delay
             (undefined delays are excluded) -- a single value, as follows:</t>
 
@@ -547,7 +549,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </section>
 
           <section title="OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max">
-            <t>The maximum SHALL be calculated using the conditional
+            <t>Similar to Section 7.4.2.4 of <xref target="RFC8912"/>, the 
+            maximum SHALL be calculated using the conditional
             distribution of all packets with a finite value of one-way delay
             (undefined delays are excluded) -- a single value, as follows:</t>
 
@@ -1128,6 +1131,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       <?rfc include='reference.RFC.8174'?>
 
       <?rfc include='reference.RFC.8911'?>
+
+      <?rfc include='reference.RFC.8912'?>
 
       <?rfc include='reference.I-D.ietf-opsawg-oam-characterization'?>
     </references>
