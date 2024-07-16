@@ -86,22 +86,22 @@ Table of Contents
        3.4.4.  Comments and Remarks  . . . . . . . . . . . . . . . .  14
    4.  IPFIX Information Elements  . . . . . . . . . . . . . . . . .  14
    5.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .  14
-   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
-     6.1.  Performance Metrics . . . . . . . . . . . . . . . . . . .  15
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
+     6.1.  Performance Metrics . . . . . . . . . . . . . . . . . . .  16
      6.2.  IPFIX Entities  . . . . . . . . . . . . . . . . . . . . .  16
        6.2.1.  pathDelayMeanDeltaMicroseconds  . . . . . . . . . . .  16
        6.2.2.  pathDelayMinDeltaMicroseconds . . . . . . . . . . . .  17
        6.2.3.  pathDelayMaxDeltaMicroseconds . . . . . . . . . . . .  17
-       6.2.4.  pathDelaySumDeltaMicroseconds . . . . . . . . . . . .  17
+       6.2.4.  pathDelaySumDeltaMicroseconds . . . . . . . . . . . .  18
    7.  Operational Considerations  . . . . . . . . . . . . . . . . .  18
      7.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  18
      7.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  18
      7.3.  Reduced-size encoding . . . . . . . . . . . . . . . . . .  18
-     7.4.  IOAM Application  . . . . . . . . . . . . . . . . . . . .  18
+     7.4.  IOAM Application  . . . . . . . . . . . . . . . . . . . .  19
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  19
    9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  19
      9.1.  FD.io VPP . . . . . . . . . . . . . . . . . . . . . . . .  19
-     9.2.  Huawei VRP  . . . . . . . . . . . . . . . . . . . . . . .  19
+     9.2.  Huawei VRP  . . . . . . . . . . . . . . . . . . . . . . .  20
      9.3.  Fluvia  . . . . . . . . . . . . . . . . . . . . . . . . .  20
      9.4.  Pmacct Data Collection  . . . . . . . . . . . . . . . . .  20
    10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  20
@@ -114,13 +114,13 @@ Graf, et al.             Expires 17 January 2025                [Page 2]
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
-     11.1.  Normative References . . . . . . . . . . . . . . . . . .  20
+     11.1.  Normative References . . . . . . . . . . . . . . . . . .  21
      11.2.  Informative References . . . . . . . . . . . . . . . . .  22
    Appendix A.  IPFIX Encoding Examples  . . . . . . . . . . . . . .  24
-     A.1.  Aggregated On-Path Dealay Examples  . . . . . . . . . . .  24
+     A.1.  Aggregated On-Path Dealay Examples  . . . . . . . . . . .  25
        A.1.1.  Template Record and Data Set with Mean Delta  . . . .  25
-       A.1.2.  Template Record and Data Set with Sum Delta . . . . .  26
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  28
+       A.1.2.  Template Record and Data Set with Sum Delta . . . . .  27
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  29
 
 1.  Introduction
 
@@ -583,9 +583,10 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 3.4.2.1.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean
 
-   The mean SHALL be calculated using the conditional distribution of
-   all packets with a finite value of one-way delay (undefined delays
-   are excluded) -- a single value, as follows:
+   Similar to Section 7.4.2.2 of [RFC8912], the mean SHALL be calculated
+   using the conditional distribution of all packets with a finite value
+   of one-way delay (undefined delays are excluded) -- a single value,
+   as follows:
 
    See Section 4.1 of [RFC3393] for details on the conditional
    distribution to exclude undefined values of delay, and see Section 5
@@ -603,13 +604,12 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 3.4.2.2.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min
 
-   The minimum SHALL be calculated using the conditional distribution of
-   all packets with a finite value of one-way delay (undefined delays
-   are excluded) -- a single value, as follows:
+   Similar to Section 7.4.2.3 of [RFC8912], the minimum SHALL be
+   calculated using the conditional distribution of all packets with a
+   finite value of one-way delay (undefined delays are excluded) -- a
+   single value, as follows:
 
-   See Section 4.1 of [RFC3393] for details on the conditional
-   distribution to exclude undefined values of delay, and see Section 5
-   of [RFC6703] for background on this analysis choice.
+
 
 
 
@@ -617,6 +617,10 @@ Graf, et al.             Expires 17 January 2025               [Page 11]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   See Section 4.1 of [RFC3393] for details on the conditional
+   distribution to exclude undefined values of delay, and see Section 5
+   of [RFC6703] for background on this analysis choice.
 
    See Section 4.3.2 of [RFC6049] for details on calculating this
    statistic; see also Section 4.3.3 of [RFC6049].
@@ -630,9 +634,10 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 3.4.2.3.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max
 
-   The maximum SHALL be calculated using the conditional distribution of
-   all packets with a finite value of one-way delay (undefined delays
-   are excluded) -- a single value, as follows:
+   Similar to Section 7.4.2.4 of [RFC8912], the maximum SHALL be
+   calculated using the conditional distribution of all packets with a
+   finite value of one-way delay (undefined delays are excluded) -- a
+   single value, as follows:
 
    See Section 4.1 of [RFC3393] for details on the conditional
    distribution to exclude undefined values of delay, and see Section 5
@@ -662,17 +667,16 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    packets with a finite value of one-way delay (undefined delays are
    excluded) -- a single value, as follows:
 
-   See Section 4.1 of [RFC3393] for details on the conditional
-   distribution to exclude undefined values of delay, and see Section 5
-   of [RFC6703] for background on this analysis choice.
-
-
 
 
 Graf, et al.             Expires 17 January 2025               [Page 12]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   See Section 4.1 of [RFC3393] for details on the conditional
+   distribution to exclude undefined values of delay, and see Section 5
+   of [RFC6703] for background on this analysis choice.
 
    See Section 4.3.5 of [RFC6049] for details on calculating this
    statistic.  However in this case FiniteDelay or MaxDelay MAY be used.
@@ -715,10 +719,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    RFC EDITOR NOTE: please replace This RFC text by the RFC issued from
    this document
 
-3.4.3.3.  Revision
-
-   1.0
-
 
 
 
@@ -729,6 +729,10 @@ Graf, et al.             Expires 17 January 2025               [Page 13]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+3.4.3.3.  Revision
+
+   1.0
 
 3.4.3.4.  Revision Date
 
@@ -775,16 +779,16 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    *  With node id and egressInterface(14), on which node which logical
       egress interfaces have been contributing to how much delay.
 
-   *  With node id and egressPhysicalInterface(253), on which node which
-      physical egress interfaces have been contributing to how much
-      delay.
-
 
 
 Graf, et al.             Expires 17 January 2025               [Page 14]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   *  With node id and egressPhysicalInterface(253), on which node which
+      physical egress interfaces have been contributing to how much
+      delay.
 
    *  With ipNextHopIPv4Address(15) or ipNextHopIPv6Address(62), the
       forwarding path to which next-hop IP contributed to how much
@@ -827,13 +831,9 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
            Table 2: Example table of measured delay. Ascending by delay.
 
-6.  IANA Considerations
 
-6.1.  Performance Metrics
 
-   This document requests IANA to add four new performance metrics under
-   the "Performance Metrics" registry [RFC8911] with the four templates
-   defined in Section 3.
+
 
 
 
@@ -841,6 +841,14 @@ Graf, et al.             Expires 17 January 2025               [Page 15]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+6.  IANA Considerations
+
+6.1.  Performance Metrics
+
+   This document requests IANA to add four new performance metrics under
+   the "Performance Metrics" registry [RFC8911] with the four templates
+   defined in Section 3.
 
 6.2.  IPFIX Entities
 
@@ -881,6 +889,15 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    ElementID:  TBD5
 
    Description:  This Information Element identifies the mean path delay
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 16]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
       of all packets in the Flow, in microseconds, between the OAM
       encapsulation node and the local node with the OAM domain (either
       an OAM transit node or an OAM decapsulation node), according to
@@ -890,13 +907,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    Abstract Data Type:  unsigned32
 
    Data Type Semantics:  deltaCounter
-
-
-
-Graf, et al.             Expires 17 January 2025               [Page 16]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    Reference:  [RFC-to-be], OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
       be]_Seconds_Mean in the IANA Performance Metric Registry.
@@ -936,6 +946,14 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
    Abstract Data Type:  unsigned32
 
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 17]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
    Data Type Semantics:  deltaCounter
 
    Reference:  [RFC-to-be], OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
@@ -946,13 +964,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    Name:  pathDelaySumDeltaMicroseconds
 
    ElementID:  TBD8
-
-
-
-Graf, et al.             Expires 17 January 2025               [Page 17]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    Description:  This Information Element identifies the sum of the path
       delay of all packets in the Flow, in microseconds, between the OAM
@@ -991,6 +1002,14 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    without overflowing the unsigned32 counter.  The procedure described
    in Section 6.2 of [RFC7011] may be applied to reduce network
    bandwidth between the IPFIX Exporter and Collector if unsigned32
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 18]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
    would be large enough without wrapping around.
 
 7.4.  IOAM Application
@@ -1001,14 +1020,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    In case of Edge-to-Edge Option-Type, as described in Section 4.6 of
    [RFC9197], by setting bits 2 and 3, timestamps can be encoded as
    defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].
-
-
-
-
-Graf, et al.             Expires 17 January 2025               [Page 18]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    In case of Direct Exporting Option-Type, as described in Section 2 of
    [I-D.ahuang-ippm-dex-timestamp-ext], by setting Extension-Flags 2 and
@@ -1046,6 +1057,15 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
    *  pathDelaySumDeltaMicroseconds
 
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 19]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
    The open source code can be obtained here: [INSA-Lyon-VPP] and was
    validated at the IETF 116 hackathon.
 
@@ -1057,14 +1077,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    *  pathDelayMeanDeltaMicroseconds
 
    *  pathDelayMaxDeltaMicroseconds
-
-
-
-
-Graf, et al.             Expires 17 January 2025               [Page 19]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    *  pathDelayMinDeltaMicroseconds
 
@@ -1103,6 +1115,13 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 11.  References
 
+
+
+Graf, et al.             Expires 17 January 2025               [Page 20]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
 11.1.  Normative References
 
    [I-D.ietf-opsawg-oam-characterization]
@@ -1111,16 +1130,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               opsawg-oam-characterization-01, 10 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
               oam-characterization-01>.
-
-
-
-
-
-
-Graf, et al.             Expires 17 January 2025               [Page 20]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1161,6 +1170,14 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               (IPPM)", STD 81, RFC 7679, DOI 10.17487/RFC7679, January
               2016, <https://www.rfc-editor.org/info/rfc7679>.
 
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 21]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
@@ -1170,13 +1187,10 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               DOI 10.17487/RFC8911, November 2021,
               <https://www.rfc-editor.org/info/rfc8911>.
 
-
-
-
-Graf, et al.             Expires 17 January 2025               [Page 21]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
+   [RFC8912]  Morton, A., Bagnulo, M., Eardley, P., and K. D'Souza,
+              "Initial Performance Metrics Registry Entries", RFC 8912,
+              DOI 10.17487/RFC8912, November 2021,
+              <https://www.rfc-editor.org/info/rfc8912>.
 
 11.2.  Informative References
 
@@ -1213,6 +1227,13 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               <https://datatracker.ietf.org/doc/html/draft-zhou-ippm-
               enhanced-alternate-marking-15>.
 
+
+
+Graf, et al.             Expires 17 January 2025               [Page 22]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
    [IANA-IPFIX]
               "IANA IP Flow Information Export (IPFIX) Entities
               Registry",
@@ -1222,17 +1243,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               "IANA Performance Metric Registry",
               <https://www.iana.org/assignments/performance-metrics/
               performance-metrics.xhtml>.
-
-
-
-
-
-
-
-Graf, et al.             Expires 17 January 2025               [Page 22]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    [INSA-Lyon-VPP]
               "INSA Lyon, FD.io VPP implementation",
@@ -1271,16 +1281,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
 
-   [RFC6703]  Morton, A., Ramachandran, G., and G. Maguluri, "Reporting
-              IP Network Performance Metrics: Different Points of View",
-              RFC 6703, DOI 10.17487/RFC6703, August 2012,
-              <https://www.rfc-editor.org/info/rfc6703>.
-
-   [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
-              RFC 6991, DOI 10.17487/RFC6991, July 2013,
-              <https://www.rfc-editor.org/info/rfc6991>.
-
-
 
 
 
@@ -1289,6 +1289,15 @@ Graf, et al.             Expires 17 January 2025               [Page 23]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   [RFC6703]  Morton, A., Ramachandran, G., and G. Maguluri, "Reporting
+              IP Network Performance Metrics: Different Points of View",
+              RFC 6703, DOI 10.17487/RFC6703, August 2012,
+              <https://www.rfc-editor.org/info/rfc6703>.
+
+   [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
+              RFC 6991, DOI 10.17487/RFC6991, July 2013,
+              <https://www.rfc-editor.org/info/rfc6991>.
 
    [RFC7015]  Trammell, B., Wagner, A., and B. Claise, "Flow Aggregation
               for the IP Flow Information Export (IPFIX) Protocol",
@@ -1324,6 +1333,19 @@ Appendix A.  IPFIX Encoding Examples
    ingressInterface, egressInterface, destinationIPv6Address and
    srhActiveSegmentIPv6.
 
+
+
+
+
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 24]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
  +------ +------+-----------+-----------+------+---------+---------+---------+---------+
  |ingress|egress|destination|srhActive  |packet|pathDelay|pathDelay|pathDelay|pathDelay|
  |Inter  |Inter |IPv6Address|SegmentIPv6|Delta |MeanDelta|MinDelta |MaxDelta |SumDelta |
@@ -1335,16 +1357,6 @@ Appendix A.  IPFIX Encoding Examples
   Table 4: Aggregated delay with egressInterface and srhActiveSegmentIPv6
 
 A.1.  Aggregated On-Path Dealay Examples
-
-
-
-
-
-
-Graf, et al.             Expires 17 January 2025               [Page 24]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
 A.1.1.  Template Record and Data Set with Mean Delta
 
@@ -1366,6 +1378,29 @@ A.1.1.  Template Record and Data Set with Mean Delta
    *  Maximum One-Way Delay => pathDelayMaxDeltaMicroseconds (TBD7)
 
    *  Mean One-Way Delay => pathDelayMeanDeltaMicroseconds (TBD5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 25]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
 
         0                   1                   2                   3
         0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -1394,15 +1429,34 @@ A.1.1.  Template Record and Data Set with Mean Delta
       Figure 2: Template Record for pathDelayMeanDeltaMicroseconds
 
 
+   The data set is represented as follows:
 
 
 
-Graf, et al.             Expires 17 January 2025               [Page 25]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 26]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
-
-   The data set is represented as follows:
 
         0                   1                   2                   3
         0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -1450,15 +1504,15 @@ A.1.2.  Template Record and Data Set with Sum Delta
 
    *  Packet Delta Count => packetDeltaCount
 
+   *  Minimum One-Way Delay => pathDelayMinDeltaMicroseconds (TBD6)
 
 
 
-Graf, et al.             Expires 17 January 2025               [Page 26]
+
+Graf, et al.             Expires 17 January 2025               [Page 27]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
-
-   *  Minimum One-Way Delay => pathDelayMinDeltaMicroseconds (TBD6)
 
    *  Maximum One-Way Delay => pathDelayMaxDeltaMicroseconds (TBD7)
 
@@ -1509,7 +1563,9 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 17 January 2025               [Page 27]
+
+
+Graf, et al.             Expires 17 January 2025               [Page 28]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -1565,7 +1621,7 @@ Authors' Addresses
 
 
 
-Graf, et al.             Expires 17 January 2025               [Page 28]
+Graf, et al.             Expires 17 January 2025               [Page 29]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -1621,4 +1677,4 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 17 January 2025               [Page 29]
+Graf, et al.             Expires 17 January 2025               [Page 30]
