@@ -5,10 +5,10 @@
 Network Working Group                                            T. Graf
 Internet-Draft                                                  Swisscom
 Intended status: Standards Track                               B. Claise
-Expires: 14 January 2025                                          Huawei
+Expires: 17 January 2025                                          Huawei
                                                            A. Huang Feng
                                                                INSA-Lyon
-                                                            13 July 2024
+                                                            16 July 2024
 
 
                     Export of On-Path Delay in IPFIX
@@ -18,7 +18,7 @@ Abstract
 
    This document specifies new IP Flow Information Export (IPFIX)
    Information Elements to export the On-Path Telemetry measured delay
-   on the IOAM transit and decapsulation nodes.
+   on the OAM transit and decapsulation nodes.
 
 Status of This Memo
 
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 January 2025.
+   This Internet-Draft will expire on 17 January 2025.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Graf, et al.             Expires 14 January 2025                [Page 1]
+Graf, et al.             Expires 17 January 2025                [Page 1]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -109,16 +109,16 @@ Table of Contents
 
 
 
-Graf, et al.             Expires 14 January 2025                [Page 2]
+Graf, et al.             Expires 17 January 2025                [Page 2]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
      11.1.  Normative References . . . . . . . . . . . . . . . . . .  20
-     11.2.  Informative References . . . . . . . . . . . . . . . . .  21
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  22
    Appendix A.  IPFIX Encoding Examples  . . . . . . . . . . . . . .  24
      A.1.  Aggregated On-Path Dealay Examples  . . . . . . . . . . .  24
-       A.1.1.  Template Record and Data Set with Mean Delta  . . . .  24
+       A.1.1.  Template Record and Data Set with Mean Delta  . . . .  25
        A.1.2.  Template Record and Data Set with Sum Delta . . . . .  26
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  28
 
@@ -154,7 +154,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
    In order to export the delay-related metrics via IPIFX [RFC7011],
    this document defines four new IPFIX Information Elements (IEs),
-   exposing the On-Path delay on IOAM transit and decapsulation nodes,
+   exposing the On-Path delay on OAM transit and decapsulation nodes,
    following the postcard mode principles.  Since these IPFIX IEs are
    performance metrics [RFC8911], they must be registered in the "IANA
    Performance Metric Registry [IANA-PERF-METRIC].
@@ -165,7 +165,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025                [Page 3]
+Graf, et al.             Expires 17 January 2025                [Page 3]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -199,8 +199,8 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
    Assuming time synchronization on devices, the delay is measured by
    calculating the difference between the timestamp imposed with On-Path
-   Telemetry in the packet at the IOAM encapsulation node and the
-   timestamp exported in the IPFIX flow record from the IOAM transit and
+   Telemetry in the packet at the OAM encapsulation node and the
+   timestamp exported in the IPFIX flow record from the OAM transit and
    decapsulation nodes.  The lowest, highest, mean, and/or the sum of
    measured path delay can be exported, thanks to the different IPFIX IE
    specifications.
@@ -221,7 +221,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025                [Page 4]
+Graf, et al.             Expires 17 January 2025                [Page 4]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -277,7 +277,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025                [Page 5]
+Graf, et al.             Expires 17 January 2025                [Page 5]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -290,13 +290,14 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
    *  Performance Metrics Registry
 
-   The following terms are used as defined in Section 3 of [RFC9378]:
+   The following terms are used as defined in Section 5 of
+   [I-D.ietf-opsawg-oam-characterization]:
 
-   *  IOAM encapsulation node
+   *  Encapsulation node
 
-   *  IOAM transit node
+   *  Transit node
 
-   *  IOAM decapsulation node
+   *  Decapsulation node
 
 3.  Performance Metrics
 
@@ -332,8 +333,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-
-Graf, et al.             Expires 14 January 2025                [Page 6]
+Graf, et al.             Expires 17 January 2025                [Page 6]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -389,7 +389,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025                [Page 7]
+Graf, et al.             Expires 17 January 2025                [Page 7]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -445,7 +445,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025                [Page 8]
+Graf, et al.             Expires 17 January 2025                [Page 8]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -468,7 +468,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 3.3.2.  Packet Stream Generation
 
-   The timestamp when the packet is being received at IOAM encapsulation
+   The timestamp when the packet is being received at OAM encapsulation
    node.  Format depends on On-Path Telemetry implementation.  For IOAM,
    Section 4.4.1 of [RFC9197] describes what kind of timestamps are
    supported.  Section 4.4.2.3 and 4.4.2.4 describe where the timestamp
@@ -501,7 +501,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025                [Page 9]
+Graf, et al.             Expires 17 January 2025                [Page 9]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -552,12 +552,12 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
    Decapsulation Node:  Receives the IP Flow packets and computes the
       delay between the timestamp in the packet and the timestamp when
-      the packet was received and removes the IOAM header from the
+      the packet was received and removes the OAM header from the
       packet.
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 10]
+Graf, et al.             Expires 17 January 2025               [Page 10]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -613,7 +613,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 11]
+Graf, et al.             Expires 17 January 2025               [Page 11]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -669,7 +669,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 12]
+Graf, et al.             Expires 17 January 2025               [Page 12]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -725,7 +725,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 13]
+Graf, et al.             Expires 17 January 2025               [Page 13]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -744,27 +744,27 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
    pathDelayMeanDeltaMicroseconds
       32-bit unsigned integer that identifies the mean path delay of all
-      packets in the Flow, in microseconds, between the IOAM
-      encapsulation node and the local node with the IOAM domain (either
-      an IOAM transit node or an IOAM decapsulation node).
+      packets in the Flow, in microseconds, between the OAM
+      encapsulation node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulation node).
 
    pathDelayMinDeltaMicroseconds
       32-bit unsigned integer that identifies the lowest path delay of
-      all packets in the Flow, in microseconds, between the IOAM
-      encapsulation node and the local node with the IOAM domain (either
-      an IOAM transit node or an IOAM decapsulation node).
+      all packets in the Flow, in microseconds, between the OAM
+      encapsulation node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulation node).
 
    pathDelayMaxDeltaMicroseconds
       32-bit unsigned integer that identifies the highest path delay of
-      all packets in the Flow, in microseconds, between the IOAM
-      encapsulation node and the local node with the IOAM domain (either
-      an IOAM transit node or an IOAM decapsulation node).
+      all packets in the Flow, in microseconds, between the OAM
+      encapsulation node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulation node).
 
    pathDelaySumDeltaMicroseconds
       64-bit unsigned integer that identifies the sum of the path delay
-      of all packets in the Flow, in microseconds, between the IOAM
-      encapsulation node and the local node with the IOAM domain (either
-      an IOAM transit node or an IOAM decapsulation node).
+      of all packets in the Flow, in microseconds, between the OAM
+      encapsulation node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulation node).
 
 5.  Use Cases
 
@@ -781,7 +781,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 14]
+Graf, et al.             Expires 17 January 2025               [Page 14]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -837,7 +837,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 15]
+Graf, et al.             Expires 17 January 2025               [Page 15]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -881,9 +881,9 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    ElementID:  TBD5
 
    Description:  This Information Element identifies the mean path delay
-      of all packets in the Flow, in microseconds, between the IOAM
-      encapsulation node and the local node with the IOAM domain (either
-      an IOAM transit node or an IOAM decapsulation node), according to
+      of all packets in the Flow, in microseconds, between the OAM
+      encapsulation node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulation node), according to
       OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the
       IANA Performance Metric Registry
 
@@ -893,7 +893,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 16]
+Graf, et al.             Expires 17 January 2025               [Page 16]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -908,11 +908,11 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    ElementID:  TBD6
 
    Description:  This Information Element identifies the lowest path
-      delay of all packets in the Flow, in microseconds, between the
-      IOAM encapsulation node and the local node with the IOAM domain
-      (either an IOAM transit node or an IOAM decapsulation node),
-      according to the OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
-      be]_Seconds_Min in the IANA Performance Metric Registry.
+      delay of all packets in the Flow, in microseconds, between the OAM
+      encapsulation node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulation node), according to
+      the OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min in
+      the IANA Performance Metric Registry.
 
    Abstract Data Type:  unsigned32
 
@@ -928,11 +928,11 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    ElementID:  TBD7
 
    Description:  This Information Element identifies the highest path
-      delay of all packets in the Flow, in microseconds, between the
-      IOAM encapsulation node and the local node with the IOAM domain
-      (either an IOAM transit node or an IOAM decapsulation node),
-      according to OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
-      be]_Seconds_Max in the IANA Performance Metric Registry.
+      delay of all packets in the Flow, in microseconds, between the OAM
+      encapsulation node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulation node), according to
+      OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the
+      IANA Performance Metric Registry.
 
    Abstract Data Type:  unsigned32
 
@@ -949,17 +949,17 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 17]
+Graf, et al.             Expires 17 January 2025               [Page 17]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
    Description:  This Information Element identifies the sum of the path
-      delay of all packets in the Flow, in microseconds, between the
-      IOAM encapsulation node and the local node with the IOAM domain
-      (either an IOAM transit node or an IOAM decapsulation node),
-      according to OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
-      be]_Seconds_Sum in the IANA Performance Metric Registry.
+      delay of all packets in the Flow, in microseconds, between the OAM
+      encapsulation node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulation node), according to
+      OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in the
+      IANA Performance Metric Registry.
 
    Abstract Data Type:  unsigned64
 
@@ -1005,7 +1005,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 18]
+Graf, et al.             Expires 17 January 2025               [Page 18]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -1061,7 +1061,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 19]
+Graf, et al.             Expires 17 January 2025               [Page 19]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -1105,6 +1105,23 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 11.1.  Normative References
 
+   [I-D.ietf-opsawg-oam-characterization]
+              Pignataro, C. and A. Farrel, "Guidelines for Charactering
+              "OAM"", Work in Progress, Internet-Draft, draft-ietf-
+              opsawg-oam-characterization-01, 10 May 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              oam-characterization-01>.
+
+
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 20]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -1113,14 +1130,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
    [RFC3339]  Klyne, G. and C. Newman, "Date and Time on the Internet:
               Timestamps", RFC 3339, DOI 10.17487/RFC3339, July 2002,
               <https://www.rfc-editor.org/info/rfc3339>.
-
-
-
-
-Graf, et al.             Expires 14 January 2025               [Page 20]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    [RFC5905]  Mills, D., Martin, J., Ed., Burbank, J., and W. Kasch,
               "Network Time Protocol Version 4: Protocol and Algorithms
@@ -1161,22 +1170,15 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               DOI 10.17487/RFC8911, November 2021,
               <https://www.rfc-editor.org/info/rfc8911>.
 
-11.2.  Informative References
 
 
 
-
-
-
-
-
-
-
-
-Graf, et al.             Expires 14 January 2025               [Page 21]
+Graf, et al.             Expires 17 January 2025               [Page 21]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+11.2.  Informative References
 
    [I-D.ahuang-ippm-dex-timestamp-ext]
               Feng, A. H., Francois, P., Claise, B., and T. Graf,
@@ -1221,18 +1223,21 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               <https://www.iana.org/assignments/performance-metrics/
               performance-metrics.xhtml>.
 
+
+
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 22]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
    [INSA-Lyon-VPP]
               "INSA Lyon, FD.io VPP implementation",
               <https://github.com/network-analytics/vpp-srh-onpath-
               telemetry>.
-
-
-
-
-Graf, et al.             Expires 14 January 2025               [Page 22]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    [NTT-Fluvia]
               "NTT Com, Fluvia Exporter",
@@ -1275,20 +1280,20 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
               <https://www.rfc-editor.org/info/rfc6991>.
 
+
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 23]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
    [RFC7015]  Trammell, B., Wagner, A., and B. Claise, "Flow Aggregation
               for the IP Flow Information Export (IPFIX) Protocol",
               RFC 7015, DOI 10.17487/RFC7015, September 2013,
               <https://www.rfc-editor.org/info/rfc7015>.
-
-
-
-
-
-
-Graf, et al.             Expires 14 January 2025               [Page 23]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    [RFC9197]  Brockners, F., Ed., Bhandari, S., Ed., and T. Mizrahi,
               Ed., "Data Fields for In Situ Operations, Administration,
@@ -1331,20 +1336,22 @@ Appendix A.  IPFIX Encoding Examples
 
 A.1.  Aggregated On-Path Dealay Examples
 
+
+
+
+
+
+Graf, et al.             Expires 17 January 2025               [Page 24]
+
+Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
+
+
 A.1.1.  Template Record and Data Set with Mean Delta
 
    With encoding in Figure 2, the mean (average) path delay is
    calculated on the exporting node.
 
    *  Ingress interface => ingressInterface
-
-
-
-
-Graf, et al.             Expires 14 January 2025               [Page 24]
-
-Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
-
 
    *  Egress interface => egressInterface
 
@@ -1387,20 +1394,15 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
       Figure 2: Template Record for pathDelayMeanDeltaMicroseconds
 
 
-   The data set is represented as follows:
 
 
 
-
-
-
-
-
-
-Graf, et al.             Expires 14 January 2025               [Page 25]
+Graf, et al.             Expires 17 January 2025               [Page 25]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   The data set is represented as follows:
 
         0                   1                   2                   3
         0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -1448,15 +1450,15 @@ A.1.2.  Template Record and Data Set with Sum Delta
 
    *  Packet Delta Count => packetDeltaCount
 
-   *  Minimum One-Way Delay => pathDelayMinDeltaMicroseconds (TBD6)
 
 
 
-
-Graf, et al.             Expires 14 January 2025               [Page 26]
+Graf, et al.             Expires 17 January 2025               [Page 26]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   *  Minimum One-Way Delay => pathDelayMinDeltaMicroseconds (TBD6)
 
    *  Maximum One-Way Delay => pathDelayMaxDeltaMicroseconds (TBD7)
 
@@ -1507,9 +1509,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-
-
-Graf, et al.             Expires 14 January 2025               [Page 27]
+Graf, et al.             Expires 17 January 2025               [Page 27]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -1565,7 +1565,7 @@ Authors' Addresses
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 28]
+Graf, et al.             Expires 17 January 2025               [Page 28]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
@@ -1621,4 +1621,4 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 
 
-Graf, et al.             Expires 14 January 2025               [Page 29]
+Graf, et al.             Expires 17 January 2025               [Page 29]
