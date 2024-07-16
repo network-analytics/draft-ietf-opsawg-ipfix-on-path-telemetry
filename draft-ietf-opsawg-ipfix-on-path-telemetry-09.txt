@@ -105,7 +105,7 @@ Table of Contents
      9.3.  Fluvia  . . . . . . . . . . . . . . . . . . . . . . . . .  20
      9.4.  Pmacct Data Collection  . . . . . . . . . . . . . . . . .  20
    10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  20
-   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  20
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  21
 
 
 
@@ -116,7 +116,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
      11.1.  Normative References . . . . . . . . . . . . . . . . . .  21
      11.2.  Informative References . . . . . . . . . . . . . . . . .  22
-   Appendix A.  IPFIX Encoding Examples  . . . . . . . . . . . . . .  24
+   Appendix A.  IPFIX Encoding Examples  . . . . . . . . . . . . . .  25
      A.1.  Aggregated On-Path Dealay Examples  . . . . . . . . . . .  25
        A.1.1.  Template Record and Data Set with Mean Delta  . . . .  25
        A.1.2.  Template Record and Data Set with Sum Delta . . . . .  27
@@ -1110,10 +1110,10 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
 10.  Acknowledgements
 
-   The authors would like to thank Al Morton, Greg Mirsky, Giuseppe
-   Fioccola, and Paul Aikten for their review and valuable comments.
-
-11.  References
+   The authors would like to thank Al Morton (Rest in Peace Al), Greg
+   Mirsky, and Giuseppe Fioccola for their review and valuable comments.
+   Special thanks to Paul Aikten (as IPFIX Designated Expert), and to
+   Med Boucadair for his very detailed feedback.
 
 
 
@@ -1121,6 +1121,8 @@ Graf, et al.             Expires 17 January 2025               [Page 20]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+11.  References
 
 11.1.  Normative References
 
@@ -1165,10 +1167,8 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               RFC 7323, DOI 10.17487/RFC7323, September 2014,
               <https://www.rfc-editor.org/info/rfc7323>.
 
-   [RFC7679]  Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton,
-              Ed., "A One-Way Delay Metric for IP Performance Metrics
-              (IPPM)", STD 81, RFC 7679, DOI 10.17487/RFC7679, January
-              2016, <https://www.rfc-editor.org/info/rfc7679>.
+
+
 
 
 
@@ -1177,6 +1177,11 @@ Graf, et al.             Expires 17 January 2025               [Page 21]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   [RFC7679]  Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton,
+              Ed., "A One-Way Delay Metric for IP Performance Metrics
+              (IPPM)", STD 81, RFC 7679, DOI 10.17487/RFC7679, January
+              2016, <https://www.rfc-editor.org/info/rfc7679>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -1219,13 +1224,8 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
               alt-mark-deployment-01>.
 
-   [I-D.zhou-ippm-enhanced-alternate-marking]
-              Zhou, T., Fioccola, G., Liu, Y., Cociglio, M., Pang, R.,
-              Xiong, L., Lee, S., and W. Li, "Enhanced Alternate Marking
-              Method", Work in Progress, Internet-Draft, draft-zhou-
-              ippm-enhanced-alternate-marking-15, 27 May 2024,
-              <https://datatracker.ietf.org/doc/html/draft-zhou-ippm-
-              enhanced-alternate-marking-15>.
+
+
 
 
 
@@ -1233,6 +1233,14 @@ Graf, et al.             Expires 17 January 2025               [Page 22]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   [I-D.zhou-ippm-enhanced-alternate-marking]
+              Zhou, T., Fioccola, G., Liu, Y., Cociglio, M., Pang, R.,
+              Xiong, L., Lee, S., and W. Li, "Enhanced Alternate Marking
+              Method", Work in Progress, Internet-Draft, draft-zhou-
+              ippm-enhanced-alternate-marking-15, 27 May 2024,
+              <https://datatracker.ietf.org/doc/html/draft-zhou-ippm-
+              enhanced-alternate-marking-15>.
 
    [IANA-IPFIX]
               "IANA IP Flow Information Export (IPFIX) Entities
@@ -1271,15 +1279,7 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               DOI 10.17487/RFC3393, November 2002,
               <https://www.rfc-editor.org/info/rfc3393>.
 
-   [RFC5153]  Boschi, E., Mark, L., Quittek, J., Stiemerling, M., and P.
-              Aitken, "IP Flow Information Export (IPFIX) Implementation
-              Guidelines", RFC 5153, DOI 10.17487/RFC5153, April 2008,
-              <https://www.rfc-editor.org/info/rfc5153>.
 
-   [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
-              the Network Configuration Protocol (NETCONF)", RFC 6020,
-              DOI 10.17487/RFC6020, October 2010,
-              <https://www.rfc-editor.org/info/rfc6020>.
 
 
 
@@ -1289,6 +1289,16 @@ Graf, et al.             Expires 17 January 2025               [Page 23]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+   [RFC5153]  Boschi, E., Mark, L., Quittek, J., Stiemerling, M., and P.
+              Aitken, "IP Flow Information Export (IPFIX) Implementation
+              Guidelines", RFC 5153, DOI 10.17487/RFC5153, April 2008,
+              <https://www.rfc-editor.org/info/rfc5153>.
+
+   [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
+              the Network Configuration Protocol (NETCONF)", RFC 6020,
+              DOI 10.17487/RFC6020, October 2010,
+              <https://www.rfc-editor.org/info/rfc6020>.
 
    [RFC6703]  Morton, A., Ramachandran, G., and G. Maguluri, "Reporting
               IP Network Performance Metrics: Different Points of View",
@@ -1325,16 +1335,6 @@ Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
               DOI 10.17487/RFC9378, April 2023,
               <https://www.rfc-editor.org/info/rfc9378>.
 
-Appendix A.  IPFIX Encoding Examples
-
-   This appendix represents two different encodings for the newly
-   introduced IEs.  Taking Figure 1 from Section 1 as topology example.
-   Below example Table 4 shows the aggregated delay with
-   ingressInterface, egressInterface, destinationIPv6Address and
-   srhActiveSegmentIPv6.
-
-
-
 
 
 
@@ -1345,6 +1345,14 @@ Graf, et al.             Expires 17 January 2025               [Page 24]
 
 Internet-Draft  Export of On-Path Delay in IP Flow Infor       July 2024
 
+
+Appendix A.  IPFIX Encoding Examples
+
+   This appendix represents two different encodings for the newly
+   introduced IEs.  Taking Figure 1 from Section 1 as topology example.
+   Below example Table 4 shows the aggregated delay with
+   ingressInterface, egressInterface, destinationIPv6Address and
+   srhActiveSegmentIPv6.
 
  +------ +------+-----------+-----------+------+---------+---------+---------+---------+
  |ingress|egress|destination|srhActive  |packet|pathDelay|pathDelay|pathDelay|pathDelay|
@@ -1378,14 +1386,6 @@ A.1.1.  Template Record and Data Set with Mean Delta
    *  Maximum One-Way Delay => pathDelayMaxDeltaMicroseconds (TBD7)
 
    *  Mean One-Way Delay => pathDelayMeanDeltaMicroseconds (TBD5)
-
-
-
-
-
-
-
-
 
 
 
