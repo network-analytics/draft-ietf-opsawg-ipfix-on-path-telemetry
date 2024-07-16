@@ -10,10 +10,10 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-opsawg-ipfix-on-path-telemetry-08"
+<rfc category="std" docName="draft-ietf-opsawg-ipfix-on-path-telemetry-09"
      ipr="trust200902">
   <front>
-    <title abbrev="Export of On-Path Delay in IPFIX">Export of On-Path Delay
+    <title abbrev="Export of On-Path Delay in IP Flow Information eXport (IPFIX)">Export of On-Path Delay
     in IPFIX</title>
 
     <author fullname="Thomas Graf" initials="T" surname="Graf">
@@ -68,61 +68,61 @@
       </address>
     </author>
 
-    <date day="08" month="July" year="2024"/>
+    <date day="13" month="July" year="2024"/>
 
     <abstract>
-      <t>This document introduces new IP Flow Information Export (IPFIX)
-      information elements to expose the On-Path Telemetry measured delay on
+      <t>This document specifies new IP Flow Information Export (IPFIX)
+      Information Elements to export the On-Path Telemetry measured delay on
       the IOAM transit and decapsulation nodes.</t>
     </abstract>
   </front>
 
   <middle>
     <section anchor="Introduction" title="Introduction">
-      <t>Network operators want a statistical delay view of their networks.
-      They want to understand where in the network, for which customer
-      traffic, how much and why delay is being accummlated. In order to answer
-      why and where, delay needs to be reported into device and control-plane
-      context. In order to understand which customer traffic is affected,
-      delay needs to be reported into customer data-plane context. That
-      enables network operators to quickly identify when the control-plane
-      updates the current path with a different next-hop and therefore the
-      forwarding path changes to different nodes and interfaces, how the path
-      delay changes for which customer traffic.</t>
+      <t>Network operators usually gather and maintain some forms of statistical 
+       delay view of their networks (or segments of their networks). That view 
+       is meant to help understanding where in the network, for which customer 
+       traffic or services, how much, and why abnormal delay is being accumulated. 
+       To that aim, delay-related data need to be reported from devices covering 
+       both data and control planes.  In order to understand which customer traffic 
+       is affected, delay-related data need to be reported into customer data-plane 
+       context. That enables network operators to quickly identify when the 
+       control-plane updates the current path with a different set of intermediate 
+       hops (that is, a change of the forwarding path) and interfaces, how the path 
+       delay changes for which customer traffic.</t>
 
       <t>With On-Path Telemetry, described in the <xref target="RFC9232">
-      Network Telemetry Framework</xref> and applied in <xref
-      target="I-D.ietf-ippm-ioam-deployment">In-situ OAM</xref> and <xref
-      target="I-D.ietf-ippm-alt-mark-deployment">Alternate Marking Deployment
+      Network Telemetry Framework</xref> and applied in <xref target="RFC9378">
+      In Situ Operations, Administration, and Maintenance (IOAM) Deployment</xref> 
+      and <xref target="I-D.ietf-ippm-alt-mark-deployment">Alternate Marking Deployment
       Framework</xref>, the path delay between two endpoints is measured by
       inserting a timestamp in the packet.</t>
 
-      <t>On-Path Telemetry can be distinguished between two modes. Passport
+      <t>At least two modes of On-Path Telemetry can be distinguished. Passport
       mode, <xref target="RFC9197"/>, where only the last hop in the
       forwarding path of the On-Path Telemetry domain exposes all the metrics,
-      and postcard mode, <xref
-      target="I-D.song-ippm-postcard-based-telemetry"/>, where the metrics are
-      also exposed in the transit nodes. In both modes the forwarding path
-      exposes performance metrics allowing to determine how much delay has
-      been accumulated on which hop.</t>
+      and postcard mode, where the metrics are also exposed in transit nodes. 
+      In both modes the forwarding path exposes performance metrics allowing to 
+      determine how much delay has been accumulated on which hop.</t>
 
-      <t>This document defines four new IPFIX Information Elements (IEs),
+      <t>In order to export the delay-related metrics via IPIFX <xref target="RFC7011"/>,
+      this document defines four new IPFIX Information Elements (IEs),
       exposing the On-Path delay on IOAM transit and decapsulation nodes,
       following the postcard mode principles. Since these IPFIX IEs are
       performance metrics <xref target="RFC8911"/>, they must be registered in
       the <xref target="IANA-PERF-METRIC">"IANA Performance Metric
       Registry</xref>.</t>
 
-      <t>Following the guidelines for Registered Performance Metric requesters
-      and reviewers <xref target="RFC8911"/>, the different characteristics of
+      <t>Following the guidelines for Registered Performance Metric Requesters
+      and Reviewers <xref target="RFC8911"/>, the different characteristics of
       the performance metrics (Identifier, Name, URI, Status, Requester,
-      Revision, Revision Date, Description, etc) must be clearly specified in
+      Revision, Revision Date, Description, etc.) must be clearly specified in
       the <xref target="IANA-PERF-METRIC">"IANA Performance Metric
-      Registry</xref> in order for the results of measurements using the
-      Performance Metrics to be comparable even if they are performed by
-      different implementations and in different networks. These
-      characteristics start by selecting a meaningful name, following the
-      "MetricType_Method_SubTypeMethod_... Spec_Units_Output" naming
+      Registry</xref> in order for the measurement results using the
+      Performance Metrics to be comparable even if they are performed using
+      different implementations and in different networks. The first 
+      performance metric characteristic is the selection of a meaningful name, 
+      following the "MetricType_Method_SubTypeMethod_... Spec_Units_Output" naming
       convention (See Section 7.1.2 of <xref target="RFC8911"/>).</t>
 
       <t><figure>
@@ -130,29 +130,29 @@
 +------------------------------------+-------------------------------+
 |      Performance Metric            |  IPFIX Information Element    |
 +------------------------------------+-------------------------------+
-|OWDelay_HybridType1_Passive_I       |PathDelayMeanDeltaMicroseconds |
+|OWDelay_HybridType1_Passive_I       |pathDelayMeanDeltaMicroseconds |
 |P_RFC[RFC-to-be]_Seconds_Mean (TBD1)|(TBD5)                         |
 +------------------------------------+-------------------------------+
-|OWDelay_HybridType1_Passive_I       |PathDelayMinDeltaMicroseconds  |
+|OWDelay_HybridType1_Passive_I       |pathDelayMinDeltaMicroseconds  |
 |P_RFC[RFC-to-be]_Seconds_Min (TBD2) |(TBD6)                         |
 +------------------------------------+-------------------------------+
-|OWDelay_HybridType1_Passive_I       |PathDelayMaxDeltaMicroseconds  |
+|OWDelay_HybridType1_Passive_I       |pathDelayMaxDeltaMicroseconds  |
 |P_RFC[RFC-to-be]_Seconds_Max (TBD3) |(TBD7)                         |
 +------------------------------------+-------------------------------+
-|OWDelay_HybridType1_Passive_I       |PathDelaySumDeltaMicroseconds  |
+|OWDelay_HybridType1_Passive_I       |pathDelaySumDeltaMicroseconds  |
 |P_RFC[RFC-to-be]_Seconds_Sum (TBD4) |(TBD8)                         |
 +------------------------------------+-------------------------------+
           
-Table 1: Correspondance between IPFIX IE and Performance Metric
+Table 1: Mapping Between IPFIX IEs and Performance Metrics
        ]]></artwork>
         </figure></t>
 
-      <t>The delay is measured by calculating the difference between the
-      timestamp imposed with On-Path Telemetry in the packet at the IOAM
-      encapsulation node and the timestamp exported in the IPFIX flow record
-      from the IOAM transit and decapsulation nodes. The lowest, highest,
-      mean, and/or the sum of measured path delay can be exported, thanks to
-      the different IPFIX IE specifications.</t>
+      <t>Assuming time synchronization on devices, the delay is measured by 
+      calculating the difference between the timestamp imposed with On-Path 
+      Telemetry in the packet at the IOAM encapsulation node and the timestamp 
+      exported in the IPFIX flow record from the IOAM transit and decapsulation 
+      nodes. The lowest, highest, mean, and/or the sum of measured path delay 
+      can be exported, thanks to the different IPFIX IE specifications.</t>
 
       <figure anchor="topology"
               title="Delay use case. Packets flow from host 1 to host 2.">
@@ -161,13 +161,13 @@ Table 1: Correspondance between IPFIX IE and Performance Metric
               .........................................
               .                                       .
               .    D1                                 .
-              . <------>                              .
+              . x------>                              .
               .                                       .
               .          D2                           .
-              . <-------------------->                .
+              . x-------------------->                .
               .                                       .
               .                  D3                   .
-              . <-----------------------------------> .
+              . x-----------------------------------> .
               .                                       .
 (H1) ------ (R1) ------- (R2) ------- (R3) -------- (R4) ------ (H2)
 Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
@@ -179,7 +179,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 ]]></artwork>
       </figure>
 
-      <t>On the usecase showed in <xref target="topology"/> using On-path
+      <t>In the usecase shown in <xref target="topology"/> using On-path
       Telemetry to export the delay metrics, the node R2 exports the delay D1,
       the node R3 exports the delay D2 and the decapsulation node R4 exports
       the total delay D3 using IPFIX.</t>
@@ -193,11 +193,10 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       they appear in all capitals, as shown here.</t>
 
       <t>This document makes use of the terms defined in <xref
-      target="RFC7011"/> and <xref
-      target="I-D.ietf-ippm-ioam-deployment"/>.</t>
+      target="RFC7011"/> and <xref target="RFC9378"/>.</t>
 
       <t>The following terms are used as defined in <xref
-      target="RFC7011"/>.</t>
+      target="RFC7011"/>:</t>
 
       <t><list style="symbols">
           <t>IPFIX</t>
@@ -212,7 +211,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         </list></t>
 
       <t>The following terms are used as defined in <xref
-      target="RFC8911"/>.</t>
+      target="RFC8911"/>:</t>
 
       <t><list style="symbols">
           <t>Performance Metric</t>
@@ -222,8 +221,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t>Performance Metrics Registry</t>
         </list></t>
 
-      <t>The following terms are used as defined in <xref
-      target="I-D.ietf-ippm-ioam-deployment"/>.</t>
+      <t>The following terms are used as defined in Section 3 of 
+        <xref target="RFC9378"/>:</t>
 
       <t><list style="symbols">
           <t>IOAM encapsulation node</t>
@@ -235,11 +234,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </section>
 
     <section anchor="PM" title="Performance Metrics">
-      <t>This section defines and describes the new performance metrics by
-      applying the template defined in Section 11 of <xref
+      <t>This section defines the new performance metrics 
+      following the template defined in Section 11 of <xref
       target="RFC8911"/>.</t>
 
-      <t>IANA Note (to be removed): RFC 8192 section 4 was taken a guiding example.</t>
+      <t>IANA Note (to be removed): RFC 8192 Section 4 was taken a guiding example.</t>
 
       <section anchor="ip-ow-delay-hybridtype1-passive-reg-entries"
                title="IP One-Way Delay Hybrid Type I Passive Performance Metrics">
@@ -248,16 +247,16 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         <xref target="IANA-PERF-METRIC">"IANA Performance Metric
         Registry</xref>.</t>
 
-        <t>All column entries besides the ID, Name, Description, and Output
+        <t>All column entries besides the Identifier, Name, Description, and Output
         Reference Method categories are the same; thus, this section defines
         four closely related performance metrics. As a result, IANA has
-        assigned corresponding URLs to each of the four registered performance
+        assigned corresponding URIs to each of the four registered performance
         metrics.</t>
 
 
         <section numbered="true" title="Summary">
           <t>This category includes multiple indexes of the registered
-          performance metrics: the element ID and Metric Name.</t>
+          performance metrics: the element Identifier and Metric Name.</t>
 
           <section title="ID (Identifier)">
             <t>IANA has allocated the numeric Identifiers TBD1, TBD2, TBD3, and TBD4
@@ -285,16 +284,16 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </section>
 
           <section title="URI">
-            <t>URL: <eref
+            <t>URI: <eref
             target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean"/></t>
 
-            <t>URL: <eref
+            <t>URI: <eref
             target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min"/></t>
 
-            <t>URL: <eref
+            <t>URI: <eref
             target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max"/></t>
 
-            <t>URL: <eref
+            <t>URI: <eref
             target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum"/></t>
 
             <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TBD3, and TBD4.</t>
@@ -305,27 +304,27 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t><list style="symbols">
               <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean: This 
                 metric assesses the mean of one-way delays of all successfully 
-                forwarded IP packets constituting a single Flow between 
-                two hosts.  We consider the measurement of one-way delay based 
-                on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
+                forwarded IP packets constituting a single Flow. We consider 
+                the measurement of one-way delay based on a single Observation Point 
+                (OP) [RFC7011] somewhere in the network.</t>
 
               <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min: This 
                 metric assesses the minimum of one-way delays of all successfully 
-                forwarded IP packets constituting a single Flow between 
-                two hosts.  We consider the measurement of one-way delay based 
-                on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
+                forwarded IP packets constituting a single Flow.  We consider 
+                the measurement of one-way delay based on a single Observation Point 
+                (OP) [RFC7011] somewhere in the network.</t>
 
               <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max: This 
                 metric assesses the maximum of one-way delays of all successfully 
-                forwarded IP packets constituting a single Flow between 
-                two hosts.  We consider the measurement of one-way delay based 
-                on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
+                forwarded IP packets constituting a single Flow.  We consider 
+                the measurement of one-way delay based on a single Observation Point 
+                (OP) [RFC7011] somewhere in the network.</t>
 
               <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum: This 
                 metric assesses the sum of one-way delays of all successfully 
-                forwarded IP packets constituting a single Flow between 
-                two hosts.  We consider the measurement of one-way delay based 
-                on a single Observation Point (OP) [RFC7011] somewhere in the network.</t>
+                forwarded IP packets constituting a single Flow.  We consider 
+                the measurement of one-way delay based on a single Observation Point 
+                (OP) [RFC7011] somewhere in the network.</t>
             </list></t>
         </section>
 
@@ -360,7 +359,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           definition of the singleton (single value) one-way delay metric.
           Section 4.4 of <xref target="RFC7679"/> provides the reference
           definition expanded to cover a multi-value sample. Note that terms
-          such as "singleton" and "sample" are defined in section 2 of <xref
+          such as "singleton" and "sample" are defined in Section 2 of <xref
           target="RFC2330"/>.</t>
 
           <t>With the OP <xref target="RFC7011"/> typically located between
@@ -370,7 +369,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           target="RFC6049"/> of the measurements yields a one-way delay
           singleton.</t>
 
-          <t>This document specifies how to export the performance metric with
+          <t>This document specifies how to export the performance metric using
           IPFIX.</t>
         </section>
 
@@ -386,7 +385,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
         <section title="Reference Methods">
           <t>The foundational methodology for this metric is defined in
-          section 4 of <xref target="RFC7323"/> using the Timestamps option
+          Section 4 of <xref target="RFC7323"/> using the Timestamps option
           with modifications that allow application at a mid-path OP <xref
           target="RFC7011"/>.</t>
         </section>
@@ -403,7 +402,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         </section>
 
         <section title="Traffic Filtering (Observation) Details">
-          <t>Runtime Parameters (below) may be used for Traffic Filtering.</t>
+          <t>Runtime Parameters (in the following sections) may be used for Traffic Filtering.</t>
         </section>
 
         <section title="Sampling Distribution">
@@ -413,7 +412,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
         <section title="Runtime Parameters and Data Format">
           <t>Runtime Parameters are input factors that must be determined,
-          configured into the measurement system, and reported with the
+          configured into a measurement system, and reported with the
           results for the context to be complete.</t>
 
           <t>The hybrid type I metering parameters must be reported to provide
@@ -427,13 +426,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t><list style="hanging">
               <t hangText="Src:">The IP address of the host in the host A Role
               (format ipv4&nbhy;address-no-zone value for IPv4 or
-              ipv6-address-no-zone value for IPv6; see section 4 of <xref
-              target="RFC6991"/>.</t>
+              ipv6-address-no-zone value for IPv6; see Section 4 of <xref
+              target="RFC6991"/>).</t>
 
               <t hangText="Dst:">The IP address of the host in the host B Role
               (format ipv4&nbhy;address-no-zone value for IPv4 or
-              ipv6-address-no-zone value for IPv6; see section 4 of <xref
-              target="RFC6991"/>.</t>
+              ipv6-address-no-zone value for IPv6; see Section 4 of <xref
+              target="RFC6991"/>).</t>
 
               <t hangText="T0:">T time, the start of a measurement interval
               (format "date/time" as specified in Section 5.6 of <xref
@@ -456,25 +455,22 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
         <section title="Roles">
           <t><list style="hanging">
-              <t hangText="host A:">Launches the IP packet to start the Flow. 
-              The Role of "host A" is synonymous with the IP address used at 
-              host A.</t>
+              <t hangText="host A:">Launches an IP packet to start the Flow. 
+              </t>
 
               <t hangText="host B:">Receives the IP packet to start the Flow.
-              The Role of "host B" is synonymous with the IP address used at 
-              host B.</t>
+              </t>
 
               <t hangText="Encapsulation Node:">Receives the IP Flow packets
               and encapsulates the timestamp into the packet.
-              The Role of "Encapsulation Node" is synonymous with the
-              timestamp inserted in the packet.</t>
+              </t>
 
               <t hangText="Transit Node:">Receives the IP Flow packets
               and measures the delay between the timestamp in the
               packet and the timestamp when the packet was received.</t>
 
               <t hangText="Decapsulation Node:">Receives the IP Flow packets
-              and measures the delay between the timestamp in
+              and computes the delay between the timestamp in
               the packet and the timestamp when the packet was received and
               removes the IOAM header from the packet.</t>
             </list></t>
@@ -493,7 +489,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t>For all output types:</t>
 
           <t><list style="hanging">
-              <t hangText="OWDelay_HybridType1_Passive_IP:">The one-trip delay
+              <t hangText="OWDelay_HybridType1_Passive_IP:">The one-way delay
               of one IP packet is a Singleton</t>
             </list></t>
 
@@ -505,22 +501,22 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             of all packets with a finite value of one-way delay (undefined
             delays are excluded) -- a single value, as follows:</t>
 
-            <t>See section 4.1 of <xref target="RFC3393"/> for details on the
+            <t>See Section 4.1 of <xref target="RFC3393"/> for details on the
             conditional distribution to exclude undefined values of delay, and
-            see section 5 of <xref target="RFC6703"/> for background on this
+            see Section 5 of <xref target="RFC6703"/> for background on this
             analysis choice.</t>
 
-            <t>See section 4.2.2 of <xref target="RFC6049"/> for details on
-            calculating this statistic; see also section 4.2.3 of <xref
+            <t>See Section 4.2.2 of <xref target="RFC6049"/> for details on
+            calculating this statistic; see also Section 4.2.3 of <xref
             target="RFC6049"/>.</t>
 
             <t><list style="hanging">
                 <t hangText="Mean:">The time value of the result is expressed
                 in units of seconds, as a positive value of type decimal64
-                with fraction digits = 9 (see section 9.3 of <xref
+                with fraction digits = 9 (similar to the decimal64 in YANG, Section 9.3 of <xref
                 target="RFC6020"/>) with a resolution of
                 0.000000001&nbsp;seconds (1.0 ns), and with lossless
-                conversion to/from the 64-bit NTP timestamp as per section 6
+                conversion to/from the 64-bit NTP timestamp as per Section 6
                 of <xref target="RFC5905"/>.</t>
               </list></t>
           </section>
@@ -530,22 +526,22 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             distribution of all packets with a finite value of one-way delay
             (undefined delays are excluded) -- a single value, as follows:</t>
 
-            <t>See section 4.1 of <xref target="RFC3393"/> for details on the
+            <t>See Section 4.1 of <xref target="RFC3393"/> for details on the
             conditional distribution to exclude undefined values of delay, and
-            see section 5 of <xref target="RFC6703"/> for background on this
+            see Section 5 of <xref target="RFC6703"/> for background on this
             analysis choice.</t>
 
-            <t>See section 4.3.2 of <xref target="RFC6049"/> for details on
-            calculating this statistic; see also section 4.3.3 of <xref
+            <t>See Section 4.3.2 of <xref target="RFC6049"/> for details on
+            calculating this statistic; see also Section 4.3.3 of <xref
             target="RFC6049"/>.</t>
 
             <t><list style="hanging">
                 <t hangText="Min:">The time value of the result is expressed
                 in units of seconds, as a positive value of type decimal64
-                with fraction digits = 9 (see section 9.3 of <xref
+                with fraction digits = 9 (similar to the decimal64 in YANG, Section 9.3 of <xref
                 target="RFC6020"/>) with a resolution of
                 0.000000001&nbsp;seconds (1.0 ns), and with lossless
-                conversion to/from the 64-bit NTP timestamp as per section 6
+                conversion to/from the 64-bit NTP timestamp as per Section 6
                 of <xref target="RFC5905"/>.</t>
               </list></t>
           </section>
@@ -555,13 +551,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             distribution of all packets with a finite value of one-way delay
             (undefined delays are excluded) -- a single value, as follows:</t>
 
-            <t>See section 4.1 of <xref target="RFC3393"/> for details on the
+            <t>See Section 4.1 of <xref target="RFC3393"/> for details on the
             conditional distribution to exclude undefined values of delay, and
-            see section 5 of <xref target="RFC6703"/> for background on this
+            see Section 5 of <xref target="RFC6703"/> for background on this
             analysis choice.</t>
 
-            <t>See section 4.3.2 of <xref target="RFC6049"/> for a closely
-            related method for calculating this statistic; see also section
+            <t>See Section 4.3.2 of <xref target="RFC6049"/> for a closely
+            related method for calculating this statistic; see also Section
             4.3.3 of <xref target="RFC6049"/>. The formula is as follows:</t>
 
             <t><figure>
@@ -578,10 +574,10 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             <t><list style="hanging">
                 <t hangText="Max:">The time value of the result is expressed
                 in units of seconds, as a positive value of type decimal64
-                with fraction digits = 9 (see section 9.3 of <xref
+                with fraction digits = 9 (similar to the decimal64 in YANG, Section 9.3 of <xref
                 target="RFC6020"/>) with a resolution of
                 0.000000001&nbsp;seconds (1.0 ns), and with lossless
-                conversion to/from the 64-bit NTP timestamp as per section 6
+                conversion to/from the 64-bit NTP timestamp as per Section 6
                 of <xref target="RFC5905"/>.</t>
               </list></t>
           </section>
@@ -591,22 +587,22 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
             of all packets with a finite value of one-way delay (undefined
             delays are excluded) -- a single value, as follows:</t>
 
-            <t>See section 4.1 of <xref target="RFC3393"/> for details on the
+            <t>See Section 4.1 of <xref target="RFC3393"/> for details on the
             conditional distribution to exclude undefined values of delay, and
-            see section 5 of <xref target="RFC6703"/> for background on this
+            see Section 5 of <xref target="RFC6703"/> for background on this
             analysis choice.</t>
 
-            <t>See section 4.3.5 of <xref target="RFC6049"/> for details on
+            <t>See Section 4.3.5 of <xref target="RFC6049"/> for details on
             calculating this statistic. However in this case FiniteDelay or
             MaxDelay MAY be used.</t>
 
             <t><list style="hanging">
                 <t hangText="Sum:">The time value of the result is expressed
                 in units of seconds, as a positive value of type decimal64
-                with fraction digits = 9 (see section 9.3 of <xref
+                with fraction digits = 9 (similar to the decimal64 in YANG, Section 9.3 of <xref
                 target="RFC6020"/>) with a resolution of
                 0.000000001&nbsp;seconds (1.0 ns), and with lossless
-                conversion to/from the 64-bit NTP timestamp as per section 6
+                conversion to/from the 64-bit NTP timestamp as per Section 6
                 of <xref target="RFC5905"/>.</t>
               </list></t>
           </section>
@@ -661,27 +657,27 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </section>
 
     <section anchor="IE" title="IPFIX Information Elements">
-      <t>This section defines and describes the new IPFIX IEs.<list
+      <t>This section specifies the follwing new IPFIX IEs:<list
           style="hanging">
-          <t hangText="PathDelayMeanDeltaMicroseconds"><vspace blankLines="0"/> 
+          <t hangText="pathDelayMeanDeltaMicroseconds"><vspace blankLines="0"/> 
           32-bit unsigned integer that identifies the mean path delay of all
           packets in the Flow, in microseconds, between the IOAM encapsulation 
           node and the local node with the IOAM domain (either an IOAM transit node 
           or an IOAM decapsulation node).</t>
 
-          <t hangText="PathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
+          <t hangText="pathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the lowest path delay of all
           packets in the Flow, in microseconds, between the IOAM encapsulation 
           node and the local node with the IOAM domain (either an IOAM transit 
           node or an IOAM decapsulation node).</t>
 
-          <t hangText="PathDelayMaxDeltaMicroseconds"><vspace blankLines="0"/>
+          <t hangText="pathDelayMaxDeltaMicroseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the highest path delay of all
           packets in the Flow, in microseconds, between the IOAM encapsulation 
           node and the local node with the IOAM domain (either an IOAM transit 
           node or an IOAM decapsulation node).</t>
 
-          <t hangText="PathDelaySumDeltaMicroseconds"><vspace blankLines="0"/>
+          <t hangText="pathDelaySumDeltaMicroseconds"><vspace blankLines="0"/>
           64-bit unsigned integer that identifies the sum of the path delay of all
           packets in the Flow, in microseconds, between the IOAM encapsulation 
           node and the local node with the IOAM domain (either an IOAM transit 
@@ -695,7 +691,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       control-plane dimensions to determine:</t>
 
       <t><list style="symbols">
-          <t>With node id and egressInterface(IE14), on which node which
+          <t>With node id and egressInterface(14), on which node which
           logical egress interfaces have been contributing to how much
           delay.</t>
 
@@ -703,30 +699,30 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           which physical egress interfaces have been contributing to how much
           delay.</t>
 
-          <t>With ipNextHopIPv4Address(IE15) or ipNextHopIPv6Address(IE62),
+          <t>With ipNextHopIPv4Address(15) or ipNextHopIPv6Address(62),
           the forwarding path to which next-hop IP contributed to how much
           delay.</t>
 
-          <t>With mplsTopLabelIPv4Address(IE47) or destinationIPv6Address and
-          srhActiveSegmentIPv6 from <xref target="RFC9487"/>, the forwarding
-          path to which MPLS top label IPv4 address or IPv6 destination
-          address and SRv6 active segment contributed to how much delay.</t>
+          <t>With mplsTopLabelIPv4Address(47) or destinationIPv6Address and
+          srhActiveSegmentIPv6(495), the forwarding path to which MPLS top label 
+          IPv4 address or IPv6 destination address and SRv6 active segment 
+          contributed to how much delay.</t>
 
-          <t>BGP communities are often used for setting a path priority or
+          <t>BGP communities <xref target="RFC1997"/> are often used for setting a path priority or
           service selection. With bgpDestinationExtendedCommunityList(488) or
           bgpDestinationCommunityList(485) or
           bgpDestinationLargeCommunityList(491) which group of prefixes
           accumulated at which node how much delay.</t>
 
           <t>With destinationIPv4Address(13), destinationTransportPort(11),
-          protocolIdentifier (4) and sourceIPv4Address(IE8), the forwarding
+          protocolIdentifier (4) and sourceIPv4Address(8), or equivalent IPFIX IEs for IPv6, the forwarding
           path delay on each node from each IPv4 source address to a specific
           application in the network.</t>
         </list></t>
 
-      <t>Taking figure 1 from section 1 as topology example. Below example
-      table shows the aggregated delay per each node, ingressInterface,
-      egressInterface, destinationIPv6Address and srhActiveSegmentIPv6.</t>
+      <t>Let us consider the example depicted in Figure 1 from Section 1 as topology example. Below example
+      table shows the aggregated delay per each node, ingressInterface,(10)
+      egressInterface(14), destinationIPv6Address(28) and srhActiveSegmentIPv6(495).</t>
 
       <t><figure>
           <artwork><![CDATA[
@@ -750,16 +746,16 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
     <section anchor="IANA" title="IANA Considerations">
       <section anchor="PM-IANA" title="Performance Metrics">
-        <t>This document requests IANA to create four new performance metrics under
+        <t>This document requests IANA to add four new performance metrics under
         the "Performance Metrics" registry <xref target="RFC8911"/> with the
-        four templates defined in section 3.</t>
+        four templates defined in Section 3.</t>
       </section>
 
       <section anchor="IE-IANA" title="IPFIX Entities">
-        <t>This document requests IANA to create new IPFIX IEs (see table 3)
+        <t>This document requests IANA to register new IPFIX IEs (see table 3)
         under the "IPFIX Information Elements" registry <xref
-        target="RFC7012"/> available at <xref target="IANA-PERF-METRIC">"IANA
-        Performance Metric Registry</xref> and assign the following initial
+        target="RFC7012"/> available at <xref target="IANA-IPFIX">"IANA
+        IP Flow Information Export (IPFIX) Entities Registry</xref> and assign the following initial
         code points.</t>
 
         <t><figure>
@@ -768,19 +764,19 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
      |Element|              Name              |
      |   ID  |                                |
      +-------+--------------------------------+
-     | TBD5  | PathDelayMeanDeltaMicroseconds |
+     | TBD5  | pathDelayMeanDeltaMicroseconds |
      |       |                                |
      +-------+--------------------------------+
-     | TBD6  | PathDelayMinDeltaMicroseconds  |
+     | TBD6  | pathDelayMinDeltaMicroseconds  |
      |       |                                |
      +-------+--------------------------------+
-     | TBD7  | PathDelayMaxDeltaMicroseconds  |
+     | TBD7  | pathDelayMaxDeltaMicroseconds  |
      |       |                                |
      +-------+--------------------------------+
-     | TBD8  | PathDelaySumDeltaMicroseconds  |
+     | TBD8  | pathDelaySumDeltaMicroseconds  |
      |       |                                |
      +-------+--------------------------------+
-  Table 3: Creates IPFIX IEs in the "IPFIX Information Elements" registry
+  Table 3: New IPFIX IEs in the "IPFIX Information Elements" Registry
        ]]></artwork>
           </figure></t>
 
@@ -794,12 +790,12 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               the RFC number assigned to this document</t>
           </list></t>
 
-        <section anchor="IANAPathDelayMeanDeltaMicroseconds"
-                 title="PathDelayMeanDeltaMicroseconds">
+        <section anchor="IANApathDelayMeanDeltaMicroseconds"
+                 title="pathDelayMeanDeltaMicroseconds">
           <dl>
             <dt>Name:</dt>
 
-            <dd>PathDelayMeanDeltaMicroseconds</dd>
+            <dd>pathDelayMeanDeltaMicroseconds</dd>
           </dl>
 
           <dl>
@@ -840,12 +836,12 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </dl>
         </section>
 
-        <section anchor="IANAPathDelayMinDeltaMicroseconds"
-                 title="PathDelayMinDeltaMicroseconds">
+        <section anchor="IANApathDelayMinDeltaMicroseconds"
+                 title="pathDelayMinDeltaMicroseconds">
           <dl>
             <dt>Name:</dt>
 
-            <dd>PathDelayMinDeltaMicroseconds</dd>
+            <dd>pathDelayMinDeltaMicroseconds</dd>
           </dl>
 
           <dl>
@@ -886,12 +882,12 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </dl>
         </section>
 
-        <section anchor="IANAPathDelayMaxDeltaMicroseconds"
-                 title="PathDelayMaxDeltaMicroseconds">
+        <section anchor="IANApathDelayMaxDeltaMicroseconds"
+                 title="pathDelayMaxDeltaMicroseconds">
           <dl>
             <dt>Name:</dt>
 
-            <dd>PathDelayMaxDeltaMicroseconds</dd>
+            <dd>pathDelayMaxDeltaMicroseconds</dd>
           </dl>
 
           <dl>
@@ -932,12 +928,12 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           </dl>
         </section>
 
-        <section anchor="IANAPathDelaySumDeltaMicroseconds"
-                 title="PathDelaySumDeltaMicroseconds">
+        <section anchor="IANApathDelaySumDeltaMicroseconds"
+                 title="pathDelaySumDeltaMicroseconds">
           <dl>
             <dt>Name:</dt>
 
-            <dd>PathDelaySumDeltaMicroseconds</dd>
+            <dd>pathDelaySumDeltaMicroseconds</dd>
           </dl>
 
           <dl>
@@ -981,26 +977,26 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
     <section anchor="Operational" title="Operational Considerations">
       <section anchor="OpsTimeAccuracy" title="Time Accuracy">
-        <t>The same recommendation as defined in section 4.5 of <xref
+        <t>The same recommendation as defined in Section 4.5 of <xref
         target="RFC5153"/> for IPFIX applies in terms of clock precision to
         this document as well.</t>
       </section>
 
       <section anchor="OpsMeanDelay" title="Mean Delay">
         <t>The mean (average) path delay can be calculated by dividing the
-        PathDelaySumDeltaMicroseconds(TBD8) by the packetDeltaCount(2) at the
+        pathDelaySumDeltaMicroseconds(TBD8) by the packetDeltaCount(2) at the
         IPFIX data collection in order to offload the IPFIX Exporter from
         calculating the mean for every Flow at export time.</t>
       </section>
 
       <section anchor="OpsReducedSizeEncoding" title="Reduced-size encoding">
         <t>Unsigned64 has been chosen as type for
-        PathDelaySumDeltaMicroseconds to support cases with large delay
+        pathDelaySumDeltaMicroseconds to support cases with large delay
         numbers and where many packets are being accounted. As an example, a
-        specific flow record with path delay of 100 milliseconds can not
+        specific Flow Record with path delay of 100 milliseconds cannot
         observe more than 42949 packets without overflowing the unsigned32
         counter. The procedure described in Section 6.2 of <xref
-        target="RFC7011"/> could be applied to reduce network bandwidth
+        target="RFC7011"/> may be applied to reduce network bandwidth
         between the IPFIX Exporter and Collector if unsigned32 would be large
         enough without wrapping around.</t>
       </section>
@@ -1024,8 +1020,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         within the metaInfo a nanosecond timestamp can be encoded in the
         encapsulation node and be read at the intermediate and decapsulation
         node to calculate the on-path delay. <xref target="RFC9343"/> defines
-        how this can be appied to the IPv6 data-plane and <xref
-        target="I-D.fz-spring-srv6-alt-mark"/> defines how this can be appied
+        how this can be applied to the IPv6 data-plane and <xref
+        target="I-D.fz-spring-srv6-alt-mark"/> defines how this can be applied
         to the Segment Routing Header in SRv6.</t>
       </section>
     </section>
@@ -1045,13 +1041,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         the FD.io VPP (Vector Packet Processing) platform:</t>
 
         <t><list style="symbols">
-            <t>PathDelayMeanDeltaMicroseconds</t>
+            <t>pathDelayMeanDeltaMicroseconds</t>
 
-            <t>PathDelayMaxDeltaMicroseconds</t>
+            <t>pathDelayMaxDeltaMicroseconds</t>
 
-            <t>PathDelayMinDeltaMicroseconds</t>
+            <t>pathDelayMinDeltaMicroseconds</t>
 
-            <t>PathDelaySumDeltaMicroseconds</t>
+            <t>pathDelaySumDeltaMicroseconds</t>
           </list></t>
 
         <t>The open source code can be obtained here: <xref
@@ -1064,13 +1060,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         implementation in the VRP platform:</t>
 
         <t><list style="symbols">
-            <t>PathDelayMeanDeltaMicroseconds</t>
+            <t>pathDelayMeanDeltaMicroseconds</t>
 
-            <t>PathDelayMaxDeltaMicroseconds</t>
+            <t>pathDelayMaxDeltaMicroseconds</t>
 
-            <t>PathDelayMinDeltaMicroseconds</t>
+            <t>pathDelayMinDeltaMicroseconds</t>
 
-            <t>PathDelaySumDeltaMicroseconds</t>
+            <t>pathDelaySumDeltaMicroseconds</t>
           </list></t>
 
         <t>The implementation was validated at the IETF 116 hackathon.</t>
@@ -1080,13 +1076,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         <t>NTT Com implemented the following IEs in the Fluvia Exporter:</t>
 
         <t><list style="symbols">
-            <t>PathDelayMeanDeltaMicroseconds</t>
+            <t>pathDelayMeanDeltaMicroseconds</t>
 
-            <t>PathDelayMaxDeltaMicroseconds</t>
+            <t>pathDelayMaxDeltaMicroseconds</t>
 
-            <t>PathDelayMinDeltaMicroseconds</t>
+            <t>pathDelayMinDeltaMicroseconds</t>
 
-            <t>PathDelaySumDeltaMicroseconds</t>
+            <t>pathDelaySumDeltaMicroseconds</t>
           </list></t>
 
         <t>The open source code can be obtained here: <xref
@@ -1094,8 +1090,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       </section>
 
       <section anchor="pmacct" title="Pmacct Data Collection">
-        <t>Paolo Lucente implemented the IE PathDelayMeanDeltaMicroseconds by
-        dividing IE PathDelaySumDeltaMicroseconds by IE packetDeltaCount in
+        <t>Paolo Lucente implemented the IE pathDelayMeanDeltaMicroseconds by
+        dividing IE pathDelaySumDeltaMicroseconds by IE packetDeltaCount in
         the open source Network Telemetry data collection project pmacct.</t>
 
         <t>The source code can be obtained here: <xref
@@ -1105,14 +1101,30 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
-      <t>The authors would like to thank Al Morton, Greg Mirsky and Giuseppe
-      Fioccola for their review and valuable comments.</t>
+      <t>The authors would like to thank Al Morton, Greg Mirsky, Giuseppe
+      Fioccola, and Paul Aikten for their review and valuable comments.</t>
     </section>
   </middle>
 
   <back>
     <references title="Normative References">
+      <?rfc include='reference.RFC.2119'?>
+
+      <?rfc include='reference.RFC.3339'?>
+
+      <?rfc include='reference.RFC.5905'?>
+
+      <?rfc include='reference.RFC.6049'?>
+
+      <?rfc include='reference.RFC.7011'?>
+
       <?rfc include='reference.RFC.7012'?>
+
+      <?rfc include='reference.RFC.7323'?>
+
+      <?rfc include='reference.RFC.7679'?>
+
+      <?rfc include='reference.RFC.8174'?>
 
       <?rfc include='reference.RFC.8911'?>
     </references>
@@ -1129,35 +1141,32 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         </front>
       </reference>
 
-      <?rfc include='reference.RFC.2119'?>
+      <reference anchor="IANA-IPFIX"
+                 target="https://www.iana.org/assignments/ipfix/ipfix.xhtml">
+        <front>
+          <title>IANA IP Flow Information Export (IPFIX) Entities Registry</title>
+
+          <author/>
+
+          <date/>
+        </front>
+      </reference>
+
+      <?rfc include='reference.RFC.1997'?>
 
       <?rfc include='reference.RFC.2330'?>
-
-      <?rfc include='reference.RFC.3339'?>
 
       <?rfc include='reference.RFC.3393'?>
 
       <?rfc include='reference.RFC.5153'?>
 
-      <?rfc include='reference.RFC.5905'?>
-
       <?rfc include='reference.RFC.6020'?>
-
-      <?rfc include='reference.RFC.6049'?>
 
       <?rfc include='reference.RFC.6703'?>
 
       <?rfc include='reference.RFC.6991'?>
 
-      <?rfc include='reference.RFC.7011'?>
-
       <?rfc include='reference.RFC.7015'?>
-
-      <?rfc include='reference.RFC.7323'?>
-
-      <?rfc include='reference.RFC.7679'?>
-
-      <?rfc include='reference.RFC.8174'?>
 
       <?rfc include='reference.RFC.9197'?>
 
@@ -1165,11 +1174,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
       <?rfc include='reference.RFC.9343'?>
 
-      <?rfc include='reference.RFC.9487'?>
-
-      <?rfc include='reference.I-D.song-ippm-postcard-based-telemetry'?>
-
-      <?rfc include='reference.I-D.ietf-ippm-ioam-deployment'?>
+      <?rfc include='reference.RFC.9378'?>
 
       <?rfc include='reference.I-D.ietf-ippm-alt-mark-deployment'?>
 
@@ -1216,18 +1221,18 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
     <section anchor="Encoding-Example" title="IPFIX Encoding Examples">
       <t>This appendix represents two different encodings for the newly
-      introduced IEs. Taking figure 1 from section 1 as topology example.
+      introduced IEs. Taking Figure 1 from Section 1 as topology example.
       Below example Table 4 shows the aggregated delay with ingressInterface,
       egressInterface, destinationIPv6Address and srhActiveSegmentIPv6.</t>
 
       <t><figure>
           <artwork><![CDATA[
  +------ +------+-----------+-----------+------+---------+---------+---------+---------+
- |ingress|egress|destination|srhActive  |packet|PathDelay|PathDelay|PathDelta|PathDelta|
- |Inter  |Inter |IPv6Address|SegmentIPv6|Delta |MinDelta |MaxDelta |MeanDelta|MeanDelta|
+ |ingress|egress|destination|srhActive  |packet|pathDelay|pathDelay|pathDelay|pathDelay|
+ |Inter  |Inter |IPv6Address|SegmentIPv6|Delta |MeanDelta|MinDelta |MaxDelta |SumDelta |
  |face   |face  |           |           |Count |Micro..  |Micro..  |Micro..  |Micro..  |
  +-------+------+-----------+-----------+------+---------+---------+---------+---------+
- |  271  |  276 |2001:db8::4|2001:db8::2|  5   |  22 us  |  74 us  |  36 us  | 180 us  |
+ |  271  |  276 |2001:db8::4|2001:db8::2|  5   |  36 us  |  22 us  |  74 us  | 180 us  |
  +-------+------+-----------+-----------+------+---------+---------+---------+---------+
 
   Table 4: Aggregated delay with egressInterface and srhActiveSegmentIPv6
@@ -1252,13 +1257,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
               <t>Packet Delta Count =&gt; packetDeltaCount</t>
 
-              <t>Minimum One-Way Delay =&gt; PathDelayMinDeltaMicroseconds
+              <t>Minimum One-Way Delay =&gt; pathDelayMinDeltaMicroseconds
               (TBD6)</t>
 
-              <t>Maximum One-Way Delay =&gt; PathDelayMaxDeltaMicroseconds
+              <t>Maximum One-Way Delay =&gt; pathDelayMaxDeltaMicroseconds
               (TBD7)</t>
 
-              <t>Mean One-Way Delay =&gt; PathDelayMeanDeltaMicroseconds
+              <t>Mean One-Way Delay =&gt; pathDelayMeanDeltaMicroseconds
               (TBD5)</t>
             </list></t>
 
@@ -1282,14 +1287,14 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |0| packetDeltaCount = 5        |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| PathDelayMeanDelta.. = TBD5 |      Field Length = 4         |
+      |0| pathDelayMeanDelta.. = TBD5 |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| PathDelayMinDelta.. = TBD6  |      Field Length = 4         |
+      |0| pathDelayMinDelta.. = TBD6  |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |0| PathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
+      |0| pathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-     Figure 2: Template Record for PathDelayMeanDeltaMicroseconds
+     Figure 2: Template Record for pathDelayMeanDeltaMicroseconds
 
             ]]></artwork>
             </figure></t>
@@ -1320,14 +1325,14 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           packetDeltaCount = 5                                |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           PathDelayMeanDeltaMicroseconds =  36                |
+      |           pathDelayMeanDeltaMicroseconds =  36                |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           PathDelayMinDeltaMicroseconds =  22                 |
+      |           pathDelayMinDeltaMicroseconds =  22                 |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |           PathDelayMaxDeltaMicroseconds =  74                 |
+      |           pathDelayMaxDeltaMicroseconds =  74                 |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-    Figure 3: Data Set Encoding for PathDelayMeanDeltaMicroseconds
+    Figure 3: Data Set Encoding for pathDelayMeanDeltaMicroseconds
 
             ]]></artwork>
           </figure>
@@ -1349,13 +1354,13 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
               <t>Packet Delta Count =&gt; packetDeltaCount</t>
 
-              <t>Minimum One-Way Delay =&gt; PathDelayMinDeltaMicroseconds
+              <t>Minimum One-Way Delay =&gt; pathDelayMinDeltaMicroseconds
               (TBD6)</t>
 
-              <t>Maximum One-Way Delay =&gt; PathDelayMaxDeltaMicroseconds
+              <t>Maximum One-Way Delay =&gt; pathDelayMaxDeltaMicroseconds
               (TBD7)</t>
 
-              <t>Sum of One-Way Delay =&gt; PathDelaySumDeltaMicroseconds
+              <t>Sum of One-Way Delay =&gt; pathDelaySumDeltaMicroseconds
               (TBD8)</t>
             </list></t>
 
@@ -1379,14 +1384,14 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |0| packetDeltaCount = 5        |      Field Length = 4         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| PathDelayMinDelta.. = TBD6  |      Field Length = 4         |
+   |0| pathDelayMinDelta.. = TBD6  |      Field Length = 4         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| PathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
+   |0| pathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |0| PathDelaySumDelta.. = TBD8  |      Field Length = 8         |
+   |0| pathDelaySumDelta.. = TBD8  |      Field Length = 8         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    
-     Figure 4: Template Record for PathDelaySumDeltaMicroseconds
+     Figure 4: Template Record for pathDelaySumDeltaMicroseconds
 
             ]]></artwork>
             </figure></t>
@@ -1417,15 +1422,15 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           packetDeltaCount = 5                                |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           PathDelayMinDeltaMicroseconds =  22                 |
+   |           pathDelayMinDeltaMicroseconds =  22                 |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           PathDelayMaxDeltaMicroseconds =  74                 |
+   |           pathDelayMaxDeltaMicroseconds =  74                 |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |           PathDelaySumDeltaMicroseconds =  180                |
+   |           pathDelaySumDeltaMicroseconds =  180                |
    |                          ...                                  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-    Figure 5: Data Set Encoding for PathDelaySumDeltaMicroseconds
+    Figure 5: Data Set Encoding for pathDelaySumDeltaMicroseconds
 
             ]]></artwork>
           </figure>
