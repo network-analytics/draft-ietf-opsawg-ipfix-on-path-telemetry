@@ -14,7 +14,7 @@
      ipr="trust200902">
   <front>
     <title
-    abbrev="Export of On-Path Delay in IP Flow Information eXport (IPFIX)">Export
+    abbrev="Export of Delay Performance Metrics in IP Flow Information eXport (IPFIX)">Export
     of On-Path Delay in IPFIX</title>
 
     <author fullname="Thomas Graf" initials="T" surname="Graf">
@@ -102,7 +102,7 @@
       inserting a timestamp in the packet.</t>
 
       <t>At least two modes of On-Path Telemetry can be distinguished.
-      Passport mode, <xref target="RFC9197"/>, where only the last hop in the
+      passport mode where only the last hop in the
       forwarding path of the On-Path Telemetry domain exposes all the metrics,
       and postcard mode, where the metrics are also exposed in transit nodes.
       In both modes the forwarding path exposes performance metrics allowing
@@ -186,6 +186,17 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       Telemetry to export the delay metrics, the node R2 exports the delay D1,
       the node R3 exports the delay D2 and the decapsulation node R4 exports
       the total delay D3 using IPFIX.</t>
+
+      <t>The advantages of this solution is that the delay metrics (min, max, 
+      and mean) can be computed on the router, and aggregated directly within 
+      the Flow Record, saving export bandwidth and computation on the Collector.
+      For the computation of the min, max, and mean delay metric, to be computed 
+      locally on the router, the exporter Metering Process require some local caching/processing computation (for each new packets in the flow), specifically the mean value. 
+      A less computational heavy solution for the router is the export of the delay 
+      sum instead of the delay mean; on the Collector, the delay mean can easily be 
+      computed by a single division operation (using the packet count). The alternative, w
+      ith any delay monitoring on the router, requires the export of every single packet as a separate Flow Record, including the timestamps information, for the Collector to compute delay metrics (min, max, and mean) and the recompute the aggregated Flow Record.</t>
+   
     </section>
 
     <section anchor="notation" title="Terminology">
@@ -1006,6 +1017,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         without wrapping around.</t>
       </section>
 
+      <section anchor="MeasurementInterval" title="Measurement Interval">
+        <t> The delay metrics are computed for the Flow Record life time. For long-running Flow, we might miss the temporal distribution of the delay (for example, a longer delay only at the beginning of Flow. If this is an operational problem, the IPFIX Metering Process might be configured with a smaller expiration timeout  (see Section 5.1.1. Flow Expiration , <xref
+        target="RFC5470"/>.</t>
+      </section>
+
       <section anchor="OpsIoamApplication" title="IOAM Application">
         <t>This document is applicable in IOAM to the Edge-to-Edge and Direct
         Exporting Option-Type.</t>
@@ -1032,8 +1048,21 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </section>
 
     <section anchor="Security" title="Security Considerations">
-      <t>There are no extra security considerations regarding the new IPFIX
-      IEs compared to <xref target="RFC7012"/>.</t>
+      <t>The IPFIX Information Element introduced in this doucment do not 
+      directly introduce security issues.  Rather, it defines a set of performance
+      metrics that may, for privacy or business issues, be considered sensitive 
+      information.</t>
+
+      <t>For example, exporting delay metrics may make attacks 
+      possible for the receiver of this information; this would otherwise 
+      only be possible for direct observers of the reported Flows along the
+      data path.</t>
+
+      <t>The underlying protocol used to exchange the information described 
+      here must therefore apply appropriate procedures to guarantee the
+      integrity and confidentiality of the exported information.  These
+      protocols are defined in separate documents, specifically the IPFIX
+      protocol document <xref target="RFC7011"/>.</t>
     </section>
 
     <section anchor="Implementation" title="Implementation Status">
@@ -1170,6 +1199,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       <?rfc include='reference.RFC.3393'?>
 
       <?rfc include='reference.RFC.5153'?>
+
+      <?rfc include='reference.RFC.5470'?>
 
       <?rfc include='reference.RFC.6020'?>
 
