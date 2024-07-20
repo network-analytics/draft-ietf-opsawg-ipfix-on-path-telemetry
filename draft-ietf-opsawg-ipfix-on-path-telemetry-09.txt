@@ -146,11 +146,12 @@ Internet-Draft  Export of Delay Performance Metrics in I       July 2024
    the packet.
 
    At least two modes of On-Path Telemetry can be distinguished.
-   passport mode where only the last hop in the forwarding path of the
+   Passport mode, where only the last hop in the forwarding path of the
    On-Path Telemetry domain exposes all the metrics, and postcard mode,
    where the metrics are also exposed in transit nodes.  In both modes
    the forwarding path exposes performance metrics allowing to determine
-   how much delay has been accumulated on which hop.
+   how much delay has been accumulated on which hop.  The proposal in
+   this document makes more sense for the postcard mode.
 
    In order to export the delay-related metrics via IPIFX [RFC7011],
    this document defines four new IPFIX Information Elements (IEs),
@@ -159,9 +160,8 @@ Internet-Draft  Export of Delay Performance Metrics in I       July 2024
    performance metrics [RFC8911], they must be registered in the "IANA
    Performance Metric Registry [IANA-PERF-METRIC].
 
-   Following the guidelines for Registered Performance Metric Requesters
-   and Reviewers [RFC8911], the different characteristics of the
-   performance metrics (Identifier, Name, URI, Status, Requester,
+
+
 
 
 
@@ -170,6 +170,9 @@ Graf, et al.             Expires 17 January 2025                [Page 3]
 Internet-Draft  Export of Delay Performance Metrics in I       July 2024
 
 
+   Following the guidelines for Registered Performance Metric Requesters
+   and Reviewers [RFC8911], the different characteristics of the
+   performance metrics (Identifier, Name, URI, Status, Requester,
    Revision, Revision Date, Description, etc.) must be clearly specified
    in the "IANA Performance Metric Registry [IANA-PERF-METRIC] in order
    for the measurement results using the Performance Metrics to be
@@ -204,9 +207,6 @@ Internet-Draft  Export of Delay Performance Metrics in I       July 2024
    decapsulation nodes.  The lowest, highest, mean, and/or the sum of
    measured path delay can be exported, thanks to the different IPFIX IE
    specifications.
-
-
-
 
 
 
@@ -344,11 +344,11 @@ Internet-Draft  Export of Delay Performance Metrics in I       July 2024
    Passive assessment of IP One-Way Delay, to be registered in the "IANA
    Performance Metric Registry [IANA-PERF-METRIC].
 
-   All column entries besides the Identifier, Name, Description, and
-   Output Reference Method categories are the same; thus, this section
-   defines four closely related performance metrics.  As a result, IANA
-   has assigned corresponding URIs to each of the four registered
-   performance metrics.
+   All column entries besides the Identifier, Name, URI, Description,
+   Output, and Reference Method categories are the same; thus, this
+   section defines four closely related performance metrics.  As a
+   result, IANA has assigned corresponding URIs to each of the four
+   registered performance metrics.
 
 3.1.1.  Summary
 
