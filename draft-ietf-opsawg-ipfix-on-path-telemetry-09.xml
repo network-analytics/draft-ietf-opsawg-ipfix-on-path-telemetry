@@ -1105,8 +1105,10 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
-      <t>The authors would like to thank Al Morton, Greg Mirsky, Giuseppe
-      Fioccola, and Paul Aikten for their review and valuable comments.</t>
+      <t>The authors would like to thank Al Morton (Rest in Peace Al), Greg Mirsky, 
+        and Giuseppe Fioccola for their review and valuable comments. Special thanks to 
+        Paul Aikten (as IPFIX Designated Expert), and to Med Boucadair for his very detailed
+        feedback.</t>
     </section>
   </middle>
 
