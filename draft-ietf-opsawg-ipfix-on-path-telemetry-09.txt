@@ -1189,10 +1189,11 @@ Internet-Draft  Export of Delay Performance Metrics in I       July 2024
 
 10.  Acknowledgements
 
-   The authors would like to thank Al Morton (Rest in Peace Al), Greg
-   Mirsky, and Giuseppe Fioccola for their review and valuable comments.
-   Special thanks to Paul Aikten (as IPFIX Designated Expert), and to
-   Med Boucadair for his very detailed feedback.
+   The authors would like to thank Al Morton (Rest in Peace Al), and
+   Giuseppe Fioccola for their review and valuable comments.  Special
+   thanks to Paul Aikten (as IPFIX Designated Expert), Greg Mirsky (as
+   IP Performance Metrics Designated Expeort), and to Med Boucadair for
+   his very detailed feedback.
 
 11.  References
 
@@ -1222,7 +1223,6 @@ Internet-Draft  Export of Delay Performance Metrics in I       July 2024
    [RFC6049]  Morton, A. and E. Stephan, "Spatial Composition of
               Metrics", RFC 6049, DOI 10.17487/RFC6049, January 2011,
               <https://www.rfc-editor.org/info/rfc6049>.
-
 
 
 
