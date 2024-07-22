@@ -1026,21 +1026,25 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       <section anchor="OpsIoamApplication" title="IOAM Application">
 
         <t>Multiple methods can be used to compute the delay performance metrics
-        defined in this document. Two methods are proposed at the time of
-        publication of this document: IOAM and Enhanced Alternate Marking.</t>
+        defined in this document. Some examples of such methods are IOAM and
+        Enhanced Alternate Marking.</t>
 
-        <t>For IOAM, these metrics can be computed using the Edge-to-Edge and the
-        Direct Exporting Option-Type.</t> 
+        <t>For IOAM, these performance metrics can be computed using the Edge-to-Edge
+        and the Direct Exporting Option-Type.</t> 
 
-        <t>In case of Edge-to-Edge Option-Type, as described in Section 4.6 of
-        <xref target="RFC9197"/>, by setting bits 2 and 3, the timestamps can be
-        encoded as defined in Section 4.4.2.3 and 4.4.2.4 of <xref
-        target="RFC9197"/>.</t>
+        <t>IOAM Edge-to-Edge Option-Type, as described in Section 4.6 of
+        <xref target="RFC9197"/>, can use the bits 2 and 3.
+        In this case, timestamps are encoded as defined in Section
+        4.4.2.3 and 4.4.2.4 of <xref target="RFC9197"/>. This timestamp
+        can be used to compute the delay between the encapsulation node and the
+        decapsulation node.</t>
 
-        <t>In case of Direct Exporting Option-Type, as described in Section 2
-        of <xref target="I-D.ahuang-ippm-dex-timestamp-ext"/>, by setting
-        Extension-Flags 2 and 3, the timestamps can be encoded as defined in
-        Section 4.4.2.3 and 4.4.2.4 of <xref target="RFC9197"/>.</t>
+        <t>IOAM Direct Exporting Option-Type, as described in <xref target="RFC9326"/>,
+        can use the Extension-Flag defined in <xref target="I-D.ahuang-ippm-dex-timestamp-ext"/>
+        to insert a timestamp in the encapsulation node. The timestamp
+        is encoded as defined in Section 4.4.2.3 and 4.4.2.4 of <xref target="RFC9197"/>.
+        This timestamp can be used to compute the delay between the inserted timestamp and
+        the transit and decapsulation node.</t>
 
         <t>For the Enhanced Alternate Marking Method, Section 2 of <xref
         target="I-D.zhou-ippm-enhanced-alternate-marking"/> defines that,
@@ -1219,6 +1223,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       <?rfc include='reference.RFC.9197'?>
 
       <?rfc include='reference.RFC.9232'?>
+
+      <?rfc include='reference.RFC.9326'?>
 
       <?rfc include='reference.RFC.9343'?>
 

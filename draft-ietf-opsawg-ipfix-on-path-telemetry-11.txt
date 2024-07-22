@@ -1069,20 +1069,24 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 7.5.  IOAM Application
 
    Multiple methods can be used to compute the delay performance metrics
-   defined in this document.  Two methods are proposed at the time of
-   publication of this document: IOAM and Enhanced Alternate Marking.
+   defined in this document.  Some examples of such methods are IOAM and
+   Enhanced Alternate Marking.
 
-   For IOAM, these metrics can be computed using the Edge-to-Edge and
-   the Direct Exporting Option-Type.
+   For IOAM, these performance metrics can be computed using the Edge-
+   to-Edge and the Direct Exporting Option-Type.
 
-   In case of Edge-to-Edge Option-Type, as described in Section 4.6 of
-   [RFC9197], by setting bits 2 and 3, the timestamps can be encoded as
-   defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].
+   IOAM Edge-to-Edge Option-Type, as described in Section 4.6 of
+   [RFC9197], can use the bits 2 and 3.  In this case, timestamps are
+   encoded as defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].  This
+   timestamp can be used to compute the delay between the encapsulation
+   node and the decapsulation node.
 
-   In case of Direct Exporting Option-Type, as described in Section 2 of
-   [I-D.ahuang-ippm-dex-timestamp-ext], by setting Extension-Flags 2 and
-   3, the timestamps can be encoded as defined in Section 4.4.2.3 and
-   4.4.2.4 of [RFC9197].
+   IOAM Direct Exporting Option-Type, as described in [RFC9326], can use
+   the Extension-Flag defined in [I-D.ahuang-ippm-dex-timestamp-ext] to
+   insert a timestamp in the encapsulation node.  The timestamp is
+   encoded as defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].  This
+   timestamp can be used to compute the delay between the inserted
+   timestamp and the transit and decapsulation node.
 
    For the Enhanced Alternate Marking Method, Section 2 of
    [I-D.zhou-ippm-enhanced-alternate-marking] defines that, within the
@@ -1110,10 +1114,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
    integrity and confidentiality of the exported information.  These
    protocols are defined in separate documents, specifically the IPFIX
    protocol document [RFC7011].
-
-
-
-
 
 
 
@@ -1407,6 +1407,12 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
               DOI 10.17487/RFC9232, May 2022,
               <https://www.rfc-editor.org/info/rfc9232>.
 
+   [RFC9326]  Song, H., Gafni, B., Brockners, F., Bhandari, S., and T.
+              Mizrahi, "In Situ Operations, Administration, and
+              Maintenance (IOAM) Direct Exporting", RFC 9326,
+              DOI 10.17487/RFC9326, November 2022,
+              <https://www.rfc-editor.org/info/rfc9326>.
+
    [RFC9343]  Fioccola, G., Zhou, T., Cociglio, M., Qin, F., and R.
               Pang, "IPv6 Application of the Alternate-Marking Method",
               RFC 9343, DOI 10.17487/RFC9343, December 2022,
@@ -1445,18 +1451,18 @@ A.1.1.  Template Record and Data Set with Mean Delta
 
    *  Ingress interface => ingressInterface
 
-   *  Egress interface => egressInterface
-
-   *  IPv6 destination address => destinationIPv6Address
-
-   *  Active SRv6 Segment => srhIPv6ActiveSegment
-
 
 
 Graf, et al.             Expires 22 January 2025               [Page 26]
 
 Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
+
+   *  Egress interface => egressInterface
+
+   *  IPv6 destination address => destinationIPv6Address
+
+   *  Active SRv6 Segment => srhIPv6ActiveSegment
 
    *  Packet Delta Count => packetDeltaCount
 
@@ -1494,12 +1500,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
 
    The data set is represented as follows:
-
-
-
-
-
-
 
 
 
