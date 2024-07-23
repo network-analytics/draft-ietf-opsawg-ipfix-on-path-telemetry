@@ -256,16 +256,16 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
    and mean) can be computed on the router, and aggregated directly
    within the Flow Record, saving export bandwidth and computation on
    the Collector.  For the computation of the min, max, and mean delay
-   metric, to be computed locally on the router, the exporter Metering
-   Process require some local caching/processing computation (for each
+   metric to be computed locally on the router, the exporter Metering
+   Process requires some local caching/processing computation (for each
    new packets in the flow), specifically the mean value.  A less
    computational heavy solution for the router is the export of the
    delay sum instead of the delay mean; on the Collector, the delay mean
    can easily be computed by a single division operation (using the
-   packet count).  The alternative, w ith any delay monitoring on the
+   packet count).  The alternative, with any delay monitoring on the
    router, requires the export of every single packet as a separate Flow
    Record, including the timestamps information, for the Collector to
-   compute delay metrics (min, max, and mean) and the recompute the
+   compute delay metrics (min, max, and mean) and to recompute the
    aggregated Flow Record.
 
 
@@ -775,7 +775,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
 4.  IPFIX Information Elements
 
-   This section specifies the follwing new IPFIX IEs:
+   This section specifies the following new IPFIX IEs:
 
 
 
@@ -1052,10 +1052,10 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    The delay metrics are computed for the Flow Record life time.  For
    long-running Flow, we might miss the temporal distribution of the
-   delay (for example, a longer delay only at the beginning of Flow.  If
-   this is an operational problem, the IPFIX Metering Process might be
-   configured with a smaller expiration timeout (see Section 5.1.1.
-   Flow Expiration , [RFC5470].
+   delay (for example, a longer delay only at the beginning of Flow).
+   If this is an operational problem, the IPFIX Metering Process might
+   be configured with a smaller expiration timeout (see Section 5.1.1.
+   Flow Expiration[RFC5470]).
 
 
 
@@ -1099,8 +1099,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
 8.  Security Considerations
 
-   The IPFIX Information Element introduced in this doucment do not
-   directly introduce security issues.  Rather, it defines a set of
+   The IPFIX Information Elements introduced in this document do not
+   directly introduce security issues.  Rather, they define a set of
    performance metrics that may, for privacy or business issues, be
    considered sensitive information.
 
@@ -1194,8 +1194,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    The authors would like to thank Al Morton (Rest in Peace Al), and
    Giuseppe Fioccola for their review and valuable comments.  Special
-   thanks to Paul Aikten (as IPFIX Designated Expert), Greg Mirsky (as
-   IP Performance Metrics Designated Expeort), and to Med Boucadair for
+   thanks to Paul Aitken (as IPFIX Designated Expert), Greg Mirsky (as
+   IP Performance Metrics Designated Expert), and to Med Boucadair for
    his very detailed feedback.
 
 11.  References
