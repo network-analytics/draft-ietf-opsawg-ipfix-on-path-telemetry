@@ -74,7 +74,7 @@
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
       Information Elements to export the On-Path Telemetry measured delay on
-      the OAM transit and decapsulation nodes.</t>
+      the OAM transit and decapsulating nodes.</t>
     </abstract>
   </front>
 
@@ -112,7 +112,7 @@
       <t>In order to export the delay-related metrics via IPIFX <xref
       target="RFC7011"/>, this document defines four new IPFIX Information
       Elements (IEs), exposing the On-Path delay on OAM transit and
-      decapsulation nodes, following the postcard mode principles. Since these
+      decapsulating nodes, following the postcard mode principles. Since these
       IPFIX IEs are performance metrics <xref target="RFC8911"/>, they must be
       registered in the <xref target="IANA-PERF-METRIC">"IANA Performance
       Metric Registry</xref>.</t>
@@ -153,8 +153,8 @@ Table 1: Mapping Between IPFIX IEs and Performance Metrics
 
       <t>Assuming time synchronization on devices, the delay is measured by
       calculating the difference between the timestamp imposed with On-Path
-      Telemetry in the packet at the OAM encapsulation node and the timestamp
-      exported in the IPFIX flow record from the OAM transit and decapsulation
+      Telemetry in the packet at the OAM encapsulating node and the timestamp
+      exported in the IPFIX flow record from the OAM transit and decapsulating
       nodes. The lowest, highest, mean, and/or the sum of measured path delay
       can be exported, thanks to the different IPFIX IE specifications.</t>
 
@@ -174,7 +174,7 @@ Table 1: Mapping Between IPFIX IEs and Performance Metrics
               . x-----------------------------------> .
               .                                       .
 (H1) ------ (R1) ------- (R2) ------- (R3) -------- (R4) ------ (H2)
-Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
+Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
             Node         Node 1       Node 2        Node
               .                                       .
               .                                       .
@@ -185,7 +185,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
       <t>In the usecase shown in <xref target="topology"/> using On-path
       Telemetry to export the delay metrics, the node R2 exports the delay D1,
-      the node R3 exports the delay D2 and the decapsulation node R4 exports
+      the node R3 exports the delay D2 and the decapsulating node R4 exports
       the total delay D3 using IPFIX.</t>
 
       <t>The advantages of this solution is that the delay metrics (min, max, 
@@ -243,11 +243,11 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
       target="I-D.ietf-opsawg-oam-characterization"/>:</t>
 
       <t><list style="symbols">
-          <t>Encapsulation node</t>
+          <t>Encapsulating node</t>
 
           <t>Transit node</t>
 
-          <t>Decapsulation node</t>
+          <t>Decapsulating node</t>
         </list></t>
     </section>
 
@@ -407,7 +407,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
         <section title="Packet Stream Generation">
           <t>The timestamp when the packet is being received at OAM
-          encapsulation node. Format depends on On-Path Telemetry
+          encapsulating node. Format depends on On-Path Telemetry
           implementation. For IOAM, Section 4.4.1 of <xref target="RFC9197"/>
           describes what kind of timestamps are supported. Section 4.4.2.3 and
           4.4.2.4 describe where the timestamp is being inserted. For the
@@ -477,14 +477,14 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
               <t hangText="host B:">Receives the IP packet to start the
               Flow.</t>
 
-              <t hangText="Encapsulation Node:">Receives the IP Flow packets
+              <t hangText="Encapsulating Node:">Receives the IP Flow packets
               and encapsulates the timestamp into the packet.</t>
 
               <t hangText="Transit Node:">Receives the IP Flow packets and
               measures the delay between the timestamp in the packet and the
               timestamp when the packet was received.</t>
 
-              <t hangText="Decapsulation Node:">Receives the IP Flow packets
+              <t hangText="Decapsulating Node:">Receives the IP Flow packets
               and computes the delay between the timestamp in the packet and
               the timestamp when the packet was received and removes the OAM
               header from the packet.</t>
@@ -680,26 +680,26 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
           <t hangText="pathDelayMeanDeltaMicroseconds"><vspace
           blankLines="0"/> 32-bit unsigned integer that identifies the mean
           path delay of all packets in the Flow, in microseconds, between the
-          OAM encapsulation node and the local node with the OAM domain
-          (either an OAM transit node or an OAM decapsulation node).</t>
+          OAM encapsulating node and the local node with the OAM domain
+          (either an OAM transit node or an OAM decapsulating node).</t>
 
           <t hangText="pathDelayMinDeltaMicroseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the lowest path delay of all
-          packets in the Flow, in microseconds, between the OAM encapsulation
+          packets in the Flow, in microseconds, between the OAM encapsulating
           node and the local node with the OAM domain (either an OAM transit
-          node or an OAM decapsulation node).</t>
+          node or an OAM decapsulating node).</t>
 
           <t hangText="pathDelayMaxDeltaMicroseconds"><vspace blankLines="0"/>
           32-bit unsigned integer that identifies the highest path delay of
           all packets in the Flow, in microseconds, between the OAM
-          encapsulation node and the local node with the OAM domain (either an
-          OAM transit node or an OAM decapsulation node).</t>
+          encapsulating node and the local node with the OAM domain (either an
+          OAM transit node or an OAM decapsulating node).</t>
 
           <t hangText="pathDelaySumDeltaMicroseconds"><vspace blankLines="0"/>
           64-bit unsigned integer that identifies the sum of the path delay of
           all packets in the Flow, in microseconds, between the OAM
-          encapsulation node and the local node with the OAM domain (either an
-          OAM transit node or an OAM decapsulation node).</t>
+          encapsulating node and the local node with the OAM domain (either an
+          OAM transit node or an OAM decapsulating node).</t>
         </list></t>
     </section>
 
@@ -828,8 +828,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
             <dd>This Information Element identifies the mean path delay of all
             packets in the Flow, in microseconds, between the OAM
-            encapsulation node and the local node with the OAM domain (either
-            an OAM transit node or an OAM decapsulation node), according to
+            encapsulating node and the local node with the OAM domain (either
+            an OAM transit node or an OAM decapsulating node), according to
             OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the
             IANA Performance Metric Registry</dd>
           </dl>
@@ -874,8 +874,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
             <dd>This Information Element identifies the lowest path delay of
             all packets in the Flow, in microseconds, between the OAM
-            encapsulation node and the local node with the OAM domain (either
-            an OAM transit node or an OAM decapsulation node), according to
+            encapsulating node and the local node with the OAM domain (either
+            an OAM transit node or an OAM decapsulating node), according to
             the OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min in
             the IANA Performance Metric Registry.</dd>
           </dl>
@@ -920,8 +920,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
             <dd>This Information Element identifies the highest path delay of
             all packets in the Flow, in microseconds, between the OAM
-            encapsulation node and the local node with the OAM domain (either
-            an OAM transit node or an OAM decapsulation node), according to
+            encapsulating node and the local node with the OAM domain (either
+            an OAM transit node or an OAM decapsulating node), according to
             OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the
             IANA Performance Metric Registry.</dd>
           </dl>
@@ -966,8 +966,8 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
             <dd>This Information Element identifies the sum of the path delay
             of all packets in the Flow, in microseconds, between the OAM
-            encapsulation node and the local node with the OAM domain (either
-            an OAM transit node or an OAM decapsulation node), according to
+            encapsulating node and the local node with the OAM domain (either
+            an OAM transit node or an OAM decapsulating node), according to
             OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in the
             IANA Performance Metric Registry.</dd>
           </dl>
@@ -1043,20 +1043,20 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
         <xref target="RFC9197"/>, can use the bits 2 and 3.
         In this case, timestamps are encoded as defined in Section
         4.4.2.3 and 4.4.2.4 of <xref target="RFC9197"/>. This timestamp
-        can be used to compute the delay between the encapsulation node and the
-        decapsulation node.</t>
+        can be used to compute the delay between the encapsulating node and the
+        decapsulating node.</t>
 
         <t>IOAM Direct Exporting Option-Type, as described in <xref target="RFC9326"/>,
         can use the Extension-Flag defined in <xref target="I-D.ahuang-ippm-dex-timestamp-ext"/>
-        to insert a timestamp in the encapsulation node. The timestamp
+        to insert a timestamp in the encapsulating node. The timestamp
         is encoded as defined in Section 4.4.2.3 and 4.4.2.4 of <xref target="RFC9197"/>.
         This timestamp can be used to compute the delay between the inserted timestamp and
-        the transit and decapsulation node.</t>
+        the transit and decapsulating node.</t>
 
         <t>For the Enhanced Alternate Marking Method, Section 2 of <xref
         target="I-D.zhou-ippm-enhanced-alternate-marking"/> defines that,
         within the metaInfo, a nanosecond timestamp can be encoded in the
-        encapsulation node and be read at the intermediate and decapsulation
+        encapsulating node and be read at the intermediate and decapsulating
         node to calculate the on-path delay. <xref target="RFC9343"/> defines
         how this can be applied to the IPv6 data-plane and <xref
         target="I-D.fz-spring-srv6-alt-mark"/> defines how this can be applied
@@ -1152,7 +1152,7 @@ Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
 
     <section anchor="Acknowledgements" title="Acknowledgements">
       <t>The authors would like to thank Al Morton (Rest in Peace Al), 
-        and Giuseppe Fioccola for their review and valuable comments. Special thanks to 
+        Justin Iurman and Giuseppe Fioccola for their review and valuable comments. Special thanks to 
         Paul Aitken (as IPFIX Designated Expert), Greg Mirsky (as IP Performance Metrics 
         Designated Expert), and to Med Boucadair for his very detailed feedback.</t>
     </section>

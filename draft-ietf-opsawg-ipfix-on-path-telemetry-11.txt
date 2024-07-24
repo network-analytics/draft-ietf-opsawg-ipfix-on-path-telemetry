@@ -19,7 +19,7 @@ Abstract
 
    This document specifies new IP Flow Information Export (IPFIX)
    Information Elements to export the On-Path Telemetry measured delay
-   on the OAM transit and decapsulation nodes.
+   on the OAM transit and decapsulating nodes.
 
 Status of This Memo
 
@@ -172,7 +172,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    In order to export the delay-related metrics via IPIFX [RFC7011],
    this document defines four new IPFIX Information Elements (IEs),
-   exposing the On-Path delay on OAM transit and decapsulation nodes,
+   exposing the On-Path delay on OAM transit and decapsulating nodes,
    following the postcard mode principles.  Since these IPFIX IEs are
    performance metrics [RFC8911], they must be registered in the "IANA
    Performance Metric Registry [IANA-PERF-METRIC].
@@ -209,9 +209,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    Assuming time synchronization on devices, the delay is measured by
    calculating the difference between the timestamp imposed with On-Path
-   Telemetry in the packet at the OAM encapsulation node and the
+   Telemetry in the packet at the OAM encapsulating node and the
    timestamp exported in the IPFIX flow record from the OAM transit and
-   decapsulation nodes.  The lowest, highest, mean, and/or the sum of
+   decapsulating nodes.  The lowest, highest, mean, and/or the sum of
    measured path delay can be exported, thanks to the different IPFIX IE
    specifications.
 
@@ -239,7 +239,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
                  . x-----------------------------------> .
                  .                                       .
    (H1) ------ (R1) ------- (R2) ------- (R3) -------- (R4) ------ (H2)
-   Host 1  Encapsulation   Transit      Transit   Decapsulation  Host 2
+   Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
                Node         Node 1       Node 2        Node
                  .                                       .
                  .                                       .
@@ -249,7 +249,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    In the usecase shown in Figure 1 using On-path Telemetry to export
    the delay metrics, the node R2 exports the delay D1, the node R3
-   exports the delay D2 and the decapsulation node R4 exports the total
+   exports the delay D2 and the decapsulating node R4 exports the total
    delay D3 using IPFIX.
 
    The advantages of this solution is that the delay metrics (min, max,
@@ -316,11 +316,11 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
    The following terms are used as defined in Section 5 of
    [I-D.ietf-opsawg-oam-characterization]:
 
-   *  Encapsulation node
+   *  Encapsulating node
 
    *  Transit node
 
-   *  Decapsulation node
+   *  Decapsulating node
 
 3.  Performance Metrics
 
@@ -508,7 +508,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
 3.3.2.  Packet Stream Generation
 
-   The timestamp when the packet is being received at OAM encapsulation
+   The timestamp when the packet is being received at OAM encapsulating
    node.  Format depends on On-Path Telemetry implementation.  For IOAM,
    Section 4.4.1 of [RFC9197] describes what kind of timestamps are
    supported.  Section 4.4.2.3 and 4.4.2.4 describe where the timestamp
@@ -582,14 +582,14 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    host B:  Receives the IP packet to start the Flow.
 
-   Encapsulation Node:  Receives the IP Flow packets and encapsulates
+   Encapsulating Node:  Receives the IP Flow packets and encapsulates
       the timestamp into the packet.
 
    Transit Node:  Receives the IP Flow packets and measures the delay
       between the timestamp in the packet and the timestamp when the
       packet was received.
 
-   Decapsulation Node:  Receives the IP Flow packets and computes the
+   Decapsulating Node:  Receives the IP Flow packets and computes the
       delay between the timestamp in the packet and the timestamp when
       the packet was received and removes the OAM header from the
       packet.
@@ -789,26 +789,26 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
    pathDelayMeanDeltaMicroseconds
       32-bit unsigned integer that identifies the mean path delay of all
       packets in the Flow, in microseconds, between the OAM
-      encapsulation node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulation node).
+      encapsulating node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulating node).
 
    pathDelayMinDeltaMicroseconds
       32-bit unsigned integer that identifies the lowest path delay of
       all packets in the Flow, in microseconds, between the OAM
-      encapsulation node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulation node).
+      encapsulating node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulating node).
 
    pathDelayMaxDeltaMicroseconds
       32-bit unsigned integer that identifies the highest path delay of
       all packets in the Flow, in microseconds, between the OAM
-      encapsulation node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulation node).
+      encapsulating node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulating node).
 
    pathDelaySumDeltaMicroseconds
       64-bit unsigned integer that identifies the sum of the path delay
       of all packets in the Flow, in microseconds, between the OAM
-      encapsulation node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulation node).
+      encapsulating node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulating node).
 
 5.  Use Cases
 
@@ -931,8 +931,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    Description:  This Information Element identifies the mean path delay
       of all packets in the Flow, in microseconds, between the OAM
-      encapsulation node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulation node), according to
+      encapsulating node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulating node), according to
       OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the
       IANA Performance Metric Registry
 
@@ -962,8 +962,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    Description:  This Information Element identifies the lowest path
       delay of all packets in the Flow, in microseconds, between the OAM
-      encapsulation node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulation node), according to
+      encapsulating node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulating node), according to
       the OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min in
       the IANA Performance Metric Registry.
 
@@ -982,8 +982,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
    Description:  This Information Element identifies the highest path
       delay of all packets in the Flow, in microseconds, between the OAM
-      encapsulation node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulation node), according to
+      encapsulating node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulating node), according to
       OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the
       IANA Performance Metric Registry.
 
@@ -1011,8 +1011,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
 
       delay of all packets in the Flow, in microseconds, between the OAM
-      encapsulation node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulation node), according to
+      encapsulating node and the local node with the OAM domain (either
+      an OAM transit node or an OAM decapsulating node), according to
       OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in the
       IANA Performance Metric Registry.
 
@@ -1078,20 +1078,20 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
    IOAM Edge-to-Edge Option-Type, as described in Section 4.6 of
    [RFC9197], can use the bits 2 and 3.  In this case, timestamps are
    encoded as defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].  This
-   timestamp can be used to compute the delay between the encapsulation
-   node and the decapsulation node.
+   timestamp can be used to compute the delay between the encapsulating
+   node and the decapsulating node.
 
    IOAM Direct Exporting Option-Type, as described in [RFC9326], can use
    the Extension-Flag defined in [I-D.ahuang-ippm-dex-timestamp-ext] to
-   insert a timestamp in the encapsulation node.  The timestamp is
+   insert a timestamp in the encapsulating node.  The timestamp is
    encoded as defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].  This
    timestamp can be used to compute the delay between the inserted
-   timestamp and the transit and decapsulation node.
+   timestamp and the transit and decapsulating node.
 
    For the Enhanced Alternate Marking Method, Section 2 of
    [I-D.zhou-ippm-enhanced-alternate-marking] defines that, within the
-   metaInfo, a nanosecond timestamp can be encoded in the encapsulation
-   node and be read at the intermediate and decapsulation node to
+   metaInfo, a nanosecond timestamp can be encoded in the encapsulating
+   node and be read at the intermediate and decapsulating node to
    calculate the on-path delay.  [RFC9343] defines how this can be
    applied to the IPv6 data-plane and [I-D.fz-spring-srv6-alt-mark]
    defines how this can be applied to the Segment Routing Header in
@@ -1192,11 +1192,11 @@ Internet-Draft     Delay Performance Metrics for IPFIX         July 2024
 
 10.  Acknowledgements
 
-   The authors would like to thank Al Morton (Rest in Peace Al), and
-   Giuseppe Fioccola for their review and valuable comments.  Special
-   thanks to Paul Aitken (as IPFIX Designated Expert), Greg Mirsky (as
-   IP Performance Metrics Designated Expert), and to Med Boucadair for
-   his very detailed feedback.
+   The authors would like to thank Al Morton (Rest in Peace Al), Justin
+   Iurman and Giuseppe Fioccola for their review and valuable comments.
+   Special thanks to Paul Aitken (as IPFIX Designated Expert), Greg
+   Mirsky (as IP Performance Metrics Designated Expert), and to Med
+   Boucadair for his very detailed feedback.
 
 11.  References
 
