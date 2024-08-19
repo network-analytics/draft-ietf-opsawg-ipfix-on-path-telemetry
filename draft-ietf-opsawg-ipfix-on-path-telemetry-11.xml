@@ -69,7 +69,7 @@
       </address>
     </author>
 
-    <date day="21" month="July" year="2024"/>
+    <date day="19" month="August" year="2024"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -101,18 +101,10 @@
       Framework</xref>, the path delay between two endpoints is measured by
       inserting a timestamp in the packet.</t>
 
-      <t>At least two modes of On-Path Telemetry can be distinguished.
-      Passport mode, where only the last hop in the
-      forwarding path of the On-Path Telemetry domain exposes all the metrics,
-      and postcard mode, where the metrics are also exposed in transit nodes.
-      In both modes the forwarding path exposes performance metrics allowing
-      to determine how much delay has been accumulated on which hop. The 
-      proposal in this document makes more sense for the postcard mode.</t>
-
       <t>In order to export the delay-related metrics via IPIFX <xref
       target="RFC7011"/>, this document defines four new IPFIX Information
       Elements (IEs), exposing the On-Path delay on OAM transit and
-      decapsulating nodes, following the postcard mode principles. Since these
+      decapsulating nodes. Since these
       IPFIX IEs are performance metrics <xref target="RFC8911"/>, they must be
       registered in the <xref target="IANA-PERF-METRIC">"IANA Performance
       Metric Registry</xref>.</t>
@@ -462,7 +454,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
               <t hangText="Tf:">A time, the end of a measurement interval
               (format "date/time" as specified in Section 5.6 of <xref
               target="RFC3339"/>; see also "date-and-time" in Section 3 of
-              <xref target="RFC6991"/>)). The UTC Time Zone is required by
+              <xref target="RFC6991"/>). The UTC Time Zone is required by
               Section 6.1 of <xref target="RFC2330"/>. When T0 is "all-zeros",
               an ending time and date is ignored and Tf is interpreted as the
               duration of the measurement interval.</t>
@@ -641,9 +633,10 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           </section>
 
           <section title="Calibration">
-            <t>Passive Measurements at an OP could be calibrated against an
-            Active Measurement at host A where the Active Measurement
-            represents the ground truth.</t>
+            <t>A clock synchronization between the nodes of the monitored OAM domain is
+            needed to compute representative delay measurements at the transit and
+            decapsulating nodes. NTP, as defined in <xref target="RFC5905"/>, can be
+            used for synchronizing the clocks of the monitored nodes.</t>
           </section>
         </section>
 
@@ -849,8 +842,13 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <dl>
             <dt>Reference:</dt>
 
-            <dd>[RFC-to-be],
-            OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the
+            <dd>[RFC-to-be]</dd>
+          </dl>
+
+          <dl>
+            <dt>Additional Information:</dt>
+
+            <dd>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the
             IANA Performance Metric Registry.</dd>
           </dl>
         </section>
@@ -895,8 +893,13 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <dl>
             <dt>Reference:</dt>
 
-            <dd>[RFC-to-be],
-            OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min in the
+            <dd>[RFC-to-be]</dd>
+          </dl>
+
+          <dl>
+            <dt>Additional Information:</dt>
+
+            <dd>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min in the
             IANA Performance Metric Registry.</dd>
           </dl>
         </section>
@@ -941,8 +944,13 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <dl>
             <dt>Reference:</dt>
 
-            <dd>[RFC-to-be],
-            OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the
+            <dd>[RFC-to-be]</dd>
+          </dl>
+
+          <dl>
+            <dt>Additional Information:</dt>
+
+            <dd>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the
             IANA Performance Metric Registry.</dd>
           </dl>
         </section>
@@ -987,8 +995,13 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <dl>
             <dt>Reference:</dt>
 
-            <dd>[RFC-to-be],
-            OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in the
+            <dd>[RFC-to-be]</dd>
+          </dl>
+
+          <dl>
+            <dt>Additional Information:</dt>
+
+            <dd>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in the
             IANA Performance Metric Registry.</dd>
           </dl>
         </section>
@@ -1160,29 +1173,29 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
   <back>
     <references title="Normative References">
-      <?rfc include='reference.RFC.2119'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml'?>
 
-      <?rfc include='reference.RFC.3339'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.3339.xml'?>
 
-      <?rfc include='reference.RFC.5905'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.5905.xml'?>
 
-      <?rfc include='reference.RFC.6049'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.6049.xml'?>
 
-      <?rfc include='reference.RFC.7011'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.7011.xml'?>
 
-      <?rfc include='reference.RFC.7012'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.7012.xml'?>
 
-      <?rfc include='reference.RFC.7323'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.7323.xml'?>
 
-      <?rfc include='reference.RFC.7679'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.7679.xml'?>
 
-      <?rfc include='reference.RFC.8174'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml'?>
 
-      <?rfc include='reference.RFC.8911'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.8911.xml'?>
 
-      <?rfc include='reference.RFC.8912'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.8912.xml'?>
 
-      <?rfc include='reference.I-D.ietf-opsawg-oam-characterization'?>
+      <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-opsawg-oam-characterization.xml'?>
     </references>
 
     <references title="Informative References">
@@ -1209,41 +1222,41 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         </front>
       </reference>
 
-      <?rfc include='reference.RFC.1997'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.1997.xml'?>
 
-      <?rfc include='reference.RFC.2330'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.2330.xml'?>
 
-      <?rfc include='reference.RFC.3393'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.3393.xml'?>
 
-      <?rfc include='reference.RFC.5153'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.5153.xml'?>
 
-      <?rfc include='reference.RFC.5470'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.5470.xml'?>
 
-      <?rfc include='reference.RFC.6020'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.6020.xml'?>
 
-      <?rfc include='reference.RFC.6703'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.6703.xml'?>
 
-      <?rfc include='reference.RFC.6991'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.6991.xml'?>
 
-      <?rfc include='reference.RFC.7015'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.7015.xml'?>
 
-      <?rfc include='reference.RFC.9197'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9197.xml'?>
 
-      <?rfc include='reference.RFC.9232'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9232.xml'?>
 
-      <?rfc include='reference.RFC.9326'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9326.xml'?>
 
-      <?rfc include='reference.RFC.9343'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9343.xml'?>
 
-      <?rfc include='reference.RFC.9378'?>
+      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9378.xml'?>
 
-      <?rfc include='reference.I-D.ietf-ippm-alt-mark-deployment'?>
+      <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-ippm-alt-mark-deployment.xml'?>
 
-      <?rfc include='reference.I-D.zhou-ippm-enhanced-alternate-marking'?>
+      <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.zhou-ippm-enhanced-alternate-marking.xml'?>
 
-      <?rfc include='reference.I-D.ahuang-ippm-dex-timestamp-ext'?>
+      <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ahuang-ippm-dex-timestamp-ext.xml'?>
 
-      <?rfc include='reference.I-D.fz-spring-srv6-alt-mark'?>
+      <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.fz-spring-srv6-alt-mark.xml'?>
 
       <reference anchor="INSA-Lyon-VPP"
                  target="https://github.com/network-analytics/vpp-srh-onpath-telemetry">
