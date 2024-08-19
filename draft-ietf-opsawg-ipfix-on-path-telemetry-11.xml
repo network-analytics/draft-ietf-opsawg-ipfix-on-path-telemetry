@@ -1043,7 +1043,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         target="RFC5470"/>).</t>
       </section>
 
-      <section anchor="OpsIoamApplication" title="IOAM Application">
+      <section anchor="OpsIoamApplication" title="OAM Application">
 
         <t>Multiple methods can be used to compute the delay performance metrics
         defined in this document. Some examples of such methods are IOAM and

@@ -115,7 +115,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2024
 
 
      7.4.  Measurement Interval  . . . . . . . . . . . . . . . . . .  20
-     7.5.  IOAM Application  . . . . . . . . . . . . . . . . . . . .  20
+     7.5.  OAM Application . . . . . . . . . . . . . . . . . . . . .  20
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  20
    9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  21
      9.1.  FD.io VPP . . . . . . . . . . . . . . . . . . . . . . . .  21
@@ -1075,7 +1075,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2024
    be configured with a smaller expiration timeout (see Section 5.1.1.
    Flow Expiration[RFC5470]).
 
-7.5.  IOAM Application
+7.5.  OAM Application
 
    Multiple methods can be used to compute the delay performance metrics
    defined in this document.  Some examples of such methods are IOAM and
