@@ -1046,8 +1046,8 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       <section anchor="OpsIoamApplication" title="OAM Application">
 
         <t>Multiple methods can be used to compute the delay performance metrics
-        defined in this document. Some examples of such methods are IOAM and
-        Enhanced Alternate Marking.</t>
+        defined in this document. Some examples of such methods are IOAM <xref target="RFC9197"/>
+        and Enhanced Alternate Marking <xref target="I-D.zhou-ippm-enhanced-alternate-marking"/>.</t>
 
         <t>For IOAM, these performance metrics can be computed using the Edge-to-Edge
         and the Direct Exporting Option-Type.</t> 

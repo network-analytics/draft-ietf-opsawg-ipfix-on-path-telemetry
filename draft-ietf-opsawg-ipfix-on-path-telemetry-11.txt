@@ -1078,8 +1078,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2024
 7.5.  OAM Application
 
    Multiple methods can be used to compute the delay performance metrics
-   defined in this document.  Some examples of such methods are IOAM and
-   Enhanced Alternate Marking.
+   defined in this document.  Some examples of such methods are IOAM
+   [RFC9197] and Enhanced Alternate Marking
+   [I-D.zhou-ippm-enhanced-alternate-marking].
 
    For IOAM, these performance metrics can be computed using the Edge-
    to-Edge and the Direct Exporting Option-Type.
@@ -1112,7 +1113,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2024
    directly introduce security issues.  Rather, they define a set of
    performance metrics that may, for privacy or business issues, be
    considered sensitive information.
-
 
 
 
