@@ -465,7 +465,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2024
    singleton (single value) one-way delay metric.  Section 4.4 of
    [RFC7679] provides the reference definition expanded to cover a
    multi-value sample.  Note that terms such as "singleton" and "sample"
-   are defined in Section Section 2 of [RFC2330].
+   are defined in Section 2 of [RFC2330].
 
    With the OP [RFC7011] typically located between the hosts
    participating in the IP Flow, the one-way delay metric requires one
@@ -542,7 +542,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2024
 
    Src:  The IP address of the host in the host A Role (format
       ipv4-address-no-zone value for IPv4 or ipv6-address-no-zone value
-      for IPv6; see Section 4 of [RFC6991]>).
+      for IPv6; see Section 4 of [RFC6991]).
 
    Dst:  The IP address of the host in the host B Role (format
       ipv4-address-no-zone value for IPv4 or ipv6-address-no-zone value

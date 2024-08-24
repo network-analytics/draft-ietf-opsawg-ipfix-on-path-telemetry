@@ -385,7 +385,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           one-way delay metric. <xref section="4.4" sectionFormat="of"
           target="RFC7679"/> provides the reference definition expanded to
           cover a multi-value sample. Note that terms such as "singleton" and
-          "sample" are defined in Section <xref section="2" sectionFormat="of"
+          "sample" are defined in <xref section="2" sectionFormat="of"
           target="RFC2330"/>.</t>
 
           <t>With the OP <xref target="RFC7011"/> typically located between
@@ -454,7 +454,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
               <t hangText="Src:">The IP address of the host in the host A Role
               (format ipv4&nbhy;address-no-zone value for IPv4 or
               ipv6-address-no-zone value for IPv6; see <xref section="4"
-              sectionFormat="of" target="RFC6991"/>&gt;).</t>
+              sectionFormat="of" target="RFC6991"/>).</t>
 
               <t hangText="Dst:">The IP address of the host in the host B Role
               (format ipv4&nbhy;address-no-zone value for IPv4 or
