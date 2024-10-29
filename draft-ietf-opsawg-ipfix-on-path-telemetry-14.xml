@@ -427,7 +427,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           section="2" sectionFormat="of"
           target="I-D.zhou-ippm-enhanced-alternate-marking"/> and <xref
 		  section="3.2" sectionFormat="of" target="I-D.fz-spring-srv6-alt-mark"/>
-		  the timestamp encoding and granularity.</t>
+		  defines timestamp encoding and granularity.</t>
         </section>
 
         <section title="Traffic Filtering (Observation) Details">
@@ -1104,7 +1104,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         <t>For the Enhanced Alternate Marking Method, <xref section="2"
         sectionFormat="of" target="I-D.zhou-ippm-enhanced-alternate-marking"/>
         and <xref section="3.2" sectionFormat="of"
-		target="I-D.fz-spring-srv6-alt-mark"/>defines that, within the metaInfo,
+		target="I-D.fz-spring-srv6-alt-mark"/> defines that, within the metaInfo,
 		a nanosecond timestamp can be encoded in the encapsulating node and be
 		read at the intermediate and decapsulating node to calculate the on-path
 		delay. <xref target="RFC9343"/> defines how this can be applied to the

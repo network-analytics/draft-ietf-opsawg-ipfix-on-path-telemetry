@@ -514,8 +514,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX      October 2024
    supported.  Section 4.4.2.3 and 4.4.2.4 describe where the timestamp
    is being inserted.  For the Enhanced Alternate Marking Method,
    Section 2 of [I-D.zhou-ippm-enhanced-alternate-marking] and
-   Section 3.2 of [I-D.fz-spring-srv6-alt-mark] the timestamp encoding
-   and granularity.
+   Section 3.2 of [I-D.fz-spring-srv6-alt-mark] defines timestamp
+   encoding and granularity.
 
 3.3.3.  Traffic Filtering (Observation) Details
 
@@ -1100,7 +1100,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX      October 2024
 
    For the Enhanced Alternate Marking Method, Section 2 of
    [I-D.zhou-ippm-enhanced-alternate-marking] and Section 3.2 of
-   [I-D.fz-spring-srv6-alt-mark]defines that, within the metaInfo, a
+   [I-D.fz-spring-srv6-alt-mark] defines that, within the metaInfo, a
    nanosecond timestamp can be encoded in the encapsulating node and be
    read at the intermediate and decapsulating node to calculate the on-
    path delay.  [RFC9343] defines how this can be applied to the IPv6
