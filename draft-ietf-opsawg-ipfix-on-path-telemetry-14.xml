@@ -201,9 +201,9 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       The alternative, with no delay monitoring on the
       router, requires the export of every single packet as a separate Flow
       Record, including the timestamps information, as described in <xref
-      target="I-D.ietf-opsawg-ipfix-alt-mark"/>, for the Collector to
-      compute delay metrics (min, max, and mean), before recomputing the
-      aggregated Flow Record.</t>
+      target="I-D.ietf-opsawg-ipfix-alt-mark"/> for Alternate Marking,
+      for the Collector to compute delay metrics (min, max, and mean),
+      before recomputing the aggregated Flow Record.</t>
     </section>
 
     <section anchor="notation" title="Terminology">
