@@ -277,7 +277,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         Registry</xref>.</t>
 
         <t>All column entries besides the Identifier, Name, URI, Description,
-        Output, and Reference Method categories are the same; thus, this
+        Reference Description (Output only) categories are the same; thus, this
         section defines four closely related performance metrics. As a result,
         IANA has assigned corresponding URIs to each of the four registered
         performance metrics.</t>
@@ -356,6 +356,11 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
             <t>RFC EDITOR NOTE: please replace RFC-to-be.</t>
 
+        </section>
+
+        <section title="Reference">
+          <t>[RFC-to-be]</t>
+          <t>RFC EDITOR NOTE: please replace RFC-to-be.</t>
         </section>
 
         <section title="Change Controller">
