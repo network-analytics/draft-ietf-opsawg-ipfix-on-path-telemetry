@@ -10,7 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-ietf-opsawg-ipfix-on-path-telemetry-13"
+<rfc category="std" docName="draft-ietf-opsawg-ipfix-on-path-telemetry-14"
      ipr="trust200902">
   <front>
     <title abbrev="Delay Performance Metrics for IPFIX">Export of Delay
@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="29" month="October" year="2024"/>
+    <date day="3" month="November" year="2024"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -81,14 +81,14 @@
     <section anchor="Introduction" title="Introduction">
       <t>Network operators usually gather and maintain some forms of
       statistical delay view of their networks (or segments of their
-      networks). That view is meant to help understanding where in the
+      networks). That view is meant to help with understanding where in the
       network, for which customer traffic or services, how much, and why
       abnormal delay is being accumulated. To that aim, delay-related data
       need to be reported from devices covering both data and control planes.
       In order to understand which customer traffic is affected, delay-related
-      data need to be reported into customer data-plane context. That enables
-      network operators to quickly identify when the control-plane updates the
-      current path with a different set of intermediate hops (that is, a
+      data need to be reported in the context of the customer data-plane context.
+      That enables network operators to quickly identify when the control-plane updates
+      the current path with a different set of intermediate hops (that is, a
       change of the forwarding path) and interfaces, how the path delay
       changes for which customer traffic.</t>
 
@@ -183,12 +183,12 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 ]]></artwork>
       </figure>
 
-      <t>In the usecase shown in <xref target="topology"/> using On-path
+      <t>In the use case shown in <xref target="topology"/> using On-path
       Telemetry to export the delay metrics, the node R2 exports the delay D1,
       the node R3 exports the delay D2 and the decapsulating node R4 exports
       the total delay D3 using IPFIX.</t>
 
-      <t>The advantages of this solution is that the delay metrics (min, max,
+      <t>The advantage of this solution is that the delay metrics (min, max,
       and mean) can be computed on the router, and aggregated directly within
       the Flow Record, saving export bandwidth and computation on the
       Collector. For the computation of the min, max, and mean delay metric to
@@ -197,13 +197,13 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       in the flow), specifically the mean value. A less computational heavy
       solution for the router is the export of the delay sum instead of the
       delay mean; on the Collector, the delay mean can easily be computed by a
-      single division operation (using the packet count). The alternative,
-      with any delay monitoring on the router, requires the export of every
-      single packet as a separate Flow Record, including the timestamps
-      information as described in <xref
-	  target="I-D.ietf-opsawg-ipfix-alt-mark"/>, for the Collector to compute
-	  delay metrics (min, max, and mean) and to recompute the aggregated Flow
-	  Record.</t>
+      single division operation (using the packet count). 
+      The alternative, with no delay monitoring on the
+      router, requires the export of every single packet as a separate Flow
+      Record, including the timestamps information, as described in <xref
+      target="I-D.ietf-opsawg-ipfix-alt-mark"/> for Alternate Marking,
+      for the Collector to compute delay metrics (min, max, and mean),
+      before recomputing the aggregated Flow Record.</t>
     </section>
 
     <section anchor="notation" title="Terminology">
@@ -277,7 +277,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         Registry</xref>.</t>
 
         <t>All column entries besides the Identifier, Name, URI, Description,
-        Output, and Reference Method categories are the same; thus, this
+        Reference Description (Output only) categories are the same; thus, this
         section defines four closely related performance metrics. As a result,
         IANA has assigned corresponding URIs to each of the four registered
         performance metrics.</t>
@@ -323,7 +323,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
             <t>URI: <eref
             target="https://www.iana.org/assignments/performance-metrics/OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum"/></t>
 
-            <t>RFC EDITOR NOTE: please replace TBD1, TBD2, TBD3, and TBD4.</t>
+            <t>RFC EDITOR NOTE: please replace RFC-to-be.</t>
           </section>
         </section>
 
@@ -353,6 +353,14 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
               consider the measurement of one-way delay based on a single
               Observation Point (OP) [RFC7011] somewhere in the network.</t>
             </list></t>
+
+            <t>RFC EDITOR NOTE: please replace RFC-to-be.</t>
+
+        </section>
+
+        <section title="Reference">
+          <t>[RFC-to-be]</t>
+          <t>RFC EDITOR NOTE: please replace RFC-to-be.</t>
         </section>
 
         <section title="Change Controller">
@@ -1099,17 +1107,23 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         used to compute the delay between the inserted timestamp and the
         transit and decapsulating node.</t>
 
-
-
         <t>For the Enhanced Alternate Marking Method, <xref section="2"
         sectionFormat="of" target="I-D.zhou-ippm-enhanced-alternate-marking"/>
         and <xref section="3.2" sectionFormat="of"
-		target="I-D.fz-spring-srv6-alt-mark"/> defines that, within the metaInfo,
-		a nanosecond timestamp can be encoded in the encapsulating node and be
-		read at the intermediate and decapsulating node to calculate the on-path
-		delay. <xref target="RFC9343"/> defines how this can be applied to the
-		IPv6 options header and <xref target="I-D.fz-spring-srv6-alt-mark"/> defines
+        target="I-D.fz-spring-srv6-alt-mark"/> defines that, within the metaInfo,
+        a nanosecond timestamp can be encoded in the encapsulating node and be
+        read at the intermediate and decapsulating node to calculate the on-path
+        delay. <xref target="RFC9343"/> defines how this can be applied to the
+        IPv6 options header and <xref target="I-D.fz-spring-srv6-alt-mark"/> defines
         how this can be applied to the SRv6 Segment Routing Header.</t>
+
+        <t>Given that the delay measurements are computed with the timestamp
+        introduced on the encapsulating node, regardless of the approach,
+        implementations should document at which point of the forwarding plane
+        this timestamp is introduced (e.g. the time at which the packet was
+        received by the node, the time at which the packet was transmitted
+        by the node, etc). Based on this information, different actions can be taken.
+        </t>
       </section>
     </section>
 
@@ -1154,7 +1168,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       </section>
 
       <section anchor="Huawei" title="Huawei VRP">
-        <t>Huawei implemented the following IEs as part of a a production
+        <t>Huawei implemented the following IEs as part of a production
         implementation in the VRP platform:</t>
 
         <t><list style="symbols">
