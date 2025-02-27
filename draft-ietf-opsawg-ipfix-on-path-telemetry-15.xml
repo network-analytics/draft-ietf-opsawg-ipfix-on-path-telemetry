@@ -68,7 +68,7 @@
       </address>
     </author>
 
-    <date day="5" month="November" year="2024"/>
+    <date day="27" month="February" year="2025"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -213,6 +213,20 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when,
       they appear in all capitals, as shown here.</t>
 
+      <t>This document defines the following terms:</t>
+
+      <t><list style="symbols">
+          <t>Encapsulating node: The network node where the timestamp is
+		  being inserted.</t>
+
+          <t>Transit node: The network node where the packet with the
+		  encapsulated timestamp traverses and the timestamp is being
+		  observed.</t>
+
+          <t>Decapsulating node: The network node where the timestamp
+		  in the packet is being observed and removed.</t>
+        </list></t>
+
       <t>This document makes use of the terms defined in <xref
       target="RFC7011"/> and <xref target="RFC9378"/>.</t>
 
@@ -240,17 +254,6 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <t>Registered Performance Metric</t>
 
           <t>Performance Metrics Registry</t>
-        </list></t>
-
-      <t>The following terms are used as defined in <xref section="5"
-      sectionFormat="of" target="I-D.ietf-opsawg-oam-characterization"/>:</t>
-
-      <t><list style="symbols">
-          <t>Encapsulating node</t>
-
-          <t>Transit node</t>
-
-          <t>Decapsulating node</t>
         </list></t>
 
       <t>The following terms are used as defined in <xref section="3.8"
@@ -1246,8 +1249,6 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.8911.xml'?>
 
       <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.8912.xml'?>
-
-      <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-opsawg-oam-characterization.xml'?>
     </references>
 
     <references title="Informative References">
