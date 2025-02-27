@@ -84,9 +84,9 @@
       networks). That view is meant to help with understanding where in the
       network, for which customer traffic or services, how much, and why
       abnormal delay is being accumulated. To that aim, delay-related data
-      need to be reported from devices covering both data and control planes.
+      needs to be reported from devices covering both data and control planes.
       In order to understand which customer traffic is affected, delay-related
-      data need to be reported in the context of the customer data-plane.
+      data needs to be reported in the context of the customer data-plane.
       That enables network operators to quickly identify when the control-plane updates
       the current path with a different set of intermediate hops (that is, a
       change of the forwarding path) and interfaces, how the path delay
@@ -186,7 +186,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       <t>In the use case shown in <xref target="topology"/> using On-path
       Telemetry to export the delay metrics, the node R2 exports the delay D1,
       the node R3 exports the delay D2 and the decapsulating node R4 exports
-      the total delay D3 using IPFIX.</t>
+      the total delay D3 for the same flow using IPFIX.</t>
 
       <t>The advantage of this solution is that the delay metrics (min, max,
       and mean) can be computed on the router, and aggregated directly within
@@ -216,15 +216,17 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       <t>This document defines the following terms:</t>
 
       <t><list style="symbols">
-          <t>Encapsulating node: The network node where the timestamp is
-		  being inserted.</t>
+          <t>Encapsulating Node: Receives the IP Flow packets and
+		  encapsulates the timestamp into the packet.</t>
 
-          <t>Transit node: The network node where the packet with the
-		  encapsulated timestamp traverses and the timestamp is being
-		  observed.</t>
+          <t>Transit Node: Receives the IP Flow packets and measures the
+		  delay between the timestamp in the packet and the timestamp
+		  when the packet was received.</t>
 
-          <t>Decapsulating node: The network node where the timestamp
-		  in the packet is being observed and removed.</t>
+          <t>Decapsulating Node: Receives the IP Flow packets and
+		  computes the delay between the timestamp in the packet and the
+		  timestamp when the packet was received and removes the OAM
+		  header from the packet.</t>
         </list></t>
 
       <t>This document makes use of the terms defined in <xref
@@ -429,8 +431,8 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         </section>
 
         <section title="Packet Stream Generation">
-          <t>The timestamp when the packet is being received at OAM
-          encapsulating node. Format depends on On-Path Telemetry
+          <t>The time when the packet is being received at the OAM
+          encapsulating node. The timestamp format depends on On-Path Telemetry
           implementation. For IOAM, <xref section="4.4.1" sectionFormat="of"
           target="RFC9197"/> describes what kind of timestamps are supported.
           Section 4.4.2.3 and 4.4.2.4 describe where the timestamp is being
@@ -1079,12 +1081,14 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       </section>
 
       <section anchor="MeasurementInterval" title="Measurement Interval">
-        <t>The delay metrics are computed for the Flow Record life time. For
-        long-running Flow, we might miss the temporal distribution of the
-        delay (for example, a longer delay only at the beginning of Flow). If
-        this is an operational problem, the IPFIX Metering Process might be
-        configured with a smaller expiration timeout (see Section 5.1.1. Flow
-        Expiration<xref target="RFC5470"/>).</t>
+        <t>The delay metrics are computed for the Flow Record life time 
+		by comparing the timestamps for each received packet with the timestamp
+		when they were received. For long-running Flow, we might miss the
+		temporal distribution of the delay (for example, a longer delay
+		only at the beginning of Flow). If this is an operational
+		problem, the IPFIX Metering Process might be configured with a
+		smaller expiration timeout (see Section 5.1.1. Flow Expiration
+		<xref target="RFC5470"/>).</t>
       </section>
 
       <section anchor="OpsIoamApplication" title="In-Packet OAM Application">
@@ -1217,10 +1221,11 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
     <section anchor="Acknowledgements" title="Acknowledgements">
       <t>The authors would like to thank Al Morton (Rest in Peace Al), Justin
-      Iurman, Giuseppe Fioccola and Yannick Buchs for their review and
-      valuable comments. Special thanks to Paul Aitken (as IPFIX Designated
-      Expert), Greg Mirsky (as IP Performance Metrics Designated Expert), and
-      to Med Boucadair for his very detailed feedback.</t>
+      Iurman, Giuseppe Fioccola, Yannick Buchs, Menachem Dodge and Martin
+	  Duke for their review and valuable comments. Special thanks to
+	  Paul Aitken (as IPFIX Designated Expert), Greg Mirsky
+	  (as IP Performance Metrics Designated Expert), and to Med
+	  Boucadair for his very detailed feedback.</t>
     </section>
   </middle>
 
@@ -1369,7 +1374,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         </figure></t>
 
       <section anchor="Aggregated-OnPath-Delay-Examples"
-               title="Aggregated On-Path Dealay Examples">
+               title="Aggregated On-Path Delay Examples">
         <section anchor="Template-Record-and-Data-Set-with-MeanDelta"
                  title="Template Record and Data Set with Mean Delta">
           <t>With encoding in Figure 2, the mean (average) path delay is
