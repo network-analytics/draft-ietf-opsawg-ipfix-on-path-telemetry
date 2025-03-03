@@ -292,14 +292,15 @@ Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 
    This document defines the following terms:
 
-   *  Encapsulating Node: Receives the IP Flow packets and encapsulates
-      the timestamp into the OAM header of the packet.
+   *  Encapsulating Node: Receives the IP Flow packets, encapsulates the
+      packets with the OAM header and adds the timestamp into the OAM
+      header.
 
-   *  Transit Node: Receives the IP Flow packets and measures the delay
+   *  Transit Node: Receives the IP Flow packets, measures the delay
       between the timestamp in the packet and the timestamp when the
       packet was received.
 
-   *  Decapsulating Node: Receives the IP Flow packets and computes the
+   *  Decapsulating Node: Receives the IP Flow packets, computes the
       delay between the timestamp in the packet and the timestamp when
       the packet was received and removes the OAM header from the
       packet.
@@ -329,7 +330,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 
    The following terms are used as defined in Section 3.8 of [RFC7799]:
 
-   *  Hybrid Type I Passive
 
 
 
@@ -337,6 +337,8 @@ Graf, et al.            Expires 4 September 2025                [Page 6]
 
 Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 
+
+   *  Hybrid Type I Passive
 
 3.  Performance Metrics
 
@@ -382,10 +384,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 
    RFC EDITOR NOTE: please replace [RFC-to-be].
 
-3.1.1.3.  URI
 
-   URI: https://www.iana.org/assignments/performance-metrics/
-   OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean
+
 
 
 
@@ -393,6 +393,11 @@ Graf, et al.            Expires 4 September 2025                [Page 7]
 
 Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 
+
+3.1.1.3.  URI
+
+   URI: https://www.iana.org/assignments/performance-metrics/
+   OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean
 
    URI: https://www.iana.org/assignments/performance-metrics/
    OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min
@@ -437,11 +442,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 
    [RFC-to-be]
 
-   RFC EDITOR NOTE: please replace RFC-to-be.
-
-
-
-
 
 
 
@@ -449,6 +449,8 @@ Graf, et al.            Expires 4 September 2025                [Page 8]
 
 Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 
+
+   RFC EDITOR NOTE: please replace RFC-to-be.
 
 3.1.4.  Change Controller
 
@@ -494,8 +496,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 3.2.2.  Fixed Parameters
 
    None
-
-
 
 
 
@@ -591,17 +591,17 @@ Internet-Draft     Delay Performance Metrics for IPFIX        March 2025
 
    host B:  Receives the IP packet to start the Flow.
 
-   Encapsulating Node:  Receives the IP Flow packets and encapsulates
-      the timestamp into the OAM header of the packet.
+   Encapsulating Node:  Receives the IP Flow packets, encapsulates the
+      packets with the OAM header and adds the timestamp into the OAM
+      header.
 
-   Transit Node:  Receives the IP Flow packets and measures the delay
+   Transit Node:  Receives the IP Flow packets, measures the delay
       between the timestamp in the packet and the timestamp when the
       packet was received.
 
-   Decapsulating Node:  Receives the IP Flow packets and computes the
-      delay between the timestamp in the packet and the timestamp when
-      the packet was received and removes the OAM header from the
-      packet.
+   Decapsulating Node:  Receives the IP Flow packets, computes the delay
+      between the timestamp in the packet and the timestamp when the
+      packet was received and removes the OAM header from the packet.
 
 3.4.  Output
 

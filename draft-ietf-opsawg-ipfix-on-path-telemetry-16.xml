@@ -216,14 +216,15 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       <t>This document defines the following terms:</t>
 
       <t><list style="symbols">
-          <t>Encapsulating Node: Receives the IP Flow packets and
-		  encapsulates the timestamp into the OAM header of the packet.</t>
+          <t>Encapsulating Node: Receives the IP Flow packets,
+					encapsulates the packets with the OAM header and adds the
+					timestamp into the OAM header.</t>
 
-          <t>Transit Node: Receives the IP Flow packets and measures the
+          <t>Transit Node: Receives the IP Flow packets, measures the
 		  delay between the timestamp in the packet and the timestamp
 		  when the packet was received.</t>
 
-          <t>Decapsulating Node: Receives the IP Flow packets and
+          <t>Decapsulating Node: Receives the IP Flow packets,
 		  computes the delay between the timestamp in the packet and the
 		  timestamp when the packet was received and removes the OAM
 		  header from the packet.</t>
@@ -506,16 +507,16 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
               <t hangText="host B:">Receives the IP packet to start the
               Flow.</t>
 
-              <t hangText="Encapsulating Node:">Receives the IP Flow
-							packets and encapsulates the timestamp into the OAM header
-							of the packet.</t>
+              <t hangText="Encapsulating Node:"> Receives the IP Flow
+							packets, encapsulates the packets with the OAM header and
+							adds the timestamp into the OAM header.</t>
 
-              <t hangText="Transit Node:">Receives the IP Flow packets and
+              <t hangText="Transit Node:">Receives the IP Flow packets,
               measures the delay between the timestamp in the packet and the
               timestamp when the packet was received.</t>
 
-              <t hangText="Decapsulating Node:">Receives the IP Flow packets
-              and computes the delay between the timestamp in the packet and
+              <t hangText="Decapsulating Node:">Receives the IP Flow packets,
+              computes the delay between the timestamp in the packet and
               the timestamp when the packet was received and removes the OAM
               header from the packet.</t>
             </list></t>
