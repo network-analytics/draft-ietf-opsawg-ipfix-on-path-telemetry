@@ -119,10 +119,10 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
      7.5.  In-Packet OAM Application . . . . . . . . . . . . . . . .  20
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  21
    9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  21
-     9.1.  FD.io VPP . . . . . . . . . . . . . . . . . . . . . . . .  22
+     9.1.  FD.io VPP . . . . . . . . . . . . . . . . . . . . . . . .  21
      9.2.  Huawei VRP  . . . . . . . . . . . . . . . . . . . . . . .  22
      9.3.  Fluvia  . . . . . . . . . . . . . . . . . . . . . . . . .  22
-     9.4.  Pmacct Data Collection  . . . . . . . . . . . . . . . . .  23
+     9.4.  Pmacct Data Collection  . . . . . . . . . . . . . . . . .  22
    10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  23
    11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  23
      11.1.  Normative References . . . . . . . . . . . . . . . . . .  23
@@ -182,7 +182,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
    this document defines four new IPFIX Information Elements (IEs),
    exposing the On-Path delay on OAM transit and decapsulating nodes,
    following the postcard mode principles.  Since these IPFIX IEs are
-   performance metrics [RFC8911], they must be registered in the "IANA
+   performance metrics [RFC8911], they are also registered in the "IANA
    Performance Metric Registry [IANA-PERF-METRIC] .
 
    Following the guidelines for Registered Performance Metric Requesters
@@ -235,15 +235,15 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
                  .........................................
                  .                                       .
                  .    D1                                 .
-                 . x------>                              .
+                 . x------->                              .
                  .                                       .
                  .          D2                           .
                  . x-------------------->                .
                  .                                       .
                  .                  D3                   .
-                 . x-----------------------------------> .
+                 . x---------------------------------->  .
                  .                                       .
-   (H1) ------ (R1) ------- (R2) ------- (R3) -------- (R4) ------ (H2)
+   (H1) -----> (R0) ------> (R1) ------> (R2) -------> (R3) -----> (H2)
    Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
                Node         Node 1       Node 2        Node
                  .                                       .
@@ -253,27 +253,27 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
        Figure 1: Delay use case.  Packets flow from host 1 to host 2.
 
    In the use case shown in Figure 1 using On-path Telemetry to export
-   the delay metrics, the node R2 exports the delay D1, the node R3
-   exports the delay D2 and the decapsulating node R4 exports the total
+   the delay metrics, the node R1 exports the delay D1, the node R2
+   exports the delay D2 and the decapsulating node R3 exports the total
    delay D3 for the same flow using IPFIX.
 
    The advantage of this solution is that the delay metrics (min, max,
-   and mean) can be computed on the router, and aggregated directly
+   and mean) can be computed on the OAM node, and aggregated directly
    within the Flow Record, saving export bandwidth and computation on
    the Collector.  For the computation of the min, max, and mean delay
-   metric to be computed locally on the router, the exporter Metering
+   metric to be computed locally on the OAM node, the exporter Metering
    Process requires some local caching/processing computation (for each
-   new packets in the flow), specifically the mean value.  A less
-   computational heavy solution for the router is the export of the
-   delay sum instead of the delay mean; on the Collector, the delay mean
-   can easily be computed by a single division operation (using the
-   packet count).  The alternative, with no delay monitoring on the
-   router, requires the export of every single packet as a separate Flow
-   Record, including the timestamps information, as described in
+   new packets in the flow), specifically the mean value when Flow
+   Aggregation [RFC7015] is being used.  A less computational heavy
+   solution for the OAM node is the export of the delay sum instead of
+   the delay mean; on the Collector, the delay mean can easily be
+   computed by a single division operation (using the packet count).
+   The alternative, with no delay monitoring on the OAM node, requires
+   the export of every single packet as a separate Flow Record,
+   including the timestamps information, as described in
    [I-D.ietf-opsawg-ipfix-alt-mark] for Alternate Marking, for the
    Collector to compute delay metrics (min, max, and mean), before
    recomputing the aggregated Flow Record.
-
 
 
 
@@ -305,8 +305,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
       the packet was received and removes the OAM header from the
       packet.
 
-   This document makes use of the terms defined in [RFC7011] and
-   [RFC9378].
+   This document makes use of the terms defined in [RFC7011], [RFC8911]
+   and [RFC7799].
 
    The following terms are used as defined in [RFC7011]:
 
@@ -417,25 +417,25 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
       metric assesses the mean of one-way delays of all successfully
       forwarded IP packets constituting a single Flow.  We consider the
       measurement of one-way delay based on a single Observation Point
-      (OP) [RFC7011] somewhere in the network.
+      [RFC7011] somewhere in the network.
 
    *  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min: This
       metric assesses the minimum of one-way delays of all successfully
       forwarded IP packets constituting a single Flow.  We consider the
       measurement of one-way delay based on a single Observation Point
-      (OP) [RFC7011] somewhere in the network.
+      [RFC7011] somewhere in the network.
 
    *  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max: This
       metric assesses the maximum of one-way delays of all successfully
       forwarded IP packets constituting a single Flow.  We consider the
       measurement of one-way delay based on a single Observation Point
-      (OP) [RFC7011] somewhere in the network.
+      [RFC7011] somewhere in the network.
 
    *  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum: This
       metric assesses the sum of one-way delays of all successfully
       forwarded IP packets constituting a single Flow.  We consider the
       measurement of one-way delay based on a single Observation Point
-      (OP) [RFC7011] somewhere in the network.
+      [RFC7011] somewhere in the network.
 
    RFC EDITOR NOTE: please replace [RFC-to-be] with the allocated RFC
    document number.
@@ -489,11 +489,11 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
    multi-value sample.  Note that terms such as "singleton" and "sample"
    are defined in Section 2 of [RFC2330].
 
-   With the OP [RFC7011] typically located between the hosts
-   participating in the IP Flow, the one-way delay metric requires one
-   individual measurement between the OP and sourcing host, such that
-   the Spatial Composition [RFC6049] of the measurements yields a one-
-   way delay singleton.
+   With the Observation Point [RFC7011] typically located between the
+   hosts participating in the IP Flow, the one-way delay metric requires
+   one individual measurement between theO bservation Point and sourcing
+   host, such that the Spatial Composition [RFC6049] of the measurements
+   yields a one-way delay singleton.
 
    This document specifies how to export the performance metric using
    IPFIX.
@@ -520,7 +520,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
    The foundational methodology for this metric is defined in Section 4
    of [RFC7323] using the Timestamps option with modifications that
-   allow application at a mid-path OP [RFC7011].
+   allow application at a mid-path Observation Point [RFC7011].
 
 3.3.2.  Packet Stream Generation
 
@@ -877,13 +877,13 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 | ingress   | egress    | Node | destination | srhActive   |   Path    |
 | Interface | Interface |      | IPv6Address | SegmentIPv6 |   Delay   |
 +-----------+-----------+------+-------------+-------------+-----------+
-|    271    |    276    |  R1  |             |             |    0 us   |
+|    271    |    276    |  R0  |             |             |    0 us   |
 +-----------+-----------+------+-------------+-------------+-----------+
-|    301    |    312    |  R2  | 2001:db8::2 | 2001:db8::4 |   22 us   |
+|    301    |    312    |  R1  | 2001:db8::1 | 2001:db8::3 |   22 us   |
 +-----------+-----------+------+-------------+-------------+-----------+
-|    22     |     27    |  R3  | 2001:db8::3 | 2001:db8::4 |   42 us   |
+|    22     |     27    |  R2  | 2001:db8::2 | 2001:db8::3 |   42 us   |
 +-----------+-----------+------+-------------+-------------+-----------+
-|    852    |    854    |  R4  | 2001:db8::4 | 2001:db8::4 |  122 us   |
+|    852    |    854    |  R3  | 2001:db8::3 | 2001:db8::3 |  122 us   |
 +-----------+-----------+------+-------------+-------------+-----------+
 
 Table 2: Example table of measured delay at ingress. Ascending by delay.
@@ -1087,12 +1087,13 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 7.4.  Measurement Interval
 
    The delay metrics are computed for the Flow Record life time by
-   comparing the timestamps for each received packet with the timestamp
-   when they were received.  For long-running Flow, we might miss the
-   temporal distribution of the delay (for example, a longer delay only
-   at the beginning of Flow).  If this is an operational problem, the
-   IPFIX Metering Process might be configured with a smaller expiration
-   timeout (see Section 5.1.1.  Flow Expiration [RFC5470]).
+   comparing the OAM timestamps in each received packet with the
+   timestamp when they were received.  For long-running Flow, we might
+   miss the temporal distribution of the delay (for example, a longer
+   delay only at the beginning of Flow).  If this is an operational
+   problem, the IPFIX Metering Process might be configured with a
+   smaller expiration timeout (see Section 5.1.1.  Flow Expiration
+   [RFC5470]).
 
 7.5.  In-Packet OAM Application
 
@@ -1110,10 +1111,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
    timestamp can be used to compute the delay between the encapsulating
    node and the decapsulating node.
 
-
-
-
-
+   IOAM Direct Exporting Option-Type, as described in [RFC9326], can use
+   the Extension-Flag defined in [I-D.ahuang-ippm-dex-timestamp-ext] to
+   insert a timestamp in the encapsulating node.  The timestamp is
 
 
 
@@ -1122,9 +1122,6 @@ Graf, et al.            Expires 11 November 2025               [Page 20]
 Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
-   IOAM Direct Exporting Option-Type, as described in [RFC9326], can use
-   the Extension-Flag defined in [I-D.ahuang-ippm-dex-timestamp-ext] to
-   insert a timestamp in the encapsulating node.  The timestamp is
    encoded as defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].  This
    timestamp can be used to compute the delay between the inserted
    timestamp and the transit and decapsulating node.
@@ -1168,7 +1165,10 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
    Note to the RFC-Editor: Please remove this section before publishing.
 
+9.1.  FD.io VPP
 
+   INSA Lyon implemented the following IEs as part of a prototype in the
+   FD.io VPP (Vector Packet Processing) platform:
 
 
 
@@ -1177,11 +1177,6 @@ Graf, et al.            Expires 11 November 2025               [Page 21]
 
 Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
-
-9.1.  FD.io VPP
-
-   INSA Lyon implemented the following IEs as part of a prototype in the
-   FD.io VPP (Vector Packet Processing) platform:
 
    *  pathDelayMeanDeltaMicroseconds
 
@@ -1224,6 +1219,11 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
    The open source code can be obtained here: [NTT-Fluvia] and was
    validated at the IETF 118 hackathon.
 
+9.4.  Pmacct Data Collection
+
+   Paolo Lucente implemented the IE pathDelayMeanDeltaMicroseconds by
+   dividing IE pathDelaySumDeltaMicroseconds by IE packetDeltaCount in
+   the open source Network Telemetry data collection project pmacct.
 
 
 
@@ -1233,12 +1233,6 @@ Graf, et al.            Expires 11 November 2025               [Page 22]
 
 Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
-
-9.4.  Pmacct Data Collection
-
-   Paolo Lucente implemented the IE pathDelayMeanDeltaMicroseconds by
-   dividing IE pathDelaySumDeltaMicroseconds by IE packetDeltaCount in
-   the open source Network Telemetry data collection project pmacct.
 
    The source code can be obtained here: [Paolo-Lucente-Pmacct] and was
    validated at the IETF 116 hackathon.
@@ -1280,6 +1274,12 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
               RFC 7011, DOI 10.17487/RFC7011, September 2013,
               <https://www.rfc-editor.org/info/rfc7011>.
 
+   [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
+              for IP Flow Information Export (IPFIX)", RFC 7012,
+              DOI 10.17487/RFC7012, September 2013,
+              <https://www.rfc-editor.org/info/rfc7012>.
+
+
 
 
 
@@ -1289,11 +1289,6 @@ Graf, et al.            Expires 11 November 2025               [Page 23]
 
 Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
-
-   [RFC7012]  Claise, B., Ed. and B. Trammell, Ed., "Information Model
-              for IP Flow Information Export (IPFIX)", RFC 7012,
-              DOI 10.17487/RFC7012, September 2013,
-              <https://www.rfc-editor.org/info/rfc7012>.
 
    [RFC7323]  Borman, D., Braden, B., Jacobson, V., and R.
               Scheffenegger, Ed., "TCP Extensions for High Performance",
@@ -1337,6 +1332,11 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
               Internet-Draft, draft-fz-spring-srv6-alt-mark-11, 16 April
               2025, <https://datatracker.ietf.org/doc/html/draft-fz-
               spring-srv6-alt-mark-11>.
+
+
+
+
+
 
 
 
@@ -1500,7 +1500,7 @@ Appendix A.  IPFIX Encoding Examples
  |       |      |           |           |      |Delta  |Delta  |Delta  |
  |       |      |           |           |      |Micro..|Micro..|Micro..|
  +-------+------+-----------+-----------+------+-------+-------+-------+
- |  271  |  276 |2001:db8::4|2001:db8::2|  5   | 36 us | 22 us | 74 us |
+ |  271  |  276 |2001:db8::3|2001:db8::2|  5   | 36 us | 22 us | 74 us |
  +-------+------+-----------+-----------+------+-------+-------+-------+
 
  Table 4: Aggregated delay with egressInterface and srhActiveSegmentIPv6
@@ -1643,7 +1643,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
        |           srhActiveSegmentIPv6 = ...                          |
        |                          ...                                  |
        |                          ...                                  |
-       |                          2001:db8::4                          |
+       |                          2001:db8::3                          |
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
        |           packetDeltaCount = 5                                |
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1741,7 +1741,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |         SET ID = 257          |           Length = 60         |
+      |         SET ID = 257          |           Length = 64         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           ingressInterface =  271                             |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1755,7 +1755,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
       |           srhActiveSegmentIPv6 = ...                          |
       |                          ...                                  |
       |                          ...                                  |
-      |                          2001:db8::4                          |
+      |                          2001:db8::3                          |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           packetDeltaCount = 5                                |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+

@@ -117,7 +117,7 @@
 			Information Elements (IEs), exposing the On-Path delay on OAM
 			transit and decapsulating nodes, following the postcard mode
 			principles. Since these IPFIX IEs are performance metrics <xref
-			target="RFC8911"/>, they must be registered in the <xref
+			target="RFC8911"/>, they are also registered in the <xref
 			target="IANA-PERF-METRIC">"IANA Performance Metric Registry</xref>
 			.</t>
 
@@ -172,15 +172,15 @@ Table 1: Mapping Between IPFIX IEs and Performance Metrics
               .........................................
               .                                       .
               .    D1                                 .
-              . x------>                              .
+              . x------->                              .
               .                                       .
               .          D2                           .
               . x-------------------->                .
               .                                       .
               .                  D3                   .
-              . x-----------------------------------> .
+              . x---------------------------------->  .
               .                                       .
-(H1) ------ (R1) ------- (R2) ------- (R3) -------- (R4) ------ (H2)
+(H1) -----> (R0) ------> (R1) ------> (R2) -------> (R3) -----> (H2)
 Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
             Node         Node 1       Node 2        Node
               .                                       .
@@ -191,23 +191,24 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       </figure>
 
       <t>In the use case shown in <xref target="topology"/> using
-			On-path Telemetry to export the delay metrics, the node R2 exports
-			the delay D1, the node R3 exports the delay D2 and the
-			decapsulating node R4 exports the total delay D3 for the same flow
+			On-path Telemetry to export the delay metrics, the node R1 exports
+			the delay D1, the node R2 exports the delay D2 and the
+			decapsulating node R3 exports the total delay D3 for the same flow
 			using IPFIX.</t>
 
       <t>The advantage of this solution is that the delay metrics (min,
-			max, and mean) can be computed on the router, and aggregated
+			max, and mean) can be computed on the OAM node, and aggregated
 			directly within the Flow Record, saving export bandwidth and
 			computation on the Collector. For the computation of the min, max,
-			and mean delay metric to be computed locally on the router, the
+			and mean delay metric to be computed locally on the OAM node, the
 			exporter Metering Process requires some local caching/processing
 			computation (for each new packets in the flow), specifically the
-			mean value. A less computational heavy solution for the router is
-			the export of the delay sum instead of the delay mean; on the
+			mean value when Flow Aggregation <xref target="RFC7015"/> is being
+			used. A less computational heavy solution for the OAM node
+			is the export of the delay sum instead of the delay mean; on the
 			Collector, the delay mean can easily be computed by a single
 			division operation (using the packet count). The alternative, with
-			no delay monitoring on the router, requires the export of every
+			no delay monitoring on the OAM node, requires the export of every
 			single packet as a separate Flow Record, including the timestamps
 			information, as described in <xref
 			target="I-D.ietf-opsawg-ipfix-alt-mark"/> for Alternate Marking,
@@ -241,7 +242,8 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         </list></t>
 
       <t>This document makes use of the terms defined in <xref
-      target="RFC7011"/> and <xref target="RFC9378"/>.</t>
+      target="RFC7011"/>, <xref target="RFC8911"/> and 
+			<xref target="RFC7799"/>.</t>
 
       <t>The following terms are used as defined in <xref
       target="RFC7011"/>:</t>
@@ -354,25 +356,25 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           This metric assesses the mean of one-way delays of all
           successfully forwarded IP packets constituting a single Flow.
 					We consider the measurement of one-way delay based on a single
-          Observation Point (OP) [RFC7011] somewhere in the network.</t>
+          Observation Point [RFC7011] somewhere in the network.</t>
 
           <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min:
           This metric assesses the minimum of one-way delays of all
           successfully forwarded IP packets constituting a single Flow.
 					We consider the measurement of one-way delay based on a single
-          Observation Point (OP) [RFC7011] somewhere in the network.</t>
+          Observation Point [RFC7011] somewhere in the network.</t>
 
           <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max:
           This metric assesses the maximum of one-way delays of all
           successfully forwarded IP packets constituting a single Flow.
 					We consider the measurement of one-way delay based on a single
-          Observation Point (OP) [RFC7011] somewhere in the network.</t>
+          Observation Point [RFC7011] somewhere in the network.</t>
 
           <t>OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum:
           This metric assesses the sum of one-way delays of all
           successfully forwarded IP packets constituting a single Flow.
 					We consider the measurement of one-way delay based on a single
-          Observation Point (OP) [RFC7011] somewhere in the network.</t>
+          Observation Point [RFC7011] somewhere in the network.</t>
           </list></t>
 
             <t>RFC EDITOR NOTE: please replace [RFC-to-be] with the
@@ -421,12 +423,12 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 					terms such as "singleton" and "sample" are defined in <xref
 					section="2" sectionFormat="of" target="RFC2330"/>.</t>
 
-          <t>With the OP <xref target="RFC7011"/> typically located
-					between the hosts participating in the IP Flow, the one-way
-					delay metric requires one individual measurement between the
-					OP and sourcing host, such that the Spatial Composition <xref
-					target="RFC6049"/> of the measurements yields a one-way delay
-					singleton.</t>
+          <t>With the Observation Point <xref target="RFC7011"/>
+					typically located between the hosts participating in the IP
+					Flow, the one-way delay metric requires one individual
+					measurement between theO bservation Point and sourcing host,
+					such that the Spatial Composition <xref target="RFC6049"/> of
+					the measurements yields a one-way delay singleton.</t>
 
           <t>This document specifies how to export the performance
 					metric using IPFIX.</t>
@@ -446,7 +448,8 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <t>The foundational methodology for this metric is defined in
 					<xref section="4" sectionFormat="of" target="RFC7323"/> using
 					the Timestamps option with modifications that allow
-					application at a mid-path OP <xref target="RFC7011"/>.</t>
+					application at a mid-path Observation Point <xref
+					target="RFC7011"/>.</t>
         </section>
 
         <section title="Packet Stream Generation">
@@ -838,13 +841,13 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 | ingress   | egress    | Node | destination | srhActive   |   Path    |
 | Interface | Interface |      | IPv6Address | SegmentIPv6 |   Delay   |
 +-----------+-----------+------+-------------+-------------+-----------+
-|    271    |    276    |  R1  |             |             |    0 us   |
+|    271    |    276    |  R0  |             |             |    0 us   |
 +-----------+-----------+------+-------------+-------------+-----------+
-|    301    |    312    |  R2  | 2001:db8::2 | 2001:db8::4 |   22 us   |
+|    301    |    312    |  R1  | 2001:db8::1 | 2001:db8::3 |   22 us   |
 +-----------+-----------+------+-------------+-------------+-----------+
-|    22     |     27    |  R3  | 2001:db8::3 | 2001:db8::4 |   42 us   |
+|    22     |     27    |  R2  | 2001:db8::2 | 2001:db8::3 |   42 us   |
 +-----------+-----------+------+-------------+-------------+-----------+
-|    852    |    854    |  R4  | 2001:db8::4 | 2001:db8::4 |  122 us   |
+|    852    |    854    |  R3  | 2001:db8::3 | 2001:db8::3 |  122 us   |
 +-----------+-----------+------+-------------+-------------+-----------+
 
 Table 2: Example table of measured delay at ingress. Ascending by delay.
@@ -1141,11 +1144,11 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
       <section anchor="MeasurementInterval"
 			title="Measurement Interval">
         <t>The delay metrics are computed for the Flow Record life time 
-		     by comparing the timestamps for each received packet with the
-		     timestamp when they were received. For long-running Flow, we
-				 might miss the temporal distribution of the delay (for example,
-				 a longer delay only at the beginning of Flow). If this is an
-				 operational problem, the IPFIX Metering Process might be
+		     by comparing the OAM timestamps in each received packet with
+				 the timestamp when they were received. For long-running Flow, 
+				 we might miss the temporal distribution of the delay (for
+				 example, a longer delay only at the beginning of Flow). If this
+				 is an operational problem, the IPFIX Metering Process might be
 				 configured with a smaller expiration timeout (see Section
 				 5.1.1. Flow Expiration <xref target="RFC5470"/>).</t>
       </section>
@@ -1442,7 +1445,7 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
  |       |      |           |           |      |Delta  |Delta  |Delta  |
  |       |      |           |           |      |Micro..|Micro..|Micro..| 
  +-------+------+-----------+-----------+------+-------+-------+-------+
- |  271  |  276 |2001:db8::4|2001:db8::2|  5   | 36 us | 22 us | 74 us |
+ |  271  |  276 |2001:db8::3|2001:db8::2|  5   | 36 us | 22 us | 74 us |
  +-------+------+-----------+-----------+------+-------+-------+-------+
 
  Table 4: Aggregated delay with egressInterface and srhActiveSegmentIPv6
@@ -1532,7 +1535,7 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
       |           srhActiveSegmentIPv6 = ...                          |
       |                          ...                                  |
       |                          ...                                  |
-      |                          2001:db8::4                          |
+      |                          2001:db8::3                          |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           packetDeltaCount = 5                                |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1616,7 +1619,7 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |         SET ID = 257          |           Length = 60         |
+   |         SET ID = 257          |           Length = 64         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           ingressInterface =  271                             |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1630,7 +1633,7 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
    |           srhActiveSegmentIPv6 = ...                          |
    |                          ...                                  |
    |                          ...                                  |
-   |                          2001:db8::4                          |
+   |                          2001:db8::3                          |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |           packetDeltaCount = 5                                |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
