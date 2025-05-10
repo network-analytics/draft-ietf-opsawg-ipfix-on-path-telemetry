@@ -491,7 +491,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
    With the Observation Point [RFC7011] typically located between the
    hosts participating in the IP Flow, the one-way delay metric requires
-   one individual measurement between theO bservation Point and sourcing
+   one individual measurement between the Observation Point and sourcing
    host, such that the Spatial Composition [RFC6049] of the measurements
    yields a one-way delay singleton.
 
