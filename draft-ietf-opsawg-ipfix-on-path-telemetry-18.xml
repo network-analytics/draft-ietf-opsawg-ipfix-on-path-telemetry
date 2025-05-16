@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="10" month="May" year="2025"/>
+    <date day="16" month="May" year="2025"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -795,7 +795,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
       <t>The measured On-Path delay can be aggregated with Flow
 			Aggregation as defined in <xref target="RFC7015"/> to the
 			following device and control-plane dimensions <xref
-			target="IANA-IPFIX"/>to determine:</t>
+			target="IANA-IPFIX"/> to determine:</t>
 
       <t><list style="symbols">
           <t>With node id and egressInterface(14), on which node which
