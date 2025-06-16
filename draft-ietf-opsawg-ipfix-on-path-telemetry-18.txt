@@ -5,10 +5,10 @@
 Network Working Group                                            T. Graf
 Internet-Draft                                                  Swisscom
 Intended status: Standards Track                               B. Claise
-Expires: 17 November 2025                                         Huawei
+Expires: 18 December 2025                                         Huawei
                                                            A. Huang Feng
                                                                INSA-Lyon
-                                                             16 May 2025
+                                                            16 June 2025
 
 
    Export of Delay Performance Metrics in IP Flow Information eXport
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 November 2025.
+   This Internet-Draft will expire on 18 December 2025.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 1]
+Graf, et al.            Expires 18 December 2025                [Page 1]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 2]
+Graf, et al.            Expires 18 December 2025                [Page 2]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
      7.3.  Reduced-size encoding . . . . . . . . . . . . . . . . . .  20
@@ -165,9 +165,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 3]
+Graf, et al.            Expires 18 December 2025                [Page 3]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    At least two modes of On-Path Telemetry can be distinguished.
@@ -221,9 +221,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 4]
+Graf, et al.            Expires 18 December 2025                [Page 4]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    timestamp exported in the IPFIX flow record from the OAM transit and
@@ -277,9 +277,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 5]
+Graf, et al.            Expires 18 December 2025                [Page 5]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 2.  Terminology
@@ -333,17 +333,17 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 6]
+Graf, et al.            Expires 18 December 2025                [Page 6]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    *  Hybrid Type I Passive
 
 3.  Performance Metrics
 
-   This section defines the new performance metrics following the
-   template defined in Section 11 of [RFC8911].
+   This section defines four of the new performance metrics following
+   the template defined in Section 11 of [RFC8911].
 
    IANA Note (to be removed): RFC 8192 Section 4 was taken a guiding
    example.
@@ -389,9 +389,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 7]
+Graf, et al.            Expires 18 December 2025                [Page 7]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 3.1.1.3.  URI
@@ -445,9 +445,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 8]
+Graf, et al.            Expires 18 December 2025                [Page 8]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 3.1.3.  Reference
@@ -501,9 +501,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025                [Page 9]
+Graf, et al.            Expires 18 December 2025                [Page 9]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 3.2.2.  Fixed Parameters
@@ -557,9 +557,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 10]
+Graf, et al.            Expires 18 December 2025               [Page 10]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    method and parameters) that generate the Flow Records must be
@@ -613,9 +613,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 11]
+Graf, et al.            Expires 18 December 2025               [Page 11]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 3.4.  Output
@@ -651,12 +651,12 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
    See Section 4.2.2 of [RFC6049] for details on calculating this
    statistic; see also Section 4.2.3 of [RFC6049].
 
-   Mean:  The time value of the result is expressed in units of seconds,
-      as a positive value of type decimal64 with fraction digits = 9
-      (similar to the decimal64 in YANG, Section 9.3 of [RFC6020]) with
-      a resolution of 0.000000001 seconds (1.0 ns), and with lossless
-      conversion to/from the 64-bit NTP timestamp as per Section 6 of
-      [RFC5905].
+   Mean:  The time value of the result is expressed in units of
+      microseconds, as a positive value of type decimal64 with fraction
+      digits = 9 (similar to the decimal64 in YANG, Section 9.3 of
+      [RFC6020]) with a resolution of 0.000000001 microseconds (1.0 ns),
+      and with lossless conversion to/from the 64-bit NTP timestamp as
+      per Section 6 of [RFC5905].
 
 3.4.2.2.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min
 
@@ -669,9 +669,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 12]
+Graf, et al.            Expires 18 December 2025               [Page 12]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    See Section 4.1 of [RFC3393] for details on the conditional
@@ -681,12 +681,12 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
    See Section 4.3.2 of [RFC6049] for details on calculating this
    statistic; see also Section 4.3.3 of [RFC6049].
 
-   Min:  The time value of the result is expressed in units of seconds,
-      as a positive value of type decimal64 with fraction digits = 9
-      (similar to the decimal64 in YANG, Section 9.3 of [RFC6020]) with
-      a resolution of 0.000000001 seconds (1.0 ns), and with lossless
-      conversion to/from the 64-bit NTP timestamp as per Section 6 of
-      [RFC5905].
+   Min:  The time value of the result is expressed in units of
+      microseconds, as a positive value of type decimal64 with fraction
+      digits = 9 (similar to the decimal64 in YANG, Section 9.3 of
+      [RFC6020]) with a resolution of 0.000000001 microseconds (1.0 ns),
+      and with lossless conversion to/from the 64-bit NTP timestamp as
+      per Section 6 of [RFC5905].
 
 3.4.2.3.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max
 
@@ -710,12 +710,12 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
    where all packets n = 1 through N have finite singleton delays.
 
-   Max:  The time value of the result is expressed in units of seconds,
-      as a positive value of type decimal64 with fraction digits = 9
-      (similar to the decimal64 in YANG, Section 9.3 of [RFC6020]) with
-      a resolution of 0.000000001 seconds (1.0 ns), and with lossless
-      conversion to/from the 64-bit NTP timestamp as per Section 6 of
-      [RFC5905].
+   Max:  The time value of the result is expressed in units of
+      microseconds, as a positive value of type decimal64 with fraction
+      digits = 9 (similar to the decimal64 in YANG, Section 9.3 of
+      [RFC6020]) with a resolution of 0.000000001 microseconds (1.0 ns),
+      and with lossless conversion to/from the 64-bit NTP timestamp as
+      per Section 6 of [RFC5905].
 
 3.4.2.4.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum
 
@@ -725,9 +725,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 13]
+Graf, et al.            Expires 18 December 2025               [Page 13]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    See Section 4.1 of [RFC3393] for details on the conditional
@@ -737,12 +737,12 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
    See Section 4.3.5 of [RFC6049] for details on calculating this
    statistic, however in this case FiniteDelay or MaxDelay MAY be used.
 
-   Sum:  The time value of the result is expressed in units of seconds,
-      as a positive value of type decimal64 with fraction digits = 9
-      (similar to the decimal64 in YANG, Section 9.3 of [RFC6020]) with
-      a resolution of 0.000000001 seconds (1.0 ns), and with lossless
-      conversion to/from the 64-bit NTP timestamp as per Section 6 of
-      [RFC5905].
+   Sum:  The time value of the result is expressed in units of
+      microseconds, as a positive value of type decimal64 with fraction
+      digits = 9 (similar to the decimal64 in YANG, Section 9.3 of
+      [RFC6020]) with a resolution of 0.000000001 microseconds (1.0 ns),
+      and with lossless conversion to/from the 64-bit NTP timestamp as
+      per Section 6 of [RFC5905].
 
 3.4.2.5.  Metric Units
 
@@ -754,7 +754,8 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
    *  Sum
 
-   The one-way delay of the IP Flow singleton is expressed in seconds.
+   The one-way delay of the IP Flow singleton is expressed in
+   microseconds.
 
 3.4.2.6.  Calibration
 
@@ -780,10 +781,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-
-Graf, et al.            Expires 17 November 2025               [Page 14]
+Graf, et al.            Expires 18 December 2025               [Page 14]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 3.4.3.3.  Revision
@@ -837,9 +837,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 15]
+Graf, et al.            Expires 18 December 2025               [Page 15]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    *  With node id and egressPhysicalInterface(253), on which node which
@@ -893,9 +893,9 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 16]
+Graf, et al.            Expires 18 December 2025               [Page 16]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 6.1.  Performance Metrics
@@ -949,9 +949,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 17]
+Graf, et al.            Expires 18 December 2025               [Page 17]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
       of all packets in the Flow, in microseconds, between the OAM
@@ -1005,9 +1005,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 18]
+Graf, et al.            Expires 18 December 2025               [Page 18]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
       delay of all packets in the Flow, in microseconds, between the OAM
@@ -1061,9 +1061,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 19]
+Graf, et al.            Expires 18 December 2025               [Page 19]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 7.2.  Mean Delay
@@ -1117,9 +1117,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 20]
+Graf, et al.            Expires 18 December 2025               [Page 20]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    encoded as defined in Section 4.4.2.3 and 4.4.2.4 of [RFC9197].  This
@@ -1173,9 +1173,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 21]
+Graf, et al.            Expires 18 December 2025               [Page 21]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    *  pathDelayMeanDeltaMicroseconds
@@ -1229,9 +1229,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 22]
+Graf, et al.            Expires 18 December 2025               [Page 22]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    The source code can be obtained here: [Paolo-Lucente-Pmacct] and was
@@ -1285,9 +1285,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 23]
+Graf, et al.            Expires 18 December 2025               [Page 23]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    [RFC7323]  Borman, D., Braden, B., Jacobson, V., and R.
@@ -1329,9 +1329,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
               Fioccola, G., Zhou, T., Cociglio, M., Mishra, G. S., wang,
               X., and G. Zhang, "Application of the Alternate Marking
               Method to the Segment Routing Header", Work in Progress,
-              Internet-Draft, draft-fz-spring-srv6-alt-mark-11, 16 April
+              Internet-Draft, draft-fz-spring-srv6-alt-mark-12, 6 June
               2025, <https://datatracker.ietf.org/doc/html/draft-fz-
-              spring-srv6-alt-mark-11>.
+              spring-srv6-alt-mark-12>.
 
 
 
@@ -1341,9 +1341,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 24]
+Graf, et al.            Expires 18 December 2025               [Page 24]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    [I-D.ietf-ippm-alt-mark-deployment]
@@ -1355,20 +1355,20 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
               alt-mark-deployment-03>.
 
    [I-D.ietf-opsawg-ipfix-alt-mark]
-              Graf, T., Fioccola, G., Zhou, T., Cociglio, M., and M.
-              Nilo, "IP Flow Information Export (IPFIX) Alternate-
+              Graf, T., Fioccola, G., Zhou, T., Zhu, Y., and M.
+              Cociglio, "IP Flow Information Export (IPFIX) Alternate-
               Marking Information Elements", Work in Progress, Internet-
-              Draft, draft-ietf-opsawg-ipfix-alt-mark-02, 20 February
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              opsawg-ipfix-alt-mark-02>.
+              Draft, draft-ietf-opsawg-ipfix-alt-mark-03, 22 May 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              ipfix-alt-mark-03>.
 
    [I-D.zhou-ippm-enhanced-alternate-marking]
               Zhou, T., Fioccola, G., Liu, Y., Cociglio, M., Pang, R.,
               Xiong, L., Lee, S., and W. Li, "Enhanced Alternate Marking
               Method", Work in Progress, Internet-Draft, draft-zhou-
-              ippm-enhanced-alternate-marking-16, 27 November 2024,
+              ippm-enhanced-alternate-marking-17, 3 June 2025,
               <https://datatracker.ietf.org/doc/html/draft-zhou-ippm-
-              enhanced-alternate-marking-16>.
+              enhanced-alternate-marking-17>.
 
    [IANA-IPFIX]
               "IANA IP Flow Information Export (IPFIX) Entities
@@ -1397,9 +1397,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 25]
+Graf, et al.            Expires 18 December 2025               [Page 25]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    [RFC1997]  Chandra, R., Traina, P., and T. Li, "BGP Communities
@@ -1453,9 +1453,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 26]
+Graf, et al.            Expires 18 December 2025               [Page 26]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    [RFC9197]  Brockners, F., Ed., Bhandari, S., Ed., and T. Mizrahi,
@@ -1509,9 +1509,9 @@ Appendix A.  IPFIX Encoding Examples
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 27]
+Graf, et al.            Expires 18 December 2025               [Page 27]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
 A.1.  Aggregated On-Path Delay Examples
@@ -1565,9 +1565,9 @@ A.1.1.  Template Record and Data Set with Mean Delta
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 28]
+Graf, et al.            Expires 18 December 2025               [Page 28]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
         0                   1                   2                   3
@@ -1621,9 +1621,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 29]
+Graf, et al.            Expires 18 December 2025               [Page 29]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
         0                   1                   2                   3
@@ -1677,9 +1677,9 @@ A.1.2.  Template Record and Data Set with Sum Delta
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 30]
+Graf, et al.            Expires 18 December 2025               [Page 30]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    *  Maximum One-Way Delay => pathDelayMaxDeltaMicroseconds (TBD7)
@@ -1733,9 +1733,9 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 31]
+Graf, et al.            Expires 18 December 2025               [Page 31]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
        0                   1                   2                   3
@@ -1789,9 +1789,9 @@ Authors' Addresses
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 32]
+Graf, et al.            Expires 18 December 2025               [Page 32]
 
-Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
+Internet-Draft     Delay Performance Metrics for IPFIX         June 2025
 
 
    Alex Huang Feng
@@ -1845,4 +1845,4 @@ Internet-Draft     Delay Performance Metrics for IPFIX          May 2025
 
 
 
-Graf, et al.            Expires 17 November 2025               [Page 33]
+Graf, et al.            Expires 18 December 2025               [Page 33]

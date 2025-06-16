@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="16" month="May" year="2025"/>
+    <date day="16" month="June" year="2025"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -280,9 +280,9 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
     </section>
 
     <section anchor="PM" title="Performance Metrics">
-      <t>This section defines the new performance metrics following the
-      template defined in <xref section="11" sectionFormat="of"
-      target="RFC8911"/>.</t>
+      <t>This section defines four of the new performance metrics
+			following the template defined in <xref section="11"
+			sectionFormat="of" target="RFC8911"/>.</t>
 
       <t>IANA Note (to be removed): RFC 8192 Section 4 was taken a
 			guiding example.</t>
@@ -588,13 +588,14 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
             <t><list style="hanging">
                 <t hangText="Mean:">The time value of the result is
-								expressed in units of seconds, as a positive value of
-								type decimal64 with fraction digits = 9 (similar to the
-								decimal64 in YANG, <xref section="9.3"
+								expressed in units of microseconds, as a positive value
+                of type decimal64 with fraction digits = 9 (similar to
+                the decimal64 in YANG, <xref section="9.3"
 								sectionFormat="of" target="RFC6020"/>) with a resolution
-								of 0.000000001&nbsp;seconds (1.0 ns), and with lossless
-								conversion to/from the 64-bit NTP timestamp as per
-								<xref section="6" sectionFormat="of" target="RFC5905"/>.
+								of 0.000000001&nbsp;microseconds (1.0 ns), and with
+								lossless conversion to/from the 64-bit NTP timestamp as
+								per <xref section="6" sectionFormat="of"
+                target="RFC5905"/>.
 								</t>
             </list></t>
           </section>
@@ -620,13 +621,14 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
             <t><list style="hanging">
                 <t hangText="Min:">The time value of the result is
-								expressed in units of seconds, as a positive value of
-								type decimal64 with fraction digits = 9 (similar to the
-								decimal64 in YANG, <xref section="9.3"
+								expressed in units of microseconds, as a positive value
+								of type decimal64 with fraction digits = 9 (similar to
+								the decimal64 in YANG, <xref section="9.3"
 								sectionFormat="of" target="RFC6020"/>) with a resolution
-								of 0.000000001&nbsp;seconds (1.0 ns), and with lossless
-								conversion to/from the 64-bit NTP timestamp as per
-								<xref section="6" sectionFormat="of" target="RFC5905"/>.
+								of 0.000000001&nbsp;microseconds (1.0 ns), and with
+								lossless conversion to/from the 64-bit NTP timestamp as
+								per <xref section="6" sectionFormat="of"
+								target="RFC5905"/>.
 								</t>
              </list></t>
           </section>
@@ -664,13 +666,14 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
             <t><list style="hanging">
                 <t hangText="Max:">The time value of the result is
-								expressed in units of seconds, as a positive value of
-								type decimal64 with fraction digits = 9 (similar to the
-								decimal64 in YANG, <xref section="9.3"
+								expressed in units of microseconds, as a positive value
+								of type decimal64 with fraction digits = 9 (similar to
+								the decimal64 in YANG, <xref section="9.3"
 								sectionFormat="of" target="RFC6020"/>) with a resolution
-								of 0.000000001&nbsp;seconds (1.0 ns), and with lossless
-								conversion to/from the 64-bit NTP timestamp as per
-								<xref section="6" sectionFormat="of" target="RFC5905"/>.
+								of 0.000000001&nbsp;microseconds (1.0 ns), and with
+								lossless conversion to/from the 64-bit NTP timestamp as
+								per <xref section="6" sectionFormat="of"
+								target="RFC5905"/>.
 								</t>
             </list></t>
           </section>
@@ -695,13 +698,14 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
             <t><list style="hanging">
                 <t hangText="Sum:">The time value of the result is
-								expressed in units of seconds, as a positive value of
-								type decimal64 with fraction digits = 9 (similar to the
-								decimal64 in YANG, <xref section="9.3"
+								expressed in units of microseconds, as a positive value
+								of type decimal64 with fraction digits = 9 (similar to
+								the decimal64 in YANG, <xref section="9.3"
 								sectionFormat="of" target="RFC6020"/>) with a resolution
-								of 0.000000001&nbsp;seconds (1.0 ns), and with lossless
-								conversion to/from the 64-bit NTP timestamp as per
-								<xref section="6" sectionFormat="of" target="RFC5905"/>.
+								of 0.000000001&nbsp;microseconds (1.0 ns), and with
+								lossless conversion to/from the 64-bit NTP timestamp as
+								per <xref section="6" sectionFormat="of"
+								target="RFC5905"/>.
 								</t>
             </list></t>
           </section>
@@ -718,7 +722,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
               </list></t>
 
             <t>The one-way delay of the IP Flow singleton is expressed
-						in seconds.</t>
+						in microseconds.</t>
           </section>
 
           <section title="Calibration">
