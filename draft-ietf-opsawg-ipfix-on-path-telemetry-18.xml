@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="16" month="June" year="2025"/>
+    <date day="02" month="July" year="2025"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -760,39 +760,6 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <t>none</t>
         </section>
       </section>
-    </section>
-
-    <section anchor="IE" title="IPFIX Information Elements">
-      <t>This section specifies the following new IPFIX IEs:<list
-          style="hanging">
-          <t hangText="pathDelayMeanDeltaMicroseconds"><vspace
-          blankLines="0"/> 32-bit unsigned integer that identifies the
-					mean path delay of all packets in the Flow, in microseconds,
-					between the OAM encapsulating node and the local node with the
-					OAM domain (either an OAM transit node or an OAM decapsulating
-					node).</t>
-
-          <t hangText="pathDelayMinDeltaMicroseconds"><vspace
-					blankLines="0"/> 32-bit unsigned integer that identifies the
-					lowest path delay of all packets in the Flow, in microseconds,
-					between the OAM encapsulating node and the local node with the
-					OAM domain (either an OAM transit node or an OAM decapsulating
-					node).</t>
-
-          <t hangText="pathDelayMaxDeltaMicroseconds"><vspace
-					blankLines="0"/> 32-bit unsigned integer that identifies the
-					highest path delay of all packets in the Flow, in
-					microseconds, between the OAM encapsulating node and the local
-					node with the OAM domain (either an OAM transit node or an OAM
-					decapsulating node).</t>
-
-          <t hangText="pathDelaySumDeltaMicroseconds"><vspace
-					blankLines="0"/> 64-bit unsigned integer that identifies the
-					sum of the path delay of all packets in the Flow, in
-					microseconds, between the OAM encapsulating node and the local
-					node with the OAM domain (either an OAM transit node or an OAM
-					decapsulating node).</t>
-        </list></t>
     </section>
 
     <section anchor="Use-Cases" title="Use Cases">
