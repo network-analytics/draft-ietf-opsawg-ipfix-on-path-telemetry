@@ -43,8 +43,8 @@
       </address>
     </author>
 
-    <author fullname="Alex Huang Feng" initials="A."
-		  surname="Huang Feng">
+    <author fullname="Alex Huang-Feng" initials="A."
+		  surname="Huang-Feng">
       <organization>INSA-Lyon</organization>
 
       <address>
@@ -74,8 +74,11 @@
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
-      Information Elements to export the On-Path Telemetry measured
-			delay in the OAM transit and decapsulating nodes.</t>
+      Information Elements to export the On-Path delay at each OAM transit
+      and decapsulating nodes. The On-Path delay is defined as the delay between
+      the OAM encapsulating node and each transit and decapsulating nodes.
+      This delay measurement can be computed by any On-Path Telemetry protocol
+      and be exported by the IPFIX process.</t>
     </abstract>
   </front>
 
@@ -118,8 +121,7 @@
 			transit and decapsulating nodes, following the postcard mode
 			principles. Since these IPFIX IEs are performance metrics <xref
 			target="RFC8911"/>, they are also registered in the <xref
-			target="IANA-PERF-METRIC">IANA "Performance Metric" Registry</xref>
-			.</t>
+			target="IANA-PERF-METRIC">IANA "Performance Metrics" registry</xref>.</t>
     </section>
 
     <section anchor="notation" title="Terminology">
@@ -134,7 +136,7 @@
 
       <t><list style="symbols">
           <t>Encapsulating Node: Receives the IP packets,
-					encapsulates the packets with the OAM header and adds the
+					encapsulates the packets with an OAM header and adds the
 					timestamp into the OAM header.</t>
 
           <t>Transit Node: Receives the IP packets, measures the
@@ -195,7 +197,7 @@
 			characteristics of the performance metrics (Identifier, Name, URI,
 			Status, Requester, Revision, Revision Date, Description, etc.)
 			must be clearly specified in the <xref target="IANA-PERF-METRIC">
-			IANA "Performance Metric" Registry</xref> in order for the
+			IANA "Performance Metrics" registry</xref> in order for the
 			measurement results using the Performance Metrics to be comparable
 			even if they are performed using different implementations and in
 			different networks. The first performance metric characteristic is
@@ -298,7 +300,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         <t>This section specifies four performance metrics for the
 				Hybrid Type I Passive assessment of IP One-Way Delay, to be
 				registered in the <xref target="IANA-PERF-METRIC">IANA
-				"Performance Metric" Registry</xref>.</t>
+				"Performance Metrics" registry</xref>.</t>
 
         <t>All column entries besides the Identifier, Name, URI,
 				Description, Reference Description (Output only) categories are
@@ -462,8 +464,8 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <t>The time when the packet is being received at the OAM
           encapsulating node. The timestamp format depends on On-Path
 					Telemetry implementation. For IOAM, <xref section="4.4.1"
-					sectionFormat="of" target="RFC9197"/> describes what kind of
-					timestamps are supported. Sections 4.4.2.3 and 4.4.2.4 describe
+					sectionFormat="of" target="RFC9197"/> describes the supported
+					timestamps. Sections 4.4.2.3 and 4.4.2.4 describe
 					where the timestamp is being inserted. For the Enhanced
 					Alternate Marking Method, <xref section="2" sectionFormat="of"
           target="I-D.zhou-ippm-enhanced-alternate-marking"/> and <xref
@@ -487,7 +489,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 					determined, configured into a measurement system, and reported
 					with the results for the context to be complete.</t>
 
-          <t>The hybrid type I metering parameters must be reported to
+          <t>The Hybrid Type I metering parameters must be reported to
 					provide the complete measurement context. As an example, if
 					the IPFIX Metering Process is used, then the IPFIX Metering
 					Process parameters (IPFIX Template Record, potential traffic
@@ -1281,7 +1283,7 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
-      <t>The authors would like to thank Al Morton (Rest in Peace Al),
+      <t>The authors would like to thank Al Morton (Rest in Peace, Al),
 			Justin Iurman, Giuseppe Fioccola, Yannick Buchs, Menachem Dodge
 			Martin Duke, Behcet Sarikaya, Mahesh Jethanandani, Linda Dunbar,
 			Deb Cooley, Mike Bishop, Tim Wicinski and Éric Vyncke's for their
@@ -1324,9 +1326,7 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
                  target="https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml">
         <front>
           <title>IANA Performance Metric Registry</title>
-
           <author/>
-
           <date/>
         </front>
       </reference>
