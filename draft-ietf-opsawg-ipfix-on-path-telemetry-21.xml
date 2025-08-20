@@ -12,7 +12,7 @@
 <?rfc subcompact="no"?>
 <rfc category="std"
      docName="draft-ietf-opsawg-ipfix-on-path-telemetry-21"
-     ipr="trust200902">
+     ipr="trust200902" consensus="true">
   <front>
     <title abbrev="Delay Performance Metrics for IPFIX">Export of Delay
     Performance Metrics in IP Flow Information eXport (IPFIX)</title>
@@ -77,51 +77,59 @@
       Information Elements to export the On-Path delay at each OAM transit
       and decapsulating nodes. The On-Path delay is defined as the delay between
       the OAM encapsulating node and each transit and decapsulating nodes.
-      This delay measurement can be computed by any On-Path Telemetry protocol
-      and be exported by the IPFIX process.</t>
+      This delay measurement is computed by an On-Path Telemetry protocol
+      and is exported by the IPFIX process.</t>
     </abstract>
   </front>
 
   <middle>
     <section anchor="Introduction" title="Introduction">
-      <t>Network operators usually gather and maintain some forms of
-      statistical delay view of their networks (or segments of their
-      networks). That view is meant to help with understanding where in
-			the network, for which customer traffic or services, how much, and
-			why abnormal delay is being accumulated. To that aim,
-			delay-related data needs to be reported from devices covering both
-			data and control planes. In order to understand which customer
-			traffic is affected, delay-related data needs to be reported in
-			the context of the customer data-plane. That enables network
-			operators to quickly identify when the control-plane updates
-      the current path with a different set of intermediate hops (that
-			is, a change of the forwarding path) and interfaces, how the path
-			delay changes for which customer traffic.</t>
+      <t>Network operators usually maintain statistical views of
+      delay accross their networks to support diagnostics and performance analysis.
+      These views assist in identifying the location, extent, and potencial causes of 
+      abnormal delay affecting specific customer traffic or services.
+      To achieve this, delay-related metrics need to be reported from devices covering both
+			data and control planes. Further, in order to understand which customers
+			are affected, delay-related metrics need to be reported in
+			the context of the customer data-plane. This correlation enables the
+      detection of changes in forwarding paths, such as updated intermediate hops or
+      interfaces, and the resulting impact on delay experienced by customer traffic.
+      </t>
 
-      <t>With On-Path Telemetry, described in the <xref
+      <t>Delay measurements in the network are computed using an On-Path 
+      Telemetry protocol, which inserts metadata into the data-plane
+      packet when entering the monitored domain <xref
+      target="RFC9232"/>. To compute delay measurements, the On-Path
+      Telemetry protocol inserts a timestamp reference when entering the
+      encapsulating node. This can be performed using In Situ Operations,
+      Administration, and Maintenance (IOAM) <xref target="RFC9378"/>
+      or Enhanced Alternate Marking
+      <xref target="I-D.zhou-ippm-enhanced-alternate-marking"/>.</t>
+
+      <!-- Old text -->
+      <!-- <t>With On-Path Telemetry, described in the <xref
 			target="RFC9232"> Network Telemetry Framework</xref> and applied
 			in <xref target="RFC9378"> In Situ Operations, Administration, and
 			Maintenance (IOAM) Deployment</xref> and <xref
       target="I-D.ietf-ippm-alt-mark-deployment">Alternate Marking
 			Deployment Framework</xref>, the path delay between two endpoints
-			is measured by inserting a timestamp in the packet.</t>
+			is measured by inserting a timestamp in the packet.</t> -->
 
-      <t>At least two modes of On-Path Telemetry can be distinguished.
-      Passport mode, where only the last hop in the forwarding path of
-			the On-Path Telemetry domain exposes all the metrics, and postcard
-			mode, where the metrics are also exposed by transit nodes. In both
-			modes the forwarding path exposes performance metrics allowing to
-			determine how much delay has been accumulated on which hop. The
-			proposal in this document makes more sense for the postcard mode.
+      <t>Two modes of on-path telemetry are generally recognized: passport mode, in
+      which only the egress node of the telemetry domain reports metrics; and
+      postcard mode, in which transit nodes also export telemetry data. Both modes
+      enable exposure of per-hop performance metrics, including delay accumulation.
+      The approach defined in this document is primarily applicable to postcard mode.
 			</t>
 
-      <t>In order to export the delay-related metrics via IPFIX <xref
+      <t>To enable the export of the delay-related metrics via IPFIX <xref
       target="RFC7011"/>, this document defines four new IPFIX
 			Information Elements (IEs), exposing the On-Path delay on OAM
 			transit and decapsulating nodes, following the postcard mode
-			principles. Since these IPFIX IEs are performance metrics <xref
-			target="RFC8911"/>, they are also registered in the <xref
-			target="IANA-PERF-METRIC">IANA "Performance Metrics" registry</xref>.</t>
+			principles. As these IEs represent performance metrics, they
+      are also registered in the <xref target="IANA-PERF-METRIC">
+      IANA "Performance Metrics" registry</xref> in accordance with
+      <xref target="RFC8911"/>.</t>
     </section>
 
     <section anchor="notation" title="Terminology">
@@ -140,13 +148,13 @@
 					timestamp into the OAM header.</t>
 
           <t>Transit Node: Receives the IP packets, measures the
-		  delay between the timestamp in the packet and the timestamp
-		  when the packet was received.</t>
+          delay between the timestamp in the packet and the timestamp
+          when the packet was received.</t>
 
           <t>Decapsulating Node: Receives the IP packets,
-		  computes the delay between the timestamp in the packet and the
-		  timestamp when the packet was received and removes the OAM
-		  header from the packet.</t>
+          computes the delay between the timestamp in the packet and the
+          timestamp when the packet was received and removes the OAM
+          header from the packet.</t>
         </list></t>
 
       <t>This document makes use of the terms defined in <xref
@@ -192,21 +200,21 @@
     </section>
 
     <section anchor="Solution" title="Solution">
-      <t>Following the guidelines for Registered Performance Metric
-			Requesters and Reviewers <xref target="RFC8911"/>, the different
-			characteristics of the performance metrics (Identifier, Name, URI,
-			Status, Requester, Revision, Revision Date, Description, etc.)
-			must be clearly specified in the <xref target="IANA-PERF-METRIC">
-			IANA "Performance Metrics" registry</xref> in order for the
-			measurement results using the Performance Metrics to be comparable
-			even if they are performed using different implementations and in
-			different networks. The first performance metric characteristic is
-			the selection of a meaningful name, following the
-			"MetricType_Method_SubTypeMethod_... Spec_Units_Output" naming
-			convention (See <xref section="7.1.2" sectionFormat="of"
-      target="RFC8911"/>).</t>
 
-      <t><figure>
+      <t>In line with the guidelines for Registered Performance Metric
+      Requesters and Reviewers <xref target="RFC8911"/>, each metric
+      is specified with its required characteristics
+      (e.g., Identifier, Name, URI, Status, Requester, Revision, Description) to
+      ensure comparability of measurement results across implementations and
+      environments. These characteristics are registered in the <xref target="IANA-PERF-METRIC">
+			IANA "Performance Metrics" registry</xref>. Metric naming follows the
+      "MetricType_Method_SubTypeMethod_... Spec_Units_Output" convention defined in
+      <xref section="7.1.2" sectionFormat="of" target="RFC8911"/>.</t>
+
+      <t>This documents defines the following performance metrics and
+      Information Elements:</t>
+
+      <figure>
           <artwork><![CDATA[
 +------------------------------------+-------------------------------+
 |      Performance Metric            |  IPFIX Information Element    |
@@ -226,7 +234,7 @@
           
 Table 1: Mapping Between IPFIX IEs and Performance Metrics
        ]]></artwork>
-        </figure></t>
+      </figure>
 
       <t>Assuming time synchronization on devices, the delay is measured
 			by calculating the difference between the timestamp imposed with
@@ -267,24 +275,19 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 			decapsulating node R3 exports the total delay D3 for the same flow
 			using IPFIX.</t>
 
-      <t>The advantage of this solution is that the delay metrics (min,
-			max, and mean) can be computed on the OAM node, and aggregated
-			directly within the Flow Record, saving export bandwidth and
-			computation on the Collector. For the computation of the min, max,
-			and mean delay metric to be computed locally on the OAM node, the
-			exporter Metering Process requires some local caching/processing
-			computation (for each new packets in the flow), specifically the
-			mean value when Flow Aggregation <xref target="RFC7015"/> is being
-			used. A less computational heavy solution for the OAM node
-			is the export of the delay sum instead of the delay mean; on the
-			Collector, the delay mean can easily be computed by a single
-			division operation (using the packet count). The alternative, with
-			no delay monitoring on the OAM node, requires the export of every
-			single packet as a separate Flow Record, including the timestamps
-			information, as described in <xref
-			target="I-D.ietf-opsawg-ipfix-alt-mark"/> for Alternate Marking,
-      for the Collector to compute delay metrics (min, max, and mean),
-      before recomputing the aggregated Flow Record.</t>
+      <t>This solution enables the computation of delay metrics (minimum, maximum, and
+      mean) directly on the OAM node, allowing aggregation within the Flow Record.
+      This reduces both export bandwidth and processing requirements on the
+      Collector. To compute these metrics locally, the Exporter's Metering Process
+      must perform per-packet caching and processing, particularly when computing
+      mean delay under Flow Aggregation <xref target="RFC7015"/>. A less computationally intensive
+      alternative is to export the sum of delays, allowing the Collector to compute
+      the mean via a simple division using the packet count.</t>
+
+      <t>In contrast, if no delay processing occurs on the OAM node, each packet must be
+      exported as an individual Flow Record, including timestamp information, as
+      specified in <xref target="I-D.ietf-opsawg-ipfix-alt-mark"/>. The Collector must then compute
+      the delay metrics and reconstruct the aggregated Flow Record accordingly.</t>
     </section>
 
     <section anchor="PM" title="Performance Metrics">
@@ -1286,11 +1289,11 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
       <t>The authors would like to thank Al Morton (Rest in Peace, Al),
 			Justin Iurman, Giuseppe Fioccola, Yannick Buchs, Menachem Dodge
 			Martin Duke, Behcet Sarikaya, Mahesh Jethanandani, Linda Dunbar,
-			Deb Cooley, Mike Bishop, Tim Wicinski and Éric Vyncke's for their
-			review and valuable comments. Special thanks to Paul Aitken
-			(as IPFIX Designated Expert), Greg Mirsky (as IP Performance
-			Metrics Designated Expert), and to Med Boucadair for their very
-			detailed feedback.</t>
+			Deb Cooley, Mike Bishop, Tim Wicinski, Gunter Van de Velde and
+      Éric Vyncke's for their review and valuable comments. Special
+      thanks to Paul Aitken (as IPFIX Designated Expert), Greg Mirsky
+      (as IP Performance Metrics Designated Expert), and to Med Boucadair
+      for their very detailed feedback.</t>
     </section>
   </middle>
 
@@ -1471,9 +1474,8 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
               (TBD5)</t>
             </list></t>
 
-          <t><figure>
+          <figure title="Template Record for pathDelayMeanDeltaMicroseconds.">
               <artwork><![CDATA[
-
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1497,17 +1499,13 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |0| pathDelayMaxDelta.. = TBD7  |      Field Length = 4         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-     Figure 2: Template Record for pathDelayMeanDeltaMicroseconds
-
             ]]></artwork>
-            </figure></t>
+            </figure>
 
           <t>The data set is represented as follows:</t>
 
-          <figure>
+          <figure title="Data Set Encoding for pathDelayMeanDeltaMicroseconds.">
             <artwork><![CDATA[
-
        0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1535,16 +1533,13 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       |           pathDelayMaxDeltaMicroseconds =  74                 |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-    Figure 3: Data Set Encoding for pathDelayMeanDeltaMicroseconds
-
             ]]></artwork>
           </figure>
         </section>
 
         <section anchor="Template-Record-and-Data-Set-with-SumDelta"
                  title="Template Record and Data Set with Sum Delta">
-          <t>With encoding in Figure 4, the mean (average) path delay is
+          <t>With encoding in <xref target="template-sum"/>, the mean (average) path delay is
           calculated on the IPFIX data collection.</t>
 
           <t><list style="symbols">
@@ -1569,9 +1564,8 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
 							pathDelaySumDeltaMicroseconds (TBD8)</t>
             </list></t>
 
-          <t><figure>
+          <figure anchor="template-sum" title="Template Record for pathDelaySumDeltaMicroseconds.">
               <artwork><![CDATA[
-
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1595,17 +1589,13 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |0| pathDelaySumDelta.. = TBD8  |      Field Length = 8         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   
-     Figure 4: Template Record for pathDelaySumDeltaMicroseconds
-
             ]]></artwork>
-            </figure></t>
+            </figure>
 
           <t>The data set is represented as follows:</t>
 
-          <figure>
+          <figure title="Data Set Encoding for pathDelaySumDeltaMicroseconds">
             <artwork><![CDATA[
-
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1634,9 +1624,6 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
    |           pathDelaySumDeltaMicroseconds =  180                |
    |                          ...                                  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-    Figure 5: Data Set Encoding for pathDelaySumDeltaMicroseconds
-
             ]]></artwork>
           </figure>
         </section>
