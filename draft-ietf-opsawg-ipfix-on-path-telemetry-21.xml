@@ -70,63 +70,59 @@
       </address>
     </author>
 
-    <date day="18" month="August" year="2025"/>
+    <date day="31" month="August" year="2025"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
-      Information Elements to export the On-Path delay at each OAM transit
-      and decapsulating nodes. The On-Path delay is defined as the delay between
-      the OAM encapsulating node and each transit and decapsulating nodes.
-      This delay measurement is computed by an On-Path Telemetry protocol
-      and is exported by the IPFIX process.</t>
+      Information Elements to export the On-Path delay at each OAM 
+			transit and decapsulating nodes. The On-Path delay is defined as
+			the delay between the OAM header encapsulating node and each
+			OAM header transit and OAM header decapsulating nodes. This delay
+			measurement is computed by an On-Path Telemetry protocol and is
+			exported by the IPFIX process.
+			</t>
     </abstract>
   </front>
 
   <middle>
     <section anchor="Introduction" title="Introduction">
-      <t>Network operators usually maintain statistical views of
-      delay accross their networks to support diagnostics and performance analysis.
-      These views assist in identifying the location, extent, and potencial causes of 
-      abnormal delay affecting specific customer traffic or services.
-      To achieve this, delay-related metrics need to be reported from devices covering both
-			data and control planes. Further, in order to understand which customers
-			are affected, delay-related metrics need to be reported in
-			the context of the customer data-plane. This correlation enables the
-      detection of changes in forwarding paths, such as updated intermediate hops or
-      interfaces, and the resulting impact on delay experienced by customer traffic.
-      </t>
+      <t>Network operators usually maintain statistical views of delay
+			accross their networks to support diagnostics and performance
+			analysis. These views assist in identifying the location, extent,
+			and potential causes of abnormal delay affecting specific customer 
+			traffic or services. To achieve this, delay-related metrics need
+			to be reported from devices covering both data and control planes.
+			Further, in order to understand which customers are affected,
+			delay-related metrics need to be reported in the context of the
+			customer data-plane. This correlation enables the detection of
+			changes in forwarding paths, such as updated intermediate hops or
+      interfaces, and the resulting impact on delay experienced by
+			customer traffic.</t>
 
       <t>Delay measurements in the network are computed using an On-Path 
       Telemetry protocol, which inserts metadata into the data-plane
       packet when entering the monitored domain <xref
       target="RFC9232"/>. To compute delay measurements, the On-Path
       Telemetry protocol inserts a timestamp reference when entering the
-      encapsulating node. This can be performed using In Situ Operations,
-      Administration, and Maintenance (IOAM) <xref target="RFC9378"/>
-      or Enhanced Alternate Marking
+      OAM encapsulating node. This can be performed using In Situ
+			Operations, Administration, and Maintenance (IOAM) <xref
+			target="RFC9378"/> or Enhanced Alternate Marking
       <xref target="I-D.zhou-ippm-enhanced-alternate-marking"/>.</t>
 
-      <!-- Old text -->
-      <!-- <t>With On-Path Telemetry, described in the <xref
-			target="RFC9232"> Network Telemetry Framework</xref> and applied
-			in <xref target="RFC9378"> In Situ Operations, Administration, and
-			Maintenance (IOAM) Deployment</xref> and <xref
-      target="I-D.ietf-ippm-alt-mark-deployment">Alternate Marking
-			Deployment Framework</xref>, the path delay between two endpoints
-			is measured by inserting a timestamp in the packet.</t> -->
-
-      <t>Two modes of on-path telemetry are generally recognized: passport mode, in
-      which only the egress node of the telemetry domain reports metrics; and
-      postcard mode, in which transit nodes also export telemetry data. Both modes
-      enable exposure of per-hop performance metrics, including delay accumulation.
-      The approach defined in this document is primarily applicable to postcard mode.
+      <t>Two modes of On-Path Telemetry are generally recognized:
+			passport mode, in which only the OAM decapsulation node of the OAM
+			domain reports metrics; and postcard mode, in which OAM header
+			transit nodes also export On-Path Telemetry data. Both modes
+			enable exposure of per-hop performance metrics, including delay
+			accumulation. The approach defined in this document is primarily
+			applicable to postcard mode.
 			</t>
 
-      <t>To enable the export of the delay-related metrics via IPFIX <xref
-      target="RFC7011"/>, this document defines four new IPFIX
+      <t>To enable the export of the delay-related metrics via IPFIX
+			<xref target="RFC7011"/>, this document defines four new IPFIX
 			Information Elements (IEs), exposing the On-Path delay on OAM
-			transit and decapsulating nodes, following the postcard mode
-			principles. As these IEs represent performance metrics, they
+			header transit and decapsulating nodes, following the postcard
+			mode principles. As these IEs represent performance metrics, they
       are also registered in the <xref target="IANA-PERF-METRIC">
       IANA "Performance Metrics" registry</xref> in accordance with
       <xref target="RFC8911"/>.</t>
@@ -143,15 +139,15 @@
       <t>This document defines the following terms:</t>
 
       <t><list style="symbols">
-          <t>Encapsulating Node: Receives the IP packets,
+          <t>OAM Header Encapsulating Node: Receives the IP packets,
 					encapsulates the packets with an OAM header and adds the
 					timestamp into the OAM header.</t>
 
-          <t>Transit Node: Receives the IP packets, measures the
+          <t>OAM Header Transit Node: Receives the IP packets, measures the
           delay between the timestamp in the packet and the timestamp
           when the packet was received.</t>
 
-          <t>Decapsulating Node: Receives the IP packets,
+          <t>OAM Header Decapsulating Node: Receives the IP packets,
           computes the delay between the timestamp in the packet and the
           timestamp when the packet was received and removes the OAM
           header from the packet.</t>
@@ -191,11 +187,18 @@
           <t>Registered Performance Metric</t>
         </list></t>
 
+      <t>The following term is used as defined in <xref section="3.7"
+      sectionFormat="of" target="RFC7799"/>:</t>
+
+      <t><list style="symbols">
+          <t>Passive</t>
+        </list></t>
+
       <t>The following term is used as defined in <xref section="3.8"
       sectionFormat="of" target="RFC7799"/>:</t>
 
       <t><list style="symbols">
-          <t>Hybrid Type I Passive</t>
+          <t>Hybrid Type I</t>
         </list></t>
     </section>
 
@@ -203,13 +206,15 @@
 
       <t>In line with the guidelines for Registered Performance Metric
       Requesters and Reviewers <xref target="RFC8911"/>, each metric
-      is specified with its required characteristics
-      (e.g., Identifier, Name, URI, Status, Requester, Revision, Description) to
-      ensure comparability of measurement results across implementations and
-      environments. These characteristics are registered in the <xref target="IANA-PERF-METRIC">
-			IANA "Performance Metrics" registry</xref>. Metric naming follows the
-      "MetricType_Method_SubTypeMethod_... Spec_Units_Output" convention defined in
-      <xref section="7.1.2" sectionFormat="of" target="RFC8911"/>.</t>
+      is specified with its required characteristics (e.g., Identifier,
+			Name, URI, Status, Requester, Revision, Description) to ensure
+			comparability of measurement results across implementations and
+      environments. These characteristics are registered in the <xref
+			target="IANA-PERF-METRIC">IANA "Performance Metrics"
+			registry</xref>. Metric naming follows the
+			"MetricType_Method_SubTypeMethod_... Spec_Units_Output" convention
+			defined in <xref section="7.1.2" sectionFormat="of"
+			target="RFC8911"/>.</t>
 
       <t>This documents defines the following performance metrics and
       Information Elements:</t>
@@ -238,11 +243,11 @@ Table 1: Mapping Between IPFIX IEs and Performance Metrics
 
       <t>Assuming time synchronization on devices, the delay is measured
 			by calculating the difference between the timestamp imposed with
-			On-Path Telemetry in the packet at an OAM encapsulating node and
-			the timestamp exported in the IPFIX flow record from the OAM
-			transit and decapsulating nodes. The lowest, highest, mean, and
-			the sum of measured path delay can be exported, thanks to the
-			different IPFIX IE specifications.</t>
+			On-Path Telemetry in the packet at an OAM header encapsulating
+			node and the timestamp exported in the IPFIX flow record from the
+			OAM header transit and OAM header decapsulating nodes. The lowest,
+			highest, mean, and the sum of measured path delay can be exported,
+			thanks to the different IPFIX IE specifications.</t>
 
       <figure anchor="topology"
         title="Delay use case. Packets flow from host 1 to host 2.">
@@ -271,23 +276,28 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
       <t>In the use case shown in <xref target="topology"/> using
 			On-path Telemetry to export the delay metrics, the node R1 exports
-			the delay D1, the node R2 exports the delay D2 and the
+			the delay D1, the node R2 exports the delay D2 and the OAM header
 			decapsulating node R3 exports the total delay D3 for the same flow
 			using IPFIX.</t>
 
-      <t>This solution enables the computation of delay metrics (minimum, maximum, and
-      mean) directly on the OAM node, allowing aggregation within the Flow Record.
-      This reduces both export bandwidth and processing requirements on the
-      Collector. To compute these metrics locally, the Exporter's Metering Process
-      must perform per-packet caching and processing, particularly when computing
-      mean delay under Flow Aggregation <xref target="RFC7015"/>. A less computationally intensive
-      alternative is to export the sum of delays, allowing the Collector to compute
-      the mean via a simple division using the packet count.</t>
+      <t>This solution enables the computation of delay metrics (minimum,
+			maximum, and mean) directly on the OAM header transit and
+			decapsulation node, allowing aggregation within the Flow Record.
+			This reduces both export bandwidth and processing requirements on
+			the Collector. To compute these metrics locally, the Exporter's
+			Metering Process must perform per-packet caching and processing,
+			particularly when computing mean delay under Flow Aggregation
+			<xref target="RFC7015"/>. A less computationally intensive
+			alternative is to export the sum of delays, allowing the Collector
+			to compute the mean via a simple division using the packet count.
+			</t>
 
-      <t>In contrast, if no delay processing occurs on the OAM node, each packet must be
-      exported as an individual Flow Record, including timestamp information, as
-      specified in <xref target="I-D.ietf-opsawg-ipfix-alt-mark"/>. The Collector must then compute
-      the delay metrics and reconstruct the aggregated Flow Record accordingly.</t>
+      <t>In contrast, if no delay processing occurs on the OAM header
+			transit or decapsulation node, each packet must be exported as an
+			individual Flow Record, including timestamp information, as
+			specified in <xref target="I-D.ietf-opsawg-ipfix-alt-mark"/>. The
+			Collector must then compute the delay metrics and reconstruct the
+			aggregated Flow Record accordingly.</t>
     </section>
 
     <section anchor="PM" title="Performance Metrics">
@@ -464,7 +474,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
         </section>
 
         <section title="Packet Stream Generation">
-          <t>The time when the packet is being received at the OAM
+          <t>The time when the packet is being received at the OAM header
           encapsulating node. The timestamp format depends on On-Path
 					Telemetry implementation. For IOAM, <xref section="4.4.1"
 					sectionFormat="of" target="RFC9197"/> describes the supported
@@ -543,18 +553,18 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
               <t hangText="host B:">Receives the IP packet to start the
               Flow.</t>
 
-              <t hangText="Encapsulating Node:"> Receives the IP
-							packets, encapsulates the packets with the OAM header and
-							adds the timestamp into the OAM header.</t>
+              <t hangText="OAM Header Encapsulating Node:"> Receives the
+							IP packets, encapsulates the packets with the OAM header
+							and adds the timestamp into the OAM header.</t>
 
-              <t hangText="Transit Node:">Receives the IP packets,
-              measures the delay between the timestamp in the packet and
-							the timestamp when the packet was received.</t>
+              <t hangText="OAM Header Transit Node:">Receives the IP
+							packets, measures the delay between the timestamp in the
+							packet and the timestamp when the packet was received.</t>
 
-              <t hangText="Decapsulating Node:">Receives the IP packets,
-							computes the delay between the timestamp in the packet and
-							the timestamp when the packet was received and removes the
-							OAM header from the packet.</t>
+              <t hangText="OAM Header Decapsulating Node:">Receives the
+							IP packets, computes the delay between the timestamp in
+							the packet and the timestamp when the packet was received
+							and removes the OAM header from the packet.</t>
             </list></t>
         </section>
       </section>
@@ -739,9 +749,10 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
           <section title="Calibration">
             <t>A clock synchronization between the nodes of the
 						monitored OAM domain is needed to compute representative
-						delay measurements at the transit and decapsulating nodes.
-						NTP, as defined in <xref target="RFC5905"/>, can be used for
-						synchronizing the clocks of the monitored nodes.</t>
+						delay measurements at the OAM header transit and
+						decapsulating nodes. NTP, as defined in <xref
+						target="RFC5905"/>, can be used for synchronizing the clocks
+						of the monitored nodes.</t>
           </section>
         </section>
 
@@ -903,9 +914,9 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
 
             <dd>This Information Element identifies the mean path delay
 						of all packets in the Flow, in microseconds, between an OAM
-            encapsulating node and the local node with the OAM domain
-						(either an OAM transit node or an OAM decapsulating node),
-						according to 
+            header encapsulating node and the local node with the OAM
+						domain (either an OAM header transit node or an OAM header
+						decapsulating node), according to 
 						OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean
 						in the IANA Performance Metric Registry.</dd>
           </dl>
@@ -955,9 +966,9 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
 
             <dd>This Information Element identifies the lowest path
 						delay of all packets in the Flow, in microseconds, between
-						an OAM encapsulating node and the local node with the OAM
-						domain (either an OAM transit node or an OAM decapsulating
-						node), according to the
+						an OAM header encapsulating node and the local node with the
+						OAM domain (either an OAM header transit node or an OAM
+						header decapsulating node), according to the
 						OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min in
             the IANA Performance Metric Registry.</dd>
           </dl>
@@ -1007,9 +1018,9 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
 
             <dd>This Information Element identifies the highest path
 						delay of all packets in the Flow, in microseconds, between
-						an OAM encapsulating node and the local node with the OAM
-						domain (either an OAM transit node or an OAM decapsulating
-						node), according to 
+						an OAM header encapsulating node and the local node with the
+						OAM domain (either an OAM header transit node or an OAM
+						header decapsulating node), according to 
 						OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in
 						the IANA Performance Metric Registry.</dd>
           </dl>
@@ -1059,9 +1070,9 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
 
             <dd>This Information Element identifies the sum of the path
 						delay of all packets in the Flow, in microseconds, between
-						an OAM encapsulating node and the local node with the OAM
-						domain (either an OAM transit node or an OAM decapsulating
-						node), according to
+						an OAM header encapsulating node and the local node with the
+						OAM domain (either an OAM header transit node or an OAM
+						header decapsulating node), according to
             OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in
 						the IANA Performance Metric Registry.</dd>
           </dl>
@@ -1151,16 +1162,16 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
 				bits 2 and 3. In this case, timestamps are encoded as defined in
 				Sections 4.4.2.3 and 4.4.2.4 of <xref target="RFC9197"/>. This
 				timestamp can be used to compute the delay between an
-				encapsulating node and the decapsulating node.</t>
+				OAM header encapsulating node and the decapsulating node.</t>
 
         <t>IOAM Direct Exporting Option-Type, as described in <xref
         target="RFC9326"/>, can use the Extension-Flag defined in <xref
         target="I-D.ahuang-ippm-dex-timestamp-ext"/> to insert a
-				timestamp in the encapsulating node. The timestamp is encoded as
-				defined in Sections 4.4.2.3 and 4.4.2.4 of <xref
+				timestamp in the OAM header encapsulating node. The timestamp is
+				encoded as defined in Sections 4.4.2.3 and 4.4.2.4 of <xref
 				target="RFC9197"/>. This timestamp can be used to compute the
-				delay between the inserted timestamp and the transit and
-				decapsulating node.</t>
+				delay between the inserted timestamp and the OAM header transit
+				and decapsulating node.</t>
 
         <t>For the Enhanced Alternate Marking Method, <xref section="2"
         sectionFormat="of"
@@ -1168,21 +1179,21 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
 				section="3.2" sectionFormat="of"
 				target="I-D.fz-spring-srv6-alt-mark"/> defines that, within the
 				metaInfo, a nanosecond timestamp can be encoded in an
-				encapsulating node and be read at the intermediate and
-				decapsulating node to calculate the on-path delay. <xref
-				target="RFC9343"/> defines how this can be applied to the
-        IPv6 extensions header and <xref
+				OAM header encapsulating node and be read at the OAM header
+				intermediate and decapsulating node to calculate the on-path
+				delay. <xref target="RFC9343"/> defines how this can be applied
+				to the IPv6 extensions header and <xref
 				target="I-D.fz-spring-srv6-alt-mark"/> defines how this can be
 				applied to the SRv6 Segment Routing Header <xref
 				target="RFC8754"/>.</t>
 
         <t>Given that the delay measurements are computed with the
-				timestamp introduced on the encapsulating node, regardless of
-				the approach, implementations should document at which point of
-				the forwarding plane this timestamp is introduced (e.g. the time
-				at which the packet was received by the node, the time at which
-				the packet was transmitted by the node, etc.). Based on this
-				information, different actions can be taken.
+				timestamp introduced on the OAM header encapsulating node,
+				regardless of the approach, implementations should document at
+				which point of the forwarding plane this timestamp is introduced
+				(e.g. the time at which the packet was received by the node, the
+				time at which the packet was transmitted by the node, etc.).
+				Based on this information, different actions can be taken.
         </t>
       </section>
     </section>
@@ -1377,8 +1388,6 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
       <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9343.xml'?>
 
       <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9378.xml'?>
-
-      <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-ippm-alt-mark-deployment.xml'?>
 
       <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-opsawg-ipfix-alt-mark.xml'?>
 

@@ -5,10 +5,10 @@
 Network Working Group                                            T. Graf
 Internet-Draft                                                  Swisscom
 Intended status: Standards Track                               B. Claise
-Expires: 19 February 2026                                         Huawei
+Expires: 4 March 2026                                             Huawei
                                                            A. Huang-Feng
                                                                INSA-Lyon
-                                                          18 August 2025
+                                                          31 August 2025
 
 
    Export of Delay Performance Metrics in IP Flow Information eXport
@@ -20,9 +20,10 @@ Abstract
    This document specifies new IP Flow Information Export (IPFIX)
    Information Elements to export the On-Path delay at each OAM transit
    and decapsulating nodes.  The On-Path delay is defined as the delay
-   between the OAM encapsulating node and each transit and decapsulating
-   nodes.  This delay measurement is computed by an On-Path Telemetry
-   protocol and is exported by the IPFIX process.
+   between the OAM header encapsulating node and each OAM header transit
+   and OAM header decapsulating nodes.  This delay measurement is
+   computed by an On-Path Telemetry protocol and is exported by the
+   IPFIX process.
 
 Status of This Memo
 
@@ -39,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 February 2026.
+   This Internet-Draft will expire on 4 March 2026.
 
 Copyright Notice
 
@@ -49,15 +50,15 @@ Copyright Notice
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents (https://trustee.ietf.org/
    license-info) in effect on the date of publication of this document.
-   Please review these documents carefully, as they describe your rights
 
 
 
-Graf, et al.            Expires 19 February 2026                [Page 1]
+Graf, et al.              Expires 4 March 2026                  [Page 1]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 
+   Please review these documents carefully, as they describe your rights
    and restrictions with respect to this document.  Code Components
    extracted from this document must include Revised BSD License text as
    described in Section 4.e of the Trust Legal Provisions and are
@@ -77,53 +78,53 @@ Table of Contents
        4.1.4.  Change Controller . . . . . . . . . . . . . . . . . .   9
        4.1.5.  Version of Registry Format  . . . . . . . . . . . . .   9
      4.2.  Metric Definition . . . . . . . . . . . . . . . . . . . .   9
-       4.2.1.  Reference Definition  . . . . . . . . . . . . . . . .   9
+       4.2.1.  Reference Definition  . . . . . . . . . . . . . . . .  10
        4.2.2.  Fixed Parameters  . . . . . . . . . . . . . . . . . .  10
      4.3.  Method of Measurement . . . . . . . . . . . . . . . . . .  10
        4.3.1.  Reference Methods . . . . . . . . . . . . . . . . . .  10
-       4.3.2.  Packet Stream Generation  . . . . . . . . . . . . . .  10
-       4.3.3.  Traffic Filtering (Observation) Details . . . . . . .  10
-       4.3.4.  Sampling Distribution . . . . . . . . . . . . . . . .  10
-       4.3.5.  Runtime Parameters and Data Format  . . . . . . . . .  10
-       4.3.6.  Roles . . . . . . . . . . . . . . . . . . . . . . . .  11
+       4.3.2.  Packet Stream Generation  . . . . . . . . . . . . . .  11
+       4.3.3.  Traffic Filtering (Observation) Details . . . . . . .  11
+       4.3.4.  Sampling Distribution . . . . . . . . . . . . . . . .  11
+       4.3.5.  Runtime Parameters and Data Format  . . . . . . . . .  11
+       4.3.6.  Roles . . . . . . . . . . . . . . . . . . . . . . . .  12
      4.4.  Output  . . . . . . . . . . . . . . . . . . . . . . . . .  12
        4.4.1.  Type  . . . . . . . . . . . . . . . . . . . . . . . .  12
        4.4.2.  Reference Definition  . . . . . . . . . . . . . . . .  12
-       4.4.3.  Administrative Items  . . . . . . . . . . . . . . . .  14
+       4.4.3.  Administrative Items  . . . . . . . . . . . . . . . .  15
        4.4.4.  Comments and Remarks  . . . . . . . . . . . . . . . .  15
    5.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .  15
-   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
-     6.1.  Performance Metrics . . . . . . . . . . . . . . . . . . .  16
-     6.2.  IPFIX Entities  . . . . . . . . . . . . . . . . . . . . .  16
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  17
+     6.1.  Performance Metrics . . . . . . . . . . . . . . . . . . .  17
+     6.2.  IPFIX Entities  . . . . . . . . . . . . . . . . . . . . .  17
        6.2.1.  pathDelayMeanDeltaMicroseconds  . . . . . . . . . . .  17
        6.2.2.  pathDelayMinDeltaMicroseconds . . . . . . . . . . . .  18
        6.2.3.  pathDelayMaxDeltaMicroseconds . . . . . . . . . . . .  18
        6.2.4.  pathDelaySumDeltaMicroseconds . . . . . . . . . . . .  19
    7.  Operational Considerations  . . . . . . . . . . . . . . . . .  19
      7.1.  Time Accuracy . . . . . . . . . . . . . . . . . . . . . .  19
-     7.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  19
-     7.3.  Reduced-size encoding . . . . . . . . . . . . . . . . . .  19
+     7.2.  Mean Delay  . . . . . . . . . . . . . . . . . . . . . . .  20
+     7.3.  Reduced-size encoding . . . . . . . . . . . . . . . . . .  20
      7.4.  Measurement Interval  . . . . . . . . . . . . . . . . . .  20
      7.5.  In-Packet OAM Application . . . . . . . . . . . . . . . .  20
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  21
 
 
 
-Graf, et al.            Expires 19 February 2026                [Page 2]
+Graf, et al.              Expires 4 March 2026                  [Page 2]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 
-   9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  21
-     9.1.  FD.io VPP . . . . . . . . . . . . . . . . . . . . . . . .  21
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  21
+   9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  22
+     9.1.  FD.io VPP . . . . . . . . . . . . . . . . . . . . . . . .  22
      9.2.  Huawei VRP  . . . . . . . . . . . . . . . . . . . . . . .  22
      9.3.  Fluvia  . . . . . . . . . . . . . . . . . . . . . . . . .  22
-     9.4.  Pmacct Data Collection  . . . . . . . . . . . . . . . . .  22
+     9.4.  Pmacct Data Collection  . . . . . . . . . . . . . . . . .  23
    10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  23
    11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  23
      11.1.  Normative References . . . . . . . . . . . . . . . . . .  23
-     11.2.  Informative References . . . . . . . . . . . . . . . . .  24
-   Appendix A.  IPFIX Encoding Examples  . . . . . . . . . . . . . .  27
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  25
+   Appendix A.  IPFIX Encoding Examples  . . . . . . . . . . . . . .  28
      A.1.  Aggregated On-Path Delay Examples . . . . . . . . . . . .  28
        A.1.1.  Template Record and Data Set with Mean Delta  . . . .  28
        A.1.2.  Template Record and Data Set with Sum Delta . . . . .  30
@@ -133,7 +134,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    Network operators usually maintain statistical views of delay accross
    their networks to support diagnostics and performance analysis.
-   These views assist in identifying the location, extent, and potencial
+   These views assist in identifying the location, extent, and potential
    causes of abnormal delay affecting specific customer traffic or
    services.  To achieve this, delay-related metrics need to be reported
    from devices covering both data and control planes.  Further, in
@@ -147,33 +148,35 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    Telemetry protocol, which inserts metadata into the data-plane packet
    when entering the monitored domain [RFC9232].  To compute delay
    measurements, the On-Path Telemetry protocol inserts a timestamp
-   reference when entering the encapsulating node.  This can be
+   reference when entering the OAM encapsulating node.  This can be
    performed using In Situ Operations, Administration, and Maintenance
    (IOAM) [RFC9378] or Enhanced Alternate Marking
    [I-D.zhou-ippm-enhanced-alternate-marking].
 
-   Two modes of on-path telemetry are generally recognized: passport
-   mode, in which only the egress node of the telemetry domain reports
-   metrics; and postcard mode, in which transit nodes also export
-   telemetry data.  Both modes enable exposure of per-hop performance
-   metrics, including delay accumulation.  The approach defined in this
-   document is primarily applicable to postcard mode.
-
-   To enable the export of the delay-related metrics via IPFIX
-   [RFC7011], this document defines four new IPFIX Information Elements
-   (IEs), exposing the On-Path delay on OAM transit and decapsulating
+   Two modes of On-Path Telemetry are generally recognized: passport
+   mode, in which only the OAM decapsulation node of the OAM domain
+   reports metrics; and postcard mode, in which OAM header transit nodes
+   also export On-Path Telemetry data.  Both modes enable exposure of
+   per-hop performance metrics, including delay accumulation.  The
+   approach defined in this document is primarily applicable to postcard
+   mode.
 
 
 
-Graf, et al.            Expires 19 February 2026                [Page 3]
+
+
+Graf, et al.              Expires 4 March 2026                  [Page 3]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 
-   nodes, following the postcard mode principles.  As these IEs
-   represent performance metrics, they are also registered in the IANA
-   "Performance Metrics" registry [IANA-PERF-METRIC] in accordance with
-   [RFC8911].
+   To enable the export of the delay-related metrics via IPFIX
+   [RFC7011], this document defines four new IPFIX Information Elements
+   (IEs), exposing the On-Path delay on OAM header transit and
+   decapsulating nodes, following the postcard mode principles.  As
+   these IEs represent performance metrics, they are also registered in
+   the IANA "Performance Metrics" registry [IANA-PERF-METRIC] in
+   accordance with [RFC8911].
 
 2.  Terminology
 
@@ -185,17 +188,18 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    This document defines the following terms:
 
-   *  Encapsulating Node: Receives the IP packets, encapsulates the
-      packets with an OAM header and adds the timestamp into the OAM
-      header.
+   *  OAM Header Encapsulating Node: Receives the IP packets,
+      encapsulates the packets with an OAM header and adds the timestamp
+      into the OAM header.
 
-   *  Transit Node: Receives the IP packets, measures the delay between
-      the timestamp in the packet and the timestamp when the packet was
-      received.
+   *  OAM Header Transit Node: Receives the IP packets, measures the
+      delay between the timestamp in the packet and the timestamp when
+      the packet was received.
 
-   *  Decapsulating Node: Receives the IP packets, computes the delay
-      between the timestamp in the packet and the timestamp when the
-      packet was received and removes the OAM header from the packet.
+   *  OAM Header Decapsulating Node: Receives the IP packets, computes
+      the delay between the timestamp in the packet and the timestamp
+      when the packet was received and removes the OAM header from the
+      packet.
 
    This document makes use of the terms defined in [RFC7011], [RFC8911]
    and [RFC7799].
@@ -214,17 +218,17 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    *  IPFIX Information Elements (IEs)
 
-   *  Observation Point
-
-   The following terms are used as defined in [RFC8911]:
 
 
 
-
-Graf, et al.            Expires 19 February 2026                [Page 4]
+Graf, et al.              Expires 4 March 2026                  [Page 4]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
+
+   *  Observation Point
+
+   The following terms are used as defined in [RFC8911]:
 
    *  Performance Metric
 
@@ -232,9 +236,13 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    *  Registered Performance Metric
 
+   The following term is used as defined in Section 3.7 of [RFC7799]:
+
+   *  Passive
+
    The following term is used as defined in Section 3.8 of [RFC7799]:
 
-   *  Hybrid Type I Passive
+   *  Hybrid Type I
 
 3.  Solution
 
@@ -250,6 +258,29 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    This documents defines the following performance metrics and
    Information Elements:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                  [Page 5]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
 
   +------------------------------------+-------------------------------+
   |      Performance Metric            |  IPFIX Information Element    |
@@ -269,26 +300,13 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
   Table 1: Mapping Between IPFIX IEs and Performance Metrics
 
-
-
-
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026                [Page 5]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
-
    Assuming time synchronization on devices, the delay is measured by
    calculating the difference between the timestamp imposed with On-Path
-   Telemetry in the packet at an OAM encapsulating node and the
-   timestamp exported in the IPFIX flow record from the OAM transit and
-   decapsulating nodes.  The lowest, highest, mean, and the sum of
-   measured path delay can be exported, thanks to the different IPFIX IE
-   specifications.
+   Telemetry in the packet at an OAM header encapsulating node and the
+   timestamp exported in the IPFIX flow record from the OAM header
+   transit and OAM header decapsulating nodes.  The lowest, highest,
+   mean, and the sum of measured path delay can be exported, thanks to
+   the different IPFIX IE specifications.
 
                           On-Path Telemetry Domain
                  .........................................
@@ -311,36 +329,34 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
        Figure 1: Delay use case.  Packets flow from host 1 to host 2.
 
-   In the use case shown in Figure 1 using On-path Telemetry to export
-   the delay metrics, the node R1 exports the delay D1, the node R2
-   exports the delay D2 and the decapsulating node R3 exports the total
-   delay D3 for the same flow using IPFIX.
-
-   This solution enables the computation of delay metrics (minimum,
-   maximum, and mean) directly on the OAM node, allowing aggregation
-   within the Flow Record.  This reduces both export bandwidth and
-   processing requirements on the Collector.  To compute these metrics
-   locally, the Exporter's Metering Process must perform per-packet
-   caching and processing, particularly when computing mean delay under
-   Flow Aggregation [RFC7015].  A less computationally intensive
-   alternative is to export the sum of delays, allowing the Collector to
-   compute the mean via a simple division using the packet count.
 
 
 
 
-
-
-
-
-Graf, et al.            Expires 19 February 2026                [Page 6]
+Graf, et al.              Expires 4 March 2026                  [Page 6]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 
-   In contrast, if no delay processing occurs on the OAM node, each
-   packet must be exported as an individual Flow Record, including
-   timestamp information, as specified in
+   In the use case shown in Figure 1 using On-path Telemetry to export
+   the delay metrics, the node R1 exports the delay D1, the node R2
+   exports the delay D2 and the OAM header decapsulating node R3 exports
+   the total delay D3 for the same flow using IPFIX.
+
+   This solution enables the computation of delay metrics (minimum,
+   maximum, and mean) directly on the OAM header transit and
+   decapsulation node, allowing aggregation within the Flow Record.
+   This reduces both export bandwidth and processing requirements on the
+   Collector.  To compute these metrics locally, the Exporter's Metering
+   Process must perform per-packet caching and processing, particularly
+   when computing mean delay under Flow Aggregation [RFC7015].  A less
+   computationally intensive alternative is to export the sum of delays,
+   allowing the Collector to compute the mean via a simple division
+   using the packet count.
+
+   In contrast, if no delay processing occurs on the OAM header transit
+   or decapsulation node, each packet must be exported as an individual
+   Flow Record, including timestamp information, as specified in
    [I-D.ietf-opsawg-ipfix-alt-mark].  The Collector must then compute
    the delay metrics and reconstruct the aggregated Flow Record
    accordingly.
@@ -370,6 +386,14 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    This category includes multiple indexes of the registered performance
    metrics: the element Identifier and Metric Name.
 
+
+
+
+Graf, et al.              Expires 4 March 2026                  [Page 7]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
 4.1.1.1.  ID (Identifier)
 
    IANA has allocated the numeric Identifiers TBD1, TBD2, TBD3, and TBD4
@@ -385,14 +409,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    TBD2: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min
 
    TBD3: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max
-
-
-
-
-Graf, et al.            Expires 19 February 2026                [Page 7]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
    TBD4: OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum
 
@@ -424,6 +440,16 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
       of one-way delay based on a single Observation Point [RFC7011]
       somewhere in the network.
 
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                  [Page 8]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
    *  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min: This
       metric assesses the minimum of one-way delays of all successfully
       forwarded IP packets constituting a single Flow.  The measurement
@@ -441,14 +467,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
       forwarded IP packets constituting a single Flow.  The measurement
       of one-way delay based on a single Observation Point [RFC7011]
       somewhere in the network.
-
-
-
-
-Graf, et al.            Expires 19 February 2026                [Page 8]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
    RFC EDITOR NOTE: please replace [RFC-to-be] with the allocated RFC
    document number.
@@ -475,6 +493,19 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    document reference and values of input factors, called "Fixed
    Parameters".
 
+
+
+
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                  [Page 9]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
 4.2.1.  Reference Definition
 
    Almes, G., Kalidindi, S., Zekauskas, M., and A.  Morton, Ed., "A One-
@@ -498,14 +529,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    host, such that the Spatial Composition [RFC6049] of the measurements
    yields a one-way delay singleton.
 
-
-
-
-Graf, et al.            Expires 19 February 2026                [Page 9]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
-
    This document specifies how to export the performance metric using
    IPFIX.
 
@@ -525,16 +548,31 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    of [RFC7323] using the Timestamps option with modifications that
    allow application at a mid-path Observation Point [RFC7011].
 
+
+
+
+
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 10]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
 4.3.2.  Packet Stream Generation
 
-   The time when the packet is being received at the OAM encapsulating
-   node.  The timestamp format depends on On-Path Telemetry
-   implementation.  For IOAM, Section 4.4.1 of [RFC9197] describes the
-   supported timestamps.  Sections 4.4.2.3 and 4.4.2.4 describe where
-   the timestamp is being inserted.  For the Enhanced Alternate Marking
-   Method, Section 2 of [I-D.zhou-ippm-enhanced-alternate-marking] and
-   Section 3.2 of [I-D.fz-spring-srv6-alt-mark] defines timestamp
-   encoding and granularity.
+   The time when the packet is being received at the OAM header
+   encapsulating node.  The timestamp format depends on On-Path
+   Telemetry implementation.  For IOAM, Section 4.4.1 of [RFC9197]
+   describes the supported timestamps.  Sections 4.4.2.3 and 4.4.2.4
+   describe where the timestamp is being inserted.  For the Enhanced
+   Alternate Marking Method, Section 2 of
+   [I-D.zhou-ippm-enhanced-alternate-marking] and Section 3.2 of
+   [I-D.fz-spring-srv6-alt-mark] defines timestamp encoding and
+   granularity.
 
 4.3.3.  Traffic Filtering (Observation) Details
 
@@ -551,16 +589,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    Runtime Parameters are input factors that must be determined,
    configured into a measurement system, and reported with the results
    for the context to be complete.
-
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 10]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
    The Hybrid Type I metering parameters must be reported to provide the
    complete measurement context.  As an example, if the IPFIX Metering
@@ -582,6 +610,14 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
       as specified in Section 5.6 of [RFC3339]; see also "date-and-time"
       in Section 3 of [RFC6991]).  The UTC Time Zone is required by
       Section 6.1 of [RFC2330].  When T0 is "all-zeros", a start time is
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 11]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
       unspecified and Tf is to be interpreted as the duration of the
       measurement interval.  The start time is controlled through other
       means.
@@ -599,24 +635,18 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    host B:  Receives the IP packet to start the Flow.
 
-   Encapsulating Node:  Receives the IP packets, encapsulates the
-      packets with the OAM header and adds the timestamp into the OAM
-      header.
+   OAM Header Encapsulating Node:  Receives the IP packets, encapsulates
+      the packets with the OAM header and adds the timestamp into the
+      OAM header.
 
-   Transit Node:  Receives the IP packets, measures the delay between
-      the timestamp in the packet and the timestamp when the packet was
-      received.
-
-   Decapsulating Node:  Receives the IP packets, computes the delay
+   OAM Header Transit Node:  Receives the IP packets, measures the delay
       between the timestamp in the packet and the timestamp when the
-      packet was received and removes the OAM header from the packet.
+      packet was received.
 
-
-
-Graf, et al.            Expires 19 February 2026               [Page 11]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
+   OAM Header Decapsulating Node:  Receives the IP packets, computes the
+      delay between the timestamp in the packet and the timestamp when
+      the packet was received and removes the OAM header from the
+      packet.
 
 4.4.  Output
 
@@ -636,6 +666,13 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    For each <statistic> Singleton one of the following subsections
    applies.
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 12]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
 
 4.4.2.1.  OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean
 
@@ -665,15 +702,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    finite value of one-way delay (undefined delays are excluded) -- a
    single value, as follows:
 
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 12]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
-
    See Section 4.1 of [RFC3393] for details on the conditional
    distribution to exclude undefined values of delay, and see Section 5
    of [RFC6703] for background on this analysis choice.
@@ -694,6 +722,13 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    calculated using the conditional distribution of all packets with a
    finite value of one-way delay (undefined delays are excluded) -- a
    single value, as follows:
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 13]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
 
    See Section 4.1 of [RFC3393] for details on the conditional
    distribution to exclude undefined values of delay, and see Section 5
@@ -723,13 +758,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    packets with a finite value of one-way delay (undefined delays are
    excluded) -- a single value, as follows:
 
-
-
-Graf, et al.            Expires 19 February 2026               [Page 13]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
-
    See Section 4.1 of [RFC3393] for details on the conditional
    distribution to exclude undefined values of delay, and see Section 5
    of [RFC6703] for background on this analysis choice.
@@ -750,6 +778,14 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    *  Min
 
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 14]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
    *  Max
 
    *  Sum
@@ -760,9 +796,10 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 4.4.2.6.  Calibration
 
    A clock synchronization between the nodes of the monitored OAM domain
-   is needed to compute representative delay measurements at the transit
-   and decapsulating nodes.  NTP, as defined in [RFC5905], can be used
-   for synchronizing the clocks of the monitored nodes.
+   is needed to compute representative delay measurements at the OAM
+   header transit and decapsulating nodes.  NTP, as defined in
+   [RFC5905], can be used for synchronizing the clocks of the monitored
+   nodes.
 
 4.4.3.  Administrative Items
 
@@ -777,14 +814,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    RFC EDITOR NOTE: please replace [RFC-to-be] with the allocated RFC
    document number and [RFC-date] with the date when the RFC has been
    published.
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 14]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
 4.4.3.3.  Revision
 
@@ -803,6 +832,15 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    The measured On-Path delay can be aggregated with Flow Aggregation as
    defined in [RFC7015] to the following device and control-plane
    dimensions [IANA-IPFIX] to determine:
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 15]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
 
    *  With node id and egressInterface(14), on which node which logical
       egress interfaces have been contributing to how much delay.
@@ -832,16 +870,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
       IPFIX IEs for IPv6, the forwarding path delay on each node from
       each IPv4 source address to a specific application in the network.
 
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 15]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
-
    Let us consider the example depicted in Figure 1 from Section 1 as
    topology example.  Below example table shows the aggregated delay per
    each node, ingressInterface,(10) egressInterface(14),
@@ -863,6 +891,13 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 Table 2: Example table of measured delay at ingress. Ascending by delay.
 
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 16]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
 6.  IANA Considerations
 
 6.1.  Performance Metrics
@@ -877,26 +912,6 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
    under the "IPFIX Information Elements" registry under the "IP Flow
    Information Export (IPFIX) Entities" registry group [IANA-IPFIX] and
    assign the following initial code points.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 16]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
         +-------+--------------------------------+
         |Element|              Name              |
@@ -930,11 +945,20 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    ElementID:  TBD5
 
    Description:  This Information Element identifies the mean path delay
-      of all packets in the Flow, in microseconds, between an OAM
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 17]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
+      of all packets in the Flow, in microseconds, between an OAM header
       encapsulating node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulating node), according to
-      OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the
-      IANA Performance Metric Registry.
+      an OAM header transit node or an OAM header decapsulating node),
+      according to OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
+      be]_Seconds_Mean in the IANA Performance Metric Registry.
 
    Abstract Data Type:  unsigned32
 
@@ -946,14 +970,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
       OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Mean in the
       IANA Performance Metric Registry.
 
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 17]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
-
 6.2.2.  pathDelayMinDeltaMicroseconds
 
    Name:  pathDelayMinDeltaMicroseconds
@@ -962,10 +978,10 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    Description:  This Information Element identifies the lowest path
       delay of all packets in the Flow, in microseconds, between an OAM
-      encapsulating node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulating node), according to
-      the OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Min in
-      the IANA Performance Metric Registry.
+      header encapsulating node and the local node with the OAM domain
+      (either an OAM header transit node or an OAM header decapsulating
+      node), according to the OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
+      be]_Seconds_Min in the IANA Performance Metric Registry.
 
    Abstract Data Type:  unsigned32
 
@@ -984,11 +1000,21 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    ElementID:  TBD7
 
    Description:  This Information Element identifies the highest path
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 18]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
       delay of all packets in the Flow, in microseconds, between an OAM
-      encapsulating node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulating node), according to
-      OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the
-      IANA Performance Metric Registry.
+      header encapsulating node and the local node with the OAM domain
+      (either an OAM header transit node or an OAM header decapsulating
+      node), according to OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
+      be]_Seconds_Max in the IANA Performance Metric Registry.
 
    Abstract Data Type:  unsigned32
 
@@ -1000,16 +1026,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
       OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Max in the
       IANA Performance Metric Registry.
 
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 18]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
-
 6.2.4.  pathDelaySumDeltaMicroseconds
 
    Name:  pathDelaySumDeltaMicroseconds
@@ -1018,10 +1034,10 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    Description:  This Information Element identifies the sum of the path
       delay of all packets in the Flow, in microseconds, between an OAM
-      encapsulating node and the local node with the OAM domain (either
-      an OAM transit node or an OAM decapsulating node), according to
-      OWDelay_HybridType1_Passive_IP_RFC[RFC-to-be]_Seconds_Sum in the
-      IANA Performance Metric Registry.
+      header encapsulating node and the local node with the OAM domain
+      (either an OAM header transit node or an OAM header decapsulating
+      node), according to OWDelay_HybridType1_Passive_IP_RFC[RFC-to-
+      be]_Seconds_Sum in the IANA Performance Metric Registry.
 
    Abstract Data Type:  unsigned64
 
@@ -1040,6 +1056,16 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    The same recommendation as defined in Section 4.5 of [RFC5153] for
    IPFIX applies in terms of clock precision to this document as well.
 
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 19]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
 7.2.  Mean Delay
 
    The mean (average) path delay can be calculated by dividing the
@@ -1057,14 +1083,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    in Section 6.2 of [RFC7011] may be applied to reduce network
    bandwidth between the IPFIX Exporter and Collector if unsigned32
    would be large enough without wrapping around.
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 19]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
 7.4.  Measurement Interval
 
@@ -1090,43 +1108,40 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    IOAM Edge-to-Edge Option-Type, as described in Section 4.6 of
    [RFC9197], can use bits 2 and 3.  In this case, timestamps are
    encoded as defined in Sections 4.4.2.3 and 4.4.2.4 of [RFC9197].
-   This timestamp can be used to compute the delay between an
+   This timestamp can be used to compute the delay between an OAM header
    encapsulating node and the decapsulating node.
 
    IOAM Direct Exporting Option-Type, as described in [RFC9326], can use
    the Extension-Flag defined in [I-D.ahuang-ippm-dex-timestamp-ext] to
-   insert a timestamp in the encapsulating node.  The timestamp is
-   encoded as defined in Sections 4.4.2.3 and 4.4.2.4 of [RFC9197].
-   This timestamp can be used to compute the delay between the inserted
-   timestamp and the transit and decapsulating node.
-
-   For the Enhanced Alternate Marking Method, Section 2 of
-   [I-D.zhou-ippm-enhanced-alternate-marking] and Section 3.2 of
-   [I-D.fz-spring-srv6-alt-mark] defines that, within the metaInfo, a
-   nanosecond timestamp can be encoded in an encapsulating node and be
-   read at the intermediate and decapsulating node to calculate the on-
-   path delay.  [RFC9343] defines how this can be applied to the IPv6
-   extensions header and [I-D.fz-spring-srv6-alt-mark] defines how this
-   can be applied to the SRv6 Segment Routing Header [RFC8754].
+   insert a timestamp in the OAM header encapsulating node.  The
 
 
 
-
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 20]
+Graf, et al.              Expires 4 March 2026                 [Page 20]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 
+   timestamp is encoded as defined in Sections 4.4.2.3 and 4.4.2.4 of
+   [RFC9197].  This timestamp can be used to compute the delay between
+   the inserted timestamp and the OAM header transit and decapsulating
+   node.
+
+   For the Enhanced Alternate Marking Method, Section 2 of
+   [I-D.zhou-ippm-enhanced-alternate-marking] and Section 3.2 of
+   [I-D.fz-spring-srv6-alt-mark] defines that, within the metaInfo, a
+   nanosecond timestamp can be encoded in an OAM header encapsulating
+   node and be read at the OAM header intermediate and decapsulating
+   node to calculate the on-path delay.  [RFC9343] defines how this can
+   be applied to the IPv6 extensions header and
+   [I-D.fz-spring-srv6-alt-mark] defines how this can be applied to the
+   SRv6 Segment Routing Header [RFC8754].
+
    Given that the delay measurements are computed with the timestamp
-   introduced on the encapsulating node, regardless of the approach,
-   implementations should document at which point of the forwarding
-   plane this timestamp is introduced (e.g. the time at which the packet
-   was received by the node, the time at which the packet was
+   introduced on the OAM header encapsulating node, regardless of the
+   approach, implementations should document at which point of the
+   forwarding plane this timestamp is introduced (e.g. the time at which
+   the packet was received by the node, the time at which the packet was
    transmitted by the node, etc.).  Based on this information, different
    actions can be taken.
 
@@ -1153,6 +1168,16 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    security considerations Section 11 of [RFC7011].  Implementations
    SHOULD also refer to [BCP195] for additional details.
 
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 21]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
 9.  Implementation Status
 
    Note to the RFC-Editor: Please remove this section before publishing.
@@ -1169,14 +1194,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    *  pathDelayMinDeltaMicroseconds
 
    *  pathDelaySumDeltaMicroseconds
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 21]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
    The open source code can be obtained here: [INSA-Lyon-VPP] and was
    validated at the IETF 116 hackathon.
@@ -1208,6 +1225,15 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    *  pathDelaySumDeltaMicroseconds
 
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 22]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
    The open source code can be obtained here: [NTT-Fluvia] and was
    validated at the IETF 118 hackathon.
 
@@ -1219,20 +1245,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    The source code can be obtained here: [Paolo-Lucente-Pmacct] and was
    validated at the IETF 116 hackathon.
-
-
-
-
-
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 22]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
 10.  Acknowledgements
 
@@ -1268,6 +1280,16 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 23]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
    [RFC3339]  Klyne, G. and C. Newman, "Date and Time on the Internet:
               Timestamps", RFC 3339, DOI 10.17487/RFC3339, July 2002,
               <https://www.rfc-editor.org/info/rfc3339>.
@@ -1280,15 +1302,6 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    [RFC6049]  Morton, A. and E. Stephan, "Spatial Composition of
               Metrics", RFC 6049, DOI 10.17487/RFC6049, January 2011,
               <https://www.rfc-editor.org/info/rfc6049>.
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 23]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
    [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
               "Specification of the IP Flow Information Export (IPFIX)
@@ -1325,6 +1338,14 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
               DOI 10.17487/RFC8912, November 2021,
               <https://www.rfc-editor.org/info/rfc8912>.
 
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 24]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
 11.2.  Informative References
 
    [I-D.ahuang-ippm-dex-timestamp-ext]
@@ -1336,31 +1357,13 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
               <https://datatracker.ietf.org/doc/html/draft-ahuang-ippm-
               dex-timestamp-ext-00>.
 
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 24]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
-
    [I-D.fz-spring-srv6-alt-mark]
-              Fioccola, G., Zhou, T., Cociglio, M., Mishra, G. S., wang,
-              X., and G. Zhang, "Application of the Alternate Marking
+              Fioccola, G., Zhou, T., Mishra, G. S., wang, X., Zhang,
+              G., and M. Cociglio, "Application of the Alternate Marking
               Method to the Segment Routing Header", Work in Progress,
-              Internet-Draft, draft-fz-spring-srv6-alt-mark-15, 20 July
-              2025, <https://datatracker.ietf.org/doc/html/draft-fz-
-              spring-srv6-alt-mark-15>.
-
-   [I-D.ietf-ippm-alt-mark-deployment]
-              Fioccola, G., Zhu, K., Graf, T., Nilo, M., and L. Zhang,
-              "Alternate Marking Deployment Framework", Work in
-              Progress, Internet-Draft, draft-ietf-ippm-alt-mark-
-              deployment-03, 27 February 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-ippm-
-              alt-mark-deployment-03>.
+              Internet-Draft, draft-fz-spring-srv6-alt-mark-17, 27
+              August 2025, <https://datatracker.ietf.org/doc/html/draft-
+              fz-spring-srv6-alt-mark-17>.
 
    [I-D.ietf-opsawg-ipfix-alt-mark]
               Graf, T., Fioccola, G., Zhou, T., Zhu, Y., and M.
@@ -1388,19 +1391,21 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
               <https://www.iana.org/assignments/performance-metrics/
               performance-metrics.xhtml>.
 
+
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 25]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
    [INSA-Lyon-VPP]
               "INSA Lyon, FD.io VPP implementation",
               <https://github.com/network-analytics/vpp-srh-onpath-
               telemetry>.
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 25]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
    [NTT-Fluvia]
               "NTT Com, Fluvia Exporter",
@@ -1444,19 +1449,18 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
               RFC 6703, DOI 10.17487/RFC6703, August 2012,
               <https://www.rfc-editor.org/info/rfc6703>.
 
-   [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
-              RFC 6991, DOI 10.17487/RFC6991, July 2013,
-              <https://www.rfc-editor.org/info/rfc6991>.
 
 
 
 
-
-
-Graf, et al.            Expires 19 February 2026               [Page 26]
+Graf, et al.              Expires 4 March 2026                 [Page 26]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
+
+   [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
+              RFC 6991, DOI 10.17487/RFC6991, July 2013,
+              <https://www.rfc-editor.org/info/rfc6991>.
 
    [RFC7015]  Trammell, B., Wagner, A., and B. Claise, "Flow Aggregation
               for the IP Flow Information Export (IPFIX) Protocol",
@@ -1499,6 +1503,17 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
               DOI 10.17487/RFC9378, April 2023,
               <https://www.rfc-editor.org/info/rfc9378>.
 
+
+
+
+
+
+
+Graf, et al.              Expires 4 March 2026                 [Page 27]
+
+Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
+
+
 Appendix A.  IPFIX Encoding Examples
 
    This appendix represents two different encodings for the newly
@@ -1506,13 +1521,6 @@ Appendix A.  IPFIX Encoding Examples
    Below example Table 4 shows the aggregated delay with
    ingressInterface, egressInterface, destinationIPv6Address and
    srhActiveSegmentIPv6.
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 27]
-
-Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
-
 
  +------ +------+-----------+-----------+------+-------+-------+-------+
  |ingress|egress|destination|srhActive  |packet|path   |path   |path   |
@@ -1557,15 +1565,7 @@ A.1.1.  Template Record and Data Set with Mean Delta
 
 
 
-
-
-
-
-
-
-
-
-Graf, et al.            Expires 19 February 2026               [Page 28]
+Graf, et al.              Expires 4 March 2026                 [Page 28]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
@@ -1621,7 +1621,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 
 
-Graf, et al.            Expires 19 February 2026               [Page 29]
+Graf, et al.              Expires 4 March 2026                 [Page 29]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
@@ -1677,7 +1677,7 @@ A.1.2.  Template Record and Data Set with Sum Delta
 
 
 
-Graf, et al.            Expires 19 February 2026               [Page 30]
+Graf, et al.              Expires 4 March 2026                 [Page 30]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
@@ -1733,7 +1733,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 
 
-Graf, et al.            Expires 19 February 2026               [Page 31]
+Graf, et al.              Expires 4 March 2026                 [Page 31]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
@@ -1789,7 +1789,7 @@ Authors' Addresses
 
 
 
-Graf, et al.            Expires 19 February 2026               [Page 32]
+Graf, et al.              Expires 4 March 2026                 [Page 32]
 
 Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
@@ -1845,4 +1845,4 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
 
 
-Graf, et al.            Expires 19 February 2026               [Page 33]
+Graf, et al.              Expires 4 March 2026                 [Page 33]
