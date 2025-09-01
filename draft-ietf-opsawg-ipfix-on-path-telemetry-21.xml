@@ -475,7 +475,7 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 
         <section title="Packet Stream Generation">
           <t>The time when the packet is being received at the OAM header
-          encapsulating node. The timestamp format depends on On-Path
+          encapsulating node. The timestamp format depends on the On-Path
 					Telemetry implementation. For IOAM, <xref section="4.4.1"
 					sectionFormat="of" target="RFC9197"/> describes the supported
 					timestamps. Sections 4.4.2.3 and 4.4.2.4 describe
@@ -483,8 +483,8 @@ Host 1  Encapsulating   Transit      Transit   Decapsulating  Host 2
 					Alternate Marking Method, <xref section="2" sectionFormat="of"
           target="I-D.zhou-ippm-enhanced-alternate-marking"/> and <xref
 		      section="3.2" sectionFormat="of" 
-					target="I-D.fz-spring-srv6-alt-mark"/> defines timestamp
-					encoding and granularity.</t>
+					target="I-D.fz-spring-srv6-alt-mark"/> defines the supported timestamp
+					encodings and granularity.</t>
         </section>
 
         <section title="Traffic Filtering (Observation) Details">

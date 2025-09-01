@@ -565,14 +565,14 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 4.3.2.  Packet Stream Generation
 
    The time when the packet is being received at the OAM header
-   encapsulating node.  The timestamp format depends on On-Path
+   encapsulating node.  The timestamp format depends on the On-Path
    Telemetry implementation.  For IOAM, Section 4.4.1 of [RFC9197]
    describes the supported timestamps.  Sections 4.4.2.3 and 4.4.2.4
    describe where the timestamp is being inserted.  For the Enhanced
    Alternate Marking Method, Section 2 of
    [I-D.zhou-ippm-enhanced-alternate-marking] and Section 3.2 of
-   [I-D.fz-spring-srv6-alt-mark] defines timestamp encoding and
-   granularity.
+   [I-D.fz-spring-srv6-alt-mark] defines the supported timestamp
+   encodings and granularity.
 
 4.3.3.  Traffic Filtering (Observation) Details
 
