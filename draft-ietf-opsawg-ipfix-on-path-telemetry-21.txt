@@ -154,12 +154,12 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    [I-D.zhou-ippm-enhanced-alternate-marking].
 
    Two modes of On-Path Telemetry are generally recognized: passport
-   mode, in which only the OAM decapsulation node of the OAM domain
-   reports metrics; and postcard mode, in which OAM header transit nodes
-   also export On-Path Telemetry data.  Both modes enable exposure of
-   per-hop performance metrics, including delay accumulation.  The
-   approach defined in this document is primarily applicable to postcard
-   mode.
+   mode, in which only the OAM header decapsulating node of the OAM
+   domain reports metrics; and postcard mode, in which OAM header
+   transit nodes also export On-Path Telemetry data.  Both modes enable
+   exposure of per-hop performance metrics, including delay
+   accumulation.  The approach defined in this document is primarily
+   applicable to postcard mode.
 
 
 
@@ -345,7 +345,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
 
    This solution enables the computation of delay metrics (minimum,
    maximum, and mean) directly on the OAM header transit and
-   decapsulation node, allowing aggregation within the Flow Record.
+   decapsulating node, allowing aggregation within the Flow Record.
    This reduces both export bandwidth and processing requirements on the
    Collector.  To compute these metrics locally, the Exporter's Metering
    Process must perform per-packet caching and processing, particularly
@@ -355,7 +355,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX       August 2025
    using the packet count.
 
    In contrast, if no delay processing occurs on the OAM header transit
-   or decapsulation node, each packet must be exported as an individual
+   or decapsulating node, each packet must be exported as an individual
    Flow Record, including timestamp information, as specified in
    [I-D.ietf-opsawg-ipfix-alt-mark].  The Collector must then compute
    the delay metrics and reconstruct the aggregated Flow Record
