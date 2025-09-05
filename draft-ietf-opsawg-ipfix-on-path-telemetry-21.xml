@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="31" month="August" year="2025"/>
+    <date day="05" month="September" year="2025"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -104,7 +104,7 @@
       packet when entering the monitored domain <xref
       target="RFC9232"/>. To compute delay measurements, the On-Path
       Telemetry protocol inserts a timestamp reference when entering the
-      OAM encapsulating node. This can be performed using In Situ
+      OAM encapsulating node. Implementations examples are In Situ
 			Operations, Administration, and Maintenance (IOAM) <xref
 			target="RFC9378"/> or Enhanced Alternate Marking
       <xref target="I-D.zhou-ippm-enhanced-alternate-marking"/>.</t>
@@ -122,8 +122,15 @@
 			<xref target="RFC7011"/>, this document defines four new IPFIX
 			Information Elements (IEs), exposing the On-Path delay on OAM
 			header transit and decapsulating nodes, following the postcard
-			mode principles. As these IEs represent performance metrics, they
-      are also registered in the <xref target="IANA-PERF-METRIC">
+			mode principles.</t> 
+			
+      <t>This enables the computation of delay metrics (minimum,
+			maximum, and mean) directly on the OAM header transit and
+			decapsulating node, allowing aggregation within the Flow Record.
+			</t>	
+			
+			<t>As these IEs represent performance metrics, they are also
+			registered in the <xref target="IANA-PERF-METRIC">
       IANA "Performance Metrics" registry</xref> in accordance with
       <xref target="RFC8911"/>.</t>
     </section>
