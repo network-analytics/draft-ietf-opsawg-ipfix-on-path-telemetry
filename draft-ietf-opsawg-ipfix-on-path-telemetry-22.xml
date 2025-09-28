@@ -70,7 +70,7 @@
       </address>
     </author>
 
-    <date day="14" month="September" year="2025"/>
+    <date day="28" month="September" year="2025"/>
 
     <abstract>
       <t>This document specifies new IP Flow Information Export (IPFIX)
@@ -106,7 +106,7 @@
       Telemetry protocol inserts a timestamp reference when entering the
       OAM encapsulating node. Implementations examples are In Situ
 			Operations, Administration, and Maintenance (IOAM) <xref
-			target="RFC9378"/> or Enhanced Alternate Marking
+			target="RFC9197"/> or Enhanced Alternate Marking
       <xref target="I-D.zhou-ippm-enhanced-alternate-marking"/>.</t>
 
       <t>Two modes of On-Path Telemetry are generally recognized:
@@ -1393,8 +1393,6 @@ Table 2: Example table of measured delay at ingress. Ascending by delay.
       <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9326.xml'?>
 
       <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9343.xml'?>
-
-      <?rfc include='https://xml.resource.org/public/rfc/bibxml/reference.RFC.9378.xml'?>
 
       <?rfc include='https://bib.ietf.org/public/rfc/bibxml-ids/reference.I-D.ietf-opsawg-ipfix-alt-mark.xml'?>
 
