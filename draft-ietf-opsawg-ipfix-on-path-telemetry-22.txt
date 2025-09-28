@@ -260,7 +260,7 @@ Internet-Draft     Delay Performance Metrics for IPFIX    September 2025
    "MetricType_Method_SubTypeMethod_... Spec_Units_Output" convention
    defined in Section 7.1.2 of [RFC8911].
 
-   This documents defines the following performance metrics and IPFIX
+   This document defines the following performance metrics and IPFIX
    Information Elements:
 
 
